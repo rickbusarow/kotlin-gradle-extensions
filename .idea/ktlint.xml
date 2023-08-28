@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="KtlintProjectConfiguration">
+    <useExperimental>true</useExperimental>
+    <treatAsErrors>false</treatAsErrors>
+    <formatOnSave>true</formatOnSave>
+    <externalJarPaths>
+      <list>
+        <option value="$PROJECT_DIR$/build-logic/ktlint/build/libs/ktlint.jar" />
+      </list>
+    </externalJarPaths>
+  </component>
+</project>

@@ -1,0 +1,85 @@
+public final class com/rickbusarow/kgx/CatalogsKt {
+	public static final fun dependency (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public static final fun getJDK (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public static final fun getJVM_TARGET (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public static final fun getJVM_TARGET_INT (Lorg/gradle/api/Project;)I
+	public static final fun getKOTLIN_API (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public static final fun getLibsCatalog (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/VersionCatalog;
+	public static final fun version (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class com/rickbusarow/kgx/DomainObjectCollectionKt {
+	public static final fun registerOnce (Lorg/gradle/api/NamedDomainObjectContainer;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public final class com/rickbusarow/kgx/DomainObjectCollectionKt$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
+public abstract interface annotation class com/rickbusarow/kgx/EagerGradleApi : java/lang/annotation/Annotation {
+}
+
+public final class com/rickbusarow/kgx/EnvironmentKt {
+	public static final fun inCI ()Z
+}
+
+public final class com/rickbusarow/kgx/ExtrasKt {
+	public static final fun getExtras (Lorg/gradle/api/plugins/ExtensionAware;)Lorg/gradle/api/plugins/ExtraPropertiesExtension;
+	public static final fun getOrNull (Lorg/gradle/api/plugins/ExtraPropertiesExtension;Ljava/lang/String;)Ljava/lang/Object;
+}
+
+public final class com/rickbusarow/kgx/FileKt {
+	public static final fun existsOrNull (Ljava/io/File;)Ljava/io/File;
+	public static final fun hasGradleProjectFiles (Ljava/io/File;)Z
+	public static final fun isDirectoryWithFiles (Ljava/io/File;Lkotlin/jvm/functions/Function1;)Z
+	public static synthetic fun isDirectoryWithFiles$default (Ljava/io/File;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Z
+	public static final fun isOrphanedBuildOrGradleDir (Ljava/io/File;)Z
+	public static final fun isOrphanedGradleProperties (Ljava/io/File;)Z
+	public static final fun resolveInParent (Ljava/io/File;Ljava/lang/String;)Ljava/io/File;
+	public static final fun resolveInParentOrNull (Ljava/io/File;Ljava/lang/String;)Ljava/io/File;
+}
+
+public final class com/rickbusarow/kgx/IncludedKt {
+	public static final fun includedAllProjectsTasks (Lorg/gradle/api/invocation/Gradle;Ljava/lang/String;)Ljava/util/List;
+}
+
+public final class com/rickbusarow/kgx/PluginContainerKt {
+	public static final fun applyOnce (Lorg/gradle/api/plugins/PluginContainer;Ljava/lang/String;)V
+}
+
+public final class com/rickbusarow/kgx/ProjectKt {
+	public static final fun allProjectsTasksMatchingName (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/util/List;
+	public static final fun checkProjectIsRoot (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function0;)V
+	public static synthetic fun checkProjectIsRoot$default (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public static final fun subProjectsTasksMatchingName (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/util/List;
+}
+
+public final class com/rickbusarow/kgx/TaskKt {
+	public static final fun addAsDependencyTo (Lorg/gradle/api/tasks/TaskProvider;Lorg/gradle/api/tasks/TaskCollection;)Lorg/gradle/api/tasks/TaskProvider;
+	public static final fun addAsDependencyTo (Lorg/gradle/api/tasks/TaskProvider;Lorg/gradle/api/tasks/TaskProvider;)Lorg/gradle/api/tasks/TaskProvider;
+	public static final fun dependOn (Lorg/gradle/api/tasks/TaskCollection;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskCollection;
+	public static final fun dependsOn (Lorg/gradle/api/tasks/TaskProvider;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskProvider;
+	public static final fun matchingName (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;)Lorg/gradle/api/tasks/TaskCollection;
+	public static final fun maybeNamed (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;Lorg/gradle/api/Action;)V
+	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskCollection;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskCollection;
+	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskProvider;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskProvider;
+	public static final fun registerOnce (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;Ljava/lang/Class;Lorg/gradle/api/Action;)Lorg/gradle/api/tasks/TaskProvider;
+	public static final fun undecoratedTypeName (Lorg/gradle/api/Task;)Ljava/lang/String;
+}
+
+public final class com/rickbusarow/kgx/internal/IncludedInternalKt {
+	public static final fun allIncludedProjects (Lorg/gradle/api/invocation/Gradle;)Ljava/util/List;
+	public static final fun allProjects (Lorg/gradle/api/initialization/IncludedBuild;)Ljava/util/Set;
+	public static final fun includedRootProjectsTasks (Lorg/gradle/api/invocation/Gradle;Ljava/lang/String;)Ljava/util/List;
+	public static final fun requireProjectRegistry (Lorg/gradle/api/initialization/IncludedBuild;)Lorg/gradle/api/internal/project/ProjectRegistry;
+	public static final fun rootProject (Lorg/gradle/api/initialization/IncludedBuild;)Lorg/gradle/api/internal/project/ProjectInternal;
+}
+
+public abstract interface annotation class com/rickbusarow/kgx/internal/InternalGradleApiAccess : java/lang/annotation/Annotation {
+}
+
+public final class com/rickbusarow/kgx/internal/ProjectInternalKt {
+	public static final fun isRealRootProject (Lorg/gradle/api/Project;)Z
+}
+

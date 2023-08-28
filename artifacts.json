@@ -1,0 +1,11 @@
+[
+  {
+    "gradlePath": ":kotlin-gradle-extensions",
+    "group": "com.rickbusarow.kgx",
+    "artifactId": "kotlin-gradle-extensions",
+    "description": "Common utilities for Gradle",
+    "packaging": "jar",
+    "javaVersion": "1.8",
+    "publicationName": "maven"
+  }
+]
