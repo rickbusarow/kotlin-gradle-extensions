@@ -77,7 +77,7 @@ function parseVersionAndSyncDocs() {
   # Add `@since ____` tags to any new KDoc
   progress "Add \`@since ____\` tags to any new KDoc"
   ./gradlew ktlintFormat
-  maybeCommit "add @since tags to new KDoc for $VERSION_DEV"
+  maybeCommit "add @since tags to new KDoc for $VERSION_NAME"
 
   # format docs
   progress "format docs"
@@ -87,7 +87,7 @@ function parseVersionAndSyncDocs() {
   # update the version references in docs before versioning them
   progress "Update docs versions"
   ./gradlew doks
-  maybeCommit "update version references in docs to $VERSION_DEV"
+  maybeCommit "update version references in docs to $VERSION_NAME"
 }
 
 # update all versions/docs for the release version
