@@ -89,9 +89,7 @@ abstract class SpotlessConventionPlugin : Plugin<Project> {
         KotlinExtension::class.java
       ) { kotlin ->
 
-        // KtLint 0.48.0+ is failing when trying to format the snippets
-        kotlin.ktlint("0.47.1")
-          .setUseExperimental(true)
+        kotlin.ktlint(target.libsCatalog.version("ktlint-lib"))
           .setEditorConfigPath(target.rootProject.file(".editorconfig"))
           // Editorconfig doesn't work for code blocks, since they don't have a path which matches the
           // globs.  The band-aid is to parse kotlin settings out the .editorconfig, then pass all the
