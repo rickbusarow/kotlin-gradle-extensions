@@ -20,15 +20,12 @@ import com.vanniktech.maven.publish.JavadocJar.Dokka
 import com.vanniktech.maven.publish.KotlinJvm
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.SonatypeHost.Companion.DEFAULT
-import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.language.base.plugins.LifecycleBasePlugin
-import org.gradle.plugin.devel.GradlePluginDevelopmentExtension
-import org.gradle.plugin.devel.PluginDeclaration
 import org.gradle.plugins.signing.Sign
 import org.jetbrains.dokka.gradle.AbstractDokkaLeafTask
 
@@ -55,58 +52,12 @@ interface PublishingExtension {
       groupId = groupId
     )
   }
-
-  fun Project.publishedPlugin(
-    pluginDeclaration: NamedDomainObjectProvider<PluginDeclaration>,
-    groupId: String = GROUP
-  ) {
-
-    plugins.apply("com.vanniktech.maven.publish.base")
-    plugins.apply("builds.dokka")
-
-    require(pluginManager.hasPlugin("org.jetbrains.kotlin.jvm"))
-    require(pluginManager.hasPlugin("java-gradle-plugin"))
-
-    plugins.apply("com.gradle.plugin-publish")
-
-    configurePublishPlugin(groupId, pluginDeclaration)
-  }
-}
-
-private fun Project.configurePublishPlugin(
-  groupId: String,
-  pluginDeclaration: NamedDomainObjectProvider<PluginDeclaration>
-) {
-  applyBinaryCompatibility()
-
-  group = groupId
-
-  plugins.withId("com.gradle.plugin-publish") {
-
-    pluginDeclaration.configure { declaration ->
-
-      requireNotNull(declaration.description) { "A plugin description is required." }
-
-      extensions.configure(
-        GradlePluginDevelopmentExtension::class.java
-      ) { pluginDevelopmentExtension ->
-
-        @Suppress("UnstableApiUsage")
-        pluginDevelopmentExtension.website.set("https://www.github.com/rbusarow/doks")
-        @Suppress("UnstableApiUsage")
-        pluginDevelopmentExtension.vcsUrl.set("https://www.github.com/rbusarow/doks.git")
-      }
-    }
-  }
-}
-
-private fun Project.versionIsSnapshot(): Boolean {
-  return VERSION_NAME.endsWith("-SNAPSHOT")
 }
 
 private fun Project.configurePublish(artifactId: String, pomDescription: String, groupId: String) {
 
   version = VERSION_NAME
+  group = groupId
 
   @Suppress("UnstableApiUsage")
   extensions.configure(MavenPublishBaseExtension::class.java) { extension ->
