@@ -45,6 +45,11 @@ public final class com/rickbusarow/kgx/IncludedKt {
 	public static final fun includedAllProjectsTasks (Lorg/gradle/api/invocation/Gradle;Ljava/lang/String;)Ljava/util/List;
 }
 
+public final class com/rickbusarow/kgx/ObjectFactoryKt {
+	public static final fun fileTree (Lorg/gradle/api/model/ObjectFactory;Ljava/lang/Object;)Lorg/gradle/api/file/ConfigurableFileTree;
+	public static final fun fileTree (Lorg/gradle/api/model/ObjectFactory;Ljava/lang/Object;Lorg/gradle/api/Action;)Lorg/gradle/api/file/ConfigurableFileTree;
+}
+
 public final class com/rickbusarow/kgx/PluginContainerKt {
 	public static final fun applyOnce (Lorg/gradle/api/plugins/PluginContainer;Ljava/lang/String;)V
 }
