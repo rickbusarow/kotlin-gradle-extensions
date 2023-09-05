@@ -22,9 +22,4 @@ dependencies {
   api(libs.ec4j.core)
 
   compileOnly(gradleApi())
-
-  implementation(libs.github.release)
-  implementation(libs.google.ksp)
-  implementation(libs.kotlin.compiler)
-  implementation(libs.kotlin.reflect)
 }

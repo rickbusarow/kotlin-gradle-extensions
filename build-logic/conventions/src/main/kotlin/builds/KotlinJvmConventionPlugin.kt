@@ -68,6 +68,9 @@ abstract class KotlinJvmConventionPlugin : Plugin<Project> {
     }
 
     target.tasks.register("buildTests") { it.dependsOn("testClasses") }
+    target.tasks.register("buildAll").dependsOn(
+      target.provider { target.javaExtension.sourceSets.map { it.classesTaskName } }
+    )
 
     // fixes the error
     // 'Entry classpath.index is a duplicate but no duplicate handling strategy has been set.'

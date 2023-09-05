@@ -39,7 +39,7 @@ abstract class DetektConventionPlugin : Plugin<Project> {
     target.tasks
       .register("detektReportMerge", ReportMergeTask::class.java) { reportMergeTask ->
         reportMergeTask.output
-          .set(target.rootProject.buildDir.resolve("reports/detekt/merged.sarif"))
+          .set(target.rootProject.buildDir().resolve("reports/detekt/merged.sarif"))
 
         reportMergeTask.input.from(
           target.tasks.withType(Detekt::class.java).map { it.sarifReportFile }
@@ -54,10 +54,10 @@ abstract class DetektConventionPlugin : Plugin<Project> {
     target.extensions.configure(DetektExtension::class.java) { extension ->
 
       extension.autoCorrect = false
-      extension.config = target.files("${target.rootDir}/detekt/detekt-config.yml")
+      extension.config.from("${target.rootDir}/detekt/detekt-config.yml")
       extension.buildUponDefaultConfig = true
 
-      extension.source = target.files(
+      extension.source.from(
         "src/main/java",
         "src/test/java",
         "src/main/kotlin",
