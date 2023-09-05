@@ -37,22 +37,21 @@ gradlePlugin {
 
 dependencies {
 
-  api(project(":artifacts"))
+  api(libs.breadmoirai.github.release)
+  api(libs.rickBusarow.doks)
+  api(libs.rickBusarow.ktlint)
+
   api(project(":conventions"))
-  api(project(":core"))
 
   compileOnly(gradleApi())
 
-  compileOnly(libs.google.auto.service.annotations)
-
-  implementation(libs.benManes.versions)
   implementation(libs.dependency.analysis.gradle.plugin)
   implementation(libs.detekt.gradle)
   implementation(libs.dokka.gradle)
-  implementation(libs.dokka.versioning)
-  implementation(libs.dropbox.dependencyGuard)
-  implementation(libs.jmailen.kotlinter)
   implementation(libs.johnrengelman.shadowJar)
   implementation(libs.kotlinx.binaryCompatibility)
   implementation(libs.rickBusarow.moduleCheck.gradle.plugin)
+
+  implementation(project(":artifacts"))
+  implementation(project(":core"))
 }

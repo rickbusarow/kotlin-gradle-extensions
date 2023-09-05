@@ -86,7 +86,6 @@ dependencies {
   testImplementation(libs.kotest.common)
   testImplementation(libs.kotest.extensions)
   testImplementation(libs.kotest.property.jvm)
-  testImplementation(libs.kotlin.compiler)
 }
 
 tasks.named("integrationTest").dependsOn("publishToMavenLocalNoDokka")

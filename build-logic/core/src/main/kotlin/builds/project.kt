@@ -18,7 +18,9 @@ package builds
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.internal.GradleInternal
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.plugins.PluginContainer
+import java.io.File
 
 /**
  * Determines whether the receiver project is the "real" root of this
@@ -27,6 +29,9 @@ import org.gradle.api.plugins.PluginContainer
 fun Project.isRealRootProject(): Boolean {
   return (gradle as GradleInternal).isRootBuild && this == rootProject
 }
+
+/** shorthand for `layout.buildDirectory.get().asFile` */
+fun Project.buildDir(): File = layout.buildDirectory.get().asFile
 
 /** Add the plugin if it hasn't been applied already. */
 fun PluginContainer.applyOnce(id: String) {
@@ -47,4 +52,12 @@ fun Project.checkProjectIsRoot(
   message: () -> Any = { "Only apply this plugin to the project root." }
 ) {
   check(this == rootProject, message)
+}
+
+val Project.javaExtension: JavaPluginExtension
+  get() = extensions.getByType(JavaPluginExtension::class.java)
+
+/** `rootProject == this` */
+fun Project.isRootProject(): Boolean {
+  return rootProject == this
 }

@@ -15,11 +15,13 @@
 
 package builds
 
+import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
 import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.Provider
+import kotlin.LazyThreadSafetyMode.NONE
 
 /** Convenience for reading the library version from `libs.versions.toml` */
 val Project.VERSION_NAME: String
@@ -80,7 +82,10 @@ val Project.libsCatalog: VersionCatalog
  * ```
  */
 fun VersionCatalog.dependency(alias: String): Provider<MinimalExternalModuleDependency> {
-  return findLibrary(alias).get()
+  return findLibrary(alias)
+    .orElseThrow {
+      GradleException("No dependency was found in the catalog for the alias '$alias'.")
+    }
 }
 
 /**
@@ -93,7 +98,11 @@ fun VersionCatalog.dependency(alias: String): Provider<MinimalExternalModuleDepe
  * ```
  */
 fun VersionCatalog.version(alias: String): String {
-  return findVersion(alias).get().requiredVersion
+  return findVersion(alias)
+    .orElseThrow {
+      GradleException("No version was found in the catalog for the alias '$alias'.")
+    }
+    .requiredVersion
 }
 
 /**
@@ -106,5 +115,15 @@ fun VersionCatalog.version(alias: String): String {
  * ```
  */
 fun VersionCatalog.pluginId(alias: String): String {
-  return findPlugin(alias).get().get().pluginId
+  val errorMessage by lazy(NONE) {
+    "No plugin ID was found in the catalog for the alias '$alias'."
+  }
+  return findPlugin(alias)
+    .orElseThrow { GradleException(errorMessage) }
+    .orNull
+    ?.pluginId
+    ?: throw GradleException(errorMessage)
 }
+
+val Provider<MinimalExternalModuleDependency>.moduleName: String
+  get() = get().name
