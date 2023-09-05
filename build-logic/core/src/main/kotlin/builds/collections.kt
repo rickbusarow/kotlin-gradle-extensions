@@ -18,11 +18,15 @@ package builds
 /** @since 0.1.0 */
 inline fun <E> List<E>.splitInclusive(predicate: (E) -> Boolean): List<List<E>> {
 
+  val toSplit = this@splitInclusive
+
   val indices = buildList {
     add(0)
 
-    for (index in (1 until lastIndex - 1)) {
-      predicate(this@splitInclusive[index])
+    for (index in (1 until toSplit.lastIndex - 1)) {
+      if (predicate(toSplit[index])) {
+        add(index)
+      }
     }
   }
     .distinct()
@@ -30,9 +34,9 @@ inline fun <E> List<E>.splitInclusive(predicate: (E) -> Boolean): List<List<E>> 
   return buildList {
     for ((i, fromIndex) in indices.withIndex()) {
       if (i == indices.lastIndex) {
-        add(this@splitInclusive.subList(fromIndex, this@splitInclusive.lastIndex))
+        add(toSplit.subList(fromIndex, toSplit.lastIndex))
       } else {
-        add(this@splitInclusive.subList(fromIndex, indices[i + 1]))
+        add(toSplit.subList(fromIndex, indices[i + 1]))
       }
     }
   }

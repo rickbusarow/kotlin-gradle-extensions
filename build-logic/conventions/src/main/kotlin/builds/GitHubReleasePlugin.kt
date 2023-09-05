@@ -55,10 +55,8 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
 
         val split = target.file("CHANGELOG.md").readLines()
           .splitInclusive { versionHeaderRegex.matches(it) }
-          .filter { it[0].startsWith("## [${target.VERSION_NAME}]") }
 
-        split.singleOrNull()
-          ?.drop(1)
+        split.singleOrNull { it[0].startsWith("## [${target.VERSION_NAME}]") }
           ?.joinToString("\n") { it.trim() }
           ?.trim()
           ?.also { body ->
@@ -68,7 +66,7 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
             }
           }
           ?: throw GradleException(
-            "There should be only one Changelog header matching ${target.VERSION_NAME}, " +
+            "There should be exactly one Changelog header matching ${target.VERSION_NAME}, " +
               "but there are ${split.size}:\n" +
               split.map { it.first() }.joinToString("\n") { "\t$it" }
           )
