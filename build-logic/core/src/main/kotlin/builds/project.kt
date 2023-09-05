@@ -25,20 +25,34 @@ import java.io.File
 /**
  * Determines whether the receiver project is the "real" root of this
  * composite build, as opposed to the root projects of included builds.
+ *
+ * @since 0.1.0
  */
 fun Project.isRealRootProject(): Boolean {
   return (gradle as GradleInternal).isRootBuild && this == rootProject
 }
 
-/** shorthand for `layout.buildDirectory.get().asFile` */
+/**
+ * shorthand for `layout.buildDirectory.get().asFile`
+ *
+ * @since 0.1.0
+ */
 fun Project.buildDir(): File = layout.buildDirectory.get().asFile
 
-/** Add the plugin if it hasn't been applied already. */
+/**
+ * Add the plugin if it hasn't been applied already.
+ *
+ * @since 0.1.0
+ */
 fun PluginContainer.applyOnce(id: String) {
   if (!hasPlugin(id)) apply(id)
 }
 
-/** Add the plugin if it hasn't been applied already. */
+/**
+ * Add the plugin if it hasn't been applied already.
+ *
+ * @since 0.1.0
+ */
 inline fun <reified T : Plugin<*>> PluginContainer.applyOnce() {
   if (!hasPlugin(T::class.java)) apply(T::class.java)
 }
@@ -46,6 +60,7 @@ inline fun <reified T : Plugin<*>> PluginContainer.applyOnce() {
 /**
  * throws with [message] if the receiver project is not the root project
  *
+ * @since 0.1.0
  * @throws IllegalStateException if the project is not the root project
  */
 fun Project.checkProjectIsRoot(
@@ -57,7 +72,11 @@ fun Project.checkProjectIsRoot(
 val Project.javaExtension: JavaPluginExtension
   get() = extensions.getByType(JavaPluginExtension::class.java)
 
-/** `rootProject == this` */
+/**
+ * `rootProject == this`
+ *
+ * @since 0.1.0
+ */
 fun Project.isRootProject(): Boolean {
   return rootProject == this
 }

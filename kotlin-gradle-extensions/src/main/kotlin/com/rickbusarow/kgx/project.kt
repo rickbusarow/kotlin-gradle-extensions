@@ -24,6 +24,7 @@ import java.io.File
 /**
  * throws with [message] if the receiver project is not the root project
  *
+ * @since 0.1.0
  * @throws IllegalStateException if the project is not the root project
  */
 fun Project.checkProjectIsRoot(
@@ -41,16 +42,22 @@ fun Project.checkProjectIsRoot(
  *
  * @see com.rickbusarow.kgx.internal.isRealRootProject to check
  *   if the project is the ultimate root of a composite build
+ * @since 0.1.0
  */
 internal fun Project.isRootProject() = this == rootProject
 
-/** shorthand for `layout.buildDirectory.get().asFile` */
+/**
+ * shorthand for `layout.buildDirectory.get().asFile`
+ *
+ * @since 0.1.0
+ */
 internal fun Project.buildDir(): File = layout.buildDirectory.get().asFile
 
 /**
  * Finds all tasks named [taskName] in all projects.
  * Does not throw if there are no tasks with that name.
  *
+ * @since 0.1.0
  * @throws IllegalStateException if the project is not the root project
  */
 @EagerGradleApi
@@ -63,6 +70,7 @@ fun Project.allProjectsTasksMatchingName(taskName: String): List<TaskCollection<
  * Finds all tasks named [taskName] in all projects.
  * Does not throw if there are no tasks with that name.
  *
+ * @since 0.1.0
  * @throws IllegalStateException if the project is not the root project
  */
 @EagerGradleApi
@@ -78,6 +86,8 @@ inline fun <reified T : Task> Project.allProjectsTasksMatchingNameWithType(
 /**
  * Finds all tasks named [taskName] in this project's subprojects.
  * Does not throw if there are no tasks with that name.
+ *
+ * @since 0.1.0
  */
 @EagerGradleApi
 fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskCollection<Task>> {
@@ -87,6 +97,8 @@ fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskCollection<
 /**
  * Finds all tasks named [taskName] in this project's subprojects.
  * Does not throw if there are no tasks with that name.
+ *
+ * @since 0.1.0
  */
 @EagerGradleApi
 inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(

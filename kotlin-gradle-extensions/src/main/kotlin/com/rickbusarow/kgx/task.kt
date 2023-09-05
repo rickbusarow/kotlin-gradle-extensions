@@ -26,6 +26,7 @@ import org.gradle.api.tasks.TaskProvider
  *
  * @param taskName The name of the task.
  * @param configurationAction The configuration block for the task.
+ * @since 0.1.0
  */
 @EagerGradleApi
 fun TaskContainer.maybeNamed(taskName: String, configurationAction: Action<Task>) {
@@ -43,6 +44,7 @@ fun TaskContainer.maybeNamed(taskName: String, configurationAction: Action<Task>
  *
  * @param taskName The name of the tasks to filter.
  * @return A collection of tasks that have names matching [taskName].
+ * @since 0.1.0
  */
 @EagerGradleApi
 fun TaskContainer.matchingName(taskName: String): TaskCollection<Task> =
@@ -53,6 +55,7 @@ fun TaskContainer.matchingName(taskName: String): TaskCollection<Task> =
  *
  * @param taskName The name of the tasks to filter.
  * @return A collection of tasks of type [T] with names matching [taskName].
+ * @since 0.1.0
  */
 @EagerGradleApi
 inline fun <reified T : Task> TaskContainer.matchingNameWithType(
@@ -64,6 +67,7 @@ inline fun <reified T : Task> TaskContainer.matchingNameWithType(
  *
  * @param objects Dependency objects to be added to every task in the collection.
  * @return The original collection for chaining.
+ * @since 0.1.0
  */
 fun <T : Task> TaskCollection<T>.dependOn(vararg objects: Any): TaskCollection<T> {
   return also { taskCollection ->
@@ -76,6 +80,7 @@ fun <T : Task> TaskCollection<T>.dependOn(vararg objects: Any): TaskCollection<T
  *
  * @param objects Dependency objects to be added to the task.
  * @return The original task provider for chaining.
+ * @since 0.1.0
  */
 fun <T : Task> TaskProvider<T>.dependsOn(vararg objects: Any): TaskProvider<T> {
   return also { provider ->
@@ -90,6 +95,7 @@ fun <T : Task> TaskProvider<T>.dependsOn(vararg objects: Any): TaskProvider<T> {
  *
  * @param objects Dependency objects that should run before every task in the collection.
  * @return The original collection for chaining.
+ * @since 0.1.0
  */
 fun <T : Task> TaskCollection<T>.mustRunAfter(vararg objects: Any): TaskCollection<T> {
   return also { taskCollection ->
@@ -102,6 +108,7 @@ fun <T : Task> TaskCollection<T>.mustRunAfter(vararg objects: Any): TaskCollecti
  *
  * @param objects Dependency objects that should run before the task.
  * @return The original task provider for chaining.
+ * @since 0.1.0
  */
 fun <T : Task> TaskProvider<T>.mustRunAfter(vararg objects: Any): TaskProvider<T> {
   return also { provider ->
@@ -119,6 +126,7 @@ fun <T : Task> TaskProvider<T>.mustRunAfter(vararg objects: Any): TaskProvider<T
  * @return The matching objects. Returns an empty collection
  *   if there are no such objects in this collection.
  * @see [TaskCollection.withType]
+ * @since 0.1.0
  */
 inline fun <reified S : Task> TaskCollection<in S>.withType(): TaskCollection<S> =
   withType(S::class.java)
@@ -130,6 +138,7 @@ inline fun <reified S : Task> TaskCollection<in S>.withType(): TaskCollection<S>
  * @param constructorArguments Arguments to be passed to the task's constructor.
  * @param configuration Configuration block for the task.
  * @return A task provider for the newly created task.
+ * @since 0.1.0
  */
 inline fun <reified T : Task> TaskContainer.register(
   name: String,
@@ -145,6 +154,7 @@ inline fun <reified T : Task> TaskContainer.register(
  * @param type The class of the task.
  * @param configurationAction The configuration action.
  * @return A task provider.
+ * @since 0.1.0
  */
 fun <T : Task> TaskContainer.registerOnce(
   name: String,
@@ -159,6 +169,7 @@ fun <T : Task> TaskContainer.registerOnce(
 /**
  * @return the fully qualified name of this task's
  *   type, without any '_Decorated' suffix if one exists
+ * @since 0.1.0
  */
 fun Task.undecoratedTypeName(): String {
   return javaClass.canonicalName.removeSuffix("_Decorated")
@@ -170,6 +181,7 @@ fun Task.undecoratedTypeName(): String {
  * @param name The name of the task.
  * @param configurationAction The configuration action.
  * @return A task provider.
+ * @since 0.1.0
  */
 @JvmName("registerOnceInline")
 inline fun <reified T : Task> TaskContainer.registerOnce(
@@ -182,6 +194,7 @@ inline fun <reified T : Task> TaskContainer.registerOnce(
  *
  * @param name The name of the task.
  * @return A task provider.
+ * @since 0.1.0
  */
 inline fun <reified T : Task> TaskContainer.registerOnce(name: String): TaskProvider<T> =
   if (names.contains(name)) {
@@ -195,6 +208,7 @@ inline fun <reified T : Task> TaskContainer.registerOnce(name: String): TaskProv
  *
  * @param dependentTask The task that will depend on this one.
  * @return The original task provider for chaining.
+ * @since 0.1.0
  */
 fun <T : Task> TaskProvider<T>.addAsDependencyTo(dependentTask: TaskProvider<*>): TaskProvider<T> {
   return also { receiver ->
@@ -202,10 +216,12 @@ fun <T : Task> TaskProvider<T>.addAsDependencyTo(dependentTask: TaskProvider<*>)
   }
 }
 
-/** makes the receiver task a dependency of the tasks in the [dependentTasks] collection.
+/**
+ * makes the receiver task a dependency of the tasks in the [dependentTasks] collection.
  *
  * @receiver The task that will depend on this one.
  * @return The original task provider for chaining.
+ * @since 0.1.0
  */
 fun <T : Task> TaskProvider<T>.addAsDependencyTo(
   dependentTasks: TaskCollection<*>
@@ -215,7 +231,11 @@ fun <T : Task> TaskProvider<T>.addAsDependencyTo(
   }
 }
 
-/** Just a typed version of `task.outputs.upToDateWhen { ... }` */
+/**
+ * Just a typed version of `task.outputs.upToDateWhen { ... }`
+ *
+ * @since 0.1.0
+ */
 internal inline fun <reified T : Task> T.outputsUpToDateWhen(
   crossinline predicate: (T) -> Boolean
 ) {

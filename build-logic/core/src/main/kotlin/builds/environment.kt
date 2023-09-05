@@ -15,5 +15,8 @@
 
 package builds
 
-/** @return true if this build is running inside GitHub Actions */
+/**
+ * @return true if this build is running inside GitHub Actions
+ * @since 0.1.0
+ */
 fun inCI() = System.getenv("GITHUB_ACTION") != null

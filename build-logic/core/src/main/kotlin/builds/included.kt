@@ -24,12 +24,18 @@ import org.gradle.api.tasks.TaskCollection
 import org.gradle.composite.internal.DefaultIncludedBuild
 import org.gradle.composite.internal.DefaultIncludedBuild.IncludedBuildImpl
 
-/** @return the root project of this included build */
+/**
+ * @return the root project of this included build
+ * @since 0.1.0
+ */
 fun IncludedBuild.rootProject(): ProjectInternal {
   return requireProjectRegistry().rootProject!!
 }
 
-/** @return all projects in this included build */
+/**
+ * @return all projects in this included build
+ * @since 0.1.0
+ */
 fun IncludedBuild.allProjects(): Set<ProjectInternal> {
   return requireProjectRegistry().allProjects
 }
@@ -37,6 +43,7 @@ fun IncludedBuild.allProjects(): Set<ProjectInternal> {
 /**
  * @return the projects in this included build, or throws
  *   if the [IncludedBuild] is of an unexpected type
+ * @since 0.1.0
  */
 fun IncludedBuild.requireProjectRegistry(): ProjectRegistry<ProjectInternal> {
   require(this is IncludedBuildImpl) {
@@ -54,7 +61,10 @@ fun IncludedBuild.requireProjectRegistry(): ProjectRegistry<ProjectInternal> {
   return delegate.mutableModel.projectRegistry
 }
 
-/** @return all projects from all included builds */
+/**
+ * @return all projects from all included builds
+ * @since 0.1.0
+ */
 fun Gradle.allIncludedProjects(): List<ProjectInternal> {
   return includedBuilds.flatMap { it.allProjects() }
 }
@@ -64,6 +74,8 @@ fun Gradle.allIncludedProjects(): List<ProjectInternal> {
  * any tasks with a matching name, and return them all.
  *
  * Note that this forces the included build to configure.
+ *
+ * @since 0.1.0
  */
 fun Gradle.includedAllProjectsTasks(taskName: String): List<TaskCollection<Task>> {
   return allIncludedProjects().map { it.tasks.matchingName(taskName) }
@@ -76,6 +88,8 @@ fun Gradle.includedAllProjectsTasks(taskName: String): List<TaskCollection<Task>
  * that the standard `task` version will throw an exception if the task is not registered.
  *
  * Note that this forces the included build to configure.
+ *
+ * @since 0.1.0
  */
 fun Gradle.includedRootProjectsTasks(taskName: String): List<TaskCollection<Task>> {
   return includedBuilds.mapNotNull { included ->

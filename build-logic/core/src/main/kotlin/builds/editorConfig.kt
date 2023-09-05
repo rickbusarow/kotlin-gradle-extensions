@@ -29,7 +29,11 @@ import org.gradle.api.Project
 import java.io.File
 import java.nio.charset.StandardCharsets
 
-/** Parses an .editorconfig file at [editorConfigFile]. */
+/**
+ * Parses an .editorconfig file at [editorConfigFile].
+ *
+ * @since 0.1.0
+ */
 fun editorConfig(editorConfigFile: File): EditorConfig {
 
   val parser = EditorConfigParser.builder().build()
@@ -46,6 +50,8 @@ fun editorConfig(editorConfigFile: File): EditorConfig {
  * Returns a map of all Kotlin settings found in the `.editorconfig`,
  * where keys are the property name and the value is the trimmed text to
  * the right of the '='. Note that every value is a String, including.
+ *
+ * @since 0.1.0
  */
 fun Project.editorConfigKotlinProperties(): Map<String, String> {
 
@@ -60,6 +66,8 @@ fun Project.editorConfigKotlinProperties(): Map<String, String> {
  * Returns a map of all Kotlin settings found in the `.editorconfig`,
  * where keys are the property name and the value is the trimmed text to
  * the right of the '='. Note that every value is a String, including.
+ *
+ * @since 0.1.0
  */
 fun editorConfigKotlinProperties(editorConfigFile: File, rootDir: File): Map<String, String> {
 
