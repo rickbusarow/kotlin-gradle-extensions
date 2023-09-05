@@ -19,9 +19,11 @@ import org.gradle.api.Action
 import org.gradle.api.file.ConfigurableFileTree
 import org.gradle.api.model.ObjectFactory
 
-internal fun ObjectFactory.fileTree(baseDir: Any): ConfigurableFileTree = fileTree().from(baseDir)
+/** shorthand for `fileTree().from(baseDir)` */
+fun ObjectFactory.fileTree(baseDir: Any): ConfigurableFileTree = fileTree().from(baseDir)
 
-internal fun ObjectFactory.fileTree(
+/** shorthand for `fileTree().from(baseDir).also(configureAction::execute)` */
+fun ObjectFactory.fileTree(
   baseDir: Any,
   configureAction: Action<in ConfigurableFileTree>
 ): ConfigurableFileTree {
