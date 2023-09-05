@@ -244,7 +244,7 @@ outfoxx-typescriptPoet = { module = "io.outfoxx:typescriptpoet", version.ref = "
 
 threetenbp = { module = "org.threeten:threetenbp", version.ref = "threetenbp" }
 
-undercouch-download = "de.undercouch:gradle-download-task:5.4.0"
+undercouch-download = "de.undercouch:gradle-download-task:5.5.0"
 
 vanniktech-publish-base = { module = "com.vanniktech:gradle-maven-publish-plugin-base", version.ref = "vanniktech-publish" }
 vanniktech-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "vanniktech-publish" }
