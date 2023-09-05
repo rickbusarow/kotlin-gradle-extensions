@@ -15,6 +15,7 @@
 
 package builds
 
+import com.rickbusarow.ktlint.KtLintTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.Sync
@@ -25,8 +26,6 @@ import org.jetbrains.dokka.gradle.AbstractDokkaTask
 import org.jetbrains.dokka.versioning.VersioningConfiguration
 import org.jetbrains.dokka.versioning.VersioningPlugin
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jmailen.gradle.kotlinter.tasks.FormatTask
-import org.jmailen.gradle.kotlinter.tasks.LintTask
 import java.net.URL
 
 abstract class DokkaConventionPlugin : Plugin<Project> {
@@ -41,8 +40,7 @@ abstract class DokkaConventionPlugin : Plugin<Project> {
 
       // Dokka uses their outputs but doesn't explicitly depend upon them.
       task.mustRunAfter(target.tasks.withType(KotlinCompile::class.java))
-      task.mustRunAfter(target.tasks.withType(LintTask::class.java))
-      task.mustRunAfter(target.tasks.withType(FormatTask::class.java))
+      task.mustRunAfter(target.tasks.withType(KtLintTask::class.java))
 
       val fullModuleName = target.path.removePrefix(":")
       task.moduleName.set(fullModuleName)
@@ -197,7 +195,7 @@ abstract class DokkaConventionPlugin : Plugin<Project> {
           task.group = "dokka versioning"
           task.description =
             "sync the Dokka output for the current version to /dokka-archive/$versionWithoutSnapshot"
-          task.from(target.rootProject.buildDir.resolve("dokka/htmlMultiModule")) {
+          task.from(target.rootProject.buildDir().resolve("dokka/htmlMultiModule")) {
             // Don't copy the `older/` directory into the archive, because all navigation is done using
             // the root version's copy.  Archived `older/` directories just waste space.
             it.exclude("older/**")

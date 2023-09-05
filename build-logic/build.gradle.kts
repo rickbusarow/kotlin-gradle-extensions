@@ -23,9 +23,9 @@ buildscript {
   }
 }
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   base
+  alias(libs.plugins.dependencyAnalysis)
   alias(libs.plugins.kotlin.jvm)
   alias(libs.plugins.moduleCheck)
   alias(libs.plugins.ktlint) apply false
@@ -36,6 +36,7 @@ moduleCheck {
   checks.sortDependencies = true
 }
 
+val kotlinApiVersion = libs.versions.kotlinApi.get()
 val kotlinVersion = libs.versions.kotlin.get()
 val ktlintPluginId = libs.plugins.ktlint.get().pluginId
 
@@ -68,13 +69,18 @@ allprojects ap@{
     extensions.configure(JavaPluginExtension::class.java) {
       sourceCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
     }
+
+    configurations.named("compileClasspath") {
+      // Github-release bundles Gradle, which confuses the IDE when trying to view Gradle source or
+      // javadoc.
+      exclude(group = "org.gradle")
+    }
   }
 
   tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
 
-      languageVersion = "1.6"
-      apiVersion = "1.6"
+      apiVersion = kotlinApiVersion
 
       jvmTarget = libs.versions.jvmTarget.get()
 

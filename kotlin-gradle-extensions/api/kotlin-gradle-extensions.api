@@ -5,6 +5,7 @@ public final class com/rickbusarow/kgx/CatalogsKt {
 	public static final fun getJVM_TARGET_INT (Lorg/gradle/api/Project;)I
 	public static final fun getKOTLIN_API (Lorg/gradle/api/Project;)Ljava/lang/String;
 	public static final fun getLibsCatalog (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/VersionCatalog;
+	public static final fun pluginId (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Ljava/lang/String;
 	public static final fun version (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Ljava/lang/String;
 }
 
