@@ -8,8 +8,6 @@
 
 ## Installation
 
-To use Doks, you'll need to add it as a dependency in your Gradle build script:
-
 <details open>
 <summary>Kotlin</summary>
 
@@ -44,7 +42,7 @@ dependencies {
 
 ## Contributing
 
-If you'd like to contribute to Doks, please submit a pull request with your changes. Bug reports or
+If you'd like to contribute, please submit a pull request with your changes. Bug reports or
 feature requests are also welcome in the issue tracker.
 
 ## License
