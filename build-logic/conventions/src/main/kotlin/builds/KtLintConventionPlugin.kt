@@ -50,7 +50,7 @@ abstract class KtLintConventionPlugin : Plugin<Project> {
         task.doLast {
           val oldText = file.readText()
 
-          val reg = """^(ktlint_kt-rules_project_version *?= *?)\S*$""".toRegex(MULTILINE)
+          val reg = """^(kt-rules_project_version *?= *?)\S*$""".toRegex(MULTILINE)
 
           val newText = oldText.replace(reg, "$1${target.VERSION_NAME}")
 
