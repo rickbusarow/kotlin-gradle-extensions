@@ -15,6 +15,9 @@
 
 package builds
 
+import com.rickbusarow.kgx.applyOnce
+import com.rickbusarow.kgx.dependency
+import com.rickbusarow.kgx.libsCatalog
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import io.gitlab.arturbosch.detekt.DetektGenerateConfigTask
@@ -39,7 +42,7 @@ abstract class DetektConventionPlugin : Plugin<Project> {
     target.tasks
       .register("detektReportMerge", ReportMergeTask::class.java) { reportMergeTask ->
         reportMergeTask.output
-          .set(target.rootProject.buildDir().resolve("reports/detekt/merged.sarif"))
+          .set(target.rootProject.buildDir.resolve("reports/detekt/merged.sarif"))
 
         reportMergeTask.input.from(
           target.tasks.withType(Detekt::class.java).map { it.sarifReportFile }
@@ -90,7 +93,6 @@ abstract class DetektConventionPlugin : Plugin<Project> {
       task.exclude { "/build/generated/" in it.file.absolutePath }
 
       task.dependsOn(target.tasks.withType(BuildCodeGeneratorLogicTask::class.java))
-      task.dependsOn(target.tasks.matchingName("generateMainProtos"))
     }
 
     target.tasks.register("detektAll", Detekt::class.java) {

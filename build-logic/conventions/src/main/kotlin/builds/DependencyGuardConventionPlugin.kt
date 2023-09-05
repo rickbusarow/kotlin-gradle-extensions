@@ -16,6 +16,7 @@
 package builds
 
 import com.dropbox.gradle.plugins.dependencyguard.DependencyGuardPluginExtension
+import com.rickbusarow.kgx.applyOnce
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.language.base.plugins.LifecycleBasePlugin

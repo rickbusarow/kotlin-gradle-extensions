@@ -15,6 +15,9 @@
 
 package builds
 
+import com.rickbusarow.kgx.applyOnce
+import com.rickbusarow.kgx.dependency
+import com.rickbusarow.kgx.libsCatalog
 import com.rickbusarow.ktlint.KtLintTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -195,7 +198,7 @@ abstract class DokkaConventionPlugin : Plugin<Project> {
           task.group = "dokka versioning"
           task.description =
             "sync the Dokka output for the current version to /dokka-archive/$versionWithoutSnapshot"
-          task.from(target.rootProject.buildDir().resolve("dokka/htmlMultiModule")) {
+          task.from(target.rootProject.buildDir.resolve("dokka/htmlMultiModule")) {
             // Don't copy the `older/` directory into the archive, because all navigation is done using
             // the root version's copy.  Archived `older/` directories just waste space.
             it.exclude("older/**")
@@ -204,12 +207,10 @@ abstract class DokkaConventionPlugin : Plugin<Project> {
 
           task.enabled = versionWithoutSnapshot == versionName
 
-          target.tasks.matchingName("dokkaHtmlMultiModule")
-            .forEach { task.mustRunAfter(it) }
           task.dependsOn(disableDokkaArchiveAutoFormat)
         }
 
-      target.tasks.matchingName("dokkaHtmlMultiModule").configureEach { task ->
+      target.tasks.named("dokkaHtmlMultiModule") { task ->
         task.finalizedBy(syncDokkaToDokkaArchive)
       }
     }

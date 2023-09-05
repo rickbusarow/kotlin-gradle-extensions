@@ -15,6 +15,8 @@
 
 package builds
 
+import com.rickbusarow.kgx.internal.InternalGradleApiAccess
+import com.rickbusarow.kgx.internal.isRealRootProject
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestFramework
@@ -26,6 +28,7 @@ import org.gradle.internal.classpath.Instrumented.systemProperty
 
 abstract class TestConventionPlugin : Plugin<Project> {
 
+  @OptIn(InternalGradleApiAccess::class)
   override fun apply(target: Project) {
 
     val includeTags: ListProperty<String> = target.objects

@@ -15,6 +15,8 @@
 
 package builds
 
+import com.rickbusarow.kgx.dependency
+import com.rickbusarow.kgx.libsCatalog
 import org.gradle.api.Project
 
 interface AutoServiceExtension : KspExtension {

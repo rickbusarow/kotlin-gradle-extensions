@@ -15,8 +15,7 @@
 
 package builds.artifacts
 
-import builds.checkProjectIsRoot
-import builds.matchingName
+import com.rickbusarow.kgx.checkProjectIsRoot
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.tasks.AbstractPublishToMaven
@@ -31,10 +30,11 @@ abstract class ArtifactsPlugin : Plugin<Project> {
     target.tasks.register("artifactsDump", ArtifactsDumpTask::class.java)
     val artifactsCheck = target.tasks.register("artifactsCheck", ArtifactsCheckTask::class.java)
 
-    target.tasks.matchingName(LifecycleBasePlugin.CHECK_TASK_NAME)
-      .configureEach { task ->
-        task.dependsOn(artifactsCheck)
-      }
+    target.plugins.apply("base")
+
+    target.tasks.named(LifecycleBasePlugin.CHECK_TASK_NAME) { task ->
+      task.dependsOn(artifactsCheck)
+    }
 
     target.allprojects {
       target.tasks.withType(AbstractPublishToMaven::class.java).configureEach {

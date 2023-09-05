@@ -23,12 +23,18 @@ import com.diffplug.gradle.spotless.KotlinExtension
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
 import com.diffplug.gradle.spotless.SpotlessTask
+import com.rickbusarow.kgx.EagerGradleApi
+import com.rickbusarow.kgx.allProjectsTasksMatchingName
+import com.rickbusarow.kgx.checkProjectIsRoot
+import com.rickbusarow.kgx.libsCatalog
+import com.rickbusarow.kgx.version
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.file.ConfigurableFileTree
 import org.gradle.api.tasks.util.PatternFilterable
 
 abstract class SpotlessConventionPlugin : Plugin<Project> {
+  @OptIn(EagerGradleApi::class)
   override fun apply(target: Project) {
 
     target.checkProjectIsRoot()
