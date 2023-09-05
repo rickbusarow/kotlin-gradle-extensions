@@ -18,6 +18,8 @@ package com.rickbusarow.kgx
 /**
  * Use of this API requires explicit opt-in due to the potential
  * for eager initialization, which may lead to side effects.
+ *
+ * @since 0.1.0
  */
 @Retention(AnnotationRetention.BINARY)
 @RequiresOptIn("Using this API may cause domain objects to be created eagerly.")

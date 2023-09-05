@@ -270,6 +270,8 @@ private fun Project.registerSnapshotVersionCheckTask() {
  * Integration tests require `publishToMavenLocal`, but they definitely don't need
  * Dokka output, and generating kdoc for everything takes forever -- especially
  * on a GitHub Actions server. So for integration tests, skip Dokka tasks.
+ *
+ * @since 0.1.0
  */
 private fun Project.configureSkipDokka() {
 

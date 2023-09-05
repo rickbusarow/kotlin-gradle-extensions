@@ -18,12 +18,20 @@ package com.rickbusarow.kgx
 import org.gradle.api.Plugin
 import org.gradle.api.plugins.PluginContainer
 
-/** Add the plugin if it hasn't been applied already. */
+/**
+ * Add the plugin if it hasn't been applied already.
+ *
+ * @since 0.1.0
+ */
 fun PluginContainer.applyOnce(id: String) {
   if (!hasPlugin(id)) apply(id)
 }
 
-/** Add the plugin if it hasn't been applied already. */
+/**
+ * Add the plugin if it hasn't been applied already.
+ *
+ * @since 0.1.0
+ */
 inline fun <reified T : Plugin<*>> PluginContainer.applyOnce() {
   if (!hasPlugin(T::class.java)) apply(T::class.java)
 }

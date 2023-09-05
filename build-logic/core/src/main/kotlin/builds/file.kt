@@ -33,6 +33,7 @@ import java.io.File
  * @returns the first path to contain an [existent][File.exists]
  *   File for [relativePath], or `null` if it could not be resolved
  * @see resolveInParent for a version which throws if nothing is resolved
+ * @since 0.1.0
  */
 fun File.resolveInParentOrNull(relativePath: String): File? {
   return resolve(relativePath).existsOrNull()
@@ -43,6 +44,7 @@ fun File.resolveInParentOrNull(relativePath: String): File? {
  * Non-nullable version of [resolveInParentOrNull]
  *
  * @see resolveInParentOrNull for a nullable, non-throwing variant
+ * @since 0.1.0
  * @throws IllegalArgumentException if a file cannot be resolved
  */
 fun File.resolveInParent(relativePath: String): File {
@@ -53,12 +55,16 @@ fun File.resolveInParent(relativePath: String): File {
   }.normalize()
 }
 
-/** @return the receiver [File] if it exists in the file system, otherwise null */
+/**
+ * @return the receiver [File] if it exists in the file system, otherwise null
+ * @since 0.1.0
+ */
 fun File.existsOrNull(): File? = takeIf { it.exists() }
 
 /**
  * @return true if the receiver [File] is a directory with
  *   at least one child file which satisfies [childPredicate]
+ * @since 0.1.0
  */
 fun File.isDirectoryWithFiles(childPredicate: (File) -> Boolean = { it.exists() }): Boolean =
   !isFile && listFiles()?.any(childPredicate) == true
@@ -70,6 +76,8 @@ fun File.isDirectoryWithFiles(childPredicate: (File) -> Boolean = { it.exists() 
  * The most common cause of this would be switching between git branches
  * with different module structures. Since `build` and `.gradle` directories
  * are ignored in git, they'll stick around after a branch switch.
+ *
+ * @since 0.1.0
  */
 fun File.isOrphanedBuildOrGradleDir(): Boolean {
   return when {
@@ -88,6 +96,8 @@ fun File.isOrphanedBuildOrGradleDir(): Boolean {
  * The most common cause of this would be switching between git branches with
  * different module structures. Since all `gradle.properties` files except
  * the root are ignored in git, they'll stick around after a branch switch.
+ *
+ * @since 0.1.0
  */
 fun File.isOrphanedGradleProperties(): Boolean {
   return when {
@@ -101,6 +111,8 @@ fun File.isOrphanedGradleProperties(): Boolean {
 /**
  * Returns true if the receiver [File] is a directory which contains at least one of
  * `settings.gradle.kts`, `settings.gradle`, `build.gradle.kts`, or `build.gradle`.
+ *
+ * @since 0.1.0
  */
 fun File.hasGradleProjectFiles(): Boolean {
   return when {

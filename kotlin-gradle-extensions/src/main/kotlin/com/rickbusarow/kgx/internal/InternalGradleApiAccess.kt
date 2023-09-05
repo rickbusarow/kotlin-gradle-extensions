@@ -15,7 +15,7 @@
 
 package com.rickbusarow.kgx.internal
 
-/** */
+/** @since 0.1.0 */
 @Retention(AnnotationRetention.BINARY)
 @RequiresOptIn
 annotation class InternalGradleApiAccess

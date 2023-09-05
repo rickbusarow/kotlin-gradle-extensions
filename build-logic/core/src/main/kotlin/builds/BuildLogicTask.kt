@@ -20,6 +20,8 @@ import org.gradle.api.DefaultTask
 /**
  * This is a simple way to tag a task so that it's found by the 'composite' convention
  * plugin, which means it will be automatically propagated to composite builds.
+ *
+ * @since 0.1.0
  */
 abstract class BuildLogicTask : DefaultTask()
 

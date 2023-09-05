@@ -42,6 +42,7 @@ fun <T> Iterable<T>.test(name: (T) -> String, action: (T) -> Unit): List<Dynamic
  * @param content The content to be written to the file. Defaults to null.
  * @param overwrite If true, any existing content will be overwritten. Otherwise, nothing is done.
  * @return The created file.
+ * @since 0.1.0
  */
 fun File.createSafely(content: String? = null, overwrite: Boolean = true): File = apply {
   when {
@@ -57,6 +58,7 @@ fun File.createSafely(content: String? = null, overwrite: Boolean = true): File 
  *
  * @receiver [File] The directories to create.
  * @return The directory file.
+ * @since 0.1.0
  */
 fun File.mkdirsInline(): File = apply(File::mkdirs)
 
@@ -65,6 +67,7 @@ fun File.mkdirsInline(): File = apply(File::mkdirs)
  *
  * @receiver [File] The file whose parent directory is to be created.
  * @return The file with its parent directory created.
+ * @since 0.1.0
  */
 fun File.makeParentDir(): File = apply {
   val fileParent = requireNotNull(parentFile) { "File's `parentFile` must not be null." }
@@ -80,6 +83,7 @@ fun File.makeParentDir(): File = apply {
  * @param transform The transform function to apply to the receiver object.
  * @return The result of the transform function if the
  *   predicate is true, or the receiver object itself otherwise.
+ * @since 0.1.0
  */
 inline fun <T> T.letIf(predicate: Boolean, transform: (T) -> T): T {
   return if (predicate) transform(this) else this

@@ -21,6 +21,8 @@ import org.gradle.api.internal.GradleInternal
 /**
  * Determines whether the receiver project is the "real" root of this
  * composite build, as opposed to the root projects of included builds.
+ *
+ * @since 0.1.0
  */
 @InternalGradleApiAccess
 fun Project.isRealRootProject(): Boolean {

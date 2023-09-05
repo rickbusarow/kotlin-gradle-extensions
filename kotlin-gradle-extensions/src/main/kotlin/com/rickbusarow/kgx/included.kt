@@ -25,6 +25,8 @@ import org.gradle.api.tasks.TaskCollection
  * any tasks with a matching name, and return them all.
  *
  * Note that this forces the included build to configure.
+ *
+ * @since 0.1.0
  */
 @EagerGradleApi
 fun Gradle.includedAllProjectsTasks(taskName: String): List<TaskCollection<Task>> {

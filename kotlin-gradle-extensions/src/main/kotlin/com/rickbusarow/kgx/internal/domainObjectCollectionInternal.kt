@@ -27,6 +27,7 @@ import org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo
  *
  * @param configurationAction The [Action] to execute on the newly registered element.
  * @receiver [NamedDomainObjectCollection] where the element is being registered.
+ * @since 0.1.0
  * @throws IllegalArgumentException If the receiver is not a [DefaultNamedDomainObjectCollection].
  */
 @InternalGradleApiAccess
@@ -43,6 +44,7 @@ inline fun <reified T> NamedDomainObjectCollection<T>.whenElementRegistered(
  *
  * @param configurationAction The [Action] to execute on the newly registered element.
  * @receiver [NamedDomainObjectCollection] where the element is being registered.
+ * @since 0.1.0
  * @throws IllegalArgumentException If the receiver is not a [DefaultNamedDomainObjectCollection].
  */
 @InternalGradleApiAccess
@@ -60,6 +62,7 @@ inline fun <reified T> NamedDomainObjectCollection<T>.whenElementKnown(
  * @param name The name of the element to observe.
  * @param configurationAction The [Action] to execute on the newly registered element.
  * @receiver [NamedDomainObjectCollection] where the element is being registered.
+ * @since 0.1.0
  * @throws IllegalArgumentException If the receiver is not a [DefaultNamedDomainObjectCollection].
  */
 @InternalGradleApiAccess
@@ -78,6 +81,7 @@ inline fun <reified T> NamedDomainObjectCollection<T>.whenElementRegistered(
  * @param name The name of the element to observe.
  * @param configurationAction The [Action] to execute on the newly registered element.
  * @receiver [NamedDomainObjectCollection] where the element is being registered.
+ * @since 0.1.0
  * @throws IllegalArgumentException If the receiver is not a [DefaultNamedDomainObjectCollection].
  */
 @JvmName("whenElementRegisteredTyped")

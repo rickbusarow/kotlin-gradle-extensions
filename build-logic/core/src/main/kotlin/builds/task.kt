@@ -34,11 +34,19 @@ fun TaskContainer.maybeNamed(taskName: String, configuration: Task.() -> Unit) {
     .configureEach(configuration)
 }
 
-/** code golf for `matching { it.name == taskName }` */
+/**
+ * code golf for `matching { it.name == taskName }`
+ *
+ * @since 0.1.0
+ */
 fun TaskContainer.matchingName(taskName: String): TaskCollection<Task> =
   matching { it.name == taskName }
 
-/** code golf for `withType<T>().matching { it.name == taskName }` */
+/**
+ * code golf for `withType<T>().matching { it.name == taskName }`
+ *
+ * @since 0.1.0
+ */
 inline fun <reified T : Task> TaskContainer.matchingNameWithType(
   taskName: String
 ): TaskCollection<T> {
@@ -51,6 +59,7 @@ inline fun <reified T : Task> TaskContainer.matchingNameWithType(
  * Finds all tasks named [taskName] in all projects.
  * Does not throw if there are no tasks with that name.
  *
+ * @since 0.1.0
  * @throws IllegalStateException if the project is not the root project
  */
 fun Project.allProjectsTasksMatchingName(taskName: String): List<TaskCollection<Task>> {
@@ -62,6 +71,7 @@ fun Project.allProjectsTasksMatchingName(taskName: String): List<TaskCollection<
  * Finds all tasks named [taskName] in all projects.
  * Does not throw if there are no tasks with that name.
  *
+ * @since 0.1.0
  * @throws IllegalStateException if the project is not the root project
  */
 inline fun <reified T : Task> Project.allProjectsTasksMatchingNameWithType(
@@ -75,6 +85,8 @@ inline fun <reified T : Task> Project.allProjectsTasksMatchingNameWithType(
 /**
  * Finds all tasks named [taskName] in this project's subprojects.
  * Does not throw if there are no tasks with that name.
+ *
+ * @since 0.1.0
  */
 fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskCollection<Task>> {
   return subprojects.map { proj -> proj.tasks.matchingName(taskName) }
@@ -83,6 +95,8 @@ fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskCollection<
 /**
  * Finds all tasks named [taskName] in this project's subprojects.
  * Does not throw if there are no tasks with that name.
+ *
+ * @since 0.1.0
  */
 inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(
   taskName: String
@@ -93,6 +107,8 @@ inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(
 
 /**
  * adds all [objects] as dependencies to every task in the collection, inside a `configureEach { }`
+ *
+ * @since 0.1.0
  */
 fun <T : Task> TaskCollection<T>.dependOn(vararg objects: Any): TaskCollection<T> {
   return also { taskCollection ->
@@ -100,7 +116,11 @@ fun <T : Task> TaskCollection<T>.dependOn(vararg objects: Any): TaskCollection<T
   }
 }
 
-/** adds all [objects] as dependencies inside a configuration block, inside a `configure { }` */
+/**
+ * adds all [objects] as dependencies inside a configuration block, inside a `configure { }`
+ *
+ * @since 0.1.0
+ */
 fun <T : Task> TaskProvider<T>.dependsOn(vararg objects: Any): TaskProvider<T> {
   return also { provider ->
     provider.configure { task ->
@@ -112,6 +132,8 @@ fun <T : Task> TaskProvider<T>.dependsOn(vararg objects: Any): TaskProvider<T> {
 /**
  * adds all [objects] as `mustRunAfter` to every task
  * in the collection, inside a `configureEach { }`
+ *
+ * @since 0.1.0
  */
 fun <T : Task> TaskCollection<T>.mustRunAfter(vararg objects: Any): TaskCollection<T> {
   return also { taskCollection ->
@@ -119,7 +141,11 @@ fun <T : Task> TaskCollection<T>.mustRunAfter(vararg objects: Any): TaskCollecti
   }
 }
 
-/** adds all [objects] as `mustRunAfter` inside a configuration block, inside a `configure { }` */
+/**
+ * adds all [objects] as `mustRunAfter` inside a configuration block, inside a `configure { }`
+ *
+ * @since 0.1.0
+ */
 fun <T : Task> TaskProvider<T>.mustRunAfter(vararg objects: Any): TaskProvider<T> {
   return also { provider ->
     provider.configure { task ->
@@ -137,6 +163,7 @@ fun <T : Task> TaskProvider<T>.mustRunAfter(vararg objects: Any): TaskProvider<T
  * @return The matching objects. Returns an empty collection
  *   if there are no such objects in this collection.
  * @see [DomainObjectCollection.withType]
+ * @since 0.1.0
  */
 inline fun <reified S : Any> DomainObjectCollection<in S>.withType(
   noinline configuration: (S) -> Unit
@@ -151,6 +178,7 @@ inline fun <reified S : Any> DomainObjectCollection<in S>.withType(
  * @return The matching objects. Returns an empty collection
  *   if there are no such objects in this collection.
  * @see [DomainObjectCollection.withType]
+ * @since 0.1.0
  */
 inline fun <reified S : Any> DomainObjectCollection<in S>.withType(): DomainObjectCollection<S> =
   withType(S::class.java)
@@ -164,6 +192,7 @@ inline fun <reified S : Any> DomainObjectCollection<in S>.withType(): DomainObje
  * @return The matching objects. Returns an empty collection
  *   if there are no such objects in this collection.
  * @see [TaskCollection.withType]
+ * @since 0.1.0
  */
 inline fun <reified S : Task> TaskCollection<in S>.withType(): TaskCollection<S> =
   withType(S::class.java)
@@ -188,6 +217,7 @@ fun <T : Task> TaskContainer.registerOnce(
 /**
  * @return the fully qualified name of this task's
  *   type, without any '_Decorated' suffix if one exists
+ * @since 0.1.0
  */
 fun Task.undecoratedTypeName(): String {
   return javaClass.canonicalName.removeSuffix("_Decorated")

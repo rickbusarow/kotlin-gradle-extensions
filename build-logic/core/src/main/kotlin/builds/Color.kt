@@ -18,6 +18,7 @@ package builds
  * https://github.com/ziggy42/kolor
  *
  * @property code
+ * @since 0.1.0
  */
 @Suppress("MagicNumber")
 enum class Color(val code: Int) {
@@ -42,7 +43,11 @@ enum class Color(val code: Int) {
 
     private val supported = "win" !in System.getProperty("os.name").lowercase()
 
-    /** returns a string in the given color */
+    /**
+     * returns a string in the given color
+     *
+     * @since 0.1.0
+     */
     fun String.colorized(color: Color) = if (supported) {
       "\u001B[${color.code}m$this\u001B[0m"
     } else {

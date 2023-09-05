@@ -27,7 +27,11 @@ val SEMVER_REGEX = buildString {
   append("(?:\\+(?:[0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?")
 }
 
-/** Replaces the deprecated Kotlin version, but hard-codes `Locale.US` */
+/**
+ * Replaces the deprecated Kotlin version, but hard-codes `Locale.US`
+ *
+ * @since 0.1.0
+ */
 fun String.capitalize(): String = replaceFirstChar {
   if (it.isLowerCase()) it.titlecase(Locale.US) else it.toString()
 }
@@ -36,10 +40,16 @@ fun String.capitalize(): String = replaceFirstChar {
  * Removes trailing whitespaces from all lines in a string.
  *
  * Shorthand for `lines().joinToString("\n") { it.trimEnd() }`
+ *
+ * @since 0.1.0
  */
 fun String.trimLineEnds(): String = mapLines { it.trimEnd() }
 
-/** performs [transform] on each line */
+/**
+ * performs [transform] on each line
+ *
+ * @since 0.1.0
+ */
 fun String.mapLines(transform: (String) -> CharSequence): String = lineSequence()
   .joinToString("\n", transform = transform)
 
@@ -54,12 +64,20 @@ fun CharSequence.normaliseLineSeparators(): String {
   }
 }
 
-/** shorthand for `replace(___, "")` against multiple tokens */
+/**
+ * shorthand for `replace(___, "")` against multiple tokens
+ *
+ * @since 0.1.0
+ */
 fun String.remove(vararg strings: String): String = strings.fold(this) { acc, string ->
   acc.replace(string, "")
 }
 
-/** shorthand for `replace(___, "")` against multiple tokens */
+/**
+ * shorthand for `replace(___, "")` against multiple tokens
+ *
+ * @since 0.1.0
+ */
 fun String.remove(vararg regex: Regex): String = regex.fold(this) { acc, reg ->
   acc.replace(reg, "")
 }
