@@ -1,6 +1,6 @@
 [versions]
 benManes-versions = "0.47.0"
-buildconfig = "4.1.1"
+buildconfig = "4.1.2"
 dependencyAnalysis = "1.20.0"
 detekt = "1.23.0"
 diffplug-spotless = "6.19.0"
