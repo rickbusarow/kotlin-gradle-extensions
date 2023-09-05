@@ -15,6 +15,8 @@
 
 package builds
 
+import com.rickbusarow.kgx.applyOnce
+import com.rickbusarow.kgx.dependsOn
 import com.vanniktech.maven.publish.MavenPublishBasePlugin
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -80,4 +82,7 @@ abstract class KotlinJvmConventionPlugin : Plugin<Project> {
       task.duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
   }
+
+  val org.gradle.api.Project.javaExtension: JavaPluginExtension
+    get() = extensions.getByType(JavaPluginExtension::class.java)
 }

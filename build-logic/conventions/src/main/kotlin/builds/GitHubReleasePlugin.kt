@@ -16,6 +16,9 @@
 package builds
 
 import com.github.breadmoirai.githubreleaseplugin.GithubReleaseExtension
+import com.rickbusarow.kgx.applyOnce
+import com.rickbusarow.kgx.libsCatalog
+import com.rickbusarow.kgx.pluginId
 import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project

@@ -15,13 +15,13 @@
 
 package builds
 
-import org.gradle.api.GradleException
+import com.rickbusarow.kgx.extras
+import com.rickbusarow.kgx.getOrPut
+import com.rickbusarow.kgx.libsCatalog
+import com.rickbusarow.kgx.version
 import org.gradle.api.Project
 import org.gradle.api.artifacts.MinimalExternalModuleDependency
-import org.gradle.api.artifacts.VersionCatalog
-import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.Provider
-import kotlin.LazyThreadSafetyMode.NONE
 
 /**
  * Convenience for reading the library version from `libs.versions.toml`
@@ -72,82 +72,6 @@ val Project.JDK: String
  */
 val Project.JVM_TARGET_INT: Int
   get() = JVM_TARGET.substringAfterLast('.').toInt()
-
-private val Project.catalogs: VersionCatalogsExtension
-  get() = extensions.getByType(VersionCatalogsExtension::class.java)
-
-/**
- * non-dsl version of `libs`
- *
- * ex:
- *
- * ```
- * val myCatalog = project.libsCatalog
- * ```
- *
- * @since 0.1.0
- */
-val Project.libsCatalog: VersionCatalog
-  get() = catalogs.named("libs")
-
-/**
- * non-dsl version of `libs._____`
- *
- * ex:
- *
- * ```
- * "api"(project.libsCatalog.dependency("square-anvil-annotations"))
- * ```
- *
- * @since 0.1.0
- */
-fun VersionCatalog.dependency(alias: String): Provider<MinimalExternalModuleDependency> {
-  return findLibrary(alias)
-    .orElseThrow {
-      GradleException("No dependency was found in the catalog for the alias '$alias'.")
-    }
-}
-
-/**
- * non-dsl version of `libs.versions._____.get()`
- *
- * ex:
- *
- * ```
- * val anvilVersion = project.libsCatalog.version("square-anvil")
- * ```
- *
- * @since 0.1.0
- */
-fun VersionCatalog.version(alias: String): String {
-  return findVersion(alias)
-    .orElseThrow {
-      GradleException("No version was found in the catalog for the alias '$alias'.")
-    }
-    .requiredVersion
-}
-
-/**
- * non-dsl version of `libs.versions._____.get().pluginId`
- *
- * ex:
- *
- * ```
- * val anvilId = project.libsCatalog.pluginId("square-anvil")
- * ```
- *
- * @since 0.1.0
- */
-fun VersionCatalog.pluginId(alias: String): String {
-  val errorMessage by lazy(NONE) {
-    "No plugin ID was found in the catalog for the alias '$alias'."
-  }
-  return findPlugin(alias)
-    .orElseThrow { GradleException(errorMessage) }
-    .orNull
-    ?.pluginId
-    ?: throw GradleException(errorMessage)
-}
 
 val Provider<MinimalExternalModuleDependency>.moduleName: String
   get() = get().name

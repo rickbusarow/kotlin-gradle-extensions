@@ -1,9 +1,6 @@
 public final class com/rickbusarow/kgx/CatalogsKt {
 	public static final fun dependency (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
-	public static final fun getJDK (Lorg/gradle/api/Project;)Ljava/lang/String;
-	public static final fun getJVM_TARGET (Lorg/gradle/api/Project;)Ljava/lang/String;
-	public static final fun getJVM_TARGET_INT (Lorg/gradle/api/Project;)I
-	public static final fun getKOTLIN_API (Lorg/gradle/api/Project;)Ljava/lang/String;
+	public static final fun getCatalogs (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/VersionCatalogsExtension;
 	public static final fun getLibsCatalog (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/VersionCatalog;
 	public static final fun pluginId (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Ljava/lang/String;
 	public static final fun version (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Ljava/lang/String;
@@ -54,10 +51,17 @@ public final class com/rickbusarow/kgx/PluginContainerKt {
 	public static final fun applyOnce (Lorg/gradle/api/plugins/PluginContainer;Ljava/lang/String;)V
 }
 
+public final class com/rickbusarow/kgx/PluginsKt {
+	public static final fun withAny (Lorg/gradle/api/plugins/PluginContainer;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+}
+
 public final class com/rickbusarow/kgx/ProjectKt {
 	public static final fun allProjectsTasksMatchingName (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/util/List;
+	public static final fun buildDir (Lorg/gradle/api/Project;)Ljava/io/File;
 	public static final fun checkProjectIsRoot (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function0;)V
 	public static synthetic fun checkProjectIsRoot$default (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
+	public static final fun getJava (Lorg/gradle/api/Project;)Lorg/gradle/api/plugins/JavaPluginExtension;
+	public static final fun isRootProject (Lorg/gradle/api/Project;)Z
 	public static final fun subProjectsTasksMatchingName (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/util/List;
 }
 

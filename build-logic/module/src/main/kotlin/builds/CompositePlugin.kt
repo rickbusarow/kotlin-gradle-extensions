@@ -20,6 +20,10 @@ import builds.artifacts.ArtifactsDumpTask
 import com.autonomousapps.tasks.BuildHealthTask
 import com.github.jengelman.gradle.plugins.shadow.internal.JavaJarExec
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.rickbusarow.kgx.checkProjectIsRoot
+import com.rickbusarow.kgx.dependsOn
+import com.rickbusarow.kgx.internal.allProjects
+import com.rickbusarow.kgx.undecoratedTypeName
 import com.rickbusarow.ktlint.KtLintTask
 import io.gitlab.arturbosch.detekt.Detekt
 import kotlinx.validation.KotlinApiBuildTask

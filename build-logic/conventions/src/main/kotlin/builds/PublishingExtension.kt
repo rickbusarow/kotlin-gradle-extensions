@@ -15,6 +15,7 @@
 
 package builds
 
+import com.rickbusarow.kgx.registerOnce
 import com.vanniktech.maven.publish.GradlePlugin
 import com.vanniktech.maven.publish.JavadocJar.Dokka
 import com.vanniktech.maven.publish.KotlinJvm

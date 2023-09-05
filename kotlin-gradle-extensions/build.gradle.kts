@@ -14,9 +14,10 @@
  */
 
 import builds.VERSION_NAME
-import builds.dependsOn
-import builds.isRealRootProject
 import com.github.gmazzo.gradle.plugins.BuildConfigTask
+import com.rickbusarow.kgx.dependsOn
+import com.rickbusarow.kgx.internal.InternalGradleApiAccess
+import com.rickbusarow.kgx.internal.isRealRootProject
 
 plugins {
   id("module")
@@ -64,6 +65,7 @@ tasks.withType<Test>().configureEach {
   onlyIf { true }
 }
 
+@OptIn(InternalGradleApiAccess::class)
 val mainConfig: String = if (rootProject.isRealRootProject()) {
   shade.name
 } else {

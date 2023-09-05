@@ -15,11 +15,15 @@
 
 package builds
 
+import com.rickbusarow.kgx.EagerGradleApi
+import com.rickbusarow.kgx.applyOnce
+import com.rickbusarow.kgx.matchingName
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.language.base.plugins.LifecycleBasePlugin
 
 abstract class CheckPlugin : Plugin<Project> {
+  @OptIn(EagerGradleApi::class)
   override fun apply(target: Project) {
 
     target.plugins.applyOnce("base")
@@ -31,10 +35,9 @@ abstract class CheckPlugin : Plugin<Project> {
 
       task.dependsOn(target.rootProject.tasks.matchingName("artifactsDump"))
       task.dependsOn(target.rootProject.tasks.matchingName("spotlessApply"))
-      task.dependsOn(target.rootProject.tasks.matchingName("updateChangelogVersionLinks"))
       task.dependsOn(target.tasks.matchingName("apiDump"))
       task.dependsOn(target.tasks.matchingName("dependencyGuardBaseline"))
-      task.dependsOn(target.tasks.matchingName("formatKotlin"))
+      task.dependsOn(target.tasks.matchingName("ktlintFormat"))
       task.dependsOn(target.tasks.matchingName("deleteEmptyDirs"))
       task.dependsOn(target.tasks.matchingName("moduleCheckAuto"))
     }

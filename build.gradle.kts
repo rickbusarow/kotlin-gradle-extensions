@@ -15,8 +15,8 @@
 
 import builds.GROUP
 import builds.VERSION_NAME
-import builds.mustRunAfter
 import com.rickbusarow.doks.DoksTask
+import com.rickbusarow.kgx.mustRunAfter
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {

@@ -76,6 +76,7 @@ dependencies {
 
   api(libs.breadmoirai.github.release)
   api(libs.rickBusarow.doks)
+  api(libs.rickBusarow.kgx)
   api(libs.rickBusarow.ktlint)
 
   api(project(path = ":core"))

@@ -31,7 +31,7 @@ fun Project.applyBinaryCompatibility() {
     extension.ignoredProjects = mutableSetOf()
   }
 
-  tasks.matchingName("apiCheck").configureEach { task ->
+  tasks.named("apiCheck") { task ->
     task.mustRunAfter("apiDump")
   }
 }
