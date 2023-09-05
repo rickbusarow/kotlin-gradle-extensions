@@ -66,7 +66,7 @@ square-okio = "3.4.0"
 taskTree = "2.1.1"
 threetenbp = "1.6.8"
 vanniktech-publish = "0.25.3"
-versionCatalogUpdate = "0.8.0"
+versionCatalogUpdate = "0.8.1"
 
 [plugins]
 
