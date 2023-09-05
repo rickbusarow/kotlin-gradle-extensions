@@ -19,7 +19,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.plugins.PluginContainer
 
 /** @since 0.1.0 */
-internal inline fun PluginContainer.withAny(
+inline fun PluginContainer.withAny(
   vararg ids: String,
   crossinline action: (Plugin<*>) -> Unit
 ) {

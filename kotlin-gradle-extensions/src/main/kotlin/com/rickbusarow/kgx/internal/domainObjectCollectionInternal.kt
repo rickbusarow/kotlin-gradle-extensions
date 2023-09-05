@@ -98,10 +98,10 @@ inline fun <reified T, reified R : T> NamedDomainObjectCollection<T>.whenElement
   }
 }
 
-@PublishedApi
+/** */
 @InternalGradleApiAccess
 @Suppress("MaxLineLength")
-internal inline fun <reified T> NamedDomainObjectCollection<T>.requireDefaultCollection(): DefaultNamedDomainObjectCollection<T> {
+inline fun <reified T> NamedDomainObjectCollection<T>.requireDefaultCollection(): DefaultNamedDomainObjectCollection<T> {
   require(this is DefaultNamedDomainObjectCollection<T>) {
     "The receiver collection must extend " +
       "${DefaultNamedDomainObjectCollection::class.qualifiedName}, " +

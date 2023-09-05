@@ -18,6 +18,7 @@ package com.rickbusarow.kgx
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.TaskCollection
 import java.io.File
 
@@ -44,14 +45,14 @@ fun Project.checkProjectIsRoot(
  *   if the project is the ultimate root of a composite build
  * @since 0.1.0
  */
-internal fun Project.isRootProject() = this == rootProject
+fun Project.isRootProject(): Boolean = this == rootProject
 
 /**
  * shorthand for `layout.buildDirectory.get().asFile`
  *
  * @since 0.1.0
  */
-internal fun Project.buildDir(): File = layout.buildDirectory.get().asFile
+fun Project.buildDir(): File = layout.buildDirectory.get().asFile
 
 /**
  * Finds all tasks named [taskName] in all projects.
@@ -107,3 +108,7 @@ inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(
   return subprojects
     .map { proj -> proj.tasks.matchingNameWithType(taskName) }
 }
+
+/** shorthand for `extensions.getByType(JavaPluginExtension::class.java)` */
+val Project.java: JavaPluginExtension
+  get() = extensions.getByType(JavaPluginExtension::class.java)
