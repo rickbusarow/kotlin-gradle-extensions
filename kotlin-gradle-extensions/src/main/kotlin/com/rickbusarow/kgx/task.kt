@@ -236,8 +236,6 @@ fun <T : Task> TaskProvider<T>.addAsDependencyTo(
  *
  * @since 0.1.0
  */
-inline fun <reified T : Task> T.outputsUpToDateWhen(
-  crossinline predicate: (T) -> Boolean
-) {
+inline fun <reified T : Task> T.outputsUpToDateWhen(crossinline predicate: (T) -> Boolean) {
   outputs.upToDateWhen { predicate(it as T) }
 }
