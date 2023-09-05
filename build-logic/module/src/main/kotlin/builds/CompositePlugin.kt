@@ -20,6 +20,7 @@ import builds.artifacts.ArtifactsDumpTask
 import com.autonomousapps.tasks.BuildHealthTask
 import com.github.jengelman.gradle.plugins.shadow.internal.JavaJarExec
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.rickbusarow.ktlint.KtLintTask
 import io.gitlab.arturbosch.detekt.Detekt
 import kotlinx.validation.KotlinApiBuildTask
 import kotlinx.validation.KotlinApiCompareTask
@@ -41,8 +42,6 @@ import org.gradle.language.base.plugins.LifecycleBasePlugin
 import org.jetbrains.dokka.gradle.AbstractDokkaTask
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.dokka.gradle.DokkaTask
-import org.jmailen.gradle.kotlinter.tasks.FormatTask
-import org.jmailen.gradle.kotlinter.tasks.LintTask
 
 abstract class CompositePlugin : Plugin<Project> {
   override fun apply(target: Project) {
@@ -71,8 +70,8 @@ abstract class CompositePlugin : Plugin<Project> {
         AbstractDokkaTask::class, DokkaMultiModuleTask::class, DokkaTask::class,
         /* gradle */
         Copy::class, Delete::class, Exec::class, JavaExec::class, Sync::class, Test::class, Zip::class,
-        /* kotlinter */
-        FormatTask::class, LintTask::class,
+        /* ktlint-gradle-plugin */
+        KtLintTask::class,
         /* publishing */
         AbstractPublishToMaven::class, PublishToMavenLocal::class,
         /* shadow */

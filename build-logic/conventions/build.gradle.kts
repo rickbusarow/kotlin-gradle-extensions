@@ -1,5 +1,3 @@
-
-
 /*
  * Copyright (C) 2023 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +15,6 @@
 
 plugins {
   kotlin("jvm")
-  @Suppress("DSL_SCOPE_VIOLATION")
   alias(libs.plugins.google.ksp)
   id("java-gradle-plugin")
 }
@@ -60,10 +57,6 @@ gradlePlugin {
       id = "builds.kotlin"
       implementationClass = "builds.KotlinJvmConventionPlugin"
     }
-    create("builds.knit") {
-      id = "builds.knit"
-      implementationClass = "builds.KnitConventionPlugin"
-    }
     create("builds.ktlint") {
       id = "builds.ktlint"
       implementationClass = "builds.KtLintConventionPlugin"
@@ -81,41 +74,26 @@ gradlePlugin {
 
 dependencies {
 
-  api(libs.square.moshi)
+  api(libs.breadmoirai.github.release)
+  api(libs.rickBusarow.doks)
+  api(libs.rickBusarow.ktlint)
 
   api(project(path = ":core"))
 
   compileOnly(gradleApi())
 
   implementation(libs.benManes.versions)
-  implementation(libs.breadmoirai.github.release) {
-    exclude(group = "org.gradle")
-  }
   implementation(libs.detekt.gradle)
   implementation(libs.diffplug.spotless)
+  implementation(libs.dokka.core)
   implementation(libs.dokka.gradle)
   implementation(libs.dokka.versioning)
   implementation(libs.dropbox.dependencyGuard)
-  implementation(libs.google.dagger.api)
-  implementation(libs.google.ksp)
-  implementation(libs.gradle.plugin.publish)
-  implementation(libs.jmailen.kotlinter)
   implementation(libs.johnrengelman.shadowJar)
-  implementation(libs.kotlin.compiler)
   implementation(libs.kotlin.gradle.plugin)
+  implementation(libs.kotlin.gradle.plugin.api)
   implementation(libs.kotlin.reflect)
-  implementation(libs.kotlin.serialization)
   implementation(libs.kotlinx.binaryCompatibility)
-  implementation(libs.kotlinx.knit)
-  implementation(libs.kotlinx.serialization.core)
-  implementation(libs.kotlinx.serialization.json)
-  implementation(libs.kotlinx.serialization.json.jvm)
-  implementation(libs.kotlinx.serialization.protobuf)
-  implementation(libs.rickBusarow.doks)
-  implementation(libs.rickBusarow.ktlint)
-  implementation(libs.rickBusarow.moduleCheck.gradle.plugin)
-  implementation(libs.square.kotlinPoet)
-  implementation(libs.undercouch.download)
   implementation(libs.vanniktech.publish)
 
   ksp(libs.square.moshi.codegen)

@@ -39,7 +39,8 @@ fun Project.checkProjectIsRoot(
  *
  * For composite builds, this will return true for the root of each included build.
  *
- * @see isRealRootProject to check if the project is the ultimate root of a composite build
+ * @see com.rickbusarow.kgx.internal.isRealRootProject to check
+ *   if the project is the ultimate root of a composite build
  */
 internal fun Project.isRootProject() = this == rootProject
 

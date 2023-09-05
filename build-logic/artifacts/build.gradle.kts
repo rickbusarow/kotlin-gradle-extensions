@@ -15,7 +15,6 @@
 
 plugins {
   kotlin("jvm")
-  @Suppress("DSL_SCOPE_VIOLATION")
   alias(libs.plugins.google.ksp)
   id("java-gradle-plugin")
 }
@@ -31,11 +30,11 @@ gradlePlugin {
 
 dependencies {
 
-  api(project(":core"))
+  api(libs.square.moshi)
 
   compileOnly(gradleApi())
 
-  implementation(libs.square.moshi)
+  implementation(project(":core"))
 
   ksp(libs.square.moshi.codegen)
 }
