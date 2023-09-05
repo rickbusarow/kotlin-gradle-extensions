@@ -17,5 +17,5 @@ package com.rickbusarow.kgx.internal
 
 /** @since 0.1.0 */
 @Retention(AnnotationRetention.BINARY)
-@RequiresOptIn
+@RequiresOptIn("Accessing Gradle's internal APIs carries risk, as they may change between versions.")
 annotation class InternalGradleApiAccess

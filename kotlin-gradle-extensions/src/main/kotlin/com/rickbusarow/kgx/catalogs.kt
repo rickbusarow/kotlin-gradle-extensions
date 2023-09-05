@@ -23,43 +23,8 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.Provider
 import kotlin.LazyThreadSafetyMode.NONE
 
-/**
- * "1.6", "1.7", "1.8", etc.
- *
- * @since 0.1.0
- */
-val Project.KOTLIN_API: String
-  get() = libsCatalog.version("kotlinApi")
-
-/**
- * the jdk used in packaging
- *
- * "1.6", "1.8", "11", etc.
- *
- * @since 0.1.0
- */
-val Project.JVM_TARGET: String
-  get() = libsCatalog.version("jvmTarget")
-
-/**
- * the jdk used to build the project
- *
- * "1.6", "1.8", "11", etc.
- *
- * @since 0.1.0
- */
-val Project.JDK: String
-  get() = libsCatalog.version("jdk")
-
-/**
- * `6`, `8`, `11`, etc.
- *
- * @since 0.1.0
- */
-val Project.JVM_TARGET_INT: Int
-  get() = JVM_TARGET.substringAfterLast('.').toInt()
-
-private val Project.catalogs: VersionCatalogsExtension
+/** shorthand for `extensions.getByType(VersionCatalogsExtension::class.java)` */
+val Project.catalogs: VersionCatalogsExtension
   get() = extensions.getByType(VersionCatalogsExtension::class.java)
 
 /**
