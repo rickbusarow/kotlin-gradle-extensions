@@ -182,7 +182,7 @@ jobs:
           path: ./**/build/reports/tests/test
 
       - name: Unit test results
-        uses: mikepenz/action-junit-report@v3
+        uses: mikepenz/action-junit-report@v4
         if: failure()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -216,7 +216,7 @@ jobs:
           path: ./**/build/reports/tests/integrationTest
 
       - name: Unit test results
-        uses: mikepenz/action-junit-report@v3
+        uses: mikepenz/action-junit-report@v4
         if: failure()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -250,7 +250,7 @@ jobs:
           path: ./**/build/reports/tests/
 
       - name: Unit test results
-        uses: mikepenz/action-junit-report@v3
+        uses: mikepenz/action-junit-report@v4
         if: failure()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
