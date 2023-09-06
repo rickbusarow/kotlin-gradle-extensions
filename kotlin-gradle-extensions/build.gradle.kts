@@ -16,8 +16,6 @@
 import builds.VERSION_NAME
 import com.github.gmazzo.gradle.plugins.BuildConfigTask
 import com.rickbusarow.kgx.dependsOn
-import com.rickbusarow.kgx.internal.InternalGradleApiAccess
-import com.rickbusarow.kgx.internal.isRealRootProject
 
 plugins {
   id("module")
@@ -26,10 +24,7 @@ plugins {
   idea
 }
 
-val shade by configurations.register("shadowCompileOnly")
-
 module {
-  shadow(shade)
 
   published(
     artifactId = "kotlin-gradle-extensions",
@@ -63,13 +58,6 @@ idea {
 
 tasks.withType<Test>().configureEach {
   onlyIf { true }
-}
-
-@OptIn(InternalGradleApiAccess::class)
-val mainConfig: String = if (rootProject.isRealRootProject()) {
-  shade.name
-} else {
-  "implementation"
 }
 
 dependencies {
