@@ -98,7 +98,7 @@ inline fun <reified T, reified R : T> NamedDomainObjectCollection<T>.whenElement
   }
 }
 
-/** */
+/** @since 0.1.1 */
 @InternalGradleApiAccess
 @Suppress("MaxLineLength")
 inline fun <reified T> NamedDomainObjectCollection<T>.requireDefaultCollection(): DefaultNamedDomainObjectCollection<T> {

@@ -23,7 +23,11 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.Provider
 import kotlin.LazyThreadSafetyMode.NONE
 
-/** shorthand for `extensions.getByType(VersionCatalogsExtension::class.java)` */
+/**
+ * shorthand for `extensions.getByType(VersionCatalogsExtension::class.java)`
+ *
+ * @since 0.1.1
+ */
 val Project.catalogs: VersionCatalogsExtension
   get() = extensions.getByType(VersionCatalogsExtension::class.java)
 

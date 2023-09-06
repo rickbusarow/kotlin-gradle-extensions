@@ -109,6 +109,10 @@ inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(
     .map { proj -> proj.tasks.matchingNameWithType(taskName) }
 }
 
-/** shorthand for `extensions.getByType(JavaPluginExtension::class.java)` */
+/**
+ * shorthand for `extensions.getByType(JavaPluginExtension::class.java)`
+ *
+ * @since 0.1.1
+ */
 val Project.java: JavaPluginExtension
   get() = extensions.getByType(JavaPluginExtension::class.java)
