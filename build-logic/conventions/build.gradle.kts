@@ -45,6 +45,10 @@ gradlePlugin {
       id = "builds.dokka"
       implementationClass = "builds.DokkaConventionPlugin"
     }
+    create("builds.dokka-versioning") {
+      id = "builds.dokka-versioning"
+      implementationClass = "builds.DokkaVersionArchivePlugin"
+    }
     create("builds.github-release") {
       id = "builds.github-release"
       implementationClass = "builds.GitHubReleasePlugin"
