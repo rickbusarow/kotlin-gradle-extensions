@@ -26,7 +26,7 @@ import java.io.Serializable
  *
  * @property gradlePath the path of the Gradle project, such as `:workflow-core`
  * @property group The maven "group", which should always be
- *   `com.rickbusarow.doks`. This is the `GROUP` property in the Gradle plugin.
+ *   `com.rickbusarow.kgx`. This is the `GROUP` property in the Gradle plugin.
  * @property artifactId The maven "module", such as `workflow-core-jvm`.
  *   This is the `POM_ARTIFACT_ID` property in the Gradle plugin.
  * @property description The description of this specific artifact, such as

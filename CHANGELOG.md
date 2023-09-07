@@ -2,6 +2,10 @@
 
 ## 0.1.3-SNAPSHOT (unreleased)
 
+### Fixed
+
+- replace leftover "doks" copy-pasta
+
 ## [0.1.2] - 2023-09-06
 
 ## What's Changed

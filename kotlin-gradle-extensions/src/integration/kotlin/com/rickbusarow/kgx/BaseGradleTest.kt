@@ -35,8 +35,10 @@ internal interface BaseGradleTest {
     val buildFile by lazy {
       workingDir.resolve("build.gradle.kts").createSafely(
         """
-        plugins {
-          id("com.rickbusarow.doks") version "${BuildConfig.version}"
+        buildscript {
+          dependencies {
+            classpath("${BuildConfig.mavenArtifact}")
+          }
         }
         """.trimIndent()
       )
