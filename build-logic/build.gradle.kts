@@ -67,7 +67,7 @@ allprojects ap@{
   }
   plugins.withType(JavaPlugin::class.java).configureEach {
     extensions.configure(JavaPluginExtension::class.java) {
-      sourceCompatibility = JavaVersion.toVersion(libs.versions.jvmTarget.get())
+      sourceCompatibility = JavaVersion.toVersion(libs.versions.jvmTargetBuildLogic.get())
     }
 
     configurations.named("compileClasspath") {
@@ -82,7 +82,7 @@ allprojects ap@{
 
       apiVersion = kotlinApiVersion
 
-      jvmTarget = libs.versions.jvmTarget.get()
+      jvmTarget = libs.versions.jvmTargetBuildLogic.get()
 
       freeCompilerArgs = freeCompilerArgs + listOf(
         "-opt-in=kotlin.RequiresOptIn"

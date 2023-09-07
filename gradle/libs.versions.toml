@@ -1,11 +1,14 @@
 [versions]
+jdk = "11" # the jdk used to build the project
+jvmTarget = "1.8" # the jdk used in packaging
+jvmTargetBuildLogic = "11" # the jdk used in packaging
+
 benManes-versions = "0.48.0"
 buildconfig = "4.1.2"
 dependencyAnalysis = "1.21.0"
 detekt = "1.23.1"
 diffplug-spotless = "6.21.0"
 dokka = "1.9.0"
-kgx-dev = "0.1.3-SNAPSHOT"
 dropbox-dependencyGuard = "0.4.3"
 ec4j = "0.3.0"
 exhaustive = "0.2.0"
@@ -13,9 +16,8 @@ github-release = "2.4.1"
 google-ksp = "1.9.10-1.0.13"
 integration-test = "1.4.5"
 jUnit = "5.10.0"
-jdk = "11" # the jdk used to build the project
 johnrengelman-shadow = "8.1.1"
-jvmTarget = "11" # the jdk used in packaging
+kgx-dev = "0.1.3-SNAPSHOT"
 kotest = "5.7.2"
 kotlin = "1.9.10"
 kotlinApi = "1.7"
