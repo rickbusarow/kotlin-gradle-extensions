@@ -79,7 +79,10 @@ abstract class DokkaConventionPlugin : Plugin<Project> {
 
             // URL showing where the source code can be accessed through the web browser
             sourceLinkBuilder.remoteUrl.set(
-              URL("https://github.com/rbusarow/doks/blob/main/$modulePath/src/main")
+              URL(
+                "https://github.com/rbusarow/kotlin-gradle-extensions" +
+                  "/blob/main/$modulePath/src/main"
+              )
             )
             // Suffix which is used to append the line number to the URL. Use #L for GitHub
             sourceLinkBuilder.remoteLineSuffix.set("#L")

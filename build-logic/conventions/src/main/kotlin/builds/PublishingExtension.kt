@@ -72,7 +72,7 @@ private fun Project.configurePublish(artifactId: String, pomDescription: String,
       mavenPom.description.set(pomDescription)
       mavenPom.name.set(artifactId)
 
-      mavenPom.url.set("https://www.github.com/rbusarow/doks/")
+      mavenPom.url.set("https://www.github.com/rbusarow/kotlin-gradle-extensions/")
 
       mavenPom.licenses { licenseSpec ->
         licenseSpec.license { license ->
@@ -82,9 +82,11 @@ private fun Project.configurePublish(artifactId: String, pomDescription: String,
         }
       }
       mavenPom.scm { scm ->
-        scm.url.set("https://www.github.com/rbusarow/doks/")
-        scm.connection.set("scm:git:git://github.com/rbusarow/doks.git")
-        scm.developerConnection.set("scm:git:ssh://git@github.com/rbusarow/doks.git")
+        scm.url.set("https://www.github.com/rbusarow/kotlin-gradle-extensions/")
+        scm.connection.set("scm:git:git://github.com/rbusarow/kotlin-gradle-extensions.git")
+        scm.developerConnection.set(
+          "scm:git:ssh://git@github.com/rbusarow/kotlin-gradle-extensions.git"
+        )
       }
       mavenPom.developers { developerSpec ->
         developerSpec.developer { developer ->

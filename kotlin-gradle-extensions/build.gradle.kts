@@ -24,10 +24,11 @@ plugins {
   idea
 }
 
-module {
+val artifactId = "kotlin-gradle-extensions"
 
+module {
   published(
-    artifactId = "kotlin-gradle-extensions",
+    artifactId = artifactId,
     pomDescription = "Common utilities for Gradle"
   )
 }
@@ -39,8 +40,21 @@ buildConfig {
     this@named.packageName(builds.GROUP)
     this@named.className("BuildConfig")
 
-    this@named.buildConfigField("String", "version", "\"${VERSION_NAME}\"")
-    this@named.buildConfigField("String", "kotlinVersion", "\"${libs.versions.kotlin.get()}\"")
+    this@named.buildConfigField(
+      type = "String",
+      name = "version",
+      value = "\"${VERSION_NAME}\""
+    )
+    this@named.buildConfigField(
+      type = "String",
+      name = "mavenArtifact",
+      value = provider { "\"${builds.GROUP}:$artifactId:${VERSION_NAME}\"" }
+    )
+    this@named.buildConfigField(
+      type = "String",
+      name = "kotlinVersion",
+      value = "\"${libs.versions.kotlin.get()}\""
+    )
   }
 }
 
