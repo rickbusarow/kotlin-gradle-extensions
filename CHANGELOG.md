@@ -4,7 +4,11 @@
 
 ### Fixed
 
-- replace leftover "doks" copy-pasta
+- replace leftover "doks" copy-pasta ([#46](https://github.com/RBusarow/kotlin-gradle-extensions/pull/46))
+
+### Other Changes
+
+- lower the published JVM target to 1.8 (down from 11) ([#47](https://github.com/RBusarow/kotlin-gradle-extensions/pull/47))
 
 ## [0.1.2] - 2023-09-06
 
