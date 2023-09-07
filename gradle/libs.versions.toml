@@ -1,5 +1,5 @@
 [versions]
-benManes-versions = "0.47.0"
+benManes-versions = "0.48.0"
 buildconfig = "4.1.2"
 dependencyAnalysis = "1.21.0"
 detekt = "1.23.1"
