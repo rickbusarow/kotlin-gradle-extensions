@@ -96,7 +96,7 @@ parseVersionAndSyncDocs
 # Generate all api docs and make sure they're in ./dokka-archive/
 # Then ensure that all the new versioned api docs are tracked by Git
 progress "generate and copy Dokka api docs"
-./gradlew dokkaHtmlMultiModule syncDokkaToDokkaArchive
+./gradlew dokkaHtmlMultiModule syncDokkaToArchive
 
 # add the new version of Dokka archive to git and commit those files as their own commit.
 maybeCommit "add Dokka docs for ${VERSION_NAME} to the dokka-archive"
