@@ -8,9 +8,9 @@
 
 ### 🧰 Maintenance
 
-* archive Dokka versioning docs as .zip
+- archive Dokka versioning docs as .zip
   files https://github.com/RBusarow/kotlin-gradle-extensions/pull/40
-* don't use the shadow plugin https://github.com/RBusarow/kotlin-gradle-extensions/pull/43
+- don't use the shadow plugin https://github.com/RBusarow/kotlin-gradle-extensions/pull/43
 
 **Full Changelog**: https://github.com/RBusarow/kotlin-gradle-extensions/compare/0.1.1...0.1.2
 
@@ -39,7 +39,5 @@
 Hello World
 
 [0.1.0]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.0
-
 [0.1.1]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.1
-
 [0.1.2]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.2
