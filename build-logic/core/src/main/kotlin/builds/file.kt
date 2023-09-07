@@ -127,7 +127,11 @@ fun File.hasGradleProjectFiles(): Boolean {
   }
 }
 
-/** Compares the contents of two zip files, ignoring metadata like timestamps. */
+/**
+ * Compares the contents of two zip files, ignoring metadata like timestamps.
+ *
+ * @since 0.1.2
+ */
 fun File.zipContentEquals(other: File): Boolean {
 
   require(extension == "zip") { "This file is not a zip file: file://$path" }
