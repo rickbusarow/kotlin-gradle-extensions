@@ -15,12 +15,15 @@
 
 package com.rickbusarow.kgx
 
-import org.gradle.api.Plugin
-import org.gradle.api.plugins.PluginContainer
+import org.gradle.api.plugins.AppliedPlugin
+import org.gradle.api.plugins.PluginManager
 
-/** @since 0.1.0 */
-inline fun PluginContainer.withAny(vararg ids: String, crossinline action: (Plugin<*>) -> Unit) {
+/**  */
+inline fun PluginManager.withAnyPlugin(
+  vararg ids: String,
+  crossinline action: (AppliedPlugin) -> Unit
+) {
   for (id in ids) {
-    withId(id) { action(it) }
+    withPlugin(id) { action(it) }
   }
 }

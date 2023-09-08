@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.1.3-SNAPSHOT (unreleased)
+## 0.1.4-SNAPSHOT (unreleased)
+
+## [0.1.3] - 2023-09-07
 
 ### Fixed
 
@@ -9,6 +11,8 @@
 ### Other Changes
 
 - lower the published JVM target to 1.8 (down from 11) ([#47](https://github.com/RBusarow/kotlin-gradle-extensions/pull/47))
+
+**Full Changelog**: https://github.com/RBusarow/kotlin-gradle-extensions/compare/0.1.2...0.1.3
 
 ## [0.1.2] - 2023-09-06
 
@@ -49,3 +53,4 @@ Hello World
 [0.1.0]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.0
 [0.1.1]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.1
 [0.1.2]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.2
+[0.1.3]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.3

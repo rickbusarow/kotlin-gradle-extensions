@@ -18,6 +18,13 @@ package com.rickbusarow.kgx
 import org.gradle.api.Plugin
 import org.gradle.api.plugins.PluginContainer
 
+/** @since 0.1.0 */
+inline fun PluginContainer.withAny(vararg ids: String, crossinline action: (Plugin<*>) -> Unit) {
+  for (id in ids) {
+    withId(id) { action(it) }
+  }
+}
+
 /**
  * Add the plugin if it hasn't been applied already.
  *
