@@ -49,10 +49,11 @@ public final class com/rickbusarow/kgx/ObjectFactoryKt {
 
 public final class com/rickbusarow/kgx/PluginContainerKt {
 	public static final fun applyOnce (Lorg/gradle/api/plugins/PluginContainer;Ljava/lang/String;)V
+	public static final fun withAny (Lorg/gradle/api/plugins/PluginContainer;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
 
-public final class com/rickbusarow/kgx/PluginsKt {
-	public static final fun withAny (Lorg/gradle/api/plugins/PluginContainer;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+public final class com/rickbusarow/kgx/PluginManagerKt {
+	public static final fun withAnyPlugin (Lorg/gradle/api/plugins/PluginManager;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 }
 
 public final class com/rickbusarow/kgx/ProjectKt {
