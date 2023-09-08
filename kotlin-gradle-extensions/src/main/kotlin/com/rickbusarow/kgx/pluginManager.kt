@@ -18,7 +18,7 @@ package com.rickbusarow.kgx
 import org.gradle.api.plugins.AppliedPlugin
 import org.gradle.api.plugins.PluginManager
 
-/**  */
+/** @since 0.1.3 */
 inline fun PluginManager.withAnyPlugin(
   vararg ids: String,
   crossinline action: (AppliedPlugin) -> Unit
