@@ -2,13 +2,13 @@
 
 ## 0.1.5-SNAPSHOT (unreleased)
 
+## [0.1.4] - 2023-09-09
+
 ### Changed
 
 - revert Kotlin version to 1.8.10
 
 **Full Changelog**: https://github.com/RBusarow/kotlin-gradle-extensions/compare/0.1.2...0.1.3
-
-## 0.1.4-SNAPSHOT (unreleased)
 
 ## [0.1.3] - 2023-09-07
 
