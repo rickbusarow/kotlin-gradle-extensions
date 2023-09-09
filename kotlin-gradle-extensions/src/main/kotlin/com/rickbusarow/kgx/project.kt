@@ -57,6 +57,7 @@ fun Project.isRealRootProject(): Boolean {
  * @see org.gradle.api.initialization.IncludedBuild
  * @see
  *   [Gradle User Manual: Composite Builds](https://docs.gradle.org/current/userguide/composite_builds.html)
+ * @since 0.1.4
  */
 val Project.isPartOfRootBuild: Boolean
   get() = gradle.parent == null
@@ -69,6 +70,7 @@ val Project.isPartOfRootBuild: Boolean
  * @return A [Sequence] of parent [Gradle] instances.
  * @see
  *   [Gradle User Manual: Composite Builds](https://docs.gradle.org/current/userguide/composite_builds.html)
+ * @since 0.1.4
  */
 fun Gradle.parents(): Sequence<Gradle> = generateSequence(parent) { it.parent }
 
@@ -79,6 +81,7 @@ fun Gradle.parents(): Sequence<Gradle> = generateSequence(parent) { it.parent }
  * @return A [Sequence] of [Gradle] instances including the receiver and its parents.
  * @see
  *   [Gradle User Manual: Composite Builds](https://docs.gradle.org/current/userguide/composite_builds.html)
+ * @since 0.1.4
  */
 fun Gradle.parentsWithSelf(): Sequence<Gradle> = generateSequence(this) { it.parent }
 

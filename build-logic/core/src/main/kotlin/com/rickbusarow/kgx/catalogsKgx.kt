@@ -100,7 +100,11 @@ fun VersionCatalog.pluginId(alias: String): String {
     ?: throw GradleException(errorMessage)
 }
 
-/** shorthand for `get().pluginId` */
+/**
+ * shorthand for `get().pluginId`
+ *
+ * @since 0.1.4
+ */
 val Provider<PluginDependency>.pluginId: String
   get() = get().pluginId
 
