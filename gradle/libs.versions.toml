@@ -3,6 +3,11 @@ jdk = "11" # the jdk used to build the project
 jvmTarget = "1.8" # the jdk used in packaging
 jvmTargetBuildLogic = "11" # the jdk used in packaging
 
+kotlin = "1.8.10"
+google-ksp = "1.8.10-1.0.9"
+
+kgx-dev = "0.1.4-SNAPSHOT"
+
 benManes-versions = "0.48.0"
 buildconfig = "4.1.2"
 dependencyAnalysis = "1.21.0"
@@ -11,15 +16,11 @@ diffplug-spotless = "6.21.0"
 dokka = "1.9.0"
 dropbox-dependencyGuard = "0.4.3"
 ec4j = "0.3.0"
-exhaustive = "0.2.0"
 github-release = "2.4.1"
-google-ksp = "1.9.10-1.0.13"
 integration-test = "1.4.5"
 jUnit = "5.10.0"
 johnrengelman-shadow = "8.1.1"
-kgx-dev = "0.1.4-SNAPSHOT"
 kotest = "5.7.2"
-kotlin = "1.9.10"
 kotlinApi = "1.7"
 kotlinx-binaryCompatibility = "0.13.2"
 kotlinx-coroutines = "1.7.2"
@@ -76,6 +77,8 @@ ec4j-core = { module = "org.ec4j.core:ec4j-core", version.ref = "ec4j" }
 
 google-ksp = { module = "com.google.devtools.ksp:symbol-processing-gradle-plugin", version.ref = "google-ksp" }
 
+integration-test = { module = "com.coditory.gradle:integration-test-plugin", version.ref = "integration-test" }
+
 johnrengelman-shadowJar = { module = "com.github.johnrengelman:shadow", version.ref = "johnrengelman-shadow" }
 
 junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "jUnit" }
@@ -106,7 +109,7 @@ kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", versi
 kotlinx-binaryCompatibility = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version.ref = "kotlinx-binaryCompatibility" }
 
 rickBusarow-doks = { module = "com.rickbusarow.doks:doks-gradle-plugin", version.ref = "rickBusarow-doks" }
-rickBusarow-kgx = { module = "com.rickbusarow.kgx:kotlin-gradle-extensions", version.ref = "rickBusarow-kgx" }
+#rickBusarow-kgx = { module = "com.rickbusarow.kgx:kotlin-gradle-extensions", version.ref = "rickBusarow-kgx" }
 rickBusarow-ktlint = { module = "com.rickbusarow.ktlint:ktlint-gradle-plugin", version.ref = "rickBusarow-ktlint" }
 rickBusarow-ktrules = { module = "com.rickbusarow.ktrules:ktrules", version.ref = "rickBusarow-ktrules" }
 rickBusarow-moduleCheck-gradle-plugin = { module = "com.rickbusarow.modulecheck:plugin", version.ref = "rickBusarow-moduleCheck" }

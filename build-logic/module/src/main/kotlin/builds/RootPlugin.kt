@@ -18,8 +18,7 @@ package builds
 import builds.artifacts.ArtifactsPlugin
 import com.rickbusarow.kgx.checkProjectIsRoot
 import com.rickbusarow.kgx.inCI
-import com.rickbusarow.kgx.internal.InternalGradleApiAccess
-import com.rickbusarow.kgx.internal.isRealRootProject
+import com.rickbusarow.kgx.isRealRootProject
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -29,7 +28,6 @@ import org.gradle.api.Project
  * @since 0.1.0
  */
 abstract class RootPlugin : Plugin<Project> {
-  @OptIn(InternalGradleApiAccess::class)
   override fun apply(target: Project) {
 
     target.checkProjectIsRoot()

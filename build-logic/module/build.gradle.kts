@@ -38,6 +38,9 @@ gradlePlugin {
 dependencies {
 
   api(libs.breadmoirai.github.release)
+  api(libs.integration.test) {
+    exclude(group = "org.jetbrains.kotlin")
+  }
   api(libs.rickBusarow.doks)
   api(libs.rickBusarow.ktlint)
 
@@ -45,7 +48,9 @@ dependencies {
 
   compileOnly(gradleApi())
 
-  implementation(libs.dependency.analysis.gradle.plugin)
+  implementation(libs.dependency.analysis.gradle.plugin) {
+    exclude(group = "org.jetbrains.kotlin")
+  }
   implementation(libs.detekt.gradle)
   implementation(libs.dokka.gradle)
   implementation(libs.johnrengelman.shadowJar)

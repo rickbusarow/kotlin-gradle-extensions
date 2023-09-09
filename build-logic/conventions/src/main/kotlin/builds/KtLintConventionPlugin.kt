@@ -12,12 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package builds
 
-import com.rickbusarow.kgx.EagerGradleApi
 import com.rickbusarow.kgx.dependency
-import com.rickbusarow.kgx.internal.InternalGradleApiAccess
-import com.rickbusarow.kgx.internal.isRealRootProject
+import com.rickbusarow.kgx.isRealRootProject
 import com.rickbusarow.kgx.libsCatalog
 import com.rickbusarow.kgx.matchingName
 import com.rickbusarow.ktlint.KtLintPlugin
@@ -29,7 +28,7 @@ import org.gradle.api.Project
 import kotlin.text.RegexOption.MULTILINE
 
 abstract class KtLintConventionPlugin : Plugin<Project> {
-  @OptIn(InternalGradleApiAccess::class, EagerGradleApi::class)
+
   override fun apply(target: Project) {
 
     target.plugins.apply(KtLintPlugin::class.java)

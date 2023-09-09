@@ -20,8 +20,6 @@ import com.rickbusarow.kgx.getOrPut
 import com.rickbusarow.kgx.libsCatalog
 import com.rickbusarow.kgx.version
 import org.gradle.api.Project
-import org.gradle.api.artifacts.MinimalExternalModuleDependency
-import org.gradle.api.provider.Provider
 
 /**
  * Convenience for reading the library version from `libs.versions.toml`
@@ -72,6 +70,3 @@ val Project.JDK: String
  */
 val Project.JVM_TARGET_INT: Int
   get() = JVM_TARGET.substringAfterLast('.').toInt()
-
-val Provider<MinimalExternalModuleDependency>.moduleName: String
-  get() = get().name

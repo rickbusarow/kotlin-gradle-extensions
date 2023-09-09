@@ -13,13 +13,10 @@
  * limitations under the License.
  */
 
-plugins {
-  kotlin("jvm")
-}
+package com.rickbusarow.kgx
 
-dependencies {
-
-  api(libs.ec4j.core)
-
-  compileOnly(gradleApi())
-}
+/**
+ * @return true if this build is running inside GitHub Actions
+ * @since 0.1.0
+ */
+fun inCI() = System.getenv("GITHUB_ACTION") != null

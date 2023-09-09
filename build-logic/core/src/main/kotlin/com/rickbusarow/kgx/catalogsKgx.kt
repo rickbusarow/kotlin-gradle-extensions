@@ -24,12 +24,7 @@ import org.gradle.api.provider.Provider
 import org.gradle.plugin.use.PluginDependency
 import kotlin.LazyThreadSafetyMode.NONE
 
-/**
- * shorthand for `extensions.getByType(VersionCatalogsExtension::class.java)`
- *
- * @since 0.1.1
- */
-val Project.catalogs: VersionCatalogsExtension
+private val Project.catalogs: VersionCatalogsExtension
   get() = extensions.getByType(VersionCatalogsExtension::class.java)
 
 /**
@@ -108,3 +103,6 @@ fun VersionCatalog.pluginId(alias: String): String {
 /** shorthand for `get().pluginId` */
 val Provider<PluginDependency>.pluginId: String
   get() = get().pluginId
+
+val Provider<MinimalExternalModuleDependency>.moduleName: String
+  get() = get().name

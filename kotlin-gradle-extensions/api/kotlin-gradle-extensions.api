@@ -2,6 +2,7 @@ public final class com/rickbusarow/kgx/CatalogsKt {
 	public static final fun dependency (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public static final fun getCatalogs (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/VersionCatalogsExtension;
 	public static final fun getLibsCatalog (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/VersionCatalog;
+	public static final fun getPluginId (Lorg/gradle/api/provider/Provider;)Ljava/lang/String;
 	public static final fun pluginId (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Ljava/lang/String;
 	public static final fun version (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Ljava/lang/String;
 }
@@ -62,7 +63,11 @@ public final class com/rickbusarow/kgx/ProjectKt {
 	public static final fun checkProjectIsRoot (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function0;)V
 	public static synthetic fun checkProjectIsRoot$default (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
 	public static final fun getJava (Lorg/gradle/api/Project;)Lorg/gradle/api/plugins/JavaPluginExtension;
+	public static final fun isPartOfRootBuild (Lorg/gradle/api/Project;)Z
+	public static final fun isRealRootProject (Lorg/gradle/api/Project;)Z
 	public static final fun isRootProject (Lorg/gradle/api/Project;)Z
+	public static final fun parents (Lorg/gradle/api/invocation/Gradle;)Lkotlin/sequences/Sequence;
+	public static final fun parentsWithSelf (Lorg/gradle/api/invocation/Gradle;)Lkotlin/sequences/Sequence;
 	public static final fun subProjectsTasksMatchingName (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/util/List;
 }
 
@@ -88,9 +93,5 @@ public final class com/rickbusarow/kgx/internal/IncludedInternalKt {
 }
 
 public abstract interface annotation class com/rickbusarow/kgx/internal/InternalGradleApiAccess : java/lang/annotation/Annotation {
-}
-
-public final class com/rickbusarow/kgx/internal/ProjectInternalKt {
-	public static final fun isRealRootProject (Lorg/gradle/api/Project;)Z
 }
 

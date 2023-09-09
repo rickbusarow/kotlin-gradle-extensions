@@ -13,13 +13,8 @@
  * limitations under the License.
  */
 
-plugins {
-  kotlin("jvm")
-}
+package com.rickbusarow.kgx
 
-dependencies {
-
-  api(libs.ec4j.core)
-
-  compileOnly(gradleApi())
-}
+@Retention(AnnotationRetention.BINARY)
+@RequiresOptIn("Using this API may cause domain objects to be created eagerly.")
+annotation class EagerGradleApi

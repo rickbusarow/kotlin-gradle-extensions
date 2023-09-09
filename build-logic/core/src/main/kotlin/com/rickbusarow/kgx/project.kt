@@ -15,27 +15,12 @@
 
 package com.rickbusarow.kgx
 
-import org.gradle.api.GradleException
+import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.gradle.api.invocation.Gradle
 import org.gradle.api.plugins.JavaPluginExtension
-import org.gradle.api.tasks.TaskCollection
+import org.gradle.api.plugins.PluginContainer
 import java.io.File
-
-/**
- * throws with [message] if the receiver project is not the root project
- *
- * @since 0.1.0
- * @throws IllegalStateException if the project is not the root project
- */
-fun Project.checkProjectIsRoot(
-  message: () -> Any = { "Only apply this plugin to the project root." }
-) {
-  if (this != rootProject) {
-    throw GradleException(message().toString())
-  }
-}
 
 /**
  * Determines whether the receiver project is the "real" root of this
@@ -83,17 +68,6 @@ fun Gradle.parents(): Sequence<Gradle> = generateSequence(parent) { it.parent }
 fun Gradle.parentsWithSelf(): Sequence<Gradle> = generateSequence(this) { it.parent }
 
 /**
- * shorthand for `this == rootProject`
- *
- * For composite builds, this will return true for the root of each included build.
- *
- * @see com.rickbusarow.kgx.internal.isRealRootProject to check
- *   if the project is the ultimate root of a composite build
- * @since 0.1.0
- */
-fun Project.isRootProject(): Boolean = this == rootProject
-
-/**
  * shorthand for `layout.buildDirectory.get().asFile`
  *
  * @since 0.1.0
@@ -101,64 +75,43 @@ fun Project.isRootProject(): Boolean = this == rootProject
 fun Project.buildDir(): File = layout.buildDirectory.get().asFile
 
 /**
- * Finds all tasks named [taskName] in all projects.
- * Does not throw if there are no tasks with that name.
+ * Add the plugin if it hasn't been applied already.
+ *
+ * @since 0.1.0
+ */
+fun PluginContainer.applyOnce(id: String) {
+  if (!hasPlugin(id)) apply(id)
+}
+
+/**
+ * Add the plugin if it hasn't been applied already.
+ *
+ * @since 0.1.0
+ */
+inline fun <reified T : Plugin<*>> PluginContainer.applyOnce() {
+  if (!hasPlugin(T::class.java)) apply(T::class.java)
+}
+
+/**
+ * throws with [message] if the receiver project is not the root project
  *
  * @since 0.1.0
  * @throws IllegalStateException if the project is not the root project
  */
-@EagerGradleApi
-fun Project.allProjectsTasksMatchingName(taskName: String): List<TaskCollection<Task>> {
-  checkProjectIsRoot { "only call `allProjectsTasksMatchingName(...)` from the root project." }
-  return allprojects.map { proj -> proj.tasks.matchingName(taskName) }
+fun Project.checkProjectIsRoot(
+  message: () -> Any = { "Only apply this plugin to the project root." }
+) {
+  check(this == rootProject, message)
 }
 
-/**
- * Finds all tasks named [taskName] in all projects.
- * Does not throw if there are no tasks with that name.
- *
- * @since 0.1.0
- * @throws IllegalStateException if the project is not the root project
- */
-@EagerGradleApi
-inline fun <reified T : Task> Project.allProjectsTasksMatchingNameWithType(
-  taskName: String
-): List<TaskCollection<T>> {
-  checkProjectIsRoot { "only call `allProjectsTasksMatchingName(...)` from the root project." }
-  return allprojects.map { proj ->
-    proj.tasks.matchingNameWithType(taskName)
-  }
-}
-
-/**
- * Finds all tasks named [taskName] in this project's subprojects.
- * Does not throw if there are no tasks with that name.
- *
- * @since 0.1.0
- */
-@EagerGradleApi
-fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskCollection<Task>> {
-  return subprojects.map { proj -> proj.tasks.matchingName(taskName) }
-}
-
-/**
- * Finds all tasks named [taskName] in this project's subprojects.
- * Does not throw if there are no tasks with that name.
- *
- * @since 0.1.0
- */
-@EagerGradleApi
-inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(
-  taskName: String
-): List<TaskCollection<T>> {
-  return subprojects
-    .map { proj -> proj.tasks.matchingNameWithType(taskName) }
-}
-
-/**
- * shorthand for `extensions.getByType(JavaPluginExtension::class.java)`
- *
- * @since 0.1.1
- */
-val Project.java: JavaPluginExtension
+val Project.javaExtension: JavaPluginExtension
   get() = extensions.getByType(JavaPluginExtension::class.java)
+
+/**
+ * `rootProject == this`
+ *
+ * @since 0.1.0
+ */
+fun Project.isRootProject(): Boolean {
+  return rootProject == this
+}

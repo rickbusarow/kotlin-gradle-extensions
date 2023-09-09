@@ -19,7 +19,7 @@ import com.rickbusarow.kgx.dependsOn
 
 plugins {
   id("module")
-  alias(libs.plugins.integration.test)
+  id(libs.plugins.integration.test.get().pluginId)
   alias(libs.plugins.buildconfig)
   idea
 }
@@ -68,10 +68,6 @@ idea {
       this@module.testSources.from(allSource.srcDirs)
     }
   }
-}
-
-tasks.withType<Test>().configureEach {
-  onlyIf { true }
 }
 
 dependencies {

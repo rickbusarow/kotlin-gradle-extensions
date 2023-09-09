@@ -78,9 +78,7 @@ gradlePlugin {
 
 dependencies {
 
-  api(libs.breadmoirai.github.release)
   api(libs.rickBusarow.doks)
-  api(libs.rickBusarow.kgx)
   api(libs.rickBusarow.ktlint)
 
   api(project(path = ":core"))
@@ -88,6 +86,11 @@ dependencies {
   compileOnly(gradleApi())
 
   implementation(libs.benManes.versions)
+  implementation(libs.breadmoirai.github.release) {
+    // Github-release bundles Gradle, which confuses the IDE when trying to view Gradle source or
+    // javadoc.
+    exclude(group = "org.gradle")
+  }
   implementation(libs.detekt.gradle)
   implementation(libs.diffplug.spotless)
   implementation(libs.dokka.core)

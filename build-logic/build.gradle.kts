@@ -25,7 +25,6 @@ buildscript {
 
 plugins {
   base
-  alias(libs.plugins.dependencyAnalysis)
   alias(libs.plugins.kotlin.jvm)
   alias(libs.plugins.moduleCheck)
   alias(libs.plugins.ktlint) apply false
@@ -37,7 +36,6 @@ moduleCheck {
 }
 
 val kotlinApiVersion = libs.versions.kotlinApi.get()
-val kotlinVersion = libs.versions.kotlin.get()
 val ktlintPluginId = libs.plugins.ktlint.get().pluginId
 
 allprojects ap@{

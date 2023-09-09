@@ -15,16 +15,9 @@
 
 package com.rickbusarow.kgx.internal
 
-import org.gradle.api.Project
-import org.gradle.api.internal.GradleInternal
-
-/**
- * Determines whether the receiver project is the "real" root of this
- * composite build, as opposed to the root projects of included builds.
- *
- * @since 0.1.0
- */
-@InternalGradleApiAccess
-fun Project.isRealRootProject(): Boolean {
-  return (gradle as GradleInternal).isRootBuild && this == rootProject
-}
+/** @since 0.1.0 */
+@Retention(AnnotationRetention.BINARY)
+@RequiresOptIn(
+  "Accessing Gradle's internal APIs carries risk, as they may change between versions."
+)
+annotation class InternalGradleApiAccess
