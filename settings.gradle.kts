@@ -78,7 +78,7 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "kotlin-gradle-extensions"
+rootProject.name = "kgx"
 
 include(":kotlin-gradle-extensions")
 
