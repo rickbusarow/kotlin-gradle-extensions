@@ -78,7 +78,6 @@ gradlePlugin {
 
 dependencies {
 
-  implementation(libs.rickBusarow.kgx)
   api(libs.rickBusarow.doks)
   api(libs.rickBusarow.ktlint)
 
@@ -103,6 +102,7 @@ dependencies {
   implementation(libs.kotlin.gradle.plugin.api)
   implementation(libs.kotlin.reflect)
   implementation(libs.kotlinx.binaryCompatibility)
+  implementation(libs.rickBusarow.kgx)
   implementation(libs.vanniktech.publish)
 
   ksp(libs.square.moshi.codegen)

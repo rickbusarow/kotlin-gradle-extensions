@@ -48,7 +48,6 @@ dependencies {
 
   compileOnly(gradleApi())
 
-  implementation(libs.rickBusarow.kgx)
   implementation(libs.dependency.analysis.gradle.plugin) {
     exclude(group = "org.jetbrains.kotlin")
   }
@@ -56,6 +55,7 @@ dependencies {
   implementation(libs.dokka.gradle)
   implementation(libs.johnrengelman.shadowJar)
   implementation(libs.kotlinx.binaryCompatibility)
+  implementation(libs.rickBusarow.kgx)
   implementation(libs.rickBusarow.moduleCheck.gradle.plugin) {
     exclude(group = "org.jetbrains.kotlin")
   }
