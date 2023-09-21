@@ -55,9 +55,7 @@ fun TaskContainer.matchingName(taskName: String): TaskCollection<Task> =
 
 /** code golf for `matching { it.name in taskNames }` */
 @EagerGradleApi
-fun TaskContainer.matchingNames(
-  vararg taskNames: String
-): TaskCollection<Task> {
+fun TaskContainer.matchingNames(vararg taskNames: String): TaskCollection<Task> {
   val names = taskNames.toSet()
   return matching { it.name in names }
 }
