@@ -17,12 +17,12 @@ package builds
 
 import com.rickbusarow.kgx.applyOnce
 import com.rickbusarow.kgx.dependsOn
+import com.rickbusarow.kgx.java
 import com.vanniktech.maven.publish.MavenPublishBasePlugin
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.file.DuplicatesStrategy
-import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.jvm.toolchain.JavaLanguageVersion
@@ -61,9 +61,7 @@ abstract class KotlinJvmConventionPlugin : Plugin<Project> {
     }
 
     target.plugins.withType(MavenPublishBasePlugin::class.java).configureEach {
-      target.extensions.configure(JavaPluginExtension::class.java) { extension ->
-        extension.sourceCompatibility = JavaVersion.toVersion(target.JVM_TARGET)
-      }
+      target.java.sourceCompatibility = JavaVersion.toVersion(target.JVM_TARGET)
       target.tasks.withType(JavaCompile::class.java).configureEach { task ->
         task.options.release.set(target.JVM_TARGET_INT)
       }
@@ -71,7 +69,7 @@ abstract class KotlinJvmConventionPlugin : Plugin<Project> {
 
     target.tasks.register("buildTests") { it.dependsOn("testClasses") }
     target.tasks.register("buildAll").dependsOn(
-      target.provider { target.javaExtension.sourceSets.map { it.classesTaskName } }
+      target.provider { target.java.sourceSets.map { it.classesTaskName } }
     )
 
     // fixes the error
@@ -82,7 +80,4 @@ abstract class KotlinJvmConventionPlugin : Plugin<Project> {
       task.duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
   }
-
-  val org.gradle.api.Project.javaExtension: JavaPluginExtension
-    get() = extensions.getByType(JavaPluginExtension::class.java)
 }

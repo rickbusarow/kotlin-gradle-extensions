@@ -28,7 +28,6 @@ import org.gradle.api.tasks.TaskProvider
  * @param configurationAction The configuration block for the task.
  * @since 0.1.0
  */
-@EagerGradleApi
 fun TaskContainer.maybeNamed(taskName: String, configurationAction: Action<Task>) {
 
   if (names.contains(taskName)) {
@@ -36,7 +35,11 @@ fun TaskContainer.maybeNamed(taskName: String, configurationAction: Action<Task>
     return
   }
 
-  matchingName(taskName).configureEach(configurationAction)
+  configureEach {
+    if (it.name == taskName) {
+      configurationAction.execute(it)
+    }
+  }
 }
 
 /**
@@ -49,6 +52,15 @@ fun TaskContainer.maybeNamed(taskName: String, configurationAction: Action<Task>
 @EagerGradleApi
 fun TaskContainer.matchingName(taskName: String): TaskCollection<Task> =
   matching { it.name == taskName }
+
+/** code golf for `matching { it.name in taskNames }` */
+@EagerGradleApi
+fun TaskContainer.matchingNames(
+  vararg taskNames: String
+): TaskCollection<Task> {
+  val names = taskNames.toSet()
+  return matching { it.name in names }
+}
 
 /**
  * code golf for `withType<T>().matching { it.name == taskName }`

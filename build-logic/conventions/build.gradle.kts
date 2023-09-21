@@ -78,6 +78,7 @@ gradlePlugin {
 
 dependencies {
 
+  implementation(libs.rickBusarow.kgx)
   api(libs.rickBusarow.doks)
   api(libs.rickBusarow.ktlint)
 

@@ -15,6 +15,7 @@
 
 package builds
 
+import com.rickbusarow.kgx.EagerGradleApi
 import com.rickbusarow.kgx.applyOnce
 import com.rickbusarow.kgx.matchingName
 import org.gradle.api.Plugin
@@ -27,6 +28,7 @@ abstract class CheckPlugin : Plugin<Project> {
 
     target.plugins.applyOnce("base")
 
+    @OptIn(EagerGradleApi::class)
     val fix = target.tasks.register("fix", BuildLogicTask::class.java) { task ->
 
       task.group = "Verification"
