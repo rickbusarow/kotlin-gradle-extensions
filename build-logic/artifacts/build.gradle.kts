@@ -32,6 +32,7 @@ dependencies {
 
   api(libs.square.moshi)
 
+  implementation(libs.rickBusarow.kgx)
   compileOnly(gradleApi())
 
   implementation(project(":core"))
