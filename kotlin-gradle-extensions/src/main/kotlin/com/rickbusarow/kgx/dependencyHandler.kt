@@ -19,13 +19,11 @@ import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 /**  */
-fun DependencyHandler.project(
-  path: String,
-  configuration: String? = null
-): ProjectDependency = project(
-  if (configuration != null) {
-    mapOf("path" to path, "configuration" to configuration)
-  } else {
-    mapOf("path" to path)
-  }
-) as ProjectDependency
+fun DependencyHandler.project(path: String, configuration: String? = null): ProjectDependency =
+  project(
+    if (configuration != null) {
+      mapOf("path" to path, "configuration" to configuration)
+    } else {
+      mapOf("path" to path)
+    }
+  ) as ProjectDependency
