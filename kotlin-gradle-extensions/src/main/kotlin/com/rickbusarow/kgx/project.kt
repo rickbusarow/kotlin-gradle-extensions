@@ -18,6 +18,7 @@ package com.rickbusarow.kgx
 import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.invocation.Gradle
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.TaskCollection
@@ -165,3 +166,12 @@ inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(
  */
 val Project.java: JavaPluginExtension
   get() = extensions.getByType(JavaPluginExtension::class.java)
+
+/**
+ * shorthand for
+ * `project.dependencies.project(mapOf("path" to path, "configuration" to configuration))`
+ */
+fun Project.projectDependency(
+  path: String,
+  configuration: String? = null
+): ProjectDependency = dependencies.project(path, configuration)
