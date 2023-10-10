@@ -7,6 +7,11 @@ public final class com/rickbusarow/kgx/CatalogsKt {
 	public static final fun version (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Ljava/lang/String;
 }
 
+public final class com/rickbusarow/kgx/DependencyHandlerKt {
+	public static final fun project (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/ProjectDependency;
+	public static synthetic fun project$default (Lorg/gradle/api/artifacts/dsl/DependencyHandler;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ProjectDependency;
+}
+
 public final class com/rickbusarow/kgx/DomainObjectCollectionKt {
 	public static final fun registerOnce (Lorg/gradle/api/NamedDomainObjectContainer;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/NamedDomainObjectProvider;
 }
@@ -43,6 +48,11 @@ public final class com/rickbusarow/kgx/IncludedKt {
 	public static final fun includedAllProjectsTasks (Lorg/gradle/api/invocation/Gradle;Ljava/lang/String;)Ljava/util/List;
 }
 
+public final class com/rickbusarow/kgx/KgpKt {
+	public static final fun onTargetRegistered (Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;Lcom/rickbusarow/kgx/internal/ElementInfoAction;)V
+	public static final fun onTargetRegistered (Lorg/jetbrains/kotlin/gradle/dsl/KotlinProjectExtension;Lcom/rickbusarow/kgx/internal/ElementInfoAction;)V
+}
+
 public final class com/rickbusarow/kgx/ObjectFactoryKt {
 	public static final fun fileTree (Lorg/gradle/api/model/ObjectFactory;Ljava/lang/Object;)Lorg/gradle/api/file/ConfigurableFileTree;
 	public static final fun fileTree (Lorg/gradle/api/model/ObjectFactory;Ljava/lang/Object;Lorg/gradle/api/Action;)Lorg/gradle/api/file/ConfigurableFileTree;
@@ -63,11 +73,14 @@ public final class com/rickbusarow/kgx/ProjectKt {
 	public static final fun checkProjectIsRoot (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function0;)V
 	public static synthetic fun checkProjectIsRoot$default (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
 	public static final fun getJava (Lorg/gradle/api/Project;)Lorg/gradle/api/plugins/JavaPluginExtension;
+	public static final fun getJavaExtension (Lorg/gradle/api/Project;)Lorg/gradle/api/plugins/JavaPluginExtension;
 	public static final fun isPartOfRootBuild (Lorg/gradle/api/Project;)Z
 	public static final fun isRealRootProject (Lorg/gradle/api/Project;)Z
 	public static final fun isRootProject (Lorg/gradle/api/Project;)Z
 	public static final fun parents (Lorg/gradle/api/invocation/Gradle;)Lkotlin/sequences/Sequence;
 	public static final fun parentsWithSelf (Lorg/gradle/api/invocation/Gradle;)Lkotlin/sequences/Sequence;
+	public static final fun projectDependency (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/ProjectDependency;
+	public static synthetic fun projectDependency$default (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ProjectDependency;
 	public static final fun subProjectsTasksMatchingName (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/util/List;
 }
 
@@ -77,11 +90,100 @@ public final class com/rickbusarow/kgx/TaskKt {
 	public static final fun dependOn (Lorg/gradle/api/tasks/TaskCollection;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskCollection;
 	public static final fun dependsOn (Lorg/gradle/api/tasks/TaskProvider;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun matchingName (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;)Lorg/gradle/api/tasks/TaskCollection;
+	public static final fun matchingNames (Lorg/gradle/api/tasks/TaskContainer;[Ljava/lang/String;)Lorg/gradle/api/tasks/TaskCollection;
 	public static final fun maybeNamed (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskCollection;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskCollection;
 	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskProvider;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun registerOnce (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;Ljava/lang/Class;Lorg/gradle/api/Action;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun undecoratedTypeName (Lorg/gradle/api/Task;)Ljava/lang/String;
+}
+
+public final class com/rickbusarow/kgx/internal/DomainObjectCollectionInternalKt {
+	public static final fun hasRealized (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/String;)Z
+	public static final fun invoke (Lcom/rickbusarow/kgx/internal/ElementInfoAction;Ljava/lang/String;Ljava/lang/Class;Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;)V
+	public static final fun isRealized (Lorg/gradle/api/NamedDomainObjectProvider;)Z
+}
+
+public abstract interface class com/rickbusarow/kgx/internal/ElementInfoAction : org/gradle/api/Action {
+}
+
+public abstract interface class com/rickbusarow/kgx/internal/ElementInfoAction$ElementValue {
+	public static final field Companion Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue$Companion;
+	public abstract fun getValue ()Ljava/lang/Object;
+}
+
+public final class com/rickbusarow/kgx/internal/ElementInfoAction$ElementValue$Companion {
+	public final fun invoke (Ljava/lang/Object;)Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue$Instance;
+	public final fun invoke (Lorg/gradle/api/NamedDomainObjectProvider;)Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;
+}
+
+public final class com/rickbusarow/kgx/internal/ElementInfoAction$ElementValue$Instance : com/rickbusarow/kgx/internal/ElementInfoAction$ElementValue {
+	public fun <init> (Ljava/lang/Object;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getValue ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/rickbusarow/kgx/internal/ElementInfoAction$ElementValue$ProviderInstance : com/rickbusarow/kgx/internal/ElementInfoAction$ElementValue {
+	public static final synthetic fun box-impl (Lorg/gradle/api/NamedDomainObjectProvider;)Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue$ProviderInstance;
+	public static fun constructor-impl (Lorg/gradle/api/NamedDomainObjectProvider;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Lorg/gradle/api/NamedDomainObjectProvider;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Lorg/gradle/api/NamedDomainObjectProvider;Lorg/gradle/api/NamedDomainObjectProvider;)Z
+	public synthetic fun getValue ()Ljava/lang/Object;
+	public fun getValue ()Lorg/gradle/api/NamedDomainObjectProvider;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Lorg/gradle/api/NamedDomainObjectProvider;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Lorg/gradle/api/NamedDomainObjectProvider;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public abstract interface class com/rickbusarow/kgx/internal/ElementInfoAction$RegisteredElement {
+	public static final field Companion Lcom/rickbusarow/kgx/internal/ElementInfoAction$RegisteredElement$Companion;
+	public abstract fun component1 ()Ljava/lang/String;
+	public abstract fun component2 ()Ljava/lang/Class;
+	public abstract fun component3 ()Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;
+	public abstract fun getElementName ()Ljava/lang/String;
+	public abstract fun getElementType ()Ljava/lang/Class;
+	public abstract fun getElementValue ()Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;
+}
+
+public final class com/rickbusarow/kgx/internal/ElementInfoAction$RegisteredElement$Companion {
+	public final fun invoke (Ljava/lang/String;Ljava/lang/Class;Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;)Lcom/rickbusarow/kgx/internal/ElementInfoAction$RegisteredElement;
+}
+
+public final class com/rickbusarow/kgx/internal/ElementInfoAction$RegisteredElement$DefaultImpls {
+	public static fun component1 (Lcom/rickbusarow/kgx/internal/ElementInfoAction$RegisteredElement;)Ljava/lang/String;
+	public static fun component2 (Lcom/rickbusarow/kgx/internal/ElementInfoAction$RegisteredElement;)Ljava/lang/Class;
+	public static fun component3 (Lcom/rickbusarow/kgx/internal/ElementInfoAction$RegisteredElement;)Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;
+}
+
+public final class com/rickbusarow/kgx/internal/ElementInfoAction$RegisteredElement$ObjectBackedRegisteredElement : com/rickbusarow/kgx/internal/ElementInfoAction$RegisteredElement {
+	public fun <init> (Ljava/lang/String;Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue$Instance;)V
+	public fun component1 ()Ljava/lang/String;
+	public fun component2 ()Ljava/lang/Class;
+	public fun component3 ()Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue$Instance;
+	public synthetic fun component3 ()Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;
+	public fun getElementName ()Ljava/lang/String;
+	public fun getElementType ()Ljava/lang/Class;
+	public fun getElementValue ()Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue$Instance;
+	public synthetic fun getElementValue ()Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;
+	public final fun getObj ()Ljava/lang/Object;
+}
+
+public final class com/rickbusarow/kgx/internal/ElementInfoAction$RegisteredElement$ProviderBackedRegisteredElement : com/rickbusarow/kgx/internal/ElementInfoAction$RegisteredElement {
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Class;Lorg/gradle/api/NamedDomainObjectProvider;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun component1 ()Ljava/lang/String;
+	public fun component2 ()Ljava/lang/Class;
+	public synthetic fun component3 ()Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;
+	public fun component3-audQEaw ()Lorg/gradle/api/NamedDomainObjectProvider;
+	public fun getElementName ()Ljava/lang/String;
+	public fun getElementType ()Ljava/lang/Class;
+	public synthetic fun getElementValue ()Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;
+	public fun getElementValue-audQEaw ()Lorg/gradle/api/NamedDomainObjectProvider;
+	public final fun getProvider ()Lorg/gradle/api/provider/Provider;
 }
 
 public final class com/rickbusarow/kgx/internal/IncludedInternalKt {

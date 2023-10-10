@@ -854,7 +854,7 @@ style:
       ]
     excludePackageStatements: true
     excludeImportStatements: true
-    excludeCommentStatements: false
+    excludeCommentStatements: true
     excludeRawStrings: true
   MayBeConst:
     active: true
