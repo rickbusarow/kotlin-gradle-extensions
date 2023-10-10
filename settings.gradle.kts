@@ -81,17 +81,3 @@ dependencyResolutionManagement {
 rootProject.name = "kgx"
 
 include(":kotlin-gradle-extensions")
-
-// If this project is the real root of the build, copy the root project's properties file to included
-// builds, to ensure that Gradle settings are identical and there's only 1 daemon.
-// Note that with this copy, any changes to the included build's properties file will be overwritten.
-if (gradle.parent == null) {
-  (settings as org.gradle.initialization.DefaultSettings).includedBuilds
-    .forEach { includedBuildSpec ->
-      rootDir.resolve("gradle.properties")
-        .copyTo(
-          target = includedBuildSpec.rootDir.resolve("gradle.properties"),
-          overwrite = true
-        )
-    }
-}
