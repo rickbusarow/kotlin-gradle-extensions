@@ -80,7 +80,7 @@ abstract class DokkaConventionPlugin : Plugin<Project> {
             // URL showing where the source code can be accessed through the web browser
             sourceLinkBuilder.remoteUrl.set(
               URL(
-                "https://github.com/rbusarow/kotlin-gradle-extensions" +
+                "https://github.com/rickbusarow/kotlin-gradle-extensions" +
                   "/blob/main/$modulePath/src/main"
               )
             )

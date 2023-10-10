@@ -72,7 +72,7 @@ private fun Project.configurePublish(artifactId: String, pomDescription: String,
       mavenPom.description.set(pomDescription)
       mavenPom.name.set(artifactId)
 
-      mavenPom.url.set("https://www.github.com/rbusarow/kotlin-gradle-extensions/")
+      mavenPom.url.set("https://www.github.com/rickbusarow/kotlin-gradle-extensions/")
 
       mavenPom.licenses { licenseSpec ->
         licenseSpec.license { license ->
@@ -82,17 +82,17 @@ private fun Project.configurePublish(artifactId: String, pomDescription: String,
         }
       }
       mavenPom.scm { scm ->
-        scm.url.set("https://www.github.com/rbusarow/kotlin-gradle-extensions/")
-        scm.connection.set("scm:git:git://github.com/rbusarow/kotlin-gradle-extensions.git")
+        scm.url.set("https://www.github.com/rickbusarow/kotlin-gradle-extensions/")
+        scm.connection.set("scm:git:git://github.com/rickbusarow/kotlin-gradle-extensions.git")
         scm.developerConnection.set(
-          "scm:git:ssh://git@github.com/rbusarow/kotlin-gradle-extensions.git"
+          "scm:git:ssh://git@github.com/rickbusarow/kotlin-gradle-extensions.git"
         )
       }
       mavenPom.developers { developerSpec ->
         developerSpec.developer { developer ->
-          developer.id.set("rbusarow")
+          developer.id.set("rickbusarow")
           developer.name.set("Rick Busarow")
-          developer.url.set("https://github.com/rbusarow/")
+          developer.url.set("https://github.com/rickbusarow/")
         }
       }
     }

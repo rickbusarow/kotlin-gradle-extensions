@@ -37,7 +37,8 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
               "as a property named 'GITHUB_PERSONAL_ACCESS_TOKEN'."
           )
       }
-      release.owner.set("rbusarow")
+      release.owner.set("rickbusarow")
+      release.repo.set("kotlin-gradle-extensions")
 
       release.generateReleaseNotes.set(false)
       release.overwrite.set(false)
