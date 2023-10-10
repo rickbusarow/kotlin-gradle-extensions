@@ -32,6 +32,7 @@ import org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo
  * @param elementName The name of the element.
  * @param elementValue The value of the element, encapsulated in an [ElementValue].
  * @receiver [ElementInfoAction] The action to be executed.
+ * @since 0.1.5
  */
 inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
   elementName: String,
@@ -48,6 +49,7 @@ inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
  * @param elementType The type of the element.
  * @param elementValue The value of the element, encapsulated in an [ElementValue].
  * @receiver [ElementInfoAction] The action to be executed.
+ * @since 0.1.5
  */
 operator fun <T : Any> ElementInfoAction<T>.invoke(
   elementName: String,
@@ -63,6 +65,7 @@ operator fun <T : Any> ElementInfoAction<T>.invoke(
  *
  * @receiver [NamedDomainObjectProvider] The provider to be checked.
  * @return `true` if the provider has been realized, `false` otherwise.
+ * @since 0.1.5
  */
 @InternalGradleApiAccess
 fun <T : Any> NamedDomainObjectProvider<T>.isRealized(): Boolean {
@@ -76,6 +79,7 @@ fun <T : Any> NamedDomainObjectProvider<T>.isRealized(): Boolean {
  * @param elementName The name of the element to check.
  * @receiver [NamedDomainObjectCollection] The collection to be checked.
  * @return `true` if the element has been realized, `false` otherwise.
+ * @since 0.1.5
  */
 @InternalGradleApiAccess
 fun <T : Any> NamedDomainObjectCollection<T>.hasRealized(elementName: String): Boolean {
@@ -89,6 +93,7 @@ fun <T : Any> NamedDomainObjectCollection<T>.hasRealized(elementName: String): B
  * @param namedDomainObjectCollection The collection containing the element.
  * @receiver [ElementInfo] The information of the element to be converted.
  * @return A [RegisteredElement] encapsulating the element information.
+ * @since 0.1.5
  */
 @PublishedApi
 @OptIn(InternalGradleApiAccess::class)

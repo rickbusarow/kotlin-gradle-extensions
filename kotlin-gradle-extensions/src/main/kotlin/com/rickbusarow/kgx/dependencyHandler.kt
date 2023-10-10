@@ -18,7 +18,7 @@ package com.rickbusarow.kgx
 import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
-/**  */
+/** @since 0.1.5 */
 fun DependencyHandler.project(path: String, configuration: String? = null): ProjectDependency =
   project(
     if (configuration != null) {

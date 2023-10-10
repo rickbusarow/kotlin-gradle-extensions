@@ -177,6 +177,8 @@ val Project.javaExtension: JavaPluginExtension
 /**
  * shorthand for
  * `project.dependencies.project(mapOf("path" to path, "configuration" to configuration))`
+ *
+ * @since 0.1.5
  */
 fun Project.projectDependency(path: String, configuration: String? = null): ProjectDependency =
   dependencies.project(path, configuration)

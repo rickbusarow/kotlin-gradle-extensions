@@ -36,6 +36,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
  * @param configurationAction The action to apply to the Kotlin target upon registration.
  * @receiver [KotlinProjectExtension] The Kotlin project extension,
  *   which could be a single-target or multiplatform extension.
+ * @since 0.1.5
  */
 @InternalGradleApiAccess
 fun KotlinProjectExtension.onTargetRegistered(
@@ -67,6 +68,7 @@ fun KotlinProjectExtension.onTargetRegistered(
  *
  * @param configurationAction The action to apply to the Kotlin target upon registration.
  * @receiver [KotlinMultiplatformExtension] The Kotlin multiplatform project extension.
+ * @since 0.1.5
  */
 @InternalGradleApiAccess
 fun KotlinMultiplatformExtension.onTargetRegistered(

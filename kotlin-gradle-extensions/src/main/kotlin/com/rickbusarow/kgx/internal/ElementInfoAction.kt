@@ -28,6 +28,8 @@ import org.gradle.api.provider.Provider
  * [Action][org.gradle.api.Action]<[ElementInfo<T>][org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo]>.
  *
  * This interface is intended to be used as a lambda parameter to the [whenElementKnown] function.
+ *
+ * @since 0.1.5
  */
 fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
 
@@ -36,24 +38,45 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
    * [DefaultNamedDomainObjectCollection.ElementInfo][org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo],
    * representing an element being registered within a
    * [NamedDomainObjectCollection][org.gradle.api.NamedDomainObjectCollection].
+   *
+   * @since 0.1.5
    */
   sealed interface RegisteredElement<T> {
-    /** @see org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo.getName */
+    /**
+     * @see org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo.getName
+     * @since 0.1.5
+     */
     val elementName: String
 
-    /** @see org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo.getType */
+    /**
+     * @see org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo.getType
+     * @since 0.1.5
+     */
     val elementType: Class<out T>
 
-    /** The value of the element, which can be either an instance or a [Provider]. */
+    /**
+     * The value of the element, which can be either an instance or a [Provider].
+     *
+     * @since 0.1.5
+     */
     val elementValue: ElementValue<T>
 
-    /** @see elementName */
+    /**
+     * @see elementName
+     * @since 0.1.5
+     */
     operator fun component1(): String = elementName
 
-    /** @see elementType */
+    /**
+     * @see elementType
+     * @since 0.1.5
+     */
     operator fun component2(): Class<out T> = elementType
 
-    /** @see elementValue */
+    /**
+     * @see elementValue
+     * @since 0.1.5
+     */
     operator fun component3(): ElementValue<T> = elementValue
 
     /**
@@ -63,12 +86,17 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
      * @property elementName see
      *   [org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo.getName]
      * @property elementValue The concrete instance of the element.
+     * @since 0.1.5
      */
     class ObjectBackedRegisteredElement<T : Any>(
       override val elementName: String,
       override val elementValue: Instance<T>
     ) : RegisteredElement<T> {
-      /** The concrete instance of the element. */
+      /**
+       * The concrete instance of the element.
+       *
+       * @since 0.1.5
+       */
       val obj: T get() = elementValue.value
       override val elementType: Class<out T> = obj::class.java
 
@@ -85,13 +113,18 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
      * @property elementType see
      *   [org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo.getType]
      * @property elementValue The [Provider] of the element.
+     * @since 0.1.5
      */
     class ProviderBackedRegisteredElement<T : Any>(
       override val elementName: String,
       override val elementType: Class<out T>,
       override val elementValue: ProviderInstance<T>
     ) : RegisteredElement<T> {
-      /** The [Provider] of the element. */
+      /**
+       * The [Provider] of the element.
+       *
+       * @since 0.1.5
+       */
       val provider: Provider<T> get() = elementValue.value
 
       override fun component3(): ProviderInstance<T> = elementValue
@@ -111,6 +144,7 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
        *   which can be either an instance or a provider.
        * @return A [RegisteredElement] instance, either [ObjectBackedRegisteredElement]
        *   or [ProviderBackedRegisteredElement], depending on the type of [elementValue].
+       * @since 0.1.5
        */
       operator fun <T : Any> invoke(
         elementName: String,
@@ -135,18 +169,30 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
    * Encapsulates the value of a registered element which can be either a concrete
    * instance or a [Provider]. This is useful when the element is not yet realized. It's
    * also useful when the element is realized, but the realization state is not known.
+   *
+   * @since 0.1.5
    */
   sealed interface ElementValue<T> {
-    /** The value of the element, which can be either an instance or a [Provider]. */
+    /**
+     * The value of the element, which can be either an instance or a [Provider].
+     *
+     * @since 0.1.5
+     */
     val value: Any?
 
-    /** Represents a concrete instance of a registered element. This is the most common case. */
+    /**
+     * Represents a concrete instance of a registered element. This is the most common case.
+     *
+     * @since 0.1.5
+     */
     @Poko
     class Instance<T>(override val value: T) : ElementValue<T>
 
     /**
      * Represents a provider for a registered element. This
      * is the case when the element is not yet realized.
+     *
+     * @since 0.1.5
      */
     @JvmInline
     value class ProviderInstance<T>(
@@ -160,6 +206,7 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
        *
        * @param value The value of the element.
        * @return An [Instance] wrapping the provided value.
+       * @since 0.1.5
        */
       operator fun <T : Any> invoke(value: T): Instance<T> = Instance(value)
 
@@ -171,6 +218,7 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
        * @param provider The provider of the element.* @return Either an [Instance]
        *   or a [ProviderInstance], based on the realization state of the provider.
        * @see NamedDomainObjectProvider.isRealized
+       * @since 0.1.5
        * @throws IllegalStateException If an attempt is made to get
        *   the value from the provider and it's not yet realized.
        */

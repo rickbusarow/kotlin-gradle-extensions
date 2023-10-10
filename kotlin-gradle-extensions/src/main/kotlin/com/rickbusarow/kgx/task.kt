@@ -53,7 +53,11 @@ fun TaskContainer.maybeNamed(taskName: String, configurationAction: Action<Task>
 fun TaskContainer.matchingName(taskName: String): TaskCollection<Task> =
   matching { it.name == taskName }
 
-/** code golf for `matching { it.name in taskNames }` */
+/**
+ * code golf for `matching { it.name in taskNames }`
+ *
+ * @since 0.1.5
+ */
 @EagerGradleApi
 fun TaskContainer.matchingNames(vararg taskNames: String): TaskCollection<Task> {
   val names = taskNames.toSet()
