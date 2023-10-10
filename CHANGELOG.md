@@ -1,10 +1,23 @@
 # Changelog
 
-## 0.1.5-SNAPSHOT (unreleased)
+## 0.1.6-SNAPSHOT (unreleased)
+
+## [0.1.5] - 2023-10-10
+
+## What's Changed
 
 ### Added
 
+- more syntactic sugar around `whenElementRegistered {}`
 - `Project.projectDependency(...)` and `DependencyHandler.project(...)` https://github.com/RBusarow/kotlin-gradle-extensions/pull/58
+
+### 🧰 Maintenance
+
+- symlink gradle files into build-logic
+- remove `kotlin-gradle-plugin-api-gradle76` dependency declaration https://github.com/rickbusarow/kotlin-gradle-extensions/pull/55
+- consume KGX internally https://github.com/rickbusarow/kotlin-gradle-extensions/pull/57
+
+**Full Changelog**: https://github.com/rickbusarow/kotlin-gradle-extensions/compare/0.1.4...0.1.5
 
 ## [0.1.4] - 2023-09-09
 
@@ -68,3 +81,4 @@ Hello World
 [0.1.2]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.2
 [0.1.3]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.3
 [0.1.4]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.4
+[0.1.5]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.5
