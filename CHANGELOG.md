@@ -3,6 +3,7 @@
 ## 0.1.5-SNAPSHOT (unreleased)
 
 ### Added
+
 - `Project.projectDependency(...)` and `DependencyHandler.project(...)` https://github.com/RBusarow/kotlin-gradle-extensions/pull/58
 
 ## [0.1.4] - 2023-09-09
