@@ -12,5 +12,6 @@
       </list>
     </option>
     <option name="enableAllRules" value="true" />
+    <option name="enableForProjectResult" value="Declined" />
   </component>
 </project>

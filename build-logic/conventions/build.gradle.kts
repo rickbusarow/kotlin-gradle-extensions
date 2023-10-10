@@ -87,8 +87,6 @@ dependencies {
 
   implementation(libs.benManes.versions)
   implementation(libs.breadmoirai.github.release) {
-    // Github-release bundles Gradle, which confuses the IDE when trying to view Gradle source or
-    // javadoc.
     exclude(group = "org.gradle")
   }
   implementation(libs.detekt.gradle)
@@ -102,6 +100,7 @@ dependencies {
   implementation(libs.kotlin.gradle.plugin.api)
   implementation(libs.kotlin.reflect)
   implementation(libs.kotlinx.binaryCompatibility)
+  implementation(libs.poko.gradle.plugin)
   implementation(libs.rickBusarow.kgx)
   implementation(libs.vanniktech.publish)
 
