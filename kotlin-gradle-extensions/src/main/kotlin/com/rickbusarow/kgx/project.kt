@@ -155,8 +155,7 @@ fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskCollection<
 inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(
   taskName: String
 ): List<TaskCollection<T>> {
-  return subprojects
-    .map { proj -> proj.tasks.matchingNameWithType(taskName) }
+  return subprojects.map { proj -> proj.tasks.matchingNameWithType(taskName) }
 }
 
 /**
@@ -164,7 +163,15 @@ inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(
  *
  * @since 0.1.1
  */
-val Project.java: JavaPluginExtension
+@Deprecated("renamed to `javaExtension`", ReplaceWith("javaExtension"))
+val Project.java: JavaPluginExtension get() = javaExtension
+
+/**
+ * shorthand for `extensions.getByType(JavaPluginExtension::class.java)`
+ *
+ * @since 0.1.1
+ */
+val Project.javaExtension: JavaPluginExtension
   get() = extensions.getByType(JavaPluginExtension::class.java)
 
 /**

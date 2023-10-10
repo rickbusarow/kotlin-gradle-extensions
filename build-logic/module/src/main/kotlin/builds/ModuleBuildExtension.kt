@@ -17,7 +17,8 @@ package builds
 
 abstract class ModuleBuildExtension :
   AutoServiceExtension,
-  PublishingExtension,
   BuildLogicShadowExtension,
-  SerializationExtension,
-  KspExtension
+  KspExtension,
+  PokoExtension,
+  PublishingExtension,
+  SerializationExtension
