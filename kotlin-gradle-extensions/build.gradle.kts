@@ -31,6 +31,7 @@ module {
     artifactId = artifactId,
     pomDescription = "Common utilities for Gradle"
   )
+  poko()
 }
 
 buildConfig {
@@ -65,6 +66,7 @@ rootProject.tasks.named("prepareKotlinBuildScriptModel") {
 idea {
   module {
     java.sourceSets.integration {
+      @Suppress("UnstableApiUsage")
       this@module.testSources.from(allSource.srcDirs)
     }
   }
@@ -73,6 +75,9 @@ idea {
 dependencies {
 
   compileOnly(gradleApi())
+
+  compileOnly(libs.kotlin.gradle.plugin)
+  compileOnly(libs.kotlin.gradle.plugin.api)
 
   integrationImplementation(gradleTestKit())
 
