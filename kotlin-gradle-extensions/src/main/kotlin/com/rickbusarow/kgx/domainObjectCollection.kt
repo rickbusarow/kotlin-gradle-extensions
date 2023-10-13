@@ -29,6 +29,7 @@ import org.gradle.internal.Actions
  * @param name The name of the object to find.
  * @return The object.
  * @see [NamedDomainObjectCollection.getByName]
+ * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
 inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
@@ -42,6 +43,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
  * @param configurationAction The configuration action.
  * @return The object.
  * @see [NamedDomainObjectCollection.getByName]
+ * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
 inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
@@ -55,6 +57,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
  * @param name The name of the object to find.
  * @return The object, or `null` if it is not found.
  * @see [NamedDomainObjectCollection.findByName]
+ * @since 0.1.6
  */
 inline fun <reified S : Any> NamedDomainObjectCollection<S>.findByName(
   name: DomainObjectName<S>
@@ -66,6 +69,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.findByName(
  * @param name The name of the object to retrieve and configure.
  * @param configurationAction The configuration action.
  * @see [NamedDomainObjectCollection.named]
+ * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
 inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
@@ -80,6 +84,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
  * @param type The type of the object to retrieve and configure.
  * @param configurationAction The configuration action.
  * @see [NamedDomainObjectCollection.named]
+ * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
 inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
@@ -138,6 +143,7 @@ fun <T> NamedDomainObjectContainer<T>.registerOnce(
  * @param name The name of the new object.
  * @param configurationAction The configuration action.
  * @return A provider for the new object [S].
+ * @since 0.1.6
  */
 inline fun <reified S : Any> NamedDomainObjectContainer<S>.registerOnce(
   name: DomainObjectName<S>,
@@ -154,6 +160,7 @@ inline fun <reified S : Any> NamedDomainObjectContainer<S>.registerOnce(
  * @param name The name of the object.
  * @param configurationAction The configuration action.
  * @return A provider for the new object [S].
+ * @since 0.1.6
  */
 inline fun <reified S : Any> NamedDomainObjectContainer<S>.register(
   name: DomainObjectName<S>,

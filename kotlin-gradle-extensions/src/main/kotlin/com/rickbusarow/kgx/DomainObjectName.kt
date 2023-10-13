@@ -23,15 +23,23 @@ import kotlin.reflect.KProperty
  *
  * `S` is the type of the domain object, like [Task][org.gradle.api.Task]
  * or [SourceSet][org.gradle.api.tasks.SourceSet].
+ *
+ * @since 0.1.6
  */
 interface DomainObjectName<in S : Any> {
-  /** The unqualified, simple name of the domain object. */
+  /**
+   * The unqualified, simple name of the domain object.
+   *
+   * @since 0.1.6
+   */
   val value: String
 
   companion object {
 
     /**
      * Returns an instance of [DomainObjectName] with the given [name], bound to the type of [S].
+     *
+     * @since 0.1.6
      */
     fun <S : Any> domainObjectName(name: String): DomainObjectName<S> {
       return object : DomainObjectName<S> {

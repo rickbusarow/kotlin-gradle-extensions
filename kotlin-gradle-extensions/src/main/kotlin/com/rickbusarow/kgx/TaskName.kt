@@ -23,6 +23,7 @@ import kotlin.properties.ReadOnlyProperty
  * Wraps the unqualified, simple name of a Gradle Task, like `check` or `publishToMavenLocal`.
  *
  * @property value the name
+ * @since 0.1.6
  */
 @JvmInline
 value class TaskName(
@@ -33,7 +34,11 @@ value class TaskName(
   override fun compareTo(other: TaskName): Int = value.compareTo(other.value)
 
   companion object {
-    /** Creates a [TaskName] from the receiver string. */
+    /**
+     * Creates a [TaskName] from the receiver string.
+     *
+     * @since 0.1.6
+     */
     fun String.asTaskName(): TaskName = TaskName(this)
 
     /**
@@ -46,22 +51,35 @@ value class TaskName(
      * ```
      *
      * @see TaskName
+     * @since 0.1.6
      */
     @Suppress("MemberNameEqualsClassName")
     fun taskName(): ReadOnlyProperty<Any?, TaskName> {
       return DomainObjectName.lazyName { name -> TaskName(name) }
     }
 
-    /** @see LifecycleBasePlugin.ASSEMBLE_TASK_NAME */
+    /**
+     * @see LifecycleBasePlugin.ASSEMBLE_TASK_NAME
+     * @since 0.1.6
+     */
     val assemble: TaskName = TaskName(LifecycleBasePlugin.ASSEMBLE_TASK_NAME)
 
-    /** @see LifecycleBasePlugin.BUILD_TASK_NAME */
+    /**
+     * @see LifecycleBasePlugin.BUILD_TASK_NAME
+     * @since 0.1.6
+     */
     val build: TaskName = TaskName(LifecycleBasePlugin.BUILD_TASK_NAME)
 
-    /** @see LifecycleBasePlugin.CHECK_TASK_NAME */
+    /**
+     * @see LifecycleBasePlugin.CHECK_TASK_NAME
+     * @since 0.1.6
+     */
     val check: TaskName = TaskName(LifecycleBasePlugin.CHECK_TASK_NAME)
 
-    /** @see LifecycleBasePlugin.CLEAN_TASK_NAME */
+    /**
+     * @see LifecycleBasePlugin.CLEAN_TASK_NAME
+     * @since 0.1.6
+     */
     val clean: TaskName = TaskName(LifecycleBasePlugin.CLEAN_TASK_NAME)
   }
 }
