@@ -1,6 +1,14 @@
 # Changelog
 
-## 0.1.6-SNAPSHOT (unreleased)
+## 0.1.7-SNAPSHOT (unreleased)
+
+## [0.1.6] - 2023-10-12
+
+### Added
+
+- added the `DomainObjectName` type https://github.com/rickbusarow/kotlin-gradle-extensions/pull/69
+
+**Full Changelog**: https://github.com/rickbusarow/kotlin-gradle-extensions/compare/0.1.5...0.1.6
 
 ## [0.1.5] - 2023-10-10
 
@@ -82,3 +90,4 @@ Hello World
 [0.1.3]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.3
 [0.1.4]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.4
 [0.1.5]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.5
+[0.1.6]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.6
