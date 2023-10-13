@@ -38,7 +38,7 @@ inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
   elementName: String,
   elementValue: ElementValue<T>
 ) {
-  execute(RegisteredElement<T>(elementName, T::class.java, elementValue))
+  execute(RegisteredElement(elementName, T::class.java, elementValue))
 }
 
 /**
@@ -56,12 +56,11 @@ operator fun <T : Any> ElementInfoAction<T>.invoke(
   elementType: Class<out T>,
   elementValue: ElementValue<T>
 ) {
-  execute(RegisteredElement<T>(elementName, elementType, elementValue))
+  execute(RegisteredElement(elementName, elementType, elementValue))
 }
 
 /**
- * Checks if the [NamedDomainObjectProvider] has been realized. This is useful
- * when the provider is not yet realized, but the realization state is not known.
+ * Checks if the [NamedDomainObjectProvider] has been realized.
  *
  * @receiver [NamedDomainObjectProvider] The provider to be checked.
  * @return `true` if the provider has been realized, `false` otherwise.
