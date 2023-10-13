@@ -30,6 +30,7 @@ import kotlin.properties.ReadOnlyProperty
  * Configuration, like `implementation` or `debugApi`.
  *
  * @property value the name
+ * @since 0.1.6
  */
 @JvmInline
 value class ConfigurationName(
@@ -54,6 +55,7 @@ value class ConfigurationName(
    * ```
    *
    * @return the name of the source set used with this configuration, wrapped in [SourceSetName]
+   * @since 0.1.6
    */
   fun toSourceSetName(): SourceSetName = when (this.value) {
     // "main" source set configurations omit the "main" from their name,
@@ -74,6 +76,8 @@ value class ConfigurationName(
    * For other source sets, it returns the base configuration names:
    * ConfigurationName("debugApi").nameWithoutSourceSet() == "Api"
    * ConfigurationName("testImplementation").nameWithoutSourceSet() == "Implementation"
+   *
+   * @since 0.1.6
    */
   fun nameWithoutSourceSet(): String {
     return when {
@@ -92,6 +96,8 @@ value class ConfigurationName(
    * For other source sets, it returns the base configuration names:
    * ConfigurationName("debugApi").nameWithoutSourceSet() == "Api"
    * ConfigurationName("testImplementation").nameWithoutSourceSet() == "Implementation"
+   *
+   * @since 0.1.6
    */
   fun switchSourceSet(newSourceSetName: SourceSetName): ConfigurationName {
 
@@ -111,6 +117,8 @@ value class ConfigurationName(
    *
    * For instance, `debugCompileOnly` would find the "CompileOnly"
    * and remove it, returning "debug" as the sourceSet name
+   *
+   * @since 0.1.6
    */
   private fun String.extractSourceSetName(): SourceSetName {
     // All kapt configurations start with `kapt`
@@ -157,6 +165,7 @@ value class ConfigurationName(
    *
    * @return for any main/common configuration, just returns `api`. For any
    *   other configuration, it returns the [SourceSetName] appended with `Api`.
+   * @since 0.1.6
    */
   fun apiVariant(): ConfigurationName = toSourceSetName().apiConfig()
 
@@ -169,6 +178,7 @@ value class ConfigurationName(
    *
    * @return for any main/common configuration, just returns `implementation`. For any
    *   other configuration, it returns the [SourceSetName] appended with `Implementation`.
+   * @since 0.1.6
    */
   fun implementationVariant(): ConfigurationName = toSourceSetName().implementationConfig()
 
@@ -177,16 +187,26 @@ value class ConfigurationName(
    *
    * @return for any main/common configuration, just returns `kapt`. For any
    *   other configuration, it returns `kapt` appended with the [SourceSetName].
+   * @since 0.1.6
    */
   fun kaptVariant(): ConfigurationName = toSourceSetName().kaptVariant()
 
-  /** @return true if the configuration is an `api` variant */
+  /**
+   * @return true if the configuration is an `api` variant
+   * @since 0.1.6
+   */
   fun isApi(): Boolean = this == apiVariant()
 
-  /** @return true if the configuration is an `implementation` variant */
+  /**
+   * @return true if the configuration is an `implementation` variant
+   * @since 0.1.6
+   */
   fun isImplementation(): Boolean = this == implementationVariant()
 
-  /** @return true if the configuration is a `kapt` variant */
+  /**
+   * @return true if the configuration is a `kapt` variant
+   * @since 0.1.6
+   */
   fun isKapt(): Boolean = this == kaptVariant()
 
   override fun compareTo(other: ConfigurationName): Int = value.compareTo(other.value)
@@ -195,54 +215,118 @@ value class ConfigurationName(
 
   companion object {
 
-    /** name of the 'androidTestImplementation' configuration */
+    /**
+     * name of the 'androidTestImplementation' configuration
+     *
+     * @since 0.1.6
+     */
     val androidTestImplementation: ConfigurationName =
       ConfigurationName("androidTestImplementation")
 
-    /** name of the 'annotationProcessor' configuration */
+    /**
+     * name of the 'annotationProcessor' configuration
+     *
+     * @since 0.1.6
+     */
     val annotationProcessor: ConfigurationName = ConfigurationName("annotationProcessor")
 
-    /** name of the 'anvil' configuration */
+    /**
+     * name of the 'anvil' configuration
+     *
+     * @since 0.1.6
+     */
     val anvil: ConfigurationName = ConfigurationName("anvil")
 
-    /** name of the 'api' configuration */
+    /**
+     * name of the 'api' configuration
+     *
+     * @since 0.1.6
+     */
     val api: ConfigurationName = ConfigurationName("api")
 
-    /** name of the 'compile' configuration */
+    /**
+     * name of the 'compile' configuration
+     *
+     * @since 0.1.6
+     */
     val compile: ConfigurationName = ConfigurationName("compile")
 
-    /** name of the 'compileOnly' configuration */
+    /**
+     * name of the 'compileOnly' configuration
+     *
+     * @since 0.1.6
+     */
     val compileOnly: ConfigurationName = ConfigurationName("compileOnly")
 
-    /** name of the 'compileOnlyApi' configuration */
+    /**
+     * name of the 'compileOnlyApi' configuration
+     *
+     * @since 0.1.6
+     */
     val compileOnlyApi: ConfigurationName = ConfigurationName("compileOnlyApi")
 
-    /** name of the 'implementation' configuration */
+    /**
+     * name of the 'implementation' configuration
+     *
+     * @since 0.1.6
+     */
     val implementation: ConfigurationName = ConfigurationName("implementation")
 
-    /** name of the 'kapt' configuration */
+    /**
+     * name of the 'kapt' configuration
+     *
+     * @since 0.1.6
+     */
     val kapt: ConfigurationName = ConfigurationName("kapt")
 
-    /** name of the 'kotlinCompilerPluginClasspathMain' configuration */
+    /**
+     * name of the 'kotlinCompilerPluginClasspathMain' configuration
+     *
+     * @since 0.1.6
+     */
     val kotlinCompileClasspath: ConfigurationName =
       ConfigurationName("kotlinCompilerPluginClasspathMain")
 
-    /** name of the 'ksp' configuration */
+    /**
+     * name of the 'ksp' configuration
+     *
+     * @since 0.1.6
+     */
     val ksp: ConfigurationName = ConfigurationName("ksp")
 
-    /** name of the 'runtime' configuration */
+    /**
+     * name of the 'runtime' configuration
+     *
+     * @since 0.1.6
+     */
     val runtime: ConfigurationName = ConfigurationName("runtime")
 
-    /** name of the 'runtimeOnly' configuration */
+    /**
+     * name of the 'runtimeOnly' configuration
+     *
+     * @since 0.1.6
+     */
     val runtimeOnly: ConfigurationName = ConfigurationName("runtimeOnly")
 
-    /** name of the 'testApi' configuration */
+    /**
+     * name of the 'testApi' configuration
+     *
+     * @since 0.1.6
+     */
     val testApi: ConfigurationName = ConfigurationName("testApi")
 
-    /** name of the 'testImplementation' configuration */
+    /**
+     * name of the 'testImplementation' configuration
+     *
+     * @since 0.1.6
+     */
     val testImplementation: ConfigurationName = ConfigurationName("testImplementation")
 
-    /** the names of all configurations consumed by the main source set */
+    /**
+     * the names of all configurations consumed by the main source set
+     *
+     * @since 0.1.6
+     */
     val mainConfigurations: List<String> = listOf(
       api.value,
       compile.value,
@@ -269,7 +353,11 @@ value class ConfigurationName(
       .map { it.capitalize() }
       .toSet()
 
-    /** the names of all configurations consumed by the main source set */
+    /**
+     * the names of all configurations consumed by the main source set
+     *
+     * @since 0.1.6
+     */
     fun main(): List<ConfigurationName> = listOf(
       compileOnlyApi,
       api,
@@ -283,6 +371,8 @@ value class ConfigurationName(
 
     /**
      * the base configurations which do not leak their transitive dependencies (basically not `api`)
+     *
+     * @since 0.1.6
      */
     fun private(): List<ConfigurationName> = listOf(
       implementation,
@@ -294,6 +384,8 @@ value class ConfigurationName(
 
     /**
      * the base configurations which include their dependencies as "compile" dependencies in the POM
+     *
+     * @since 0.1.6
      */
     fun public(): List<ConfigurationName> = listOf(
       compileOnlyApi,
@@ -308,13 +400,18 @@ value class ConfigurationName(
      * val api: ConfigurationName by configurationName()
      * val api: ConfigurationName = ConfigurationName("api")
      * ```
+     *
+     * @since 0.1.6
      */
     @Suppress("MemberNameEqualsClassName")
     fun configurationName(): ReadOnlyProperty<Any?, ConfigurationName> {
       return lazyName { name -> ConfigurationName(name) }
     }
 
-    /** @return a ConfigurationName from this raw string */
+    /**
+     * @return a ConfigurationName from this raw string
+     * @since 0.1.6
+     */
     fun String.asConfigurationName(): ConfigurationName = ConfigurationName(this)
   }
 }

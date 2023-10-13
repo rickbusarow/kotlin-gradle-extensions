@@ -23,6 +23,7 @@ import java.util.Locale
  * @param locale The [Locale] to be used for decapitalization. Defaults to [Locale.US].
  * @receiver The original String.
  * @return The string with the first character decapitalized.
+ * @since 0.1.6
  */
 internal fun String.decapitalize(locale: Locale = Locale.US): String =
   replaceFirstChar { it.lowercase(locale) }
@@ -33,6 +34,7 @@ internal fun String.decapitalize(locale: Locale = Locale.US): String =
  * @param locale The [Locale] to be used for capitalization. Defaults to [Locale.US].
  * @receiver The original String.
  * @return The string with the first character capitalized.
+ * @since 0.1.6
  */
 internal fun String.capitalize(locale: Locale = Locale.US): String =
   replaceFirstChar { it.uppercase(locale) }
