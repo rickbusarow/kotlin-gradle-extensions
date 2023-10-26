@@ -1,0 +1,153 @@
+public final class com/rickbusarow/kgx/names/ConfigurationName : com/rickbusarow/kgx/names/DomainObjectName, java/lang/Comparable {
+	public static final field Companion Lcom/rickbusarow/kgx/names/ConfigurationName$Companion;
+	public static final fun apiVariant-SPIlPl4 (Ljava/lang/String;)Ljava/lang/String;
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/rickbusarow/kgx/names/ConfigurationName;
+	public synthetic fun compareTo (Ljava/lang/Object;)I
+	public fun compareTo-f1qYyV8 (Ljava/lang/String;)I
+	public static fun compareTo-f1qYyV8 (Ljava/lang/String;Ljava/lang/String;)I
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public static final fun implementationVariant-SPIlPl4 (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun isApi-impl (Ljava/lang/String;)Z
+	public static final fun isImplementation-impl (Ljava/lang/String;)Z
+	public static final fun isKapt-impl (Ljava/lang/String;)Z
+	public static final fun kaptVariant-SPIlPl4 (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun nameWithoutSourceSet-impl (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun switchSourceSet-6UAVyKo (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static final fun toSourceSetName-AAsmkIs (Ljava/lang/String;)Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public final class com/rickbusarow/kgx/names/ConfigurationName$Companion {
+	public final fun asConfigurationName-xv0ZLTM (Ljava/lang/String;)Ljava/lang/String;
+	public final fun configurationName ()Lkotlin/properties/ReadOnlyProperty;
+	public final fun getAndroidTestImplementation-SPIlPl4 ()Ljava/lang/String;
+	public final fun getAnnotationProcessor-SPIlPl4 ()Ljava/lang/String;
+	public final fun getAnvil-SPIlPl4 ()Ljava/lang/String;
+	public final fun getApi-SPIlPl4 ()Ljava/lang/String;
+	public final fun getCompile-SPIlPl4 ()Ljava/lang/String;
+	public final fun getCompileOnly-SPIlPl4 ()Ljava/lang/String;
+	public final fun getCompileOnlyApi-SPIlPl4 ()Ljava/lang/String;
+	public final fun getImplementation-SPIlPl4 ()Ljava/lang/String;
+	public final fun getKapt-SPIlPl4 ()Ljava/lang/String;
+	public final fun getKotlinCompileClasspath-SPIlPl4 ()Ljava/lang/String;
+	public final fun getKsp-SPIlPl4 ()Ljava/lang/String;
+	public final fun getMainConfigurations ()Ljava/util/List;
+	public final fun getRuntime-SPIlPl4 ()Ljava/lang/String;
+	public final fun getRuntimeOnly-SPIlPl4 ()Ljava/lang/String;
+	public final fun getShadow-SPIlPl4 ()Ljava/lang/String;
+	public final fun getTestApi-SPIlPl4 ()Ljava/lang/String;
+	public final fun getTestImplementation-SPIlPl4 ()Ljava/lang/String;
+	public final fun main ()Ljava/util/List;
+	public final fun private ()Ljava/util/List;
+	public final fun public ()Ljava/util/List;
+}
+
+public abstract interface class com/rickbusarow/kgx/names/DomainObjectName {
+	public static final field Companion Lcom/rickbusarow/kgx/names/DomainObjectName$Companion;
+	public abstract fun getValue ()Ljava/lang/String;
+}
+
+public final class com/rickbusarow/kgx/names/DomainObjectName$Companion {
+	public final fun domainObjectName (Ljava/lang/String;)Lcom/rickbusarow/kgx/names/DomainObjectName;
+}
+
+public final class com/rickbusarow/kgx/names/SourceSetName : com/rickbusarow/kgx/names/DomainObjectName {
+	public static final field Companion Lcom/rickbusarow/kgx/names/SourceSetName$Companion;
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/rickbusarow/kgx/names/SourceSetName;
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public final class com/rickbusarow/kgx/names/SourceSetName$Companion {
+	public final fun addPrefix-0NSqbGA (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun addPrefix-AFtg4nA (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun addPrefix-Yf3_yXc (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun addPrefix-l0N72yk (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun addSuffix-0NSqbGA (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun addSuffix-AFtg4nA (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun addSuffix-Yf3_yXc (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun addSuffix-l0N72yk (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun anvilConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
+	public final fun apiConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
+	public final fun asSourceSetName-JHIBdFk (Ljava/lang/String;)Ljava/lang/String;
+	public final fun compileOnlyConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
+	public final fun getAndroidTest-AAsmkIs ()Ljava/lang/String;
+	public final fun getCommonJvm-AAsmkIs ()Ljava/lang/String;
+	public final fun getCommonJvmTest-AAsmkIs ()Ljava/lang/String;
+	public final fun getCommonMain-AAsmkIs ()Ljava/lang/String;
+	public final fun getCommonTest-AAsmkIs ()Ljava/lang/String;
+	public final fun getDebug-AAsmkIs ()Ljava/lang/String;
+	public final fun getMain-AAsmkIs ()Ljava/lang/String;
+	public final fun getRelease-AAsmkIs ()Ljava/lang/String;
+	public final fun getTest-AAsmkIs ()Ljava/lang/String;
+	public final fun getTestFixtures-AAsmkIs ()Ljava/lang/String;
+	public final fun hasPrefix-Yf3_yXc (Ljava/lang/String;Lcom/rickbusarow/kgx/names/DomainObjectName;)Z
+	public final fun hasPrefix-Yf3_yXc (Ljava/lang/String;Ljava/lang/String;)Z
+	public final fun implementationConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
+	public final fun isMain-EZXz1PI (Ljava/lang/String;)Z
+	public final fun isTestFixtures-EZXz1PI (Ljava/lang/String;)Z
+	public final fun kaptConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
+	public final fun kspConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
+	public final fun removePrefix-9xIQYBM (Ljava/lang/String;Lcom/rickbusarow/kgx/names/DomainObjectName;)Ljava/lang/String;
+	public final fun removePrefix-9xIQYBM (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun removeSuffix-9xIQYBM (Ljava/lang/String;Lcom/rickbusarow/kgx/names/DomainObjectName;)Ljava/lang/String;
+	public final fun removeSuffix-9xIQYBM (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public final fun runtimeOnlyConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
+	public final fun sourceSetName ()Lkotlin/properties/ReadOnlyProperty;
+}
+
+public final class com/rickbusarow/kgx/names/TaskName : com/rickbusarow/kgx/names/DomainObjectName, java/lang/Comparable {
+	public static final field Companion Lcom/rickbusarow/kgx/names/TaskName$Companion;
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/rickbusarow/kgx/names/TaskName;
+	public synthetic fun compareTo (Ljava/lang/Object;)I
+	public fun compareTo-z0o-sVI (Ljava/lang/String;)I
+	public static fun compareTo-z0o-sVI (Ljava/lang/String;Ljava/lang/String;)I
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public final class com/rickbusarow/kgx/names/TaskName$Companion {
+	public final fun asTaskName-12VS7ZM (Ljava/lang/String;)Ljava/lang/String;
+	public final fun assemble-hJcMfP0 (Ljava/lang/String;)Ljava/lang/String;
+	public final fun compileJava-hJcMfP0 (Ljava/lang/String;)Ljava/lang/String;
+	public final fun compileJavaWithJavac-hJcMfP0 (Ljava/lang/String;)Ljava/lang/String;
+	public final fun compileKotlin-hJcMfP0 (Ljava/lang/String;)Ljava/lang/String;
+	public final fun getAssemble-37JjH0Y ()Ljava/lang/String;
+	public final fun getBuild-37JjH0Y ()Ljava/lang/String;
+	public final fun getCheck-37JjH0Y ()Ljava/lang/String;
+	public final fun getClean-37JjH0Y ()Ljava/lang/String;
+	public final fun getCompileJava-37JjH0Y ()Ljava/lang/String;
+	public final fun getCompileJavaWithJavac-37JjH0Y ()Ljava/lang/String;
+	public final fun getCompileKotlin-37JjH0Y ()Ljava/lang/String;
+	public final fun getJar-37JjH0Y ()Ljava/lang/String;
+	public final fun getTest-37JjH0Y ()Ljava/lang/String;
+	public final fun getTestUnitTest-37JjH0Y ()Ljava/lang/String;
+	public final fun taskName ()Lkotlin/properties/ReadOnlyProperty;
+	public final fun test-hJcMfP0 (Ljava/lang/String;)Ljava/lang/String;
+	public final fun testUnitTest-hJcMfP0 (Ljava/lang/String;)Ljava/lang/String;
+}
+

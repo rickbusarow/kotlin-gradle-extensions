@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
-package com.rickbusarow.kgx
+package com.rickbusarow.kgx.names
 
-import com.rickbusarow.kgx.DomainObjectName.Companion.lazyName
-import com.rickbusarow.kgx.SourceSetName.Companion.apiConfig
-import com.rickbusarow.kgx.SourceSetName.Companion.asSourceSetName
-import com.rickbusarow.kgx.SourceSetName.Companion.implementationConfig
-import com.rickbusarow.kgx.SourceSetName.Companion.kaptVariant
-import com.rickbusarow.kgx.stdlib.capitalize
-import com.rickbusarow.kgx.stdlib.decapitalize
+import com.rickbusarow.kgx.names.SourceSetName.Companion.apiConfig
+import com.rickbusarow.kgx.names.SourceSetName.Companion.asSourceSetName
+import com.rickbusarow.kgx.names.SourceSetName.Companion.implementationConfig
+import com.rickbusarow.kgx.names.SourceSetName.Companion.kaptConfig
+import com.rickbusarow.kgx.names.stdlib.capitalize
+import com.rickbusarow.kgx.names.stdlib.decapitalize
 import org.gradle.api.artifacts.Configuration
 import kotlin.properties.ReadOnlyProperty
 
@@ -189,7 +188,7 @@ value class ConfigurationName(
    *   other configuration, it returns `kapt` appended with the [SourceSetName].
    * @since 0.1.6
    */
-  fun kaptVariant(): ConfigurationName = toSourceSetName().kaptVariant()
+  fun kaptVariant(): ConfigurationName = toSourceSetName().kaptConfig()
 
   /**
    * @return true if the configuration is an `api` variant
@@ -308,6 +307,9 @@ value class ConfigurationName(
      */
     val runtimeOnly: ConfigurationName = ConfigurationName("runtimeOnly")
 
+    /** name of the 'shadow' configuration */
+    val shadow: ConfigurationName = ConfigurationName("shadow")
+
     /**
      * name of the 'testApi' configuration
      *
@@ -338,7 +340,8 @@ value class ConfigurationName(
       // since the main config is suffixed with "Main"
       kotlinCompileClasspath.value,
       runtime.value,
-      runtimeOnly.value
+      runtimeOnly.value,
+      shadow.value
     )
       // The order of this list matters. CompileOnlyApi must be before `api` or
       // `extractSourceSetName` below will match the wrong suffix.
@@ -405,7 +408,7 @@ value class ConfigurationName(
      */
     @Suppress("MemberNameEqualsClassName")
     fun configurationName(): ReadOnlyProperty<Any?, ConfigurationName> {
-      return lazyName { name -> ConfigurationName(name) }
+      return DomainObjectName.lazyName { name -> ConfigurationName(name) }
     }
 
     /**

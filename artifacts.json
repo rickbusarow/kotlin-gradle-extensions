@@ -7,5 +7,14 @@
     "packaging": "jar",
     "javaVersion": "1.8",
     "publicationName": "maven"
+  },
+  {
+    "gradlePath": ":names",
+    "group": "com.rickbusarow.kgx",
+    "artifactId": "names",
+    "description": "Type-safe names for Gradle domain objects",
+    "packaging": "jar",
+    "javaVersion": "1.8",
+    "publicationName": "maven"
   }
 ]

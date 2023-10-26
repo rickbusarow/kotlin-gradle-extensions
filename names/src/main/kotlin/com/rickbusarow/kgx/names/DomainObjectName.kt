@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.rickbusarow.kgx
+package com.rickbusarow.kgx.names
 
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty

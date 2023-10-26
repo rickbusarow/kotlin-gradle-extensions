@@ -15,6 +15,7 @@
 
 package com.rickbusarow.kgx
 
+import com.rickbusarow.kgx.names.DomainObjectName
 import org.gradle.api.Action
 import org.gradle.api.DomainObjectCollection
 import org.gradle.api.NamedDomainObjectCollection

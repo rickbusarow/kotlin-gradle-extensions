@@ -1,6 +1,12 @@
 # Changelog
 
-## 0.1.7-SNAPSHOT (unreleased)
+## 0.1.8-SNAPSHOT (unreleased)
+
+## [0.1.7] - 2023-10-25
+
+### Fixed
+
+- `SourceSetName.___Config()` functions now return correct values for `main` source sets
 
 ## [0.1.6] - 2023-10-12
 
