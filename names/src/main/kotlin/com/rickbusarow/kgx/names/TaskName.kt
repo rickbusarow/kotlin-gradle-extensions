@@ -50,7 +50,11 @@ value class TaskName(
      */
     val build: TaskName = TaskName(LifecycleBasePlugin.BUILD_TASK_NAME)
 
-    /** `jar` */
+    /**
+     * `jar`
+     *
+     * @since 0.1.7
+     */
     val jar: TaskName = TaskName("jar")
 
     /**
@@ -59,21 +63,41 @@ value class TaskName(
      */
     val check: TaskName = TaskName(LifecycleBasePlugin.CHECK_TASK_NAME)
 
-    /** `compileJavaWithJavac` */
+    /**
+     * `compileJavaWithJavac`
+     *
+     * @since 0.1.7
+     */
     val compileJavaWithJavac: TaskName = TaskName(
       "compileJavaWithJavac"
     )
 
-    /** `compileJava` */
+    /**
+     * `compileJava`
+     *
+     * @since 0.1.7
+     */
     val compileJava: TaskName = TaskName("compileJava")
 
-    /** `compileKotlin` */
+    /**
+     * `compileKotlin`
+     *
+     * @since 0.1.7
+     */
     val compileKotlin: TaskName = TaskName("compileKotlin")
 
-    /** `testUnitTest` */
+    /**
+     * `testUnitTest`
+     *
+     * @since 0.1.7
+     */
     val testUnitTest: TaskName = TaskName("testUnitTest")
 
-    /** `test` */
+    /**
+     * `test`
+     *
+     * @since 0.1.7
+     */
     val test: TaskName = TaskName("test")
 
     /**
@@ -82,34 +106,58 @@ value class TaskName(
      */
     val clean: TaskName = TaskName(LifecycleBasePlugin.CLEAN_TASK_NAME)
 
-    /** ex: `assemble` or `assembleDebug` */
+    /**
+     * ex: `assemble` or `assembleDebug`
+     *
+     * @since 0.1.7
+     */
     fun SourceSetName.assemble(): TaskName = if (isMain()) assemble else addPrefix(assemble)
 
-    /** ex: `test` or `debugTest` */
+    /**
+     * ex: `test` or `debugTest`
+     *
+     * @since 0.1.7
+     */
     fun SourceSetName.test(): TaskName = if (isMain()) test else addSuffix(test)
 
-    /** ex: `testUnitTest` or `testDebugUnitTest` */
+    /**
+     * ex: `testUnitTest` or `testDebugUnitTest`
+     *
+     * @since 0.1.7
+     */
     fun SourceSetName.testUnitTest(): TaskName = if (isMain()) {
       testUnitTest
     } else {
       "${addPrefix("test")}UnitTest".asTaskName()
     }
 
-    /** ex: `compileKotlin` or `compileDebugKotlin` */
+    /**
+     * ex: `compileKotlin` or `compileDebugKotlin`
+     *
+     * @since 0.1.7
+     */
     fun SourceSetName.compileKotlin(): TaskName = if (isMain()) {
       compileKotlin
     } else {
       "${addPrefix("compile")}Kotlin".asTaskName()
     }
 
-    /** ex: `compileJava` or `compileDebugJava` */
+    /**
+     * ex: `compileJava` or `compileDebugJava`
+     *
+     * @since 0.1.7
+     */
     fun SourceSetName.compileJava(): TaskName = if (isMain()) {
       compileJava
     } else {
       "${addPrefix("compile")}Java".asTaskName()
     }
 
-    /** ex: `compileDebugJavaWithJavac` */
+    /**
+     * ex: `compileDebugJavaWithJavac`
+     *
+     * @since 0.1.7
+     */
     fun SourceSetName.compileJavaWithJavac(): TaskName = if (isMain()) {
       compileJavaWithJavac
     } else {

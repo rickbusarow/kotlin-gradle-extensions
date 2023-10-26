@@ -307,7 +307,11 @@ value class ConfigurationName(
      */
     val runtimeOnly: ConfigurationName = ConfigurationName("runtimeOnly")
 
-    /** name of the 'shadow' configuration */
+    /**
+     * name of the 'shadow' configuration
+     *
+     * @since 0.1.7
+     */
     val shadow: ConfigurationName = ConfigurationName("shadow")
 
     /**
