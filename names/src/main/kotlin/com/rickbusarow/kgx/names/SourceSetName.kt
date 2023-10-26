@@ -13,11 +13,12 @@
  * limitations under the License.
  */
 
-package com.rickbusarow.kgx
+package com.rickbusarow.kgx.names
 
-import com.rickbusarow.kgx.ConfigurationName.Companion.asConfigurationName
-import com.rickbusarow.kgx.stdlib.capitalize
-import com.rickbusarow.kgx.stdlib.decapitalize
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.asConfigurationName
+import com.rickbusarow.kgx.names.TaskName.Companion.asTaskName
+import com.rickbusarow.kgx.names.stdlib.capitalize
+import com.rickbusarow.kgx.names.stdlib.decapitalize
 import kotlin.properties.ReadOnlyProperty
 
 /**
@@ -37,6 +38,7 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
   override fun toString(): String = "(SourceSetName) `$value`"
 
   companion object {
+
     /**
      * name of the `androidTest` source set
      *
@@ -45,25 +47,11 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
     val androidTest: SourceSetName = SourceSetName("androidTest")
 
     /**
-     * name of the `anvil` source set
-     *
-     * @since 0.1.6
-     */
-    val anvil: SourceSetName = SourceSetName("anvil")
-
-    /**
      * name of the `debug` source set
      *
      * @since 0.1.6
      */
     val debug: SourceSetName = SourceSetName("debug")
-
-    /**
-     * name of the `kapt` source set
-     *
-     * @since 0.1.6
-     */
-    val kapt: SourceSetName = SourceSetName("kapt")
 
     /**
      * name of the `main` source set
@@ -174,16 +162,7 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
      *
      * @since 0.1.6
      */
-    fun SourceSetName.removePrefix(prefix: SourceSetName): SourceSetName =
-      removePrefix(prefix.value)
-
-    /**
-     * Removes [prefix] from the receiver [SourceSetName] and returns
-     * the result. The first letter of the result is decapitalized.
-     *
-     * @since 0.1.6
-     */
-    fun SourceSetName.removePrefix(prefix: ConfigurationName): SourceSetName =
+    fun SourceSetName.removePrefix(prefix: DomainObjectName<*>): SourceSetName =
       removePrefix(prefix.value)
 
     /**
@@ -196,13 +175,7 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
      * @return true if the receiver [SourceSetName] starts with [prefix]
      * @since 0.1.6
      */
-    fun SourceSetName.hasPrefix(prefix: SourceSetName): Boolean = hasPrefix(prefix.value)
-
-    /**
-     * @return true if the receiver [SourceSetName] starts with [prefix]
-     * @since 0.1.6
-     */
-    fun SourceSetName.hasPrefix(prefix: ConfigurationName): Boolean = hasPrefix(prefix.value)
+    fun SourceSetName.hasPrefix(prefix: DomainObjectName<*>): Boolean = hasPrefix(prefix.value)
 
     /**
      * Adds [prefix] to the receiver [SourceSetName] and returns the
@@ -210,24 +183,7 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
      *
      * @since 0.1.6
      */
-    fun SourceSetName.addPrefix(prefix: String): SourceSetName = prefix.plus(value.capitalize())
-      .asSourceSetName()
-
-    /**
-     * Adds [prefix] to the receiver [SourceSetName] and returns the
-     * result. The first letter of the original name is capitalized.
-     *
-     * @since 0.1.6
-     */
-    fun SourceSetName.addPrefix(prefix: SourceSetName): SourceSetName = addPrefix(prefix.value)
-
-    /**
-     * Adds [prefix] to the receiver [SourceSetName] and returns the
-     * result. The first letter of the original name is capitalized.
-     *
-     * @since 0.1.6
-     */
-    fun SourceSetName.addPrefix(prefix: ConfigurationName): SourceSetName = addPrefix(prefix.value)
+    fun SourceSetName.addPrefix(prefix: String): String = prefix.plus(value.capitalize())
 
     /**
      * Removes [suffix] from the receiver [SourceSetName] and returns the result.
@@ -243,15 +199,7 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
      *
      * @since 0.1.6
      */
-    fun SourceSetName.removeSuffix(suffix: SourceSetName): SourceSetName =
-      removeSuffix(suffix.value.capitalize())
-
-    /**
-     * Removes [suffix] from the receiver [SourceSetName] and returns the result.
-     *
-     * @since 0.1.6
-     */
-    fun SourceSetName.removeSuffix(suffix: ConfigurationName): SourceSetName =
+    fun SourceSetName.removeSuffix(suffix: DomainObjectName<*>): SourceSetName =
       removeSuffix(suffix.value.capitalize())
 
     /**
@@ -260,24 +208,61 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
      *
      * @since 0.1.6
      */
-    fun SourceSetName.addSuffix(suffix: String): SourceSetName = value.plus(suffix.capitalize())
-      .asSourceSetName()
+    fun SourceSetName.addSuffix(suffix: String): String = value.plus(suffix.capitalize())
 
     /**
-     * Adds [suffix] to the receiver [SourceSetName] and returns the
-     * result. The first letter of the new suffix name is capitalized.
+     * Adds [prefix] to the receiver [SourceSetName] and returns the result as a
+     * [ConfigurationName]. The first letter of the original name is capitalized.
      *
      * @since 0.1.6
      */
-    fun SourceSetName.addSuffix(suffix: SourceSetName): SourceSetName = addSuffix(suffix.value)
+    fun SourceSetName.addPrefix(prefix: ConfigurationName): ConfigurationName =
+      prefix.value.plus(value.capitalize()).asConfigurationName()
 
     /**
-     * Adds [suffix] to the receiver [SourceSetName] and returns the
-     * result. The first letter of the new suffix name is capitalized.
+     * Adds [suffix] to the receiver [SourceSetName] and returns the result as a
+     * [ConfigurationName]. The first letter of the new suffix name is capitalized.
      *
      * @since 0.1.6
      */
-    fun SourceSetName.addSuffix(suffix: ConfigurationName): SourceSetName = addSuffix(suffix.value)
+    fun SourceSetName.addSuffix(suffix: ConfigurationName): ConfigurationName =
+      value.plus(suffix.value.capitalize()).asConfigurationName()
+
+    /**
+     * Adds [prefix] to the receiver [SourceSetName] and returns the result
+     * as a [TaskName]. The first letter of the original name is capitalized.
+     *
+     * @since 0.1.6
+     */
+    fun SourceSetName.addPrefix(prefix: TaskName): TaskName =
+      prefix.value.plus(value.capitalize()).asTaskName()
+
+    /**
+     * Adds [suffix] to the receiver [SourceSetName] and returns the result as
+     * a [TaskName]. The first letter of the new suffix name is capitalized.
+     *
+     * @since 0.1.6
+     */
+    fun SourceSetName.addSuffix(suffix: TaskName): TaskName =
+      value.plus(suffix.value.capitalize()).asTaskName()
+
+    /**
+     * Adds [prefix] to the receiver [SourceSetName] and returns the result as
+     * a [SourceSetName]. The first letter of the original name is capitalized.
+     *
+     * @since 0.1.6
+     */
+    fun SourceSetName.addPrefix(prefix: SourceSetName): SourceSetName =
+      prefix.value.plus(value.capitalize()).asSourceSetName()
+
+    /**
+     * Adds [suffix] to the receiver [SourceSetName] and returns the result as a
+     * [SourceSetName]. The first letter of the new suffix name is capitalized.
+     *
+     * @since 0.1.6
+     */
+    fun SourceSetName.addSuffix(suffix: SourceSetName): SourceSetName =
+      value.plus(suffix.value.capitalize()).asSourceSetName()
 
     /**
      * @return the 'api' name for this source set, such as `api`, `debugApi`, or `commonMainApi`
@@ -292,14 +277,15 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
     }
 
     /**
-     * @return the 'api' name for this source set, such as `api`, `debugApi`, or `commonMainApi`
+     * @return the 'api' name for this source set, such as
+     *   `compileOnly`,`compileOnlyDebug`, or `compileOnlyTest`
      * @since 0.1.6
      */
     fun SourceSetName.compileOnlyConfig(): ConfigurationName {
       return if (isMain()) {
-        ConfigurationName.api
+        ConfigurationName.compileOnly
       } else {
-        "compileOnly${value.capitalize()}".asConfigurationName()
+        addSuffix(ConfigurationName.compileOnly)
       }
     }
 
@@ -312,7 +298,7 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
       return if (isMain()) {
         ConfigurationName.implementation
       } else {
-        "${value}Implementation".asConfigurationName()
+        addSuffix(ConfigurationName.implementation)
       }
     }
 
@@ -323,9 +309,9 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
      */
     fun SourceSetName.runtimeOnlyConfig(): ConfigurationName {
       return if (isMain()) {
-        ConfigurationName.api
+        ConfigurationName.runtimeOnly
       } else {
-        "runtimeOnly${value.capitalize()}".asConfigurationName()
+        addSuffix(ConfigurationName.runtimeOnly)
       }
     }
 
@@ -333,11 +319,36 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
      * @return the 'kapt' name for this source set, such as `kapt`, `kaptTest`, or `kaptAndroidTest`
      * @since 0.1.6
      */
-    fun SourceSetName.kaptVariant(): ConfigurationName {
+    fun SourceSetName.kaptConfig(): ConfigurationName {
       return if (isMain()) {
         ConfigurationName.kapt
       } else {
-        "kapt${value.capitalize()}".asConfigurationName()
+        addPrefix(ConfigurationName.kapt)
+      }
+    }
+
+    /**
+     * @return the 'anvil' name for this source set, such
+     *   as `anvil`, `anvilTest`, or `anvilAndroidTest`
+     * @since 0.1.6
+     */
+    fun SourceSetName.anvilConfig(): ConfigurationName {
+      return if (isMain()) {
+        ConfigurationName.anvil
+      } else {
+        addPrefix(ConfigurationName.anvil)
+      }
+    }
+
+    /**
+     * @return the 'ksp' name for this source set, such as `ksp`, `kspTest`, or `kspAndroidTest`
+     * @since 0.1.6
+     */
+    fun SourceSetName.kspConfig(): ConfigurationName {
+      return if (isMain()) {
+        ConfigurationName.ksp
+      } else {
+        addPrefix(ConfigurationName.ksp)
       }
     }
   }

@@ -74,6 +74,8 @@ idea {
 
 dependencies {
 
+  api(project(":names"))
+
   compileOnly(gradleApi())
 
   compileOnly(libs.kotlin.gradle.plugin)
@@ -84,13 +86,7 @@ dependencies {
   testImplementation(libs.junit.engine)
   testImplementation(libs.junit.jupiter)
   testImplementation(libs.junit.jupiter.api)
-  testImplementation(libs.junit.params)
-  testImplementation(libs.kotest.assertions.api)
-  testImplementation(libs.kotest.assertions.core.jvm)
   testImplementation(libs.kotest.assertions.shared)
-  testImplementation(libs.kotest.common)
-  testImplementation(libs.kotest.extensions)
-  testImplementation(libs.kotest.property.jvm)
 }
 
 tasks.named("integrationTest").dependsOn("publishToMavenLocalNoDokka")

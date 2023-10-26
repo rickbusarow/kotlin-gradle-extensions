@@ -7,57 +7,6 @@ public final class com/rickbusarow/kgx/CatalogsKt {
 	public static final fun version (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Ljava/lang/String;
 }
 
-public final class com/rickbusarow/kgx/ConfigurationName : com/rickbusarow/kgx/DomainObjectName, java/lang/Comparable {
-	public static final field Companion Lcom/rickbusarow/kgx/ConfigurationName$Companion;
-	public static final fun apiVariant-F6lw2b4 (Ljava/lang/String;)Ljava/lang/String;
-	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/rickbusarow/kgx/ConfigurationName;
-	public synthetic fun compareTo (Ljava/lang/Object;)I
-	public fun compareTo-qYCkGVM (Ljava/lang/String;)I
-	public static fun compareTo-qYCkGVM (Ljava/lang/String;Ljava/lang/String;)I
-	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
-	public fun equals (Ljava/lang/Object;)Z
-	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
-	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
-	public fun getValue ()Ljava/lang/String;
-	public fun hashCode ()I
-	public static fun hashCode-impl (Ljava/lang/String;)I
-	public static final fun implementationVariant-F6lw2b4 (Ljava/lang/String;)Ljava/lang/String;
-	public static final fun isApi-impl (Ljava/lang/String;)Z
-	public static final fun isImplementation-impl (Ljava/lang/String;)Z
-	public static final fun isKapt-impl (Ljava/lang/String;)Z
-	public static final fun kaptVariant-F6lw2b4 (Ljava/lang/String;)Ljava/lang/String;
-	public static final fun nameWithoutSourceSet-impl (Ljava/lang/String;)Ljava/lang/String;
-	public static final fun switchSourceSet-jBxk84k (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public static final fun toSourceSetName-y9Z5bjc (Ljava/lang/String;)Ljava/lang/String;
-	public fun toString ()Ljava/lang/String;
-	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
-	public final synthetic fun unbox-impl ()Ljava/lang/String;
-}
-
-public final class com/rickbusarow/kgx/ConfigurationName$Companion {
-	public final fun asConfigurationName-jOI0p1U (Ljava/lang/String;)Ljava/lang/String;
-	public final fun configurationName ()Lkotlin/properties/ReadOnlyProperty;
-	public final fun getAndroidTestImplementation-F6lw2b4 ()Ljava/lang/String;
-	public final fun getAnnotationProcessor-F6lw2b4 ()Ljava/lang/String;
-	public final fun getAnvil-F6lw2b4 ()Ljava/lang/String;
-	public final fun getApi-F6lw2b4 ()Ljava/lang/String;
-	public final fun getCompile-F6lw2b4 ()Ljava/lang/String;
-	public final fun getCompileOnly-F6lw2b4 ()Ljava/lang/String;
-	public final fun getCompileOnlyApi-F6lw2b4 ()Ljava/lang/String;
-	public final fun getImplementation-F6lw2b4 ()Ljava/lang/String;
-	public final fun getKapt-F6lw2b4 ()Ljava/lang/String;
-	public final fun getKotlinCompileClasspath-F6lw2b4 ()Ljava/lang/String;
-	public final fun getKsp-F6lw2b4 ()Ljava/lang/String;
-	public final fun getMainConfigurations ()Ljava/util/List;
-	public final fun getRuntime-F6lw2b4 ()Ljava/lang/String;
-	public final fun getRuntimeOnly-F6lw2b4 ()Ljava/lang/String;
-	public final fun getTestApi-F6lw2b4 ()Ljava/lang/String;
-	public final fun getTestImplementation-F6lw2b4 ()Ljava/lang/String;
-	public final fun main ()Ljava/util/List;
-	public final fun private ()Ljava/util/List;
-	public final fun public ()Ljava/util/List;
-}
-
 public final class com/rickbusarow/kgx/ConfigurationsKt {
 	public static final fun api (Lorg/gradle/api/artifacts/ConfigurationContainer;Lorg/gradle/api/Action;)Lorg/gradle/api/NamedDomainObjectProvider;
 	public static final fun compileOnly (Lorg/gradle/api/artifacts/ConfigurationContainer;Lorg/gradle/api/Action;)Lorg/gradle/api/NamedDomainObjectProvider;
@@ -94,15 +43,6 @@ public final class com/rickbusarow/kgx/DomainObjectCollectionKt {
 public final class com/rickbusarow/kgx/DomainObjectCollectionKt$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
 	public fun <init> (Lkotlin/jvm/functions/Function1;)V
 	public final synthetic fun execute (Ljava/lang/Object;)V
-}
-
-public abstract interface class com/rickbusarow/kgx/DomainObjectName {
-	public static final field Companion Lcom/rickbusarow/kgx/DomainObjectName$Companion;
-	public abstract fun getValue ()Ljava/lang/String;
-}
-
-public final class com/rickbusarow/kgx/DomainObjectName$Companion {
-	public final fun domainObjectName (Ljava/lang/String;)Lcom/rickbusarow/kgx/DomainObjectName;
 }
 
 public abstract interface annotation class com/rickbusarow/kgx/EagerGradleApi : java/lang/annotation/Annotation {
@@ -168,60 +108,6 @@ public final class com/rickbusarow/kgx/ProjectKt {
 	public static final fun subProjectsTasksMatchingName (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/util/List;
 }
 
-public final class com/rickbusarow/kgx/SourceSetName : com/rickbusarow/kgx/DomainObjectName {
-	public static final field Companion Lcom/rickbusarow/kgx/SourceSetName$Companion;
-	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/rickbusarow/kgx/SourceSetName;
-	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
-	public fun equals (Ljava/lang/Object;)Z
-	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
-	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
-	public fun getValue ()Ljava/lang/String;
-	public fun hashCode ()I
-	public static fun hashCode-impl (Ljava/lang/String;)I
-	public fun toString ()Ljava/lang/String;
-	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
-	public final synthetic fun unbox-impl ()Ljava/lang/String;
-}
-
-public final class com/rickbusarow/kgx/SourceSetName$Companion {
-	public final fun addPrefix-dPBPoG4 (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public final fun addPrefix-mcF9yDg (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public final fun addPrefix-w5mHqZ0 (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public final fun addSuffix-dPBPoG4 (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public final fun addSuffix-mcF9yDg (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public final fun addSuffix-w5mHqZ0 (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public final fun apiConfig-jBxk84k (Ljava/lang/String;)Ljava/lang/String;
-	public final fun asSourceSetName-RGtDLk0 (Ljava/lang/String;)Ljava/lang/String;
-	public final fun compileOnlyConfig-jBxk84k (Ljava/lang/String;)Ljava/lang/String;
-	public final fun getAndroidTest-y9Z5bjc ()Ljava/lang/String;
-	public final fun getAnvil-y9Z5bjc ()Ljava/lang/String;
-	public final fun getCommonJvm-y9Z5bjc ()Ljava/lang/String;
-	public final fun getCommonJvmTest-y9Z5bjc ()Ljava/lang/String;
-	public final fun getCommonMain-y9Z5bjc ()Ljava/lang/String;
-	public final fun getCommonTest-y9Z5bjc ()Ljava/lang/String;
-	public final fun getDebug-y9Z5bjc ()Ljava/lang/String;
-	public final fun getKapt-y9Z5bjc ()Ljava/lang/String;
-	public final fun getMain-y9Z5bjc ()Ljava/lang/String;
-	public final fun getRelease-y9Z5bjc ()Ljava/lang/String;
-	public final fun getTest-y9Z5bjc ()Ljava/lang/String;
-	public final fun getTestFixtures-y9Z5bjc ()Ljava/lang/String;
-	public final fun hasPrefix-AVaPYNI (Ljava/lang/String;Ljava/lang/String;)Z
-	public final fun hasPrefix-HEV19fQ (Ljava/lang/String;Ljava/lang/String;)Z
-	public final fun hasPrefix-vSWtKgk (Ljava/lang/String;Ljava/lang/String;)Z
-	public final fun implementationConfig-jBxk84k (Ljava/lang/String;)Ljava/lang/String;
-	public final fun isMain-Q4TH9QA (Ljava/lang/String;)Z
-	public final fun isTestFixtures-Q4TH9QA (Ljava/lang/String;)Z
-	public final fun kaptVariant-jBxk84k (Ljava/lang/String;)Ljava/lang/String;
-	public final fun removePrefix-dPBPoG4 (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public final fun removePrefix-mcF9yDg (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public final fun removePrefix-w5mHqZ0 (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public final fun removeSuffix-dPBPoG4 (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public final fun removeSuffix-mcF9yDg (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public final fun removeSuffix-w5mHqZ0 (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
-	public final fun runtimeOnlyConfig-jBxk84k (Ljava/lang/String;)Ljava/lang/String;
-	public final fun sourceSetName ()Lkotlin/properties/ReadOnlyProperty;
-}
-
 public final class com/rickbusarow/kgx/TaskKt {
 	public static final fun addAsDependencyTo (Lorg/gradle/api/tasks/TaskProvider;Lorg/gradle/api/tasks/TaskCollection;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun addAsDependencyTo (Lorg/gradle/api/tasks/TaskProvider;Lorg/gradle/api/tasks/TaskProvider;)Lorg/gradle/api/tasks/TaskProvider;
@@ -234,33 +120,6 @@ public final class com/rickbusarow/kgx/TaskKt {
 	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskProvider;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun registerOnce (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;Ljava/lang/Class;Lorg/gradle/api/Action;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun undecoratedTypeName (Lorg/gradle/api/Task;)Ljava/lang/String;
-}
-
-public final class com/rickbusarow/kgx/TaskName : com/rickbusarow/kgx/DomainObjectName, java/lang/Comparable {
-	public static final field Companion Lcom/rickbusarow/kgx/TaskName$Companion;
-	public static final synthetic fun box-impl (Ljava/lang/String;)Lcom/rickbusarow/kgx/TaskName;
-	public synthetic fun compareTo (Ljava/lang/Object;)I
-	public fun compareTo-9EkOlmc (Ljava/lang/String;)I
-	public static fun compareTo-9EkOlmc (Ljava/lang/String;Ljava/lang/String;)I
-	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
-	public fun equals (Ljava/lang/Object;)Z
-	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
-	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
-	public fun getValue ()Ljava/lang/String;
-	public fun hashCode ()I
-	public static fun hashCode-impl (Ljava/lang/String;)I
-	public fun toString ()Ljava/lang/String;
-	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
-	public final synthetic fun unbox-impl ()Ljava/lang/String;
-}
-
-public final class com/rickbusarow/kgx/TaskName$Companion {
-	public final fun asTaskName-SfrkMMI (Ljava/lang/String;)Ljava/lang/String;
-	public final fun getAssemble-Y8XoCjA ()Ljava/lang/String;
-	public final fun getBuild-Y8XoCjA ()Ljava/lang/String;
-	public final fun getCheck-Y8XoCjA ()Ljava/lang/String;
-	public final fun getClean-Y8XoCjA ()Ljava/lang/String;
-	public final fun taskName ()Lkotlin/properties/ReadOnlyProperty;
 }
 
 public final class com/rickbusarow/kgx/internal/DomainObjectCollectionInternalKt {

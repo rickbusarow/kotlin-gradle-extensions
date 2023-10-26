@@ -15,6 +15,7 @@
 
 package com.rickbusarow.kgx
 
+import com.rickbusarow.kgx.names.ConfigurationName
 import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.artifacts.Configuration

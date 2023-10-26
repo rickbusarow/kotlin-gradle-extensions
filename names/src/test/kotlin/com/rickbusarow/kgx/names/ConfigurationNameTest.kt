@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.rickbusarow.kgx
+package com.rickbusarow.kgx.names
 
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
