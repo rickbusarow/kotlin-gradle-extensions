@@ -19,7 +19,6 @@ import org.gradle.api.GradleException
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.artifacts.ProjectDependency
-import org.gradle.api.invocation.Gradle
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.TaskCollection
 import java.io.File
@@ -64,35 +63,12 @@ val Project.isPartOfRootBuild: Boolean
   get() = gradle.parent == null
 
 /**
- * Generates a sequence of parent [Gradle] instances for the receiver [Gradle] instance,
- * starting at the receiver's immediate parent. The sequence will be empty if the
- * receiver is the root build. The sequence ends when it reaches the root build.
- *
- * @return A [Sequence] of parent [Gradle] instances.
- * @see
- *   [Gradle User Manual: Composite Builds](https://docs.gradle.org/current/userguide/composite_builds.html)
- * @since 0.1.4
- */
-fun Gradle.parents(): Sequence<Gradle> = generateSequence(parent) { it.parent }
-
-/**
- * Generates a sequence of the receiver [Gradle] instance and its parents,
- * starting with the receiver. The sequence ends when it reaches the root build.
- *
- * @return A [Sequence] of [Gradle] instances including the receiver and its parents.
- * @see
- *   [Gradle User Manual: Composite Builds](https://docs.gradle.org/current/userguide/composite_builds.html)
- * @since 0.1.4
- */
-fun Gradle.parentsWithSelf(): Sequence<Gradle> = generateSequence(this) { it.parent }
-
-/**
  * shorthand for `this == rootProject`
  *
  * For composite builds, this will return true for the root of each included build.
  *
- * @see com.rickbusarow.kgx.internal.isRealRootProject to check
- *   if the project is the ultimate root of a composite build
+ * @see com.rickbusarow.kgx.isRealRootProject to check if
+ *   the project is the ultimate root of a composite build
  * @since 0.1.0
  */
 fun Project.isRootProject(): Boolean = this == rootProject

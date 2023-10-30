@@ -68,6 +68,11 @@ public final class com/rickbusarow/kgx/FileKt {
 	public static final fun resolveInParentOrNull (Ljava/io/File;Ljava/lang/String;)Ljava/io/File;
 }
 
+public final class com/rickbusarow/kgx/GradleKt {
+	public static final fun parents (Lorg/gradle/api/invocation/Gradle;)Lkotlin/sequences/Sequence;
+	public static final fun parentsWithSelf (Lorg/gradle/api/invocation/Gradle;)Lkotlin/sequences/Sequence;
+}
+
 public final class com/rickbusarow/kgx/IncludedKt {
 	public static final fun includedAllProjectsTasks (Lorg/gradle/api/invocation/Gradle;Ljava/lang/String;)Ljava/util/List;
 }
@@ -80,6 +85,13 @@ public final class com/rickbusarow/kgx/KgpKt {
 public final class com/rickbusarow/kgx/ObjectFactoryKt {
 	public static final fun fileTree (Lorg/gradle/api/model/ObjectFactory;Ljava/lang/Object;)Lorg/gradle/api/file/ConfigurableFileTree;
 	public static final fun fileTree (Lorg/gradle/api/model/ObjectFactory;Ljava/lang/Object;Lorg/gradle/api/Action;)Lorg/gradle/api/file/ConfigurableFileTree;
+	public static final synthetic fun listProperty (Lorg/gradle/api/model/ObjectFactory;)Lorg/gradle/api/provider/ListProperty;
+	public static final synthetic fun listPropertyDelegate (Lorg/gradle/api/model/ObjectFactory;)Lkotlin/properties/ReadOnlyProperty;
+	public static final synthetic fun mapProperty (Lorg/gradle/api/model/ObjectFactory;)Lorg/gradle/api/provider/MapProperty;
+	public static final synthetic fun mapPropertyDelegate (Lorg/gradle/api/model/ObjectFactory;)Lkotlin/properties/ReadOnlyProperty;
+	public static final fun propertyDelegateInternal (Lkotlin/jvm/functions/Function0;)Lkotlin/properties/ReadOnlyProperty;
+	public static final synthetic fun setProperty (Lorg/gradle/api/model/ObjectFactory;)Lorg/gradle/api/provider/SetProperty;
+	public static final synthetic fun setPropertyDelegate (Lorg/gradle/api/model/ObjectFactory;)Lkotlin/properties/ReadOnlyProperty;
 }
 
 public final class com/rickbusarow/kgx/PluginContainerKt {
@@ -101,11 +113,14 @@ public final class com/rickbusarow/kgx/ProjectKt {
 	public static final fun isPartOfRootBuild (Lorg/gradle/api/Project;)Z
 	public static final fun isRealRootProject (Lorg/gradle/api/Project;)Z
 	public static final fun isRootProject (Lorg/gradle/api/Project;)Z
-	public static final fun parents (Lorg/gradle/api/invocation/Gradle;)Lkotlin/sequences/Sequence;
-	public static final fun parentsWithSelf (Lorg/gradle/api/invocation/Gradle;)Lkotlin/sequences/Sequence;
 	public static final fun projectDependency (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;)Lorg/gradle/api/artifacts/ProjectDependency;
 	public static synthetic fun projectDependency$default (Lorg/gradle/api/Project;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/artifacts/ProjectDependency;
 	public static final fun subProjectsTasksMatchingName (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/util/List;
+}
+
+public final class com/rickbusarow/kgx/PropertyDelegateInternal : kotlin/properties/ReadOnlyProperty {
+	public fun <init> (Lkotlin/jvm/functions/Function0;)V
+	public fun getValue (Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
 }
 
 public final class com/rickbusarow/kgx/TaskKt {
