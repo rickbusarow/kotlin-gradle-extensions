@@ -18,7 +18,6 @@ package com.rickbusarow.kgx
 import com.rickbusarow.kgx.internal.ElementInfoAction
 import com.rickbusarow.kgx.internal.ElementInfoAction.ElementValue
 import com.rickbusarow.kgx.internal.InternalGradleApiAccess
-import com.rickbusarow.kgx.internal.invoke
 import com.rickbusarow.kgx.internal.whenElementKnown
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension

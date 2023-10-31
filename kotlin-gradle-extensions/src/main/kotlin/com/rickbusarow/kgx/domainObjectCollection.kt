@@ -15,6 +15,9 @@
 
 package com.rickbusarow.kgx
 
+import com.rickbusarow.kgx.internal.ElementInfoAction
+import com.rickbusarow.kgx.internal.ElementInfoAction.ElementValue
+import com.rickbusarow.kgx.internal.ElementInfoAction.RegisteredElement
 import com.rickbusarow.kgx.names.DomainObjectName
 import org.gradle.api.Action
 import org.gradle.api.DomainObjectCollection
@@ -23,6 +26,40 @@ import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.UnknownDomainObjectException
 import org.gradle.internal.Actions
+
+/**
+ * Invokes this [ElementInfoAction] with the provided element name and
+ * value. The type of the element is inferred from the type of the value.
+ *
+ * @param elementName The name of the element.
+ * @param elementValue The value of the element, encapsulated in an [ElementValue].
+ * @receiver [ElementInfoAction] The action to be executed.
+ * @since 0.1.5
+ */
+inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
+  elementName: String,
+  elementValue: ElementValue<T>
+) {
+  execute(RegisteredElement(elementName, T::class.java, elementValue))
+}
+
+/**
+ * Invokes this [ElementInfoAction] with the provided element name, type and value.
+ * This is useful when the type of the element is not the same as the type of the value.
+ *
+ * @param elementName The name of the element.
+ * @param elementType The type of the element.
+ * @param elementValue The value of the element, encapsulated in an [ElementValue].
+ * @receiver [ElementInfoAction] The action to be executed.
+ * @since 0.1.5
+ */
+operator fun <T : Any> ElementInfoAction<T>.invoke(
+  elementName: String,
+  elementType: Class<out T>,
+  elementValue: ElementValue<T>
+) {
+  execute(RegisteredElement(elementName, elementType, elementValue))
+}
 
 /**
  * Shorthand for `getByName(myDomainObjectName.value)`.

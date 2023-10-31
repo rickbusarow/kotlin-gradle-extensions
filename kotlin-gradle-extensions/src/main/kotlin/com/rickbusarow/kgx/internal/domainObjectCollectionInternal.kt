@@ -24,6 +24,7 @@ import org.gradle.api.NamedDomainObjectCollection
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.internal.DefaultNamedDomainObjectCollection
 import org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo
+import com.rickbusarow.kgx.invoke as kgxInvoke
 
 /**
  * Invokes this [ElementInfoAction] with the provided element name and
@@ -34,11 +35,15 @@ import org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo
  * @receiver [ElementInfoAction] The action to be executed.
  * @since 0.1.5
  */
+@Deprecated(
+  "moved to `com.rickbusarow.kgx.invoke`",
+  ReplaceWith("invoke(elementName, elementValue)", "com.rickbusarow.kgx.invoke")
+)
 inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
   elementName: String,
   elementValue: ElementValue<T>
 ) {
-  execute(RegisteredElement(elementName, T::class.java, elementValue))
+  kgxInvoke(elementName, elementValue)
 }
 
 /**
@@ -51,12 +56,16 @@ inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
  * @receiver [ElementInfoAction] The action to be executed.
  * @since 0.1.5
  */
+@Deprecated(
+  "moved to `com.rickbusarow.kgx.invoke`",
+  ReplaceWith("invoke(elementName, elementType, elementValue)", "com.rickbusarow.kgx.invoke")
+)
 operator fun <T : Any> ElementInfoAction<T>.invoke(
   elementName: String,
   elementType: Class<out T>,
   elementValue: ElementValue<T>
 ) {
-  execute(RegisteredElement(elementName, elementType, elementValue))
+  kgxInvoke(elementName, elementType, elementValue)
 }
 
 /**
@@ -171,7 +180,7 @@ inline fun <reified T : Any> NamedDomainObjectCollection<T>.whenElementKnown(
   requireDefaultCollection().whenElementKnown { elementInfo ->
     @Suppress("UNCHECKED_CAST")
     val elementType = elementInfo.type as Class<T>
-    configurationAction(
+    configurationAction.kgxInvoke(
       elementName = elementInfo.name,
       elementType = elementType,
       elementValue = ElementValue(named(elementInfo.name))
