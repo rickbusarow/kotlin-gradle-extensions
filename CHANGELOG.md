@@ -1,12 +1,15 @@
 # Changelog
 
 ## 0.1.9-SNAPSHOT (unreleased)
+
 ## [0.1.8] - 2023-10-31
 
 ### Added
+
 - add `ObjectFactory` extension functions for property delegates
 
 ### Fixed
+
 - add missing `@InternalGradleApiAccess` opt-ins to some internal functions
 - move some non-internal extensions out of the `internal` package
 
