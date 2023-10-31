@@ -49,6 +49,7 @@ fun ObjectFactory.fileTree(
  * A reified version of [ObjectFactory.newInstance].
  *
  * @param parameters any constructor parameters that cannot be injected by Gradle
+ * @since 0.1.8
  * @throws org.gradle.api.reflect.ObjectInstantiationException if the object cannot be instantiated.
  */
 inline fun <reified T : Any> ObjectFactory.newInstance(vararg parameters: Any?): T {
@@ -59,6 +60,7 @@ inline fun <reified T : Any> ObjectFactory.newInstance(vararg parameters: Any?):
  * alias for `ReadOnlyProperty<Any?, T>`
  *
  * @see [ReadOnlyProperty]
+ * @since 0.1.8
  */
 typealias LazyGradleProperty<T> = ReadOnlyProperty<Any?, T>
 
@@ -71,13 +73,19 @@ typealias LazyGradleProperty<T> = ReadOnlyProperty<Any?, T>
  *   val myProperty: ListProperty<String> by objects.listPropertyDelegate()
  * }
  * ```
+ *
+ * @since 0.1.8
  */
 @JvmOverloads
 inline fun <reified T> ObjectFactory.listPropertyDelegate(
   crossinline init: ListProperty<T>.() -> ListProperty<T> = { this }
 ): ReadOnlyProperty<Any?, ListProperty<T>> = propertyDelegateInternal { listProperty(init) }
 
-/** Just a reified version of [ObjectFactory.listProperty]. */
+/**
+ * Just a reified version of [ObjectFactory.listProperty].
+ *
+ * @since 0.1.8
+ */
 @JvmOverloads
 inline fun <reified T> ObjectFactory.listProperty(
   crossinline init: ListProperty<T>.() -> ListProperty<T> = { this }
@@ -92,13 +100,19 @@ inline fun <reified T> ObjectFactory.listProperty(
  *   val myProperty: SetProperty<String> by objects.setPropertyDelegate()
  * }
  * ```
+ *
+ * @since 0.1.8
  */
 @JvmOverloads
 inline fun <reified T> ObjectFactory.setPropertyDelegate(
   crossinline init: SetProperty<T>.() -> SetProperty<T> = { this }
 ): LazyGradleProperty<SetProperty<T>> = propertyDelegateInternal { setProperty(init) }
 
-/** Just a reified version of [ObjectFactory.setProperty]. */
+/**
+ * Just a reified version of [ObjectFactory.setProperty].
+ *
+ * @since 0.1.8
+ */
 @JvmOverloads
 inline fun <reified T> ObjectFactory.setProperty(
   crossinline init: SetProperty<T>.() -> SetProperty<T> = { this }
@@ -112,50 +126,84 @@ inline fun <reified T> ObjectFactory.setProperty(
  *   val myProperty: MapProperty<String, String> by objects.mapPropertyDelegate()
  * }
  * ```
+ *
+ * @since 0.1.8
  */
 @JvmOverloads
 inline fun <reified K, reified V> ObjectFactory.mapPropertyDelegate(
   crossinline init: MapProperty<K, V>.() -> MapProperty<K, V> = { this }
 ): LazyGradleProperty<MapProperty<K, V>> = propertyDelegateInternal { mapProperty(init) }
 
-/** Just a reified version of [ObjectFactory.mapProperty]. */
+/**
+ * Just a reified version of [ObjectFactory.mapProperty].
+ *
+ * @since 0.1.8
+ */
 @JvmOverloads
 inline fun <reified K, reified V> ObjectFactory.mapProperty(
   crossinline init: MapProperty<K, V>.() -> MapProperty<K, V> = { this }
 ): MapProperty<K, V> = mapProperty(K::class.java, V::class.java).init()
 
-/** Just a reified version of [ObjectFactory.property]. */
+/**
+ * Just a reified version of [ObjectFactory.property].
+ *
+ * @since 0.1.8
+ */
 inline fun <reified T : Any> ObjectFactory.property(): Property<T> = property(T::class.java)
 
-/** Lazy initializer delegate for a [Property<T>][Property]. */
+/**
+ * Lazy initializer delegate for a [Property<T>][Property].
+ *
+ * @since 0.1.8
+ */
 inline fun <reified T : Any> ObjectFactory.propertyDelegate(): LazyGradleProperty<Property<T>> {
   return propertyDelegateInternal { property(T::class.java) }
 }
 
-/** Just a reified version of [ObjectFactory.property]. */
+/**
+ * Just a reified version of [ObjectFactory.property].
+ *
+ * @since 0.1.8
+ */
 inline fun <reified T : Any> ObjectFactory.propertyOf(value: T): Property<T> {
   return property(T::class.java).convention(value)
 }
 
-/** Lazy initializer delegate for a [Property<T>][Property]. */
+/**
+ * Lazy initializer delegate for a [Property<T>][Property].
+ *
+ * @since 0.1.8
+ */
 inline fun <reified T : Any> ObjectFactory.propertyDelegate(
   crossinline convention: () -> T
 ): LazyGradleProperty<Property<T>> {
   return propertyDelegateInternal { property(convention) }
 }
 
-/** Just a reified version of [ObjectFactory.property]. */
+/**
+ * Just a reified version of [ObjectFactory.property].
+ *
+ * @since 0.1.8
+ */
 inline fun <reified T : Any> ObjectFactory.property(crossinline convention: () -> T): Property<T> =
   property(T::class.java).convention(convention())
 
-/** Lazy initializer delegate for a [Property<T>][Property]. */
+/**
+ * Lazy initializer delegate for a [Property<T>][Property].
+ *
+ * @since 0.1.8
+ */
 inline fun <reified T : Any> ObjectFactory.propertyDelegate(
   convention: Provider<out T>
 ): LazyGradleProperty<Property<T>> {
   return propertyDelegateInternal { property(T::class.java).convention(convention) }
 }
 
-/** Just a reified version of [ObjectFactory.property]. */
+/**
+ * Just a reified version of [ObjectFactory.property].
+ *
+ * @since 0.1.8
+ */
 inline fun <reified T : Any> ObjectFactory.property(convention: Provider<out T>): Property<T> =
   property(T::class.java).convention(convention)
 

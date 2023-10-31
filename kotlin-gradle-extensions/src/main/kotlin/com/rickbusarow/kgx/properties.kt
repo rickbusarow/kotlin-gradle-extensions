@@ -25,6 +25,7 @@ import org.gradle.api.Project
  *
  * @param name the name of the property to retrieve
  * @param defaultValue the value to return if the property is not defined
+ * @since 0.1.8
  * @throws GradleException if the property is found but is not assignable to [T]
  */
 inline fun <reified T> Project.property(name: String, defaultValue: T): T {
@@ -38,6 +39,7 @@ inline fun <reified T> Project.property(name: String, defaultValue: T): T {
  *
  * @param name the name of the property to retrieve
  * @param defaultValue the value to return if the property is not defined
+ * @since 0.1.8
  * @throws GradleException if the property is found but is not assignable to [T]
  */
 inline fun <reified T> Project.property(name: String, defaultValue: () -> T): T {
@@ -50,6 +52,7 @@ inline fun <reified T> Project.property(name: String, defaultValue: () -> T): T 
  * [T], an exception is thrown. If the property is not defined, `null` is returned.
  *
  * @param name the name of the property to retrieve
+ * @since 0.1.8
  * @throws GradleException if the property is found but is not assignable to [T]
  */
 inline fun <reified T> Project.propertyOrNull(name: String): T? {
