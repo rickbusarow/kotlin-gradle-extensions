@@ -30,6 +30,7 @@ import org.gradle.composite.internal.DefaultIncludedBuild.IncludedBuildImpl
  * @return the root project of this included build
  * @since 0.1.0
  */
+@InternalGradleApiAccess
 fun IncludedBuild.rootProject(): ProjectInternal {
   return checkNotNull(requireProjectRegistry().rootProject)
 }
@@ -38,6 +39,7 @@ fun IncludedBuild.rootProject(): ProjectInternal {
  * @return all projects in this included build
  * @since 0.1.0
  */
+@InternalGradleApiAccess
 fun IncludedBuild.allProjects(): Set<ProjectInternal> {
   return requireProjectRegistry().allProjects
 }
@@ -47,6 +49,7 @@ fun IncludedBuild.allProjects(): Set<ProjectInternal> {
  *   if the [IncludedBuild] is of an unexpected type
  * @since 0.1.0
  */
+@InternalGradleApiAccess
 fun IncludedBuild.requireProjectRegistry(): ProjectRegistry<ProjectInternal> {
   require(this is IncludedBuildImpl) {
     "The receiver ${IncludedBuild::class.qualifiedName} is expected to be an " +
@@ -67,34 +70,21 @@ fun IncludedBuild.requireProjectRegistry(): ProjectRegistry<ProjectInternal> {
  * @return all projects from all included builds
  * @since 0.1.0
  */
-fun Gradle.allIncludedProjects(): List<ProjectInternal> =
-  includedBuilds.flatMap {
-    it.allProjects()
-  }
+@InternalGradleApiAccess
+fun Gradle.allIncludedProjects(): List<ProjectInternal> {
+  return includedBuilds.flatMap { it.allProjects() }
+}
 
 /**
- * Look at the root project of an included build, find any task with a
- * matching name, and return it or null. This is an alternative to the standard
- * [IncludedBuild.task][org.gradle.api.initialization.IncludedBuild.task] function in
- * that the standard `task` version will throw an exception if the task is not registered.
+ * Look at the internal modules of an included build, find
+ * any tasks with a matching name, and return them all.
  *
  * Note that this forces the included build to configure.
  *
  * @since 0.1.0
  */
 @EagerGradleApi
-fun Gradle.includedRootProjectsTasks(taskName: String): List<TaskCollection<Task>> =
-  includedBuilds.mapNotNull { included ->
-
-    val includedImpl = included as IncludedBuildImpl
-
-    val implState = includedImpl.target as DefaultIncludedBuild
-
-    implState.ensureProjectsConfigured()
-
-    implState
-      .mutableModel
-      .rootProject
-      .tasks
-      .matchingName(taskName)
-  }
+@InternalGradleApiAccess
+fun Gradle.includedAllProjectsTasks(taskName: String): List<TaskCollection<Task>> {
+  return allIncludedProjects().map { it.tasks.matchingName(taskName) }
+}

@@ -15,19 +15,32 @@
 
 package com.rickbusarow.kgx
 
-import com.rickbusarow.kgx.internal.allIncludedProjects
 import org.gradle.api.Task
 import org.gradle.api.invocation.Gradle
 import org.gradle.api.tasks.TaskCollection
+import org.gradle.composite.internal.DefaultIncludedBuild
+import org.gradle.composite.internal.DefaultIncludedBuild.IncludedBuildImpl
 
 /**
- * Look at the internal modules of an included build, find
- * any tasks with a matching name, and return them all.
+ * Look at the root project of an included build, find any task with a
+ * matching name, and return it or null. This is an alternative to the standard
+ * [IncludedBuild.task][org.gradle.api.initialization.IncludedBuild.task] function in
+ * that the standard `task` version will throw an exception if the task is not registered.
  *
  * Note that this forces the included build to configure.
  *
  * @since 0.1.0
  */
 @EagerGradleApi
-fun Gradle.includedAllProjectsTasks(taskName: String): List<TaskCollection<Task>> =
-  allIncludedProjects().map { it.tasks.matchingName(taskName) }
+fun Gradle.includedRootProjectsTasks(taskName: String): List<TaskCollection<Task>> {
+  return includedBuilds.mapNotNull { included ->
+
+    val includedImpl = included as IncludedBuildImpl
+
+    val implState = includedImpl.target as DefaultIncludedBuild
+
+    implState.ensureProjectsConfigured()
+
+    implState.mutableModel.rootProject.tasks.matchingName(taskName)
+  }
+}
