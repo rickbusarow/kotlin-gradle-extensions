@@ -121,9 +121,10 @@ value class SourceSetName(
      * @since 0.1.6
      */
     @Suppress("MemberNameEqualsClassName")
-    fun sourceSetName(): ReadOnlyProperty<Any?, SourceSetName> {
-      return DomainObjectName.lazyName { name -> SourceSetName(name) }
-    }
+    fun sourceSetName(): ReadOnlyProperty<Any?, SourceSetName> =
+      DomainObjectName.lazyName { name ->
+        SourceSetName(name)
+      }
 
     /**
      * Creates a [SourceSetName] from the receiver string.
@@ -271,13 +272,12 @@ value class SourceSetName(
      * @return the 'api' name for this source set, such as `api`, `debugApi`, or `commonMainApi`
      * @since 0.1.6
      */
-    fun SourceSetName.apiConfig(): ConfigurationName {
-      return if (isMain()) {
+    fun SourceSetName.apiConfig(): ConfigurationName =
+      if (isMain()) {
         ConfigurationName.api
       } else {
         "${value}Api".asConfigurationName()
       }
-    }
 
     /**
      * @return the 'api' name for this source set, such as

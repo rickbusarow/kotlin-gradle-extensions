@@ -86,11 +86,10 @@ inline fun <reified T : Task> TaskContainer.matchingNameWithType(
  * @return The original collection for chaining.
  * @since 0.1.0
  */
-fun <T : Task> TaskCollection<T>.dependOn(vararg objects: Any): TaskCollection<T> {
-  return also { taskCollection ->
+fun <T : Task> TaskCollection<T>.dependOn(vararg objects: Any): TaskCollection<T> =
+  also { taskCollection ->
     taskCollection.configureEach { task -> task.dependsOn(*objects) }
   }
-}
 
 /**
  * Adds dependencies to the task wrapped by this provider.
