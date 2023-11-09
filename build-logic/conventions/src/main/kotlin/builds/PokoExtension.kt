@@ -22,7 +22,6 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.ExternalDependency
 
 interface PokoExtension {
-
   fun Project.poko() {
 
     val implementation = configurations.getByName("implementation")

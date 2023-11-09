@@ -74,8 +74,11 @@ abstract class DokkaConventionPlugin : Plugin<Project> {
           builder.sourceLink { sourceLinkBuilder ->
             sourceLinkBuilder.localDirectory.set(target.file("src/main"))
 
-            val modulePath = target.path.replace(":", "/")
-              .replaceFirst("/", "")
+            val modulePath =
+              target
+                .path
+                .replace(":", "/")
+                .replaceFirst("/", "")
 
             // URL showing where the source code can be accessed through the web browser
             sourceLinkBuilder.remoteUrl.set(

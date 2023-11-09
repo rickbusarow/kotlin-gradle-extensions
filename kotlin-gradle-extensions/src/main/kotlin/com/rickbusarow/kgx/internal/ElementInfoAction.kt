@@ -32,7 +32,6 @@ import org.gradle.api.provider.Provider
  * @since 0.1.5
  */
 fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
-
   /**
    * A public and stable version of
    * [DefaultNamedDomainObjectCollection.ElementInfo][org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo],
@@ -150,18 +149,21 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
         elementName: String,
         elementType: Class<out T>,
         elementValue: ElementValue<T>
-      ): RegisteredElement<T> = when (elementValue) {
-        is Instance<T> -> ObjectBackedRegisteredElement(
-          elementName = elementName,
-          elementValue = elementValue
-        )
+      ): RegisteredElement<T> =
+        when (elementValue) {
+          is Instance<T> ->
+            ObjectBackedRegisteredElement(
+              elementName = elementName,
+              elementValue = elementValue
+            )
 
-        is ProviderInstance<T> -> ProviderBackedRegisteredElement(
-          elementName = elementName,
-          elementType = elementType,
-          elementValue = elementValue
-        )
-      }
+          is ProviderInstance<T> ->
+            ProviderBackedRegisteredElement(
+              elementName = elementName,
+              elementType = elementType,
+              elementValue = elementValue
+            )
+        }
     }
   }
 
@@ -186,7 +188,9 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
      * @since 0.1.5
      */
     @Poko
-    class Instance<T>(override val value: T) : ElementValue<T>
+    class Instance<T>(
+      override val value: T
+    ) : ElementValue<T>
 
     /**
      * Represents a provider for a registered element. This

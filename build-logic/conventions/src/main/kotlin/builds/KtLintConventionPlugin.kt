@@ -29,12 +29,12 @@ import org.gradle.api.Project
 import kotlin.text.RegexOption.MULTILINE
 
 abstract class KtLintConventionPlugin : Plugin<Project> {
-
   override fun apply(target: Project) {
 
     target.plugins.apply(KtLintPlugin::class.java)
 
-    target.dependencies
+    target
+      .dependencies
       .add("ktlint", target.libsCatalog.dependency("rickBusarow-ktrules"))
 
     @OptIn(EagerGradleApi::class)

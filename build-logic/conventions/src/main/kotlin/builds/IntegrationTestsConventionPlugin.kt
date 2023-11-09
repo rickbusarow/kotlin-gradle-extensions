@@ -31,16 +31,20 @@ abstract class IntegrationTestsConventionPlugin : Plugin<Project> {
 
     target.extensions.configure(JavaPluginExtension::class.java) { java ->
 
-      val integrationTest = java.sourceSets
-        .register(INTEGRATION_TEST) { ss ->
+      val integrationTest =
+        java
+          .sourceSets
+          .register(INTEGRATION_TEST) { ss ->
 
-          ss.compileClasspath += target.javaSourceSet("main")
-            .output
-            .plus(target.javaSourceSet("test").output)
-            .plus(target.configurations.getByName("testRuntimeClasspath"))
+            ss.compileClasspath +=
+              target
+                .javaSourceSet("main")
+                .output
+                .plus(target.javaSourceSet("test").output)
+                .plus(target.configurations.getByName("testRuntimeClasspath"))
 
-          ss.runtimeClasspath += ss.output + ss.compileClasspath
-        }
+            ss.runtimeClasspath += ss.output + ss.compileClasspath
+          }
 
       target.extensions.configure(IdeaModel::class.java) { idea ->
         idea.module { module ->
@@ -60,21 +64,23 @@ abstract class IntegrationTestsConventionPlugin : Plugin<Project> {
       it.extendsFrom(target.configurations.getByName("testRuntimeOnly"))
     }
 
-    val integrationTestTask = target.tasks
-      .register(INTEGRATION_TEST, Test::class.java) { task ->
+    val integrationTestTask =
+      target
+        .tasks
+        .register(INTEGRATION_TEST, Test::class.java) { task ->
 
-        task.group = "verification"
-        task.description = "tests the '$INTEGRATION_TEST' source set"
+          task.group = "verification"
+          task.description = "tests the '$INTEGRATION_TEST' source set"
 
-        val mainSourceSet = target.javaSourceSet("main")
-        val integrationTestSourceSet = target.javaSourceSet(INTEGRATION_TEST)
+          val mainSourceSet = target.javaSourceSet("main")
+          val integrationTestSourceSet = target.javaSourceSet(INTEGRATION_TEST)
 
-        task.testClassesDirs = integrationTestSourceSet.output.classesDirs
-        task.classpath = integrationTestSourceSet.runtimeClasspath
-        task.inputs.files(integrationTestSourceSet.output.classesDirs)
-        task.inputs.files(mainSourceSet.allSource)
-        task.dependsOn(target.rootProject.tasks.named("publishToMavenLocalNoDokka"))
-      }
+          task.testClassesDirs = integrationTestSourceSet.output.classesDirs
+          task.classpath = integrationTestSourceSet.runtimeClasspath
+          task.inputs.files(integrationTestSourceSet.output.classesDirs)
+          task.inputs.files(mainSourceSet.allSource)
+          task.dependsOn(target.rootProject.tasks.named("publishToMavenLocalNoDokka"))
+        }
 
     target.tasks.named(LifecycleBasePlugin.CHECK_TASK_NAME) {
       it.dependsOn(integrationTestTask)
@@ -90,7 +96,8 @@ abstract class IntegrationTestsConventionPlugin : Plugin<Project> {
   }
 
   private fun Project.javaSourceSet(name: String): SourceSet =
-    extensions.getByType(JavaPluginExtension::class.java)
+    extensions
+      .getByType(JavaPluginExtension::class.java)
       .sourceSets
       .getByName(name)
 

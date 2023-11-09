@@ -103,16 +103,18 @@ internal inline fun <reified T : Any> ElementInfo<T>.toRegisteredInfo(
   val provider = namedDomainObjectCollection.named(name)
 
   return when {
-    provider.isRealized() -> RegisteredElement.ObjectBackedRegisteredElement(
-      elementName = name,
-      elementValue = Instance(provider.get())
-    )
+    provider.isRealized() ->
+      RegisteredElement.ObjectBackedRegisteredElement(
+        elementName = name,
+        elementValue = Instance(provider.get())
+      )
 
-    else -> RegisteredElement.ProviderBackedRegisteredElement<T>(
-      elementName = name,
-      elementType = T::class.java,
-      elementValue = ProviderInstance(provider)
-    )
+    else ->
+      RegisteredElement.ProviderBackedRegisteredElement<T>(
+        elementName = name,
+        elementType = T::class.java,
+        elementValue = ProviderInstance(provider)
+      )
   }
 }
 

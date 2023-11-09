@@ -36,7 +36,12 @@ moduleCheck {
 }
 
 val kotlinApiVersion = libs.versions.kotlinApi.get()
-val ktlintPluginId = libs.plugins.ktlint.get().pluginId
+val ktlintPluginId =
+  libs
+    .plugins
+    .ktlint
+    .get()
+    .pluginId
 
 allprojects ap@{
 
@@ -82,9 +87,10 @@ allprojects ap@{
 
       jvmTarget = libs.versions.jvmTargetBuildLogic.get()
 
-      freeCompilerArgs = freeCompilerArgs + listOf(
-        "-opt-in=kotlin.RequiresOptIn"
-      )
+      freeCompilerArgs = freeCompilerArgs +
+        listOf(
+          "-opt-in=kotlin.RequiresOptIn"
+        )
     }
   }
   tasks.withType<Test>().configureEach {

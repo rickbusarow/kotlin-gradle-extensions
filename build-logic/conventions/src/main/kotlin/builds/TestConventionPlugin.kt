@@ -26,11 +26,12 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
 import org.gradle.internal.classpath.Instrumented.systemProperty
 
 abstract class TestConventionPlugin : Plugin<Project> {
-
   override fun apply(target: Project) {
 
-    val includeTags: ListProperty<String> = target.objects
-      .listProperty(String::class.java)
+    val includeTags: ListProperty<String> =
+      target
+        .objects
+        .listProperty(String::class.java)
 
     if (target.hasProperty("kgx.includeTags")) {
       includeTags.addAll(target.properties["kgx.includeTags"].toString().split(','))
@@ -39,10 +40,12 @@ abstract class TestConventionPlugin : Plugin<Project> {
     target.tasks.withType(Test::class.java).configureEach { task ->
       task.useJUnitPlatform()
 
-      val junitPlatformOptions = task.testFrameworkProperty
-        .map { frameWork ->
-          (frameWork as JUnitPlatformTestFramework).options
-        }
+      val junitPlatformOptions =
+        task
+          .testFrameworkProperty
+          .map { frameWork ->
+            (frameWork as JUnitPlatformTestFramework).options
+          }
 
       task.doFirst {
 
@@ -67,11 +70,11 @@ abstract class TestConventionPlugin : Plugin<Project> {
         it.showStackTraces = true
       }
 
-      target.properties
+      target
+        .properties
         .filter { (key, value) ->
           key.startsWith("kgx.") && value != null
-        }
-        .forEach { (key, value) ->
+        }.forEach { (key, value) ->
           systemProperty(key, value as String)
         }
 
@@ -79,20 +82,16 @@ abstract class TestConventionPlugin : Plugin<Project> {
 
       task.systemProperties.putAll(
         mapOf(
-
           // auto-discover and apply any Junit5 extensions in the classpath
           // "junit.jupiter.extensions.autodetection.enabled" to true,
-
           // remove parentheses from test display names
           "junit.jupiter.displayname.generator.default" to
             "org.junit.jupiter.api.DisplayNameGenerator\$Simple",
-
           // https://junit.org/junit5/docs/snapshot/user-guide/#writing-tests-parallel-execution-config-properties
           // Allow unit tests to run in parallel
           "junit.jupiter.execution.parallel.enabled" to true,
           "junit.jupiter.execution.parallel.mode.default" to "concurrent",
           "junit.jupiter.execution.parallel.mode.classes.default" to "concurrent",
-
           "junit.jupiter.execution.parallel.config.strategy" to "dynamic",
           "junit.jupiter.execution.parallel.config.dynamic.factor" to 1.0
         )

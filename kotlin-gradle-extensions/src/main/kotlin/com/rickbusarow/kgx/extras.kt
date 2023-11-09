@@ -57,6 +57,7 @@ inline fun <reified T> ExtraPropertiesExtension.getOrNullAs(name: String): T? {
  * @since 0.1.0
  * @throws ClassCastException if a property named [name] exists, but is not of type T
  */
-inline fun <reified T> ExtraPropertiesExtension.getOrPut(name: String, default: () -> T): T {
-  return getOrNullAs<T>(name) ?: default().also { set(name, it) }
-}
+inline fun <reified T> ExtraPropertiesExtension.getOrPut(
+  name: String,
+  default: () -> T
+): T = getOrNullAs<T>(name) ?: default().also { set(name, it) }

@@ -29,6 +29,5 @@ import org.gradle.api.tasks.TaskCollection
  * @since 0.1.0
  */
 @EagerGradleApi
-fun Gradle.includedAllProjectsTasks(taskName: String): List<TaskCollection<Task>> {
-  return allIncludedProjects().map { it.tasks.matchingName(taskName) }
-}
+fun Gradle.includedAllProjectsTasks(taskName: String): List<TaskCollection<Task>> =
+  allIncludedProjects().map { it.tasks.matchingName(taskName) }

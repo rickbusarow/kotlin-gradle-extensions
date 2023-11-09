@@ -59,55 +59,61 @@ abstract class CompositePlugin : Plugin<Project> {
 
     target.afterEvaluate {
 
-      val propagatedTaskTypes = listOf(
-        /* api validation */
-        KotlinApiBuildTask::class, KotlinApiCompareTask::class,
-        /* artifacts-check */
-        ArtifactsCheckTask::class, ArtifactsDumpTask::class,
-        /* DAGP */
-        BuildHealthTask::class,
-        /* ModuleCheck */
-        AbstractModuleCheckTask::class, MultiRuleModuleCheckTask::class, SingleRuleModuleCheckTask::class,
-        /* detekt */
-        Detekt::class,
-        /* dokka */
-        AbstractDokkaTask::class, DokkaMultiModuleTask::class, DokkaTask::class,
-        /* gradle */
-        Copy::class, Delete::class, Exec::class, JavaExec::class, Sync::class, Test::class, Zip::class,
-        /* ktlint-gradle-plugin */
-        KtLintTask::class,
-        /* publishing */
-        AbstractPublishToMaven::class, PublishToMavenLocal::class,
-        /* shadow */
-        JavaJarExec::class, ShadowJar::class
-      )
-      val propagatedTaskTypeNames = propagatedTaskTypes
-        .mapTo(mutableSetOf()) { it.qualifiedName!! }
+      val propagatedTaskTypes =
+        listOf(
+          // api validation
+          KotlinApiBuildTask::class, KotlinApiCompareTask::class,
+          // artifacts-check
+          ArtifactsCheckTask::class, ArtifactsDumpTask::class,
+          // DAGP
+          BuildHealthTask::class,
+          // ModuleCheck
+          AbstractModuleCheckTask::class, MultiRuleModuleCheckTask::class, SingleRuleModuleCheckTask::class,
+          // detekt
+          Detekt::class,
+          // dokka
+          AbstractDokkaTask::class, DokkaMultiModuleTask::class, DokkaTask::class,
+          // gradle
+          Copy::class, Delete::class, Exec::class, JavaExec::class, Sync::class, Test::class, Zip::class,
+          // ktlint-gradle-plugin
+          KtLintTask::class,
+          // publishing
+          AbstractPublishToMaven::class, PublishToMavenLocal::class,
+          // shadow
+          JavaJarExec::class, ShadowJar::class
+        )
+      val propagatedTaskTypeNames =
+        propagatedTaskTypes
+          .mapTo(mutableSetOf()) { it.qualifiedName!! }
 
       // tasks which can only be matched by name, probably because their type is just `DefaultTask`
-      val otherNames = setOf(
-        "lintKotlin",
-        "formatKotlin",
-        "ktlintFormat",
-        "ktlintCheck",
-        "moveProtos",
-        "deleteSrcGen",
-        "dependencyGuard",
-        "dependencyGuardBaseline",
-        // The Wire Gradle plugin creates a `generateProtos` which is `DefaultTask`,
-        // even though they have a `WireTask` type
-        "generateProtos",
-        LifecycleBasePlugin.CHECK_TASK_NAME
-      )
+      val otherNames =
+        setOf(
+          "lintKotlin",
+          "formatKotlin",
+          "ktlintFormat",
+          "ktlintCheck",
+          "moveProtos",
+          "deleteSrcGen",
+          "dependencyGuard",
+          "dependencyGuardBaseline",
+          // The Wire Gradle plugin creates a `generateProtos` which is `DefaultTask`,
+          // even though they have a `WireTask` type
+          "generateProtos",
+          LifecycleBasePlugin.CHECK_TASK_NAME
+        )
 
       // Loop through all included projects, looking for task types which are commonly invoked from the
       // root path.  For each of these, look for same-name tasks in the internal modules of included
       // builds, and make the root task depend upon those as well.
-      target.gradle.includedBuilds
+      target
+        .gradle
+        .includedBuilds
         .asSequence()
         .flatMap { it.allProjects() }
         .flatMap { includedProject ->
-          includedProject.tasks
+          includedProject
+            .tasks
             .matching { includedTask ->
               includedTask.name in otherNames ||
                 includedTask.undecoratedTypeName() in propagatedTaskTypeNames ||

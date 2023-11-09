@@ -85,10 +85,11 @@ val ConfigurationContainer.compileOnlyProvider: NamedDomainObjectProvider<Config
  */
 fun ConfigurationContainer.compileOnly(
   configurationAction: Action<Configuration>
-): NamedDomainObjectProvider<Configuration>? = named(
-  ConfigurationName.compileOnly,
-  configurationAction
-)
+): NamedDomainObjectProvider<Configuration>? =
+  named(
+    ConfigurationName.compileOnly,
+    configurationAction
+  )
 
 /**
  * Shorthand for `configurations.getByName("api")`.
@@ -121,10 +122,11 @@ val ConfigurationContainer.implementationProvider: NamedDomainObjectProvider<Con
  */
 fun ConfigurationContainer.implementation(
   configurationAction: Action<Configuration>
-): NamedDomainObjectProvider<Configuration>? = named(
-  ConfigurationName.implementation,
-  configurationAction
-)
+): NamedDomainObjectProvider<Configuration>? =
+  named(
+    ConfigurationName.implementation,
+    configurationAction
+  )
 
 /**
  * Shorthand for `configurations.getByName("api")`.
@@ -190,7 +192,8 @@ val ConfigurationContainer.runtimeOnlyProvider: NamedDomainObjectProvider<Config
  */
 fun ConfigurationContainer.runtimeOnly(
   configurationAction: Action<Configuration>
-): NamedDomainObjectProvider<Configuration>? = named(
-  ConfigurationName.runtimeOnly,
-  configurationAction
-)
+): NamedDomainObjectProvider<Configuration>? =
+  named(
+    ConfigurationName.runtimeOnly,
+    configurationAction
+  )

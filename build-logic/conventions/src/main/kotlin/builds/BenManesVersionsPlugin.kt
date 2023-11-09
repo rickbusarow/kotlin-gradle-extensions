@@ -22,24 +22,26 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 abstract class BenManesVersionsPlugin : Plugin<Project> {
-
   override fun apply(target: Project) {
     target.plugins.applyOnce("com.github.ben-manes.versions")
 
     target.checkProjectIsRoot()
 
-    target.tasks.withType(
-      DependencyUpdatesTask::class.java
-    ).configureEach { task ->
-      task.rejectVersionIf {
-        isNonStable(it.candidate.version) && !isNonStable(it.currentVersion)
+    target
+      .tasks
+      .withType(
+        DependencyUpdatesTask::class.java
+      ).configureEach { task ->
+        task.rejectVersionIf {
+          isNonStable(it.candidate.version) && !isNonStable(it.currentVersion)
+        }
       }
-    }
   }
 
   private fun isNonStable(version: String): Boolean {
-    val stableKeyword = listOf("RELEASE", "FINAL", "GA")
-      .any { version.uppercase().contains(it) }
+    val stableKeyword =
+      listOf("RELEASE", "FINAL", "GA")
+        .any { version.uppercase().contains(it) }
     val regex = "^[0-9,.v-]+(-r)?$".toRegex()
     val isStable = stableKeyword || regex.matches(version)
     return isStable.not()

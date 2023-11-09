@@ -33,12 +33,12 @@ import kotlin.properties.ReadOnlyProperty
  * @since 0.1.6
  */
 @JvmInline
-value class SourceSetName(override val value: String) : DomainObjectName<Any> {
-
+value class SourceSetName(
+  override val value: String
+) : DomainObjectName<Any> {
   override fun toString(): String = "(SourceSetName) `$value`"
 
   companion object {
-
     /**
      * name of the `androidTest` source set
      *
@@ -152,9 +152,11 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
      *
      * @since 0.1.6
      */
-    fun SourceSetName.removePrefix(prefix: String): SourceSetName = value.removePrefix(prefix)
-      .decapitalize()
-      .asSourceSetName()
+    fun SourceSetName.removePrefix(prefix: String): SourceSetName =
+      value
+        .removePrefix(prefix)
+        .decapitalize()
+        .asSourceSetName()
 
     /**
      * Removes [prefix] from the receiver [SourceSetName] and returns
@@ -191,7 +193,8 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
      * @since 0.1.6
      */
     fun SourceSetName.removeSuffix(suffix: String): SourceSetName =
-      value.removeSuffix(suffix.capitalize())
+      value
+        .removeSuffix(suffix.capitalize())
         .asSourceSetName()
 
     /**
@@ -319,37 +322,34 @@ value class SourceSetName(override val value: String) : DomainObjectName<Any> {
      * @return the 'kapt' name for this source set, such as `kapt`, `kaptTest`, or `kaptAndroidTest`
      * @since 0.1.6
      */
-    fun SourceSetName.kaptConfig(): ConfigurationName {
-      return if (isMain()) {
+    fun SourceSetName.kaptConfig(): ConfigurationName =
+      if (isMain()) {
         ConfigurationName.kapt
       } else {
         addPrefix(ConfigurationName.kapt)
       }
-    }
 
     /**
      * @return the 'anvil' name for this source set, such
      *   as `anvil`, `anvilTest`, or `anvilAndroidTest`
      * @since 0.1.6
      */
-    fun SourceSetName.anvilConfig(): ConfigurationName {
-      return if (isMain()) {
+    fun SourceSetName.anvilConfig(): ConfigurationName =
+      if (isMain()) {
         ConfigurationName.anvil
       } else {
         addPrefix(ConfigurationName.anvil)
       }
-    }
 
     /**
      * @return the 'ksp' name for this source set, such as `ksp`, `kspTest`, or `kspAndroidTest`
      * @since 0.1.6
      */
-    fun SourceSetName.kspConfig(): ConfigurationName {
-      return if (isMain()) {
+    fun SourceSetName.kspConfig(): ConfigurationName =
+      if (isMain()) {
         ConfigurationName.ksp
       } else {
         addPrefix(ConfigurationName.ksp)
       }
-    }
   }
 }

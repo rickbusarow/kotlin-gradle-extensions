@@ -22,7 +22,6 @@ import org.gradle.api.publish.maven.tasks.AbstractPublishToMaven
 import org.gradle.language.base.plugins.LifecycleBasePlugin
 
 abstract class ArtifactsPlugin : Plugin<Project> {
-
   override fun apply(target: Project) {
 
     target.checkProjectIsRoot()

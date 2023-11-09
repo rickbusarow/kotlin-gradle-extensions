@@ -36,7 +36,6 @@ value class ConfigurationName(
   override val value: String
 ) : DomainObjectName<Configuration>,
   Comparable<ConfigurationName> {
-
   /**
    * Strips the "base Configuration name" (`api`, `implementation`, `compileOnly`,
    * `runtimeOnly`) from an aggregate name like `debugImplementation`.
@@ -56,14 +55,15 @@ value class ConfigurationName(
    * @return the name of the source set used with this configuration, wrapped in [SourceSetName]
    * @since 0.1.6
    */
-  fun toSourceSetName(): SourceSetName = when (this.value) {
-    // "main" source set configurations omit the "main" from their name,
-    // creating "implementation" instead of "mainImplementation"
-    in mainConfigurations -> SourceSetName.main
-    // all other configurations (like "test", "debug", or "androidTest")
-    // are just "$sourceSetName${baseConfigurationName.capitalize()}"
-    else -> this.value.extractSourceSetName()
-  }
+  fun toSourceSetName(): SourceSetName =
+    when (this.value) {
+      // "main" source set configurations omit the "main" from their name,
+      // creating "implementation" instead of "mainImplementation"
+      in mainConfigurations -> SourceSetName.main
+      // all other configurations (like "test", "debug", or "androidTest")
+      // are just "$sourceSetName${baseConfigurationName.capitalize()}"
+      else -> this.value.extractSourceSetName()
+    }
 
   /**
    * Returns the base name of the Configuration without any source set prefix.
@@ -101,13 +101,15 @@ value class ConfigurationName(
   fun switchSourceSet(newSourceSetName: SourceSetName): ConfigurationName {
 
     return when {
-      isKapt() -> ConfigurationName(
-        "${nameWithoutSourceSet()}${newSourceSetName.value.capitalize()}"
-      )
+      isKapt() ->
+        ConfigurationName(
+          "${nameWithoutSourceSet()}${newSourceSetName.value.capitalize()}"
+        )
 
-      else -> ConfigurationName(
-        "${newSourceSetName.value}${nameWithoutSourceSet().capitalize()}"
-      )
+      else ->
+        ConfigurationName(
+          "${newSourceSetName.value}${nameWithoutSourceSet().capitalize()}"
+        )
     }
   }
 
@@ -140,9 +142,10 @@ value class ConfigurationName(
     //  | compileOnlyApi   | main
     //  | implementation   | main
     //  etc.
-    val configType = mainConfigurationsCapitalized
-      .find { this.endsWith(it) }
-      ?: return asSourceSetName()
+    val configType =
+      mainConfigurationsCapitalized
+        .find { this.endsWith(it) }
+        ?: return asSourceSetName()
 
     // For any other configuration, the formula is $sourceSetName${baseConfigurationName.capitalize()}
     //
@@ -213,7 +216,6 @@ value class ConfigurationName(
   override fun toString(): String = "(ConfigurationName) `$value`"
 
   companion object {
-
     /**
      * name of the 'androidTestImplementation' configuration
      *
@@ -333,71 +335,77 @@ value class ConfigurationName(
      *
      * @since 0.1.6
      */
-    val mainConfigurations: List<String> = listOf(
-      api.value,
-      compile.value,
-      compileOnly.value,
-      compileOnlyApi.value,
-      implementation.value,
-      kapt.value,
-      // kotlinCompilerPluginClasspath is a special case,
-      // since the main config is suffixed with "Main"
-      kotlinCompileClasspath.value,
-      runtime.value,
-      runtimeOnly.value,
-      shadow.value
-    )
-      // The order of this list matters. CompileOnlyApi must be before `api` or
-      // `extractSourceSetName` below will match the wrong suffix.
-      .sortedByDescending { it.length }
+    val mainConfigurations: List<String> =
+      listOf(
+        api.value,
+        compile.value,
+        compileOnly.value,
+        compileOnlyApi.value,
+        implementation.value,
+        kapt.value,
+        // kotlinCompilerPluginClasspath is a special case,
+        // since the main config is suffixed with "Main"
+        kotlinCompileClasspath.value,
+        runtime.value,
+        runtimeOnly.value,
+        shadow.value
+      )
+        // The order of this list matters. CompileOnlyApi must be before `api` or
+        // `extractSourceSetName` below will match the wrong suffix.
+        .sortedByDescending { it.length }
 
-    internal val mainCommonConfigurations: List<String> = listOf(
-      api.value,
-      implementation.value
-    )
+    internal val mainCommonConfigurations: List<String> =
+      listOf(
+        api.value,
+        implementation.value
+      )
 
-    private val mainConfigurationsCapitalized: Set<String> = mainConfigurations
-      .map { it.capitalize() }
-      .toSet()
+    private val mainConfigurationsCapitalized: Set<String> =
+      mainConfigurations
+        .map { it.capitalize() }
+        .toSet()
 
     /**
      * the names of all configurations consumed by the main source set
      *
      * @since 0.1.6
      */
-    fun main(): List<ConfigurationName> = listOf(
-      compileOnlyApi,
-      api,
-      implementation,
-      compileOnly,
-      compile,
-      kapt,
-      runtimeOnly,
-      runtime
-    )
+    fun main(): List<ConfigurationName> =
+      listOf(
+        compileOnlyApi,
+        api,
+        implementation,
+        compileOnly,
+        compile,
+        kapt,
+        runtimeOnly,
+        runtime
+      )
 
     /**
      * the base configurations which do not leak their transitive dependencies (basically not `api`)
      *
      * @since 0.1.6
      */
-    fun private(): List<ConfigurationName> = listOf(
-      implementation,
-      compileOnly,
-      compile,
-      runtimeOnly,
-      runtime
-    )
+    fun private(): List<ConfigurationName> =
+      listOf(
+        implementation,
+        compileOnly,
+        compile,
+        runtimeOnly,
+        runtime
+      )
 
     /**
      * the base configurations which include their dependencies as "compile" dependencies in the POM
      *
      * @since 0.1.6
      */
-    fun public(): List<ConfigurationName> = listOf(
-      compileOnlyApi,
-      api
-    )
+    fun public(): List<ConfigurationName> =
+      listOf(
+        compileOnlyApi,
+        api
+      )
 
     /**
      * Delegate for creating a [ConfigurationName] from a property name.
@@ -411,9 +419,10 @@ value class ConfigurationName(
      * @since 0.1.6
      */
     @Suppress("MemberNameEqualsClassName")
-    fun configurationName(): ReadOnlyProperty<Any?, ConfigurationName> {
-      return DomainObjectName.lazyName { name -> ConfigurationName(name) }
-    }
+    fun configurationName(): ReadOnlyProperty<Any?, ConfigurationName> =
+      DomainObjectName.lazyName { name ->
+        ConfigurationName(name)
+      }
 
     /**
      * @return a ConfigurationName from this raw string

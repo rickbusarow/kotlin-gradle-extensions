@@ -27,7 +27,10 @@ import org.gradle.api.Project
  * @param defaultValue the value to return if the property is not defined
  * @throws GradleException if the property is found but is not assignable to [T]
  */
-inline fun <reified T> Project.property(name: String, defaultValue: T): T {
+inline fun <reified T> Project.property(
+  name: String,
+  defaultValue: T
+): T {
   return propertyOrNull<T>(name) ?: defaultValue
 }
 
@@ -40,7 +43,10 @@ inline fun <reified T> Project.property(name: String, defaultValue: T): T {
  * @param defaultValue the value to return if the property is not defined
  * @throws GradleException if the property is found but is not assignable to [T]
  */
-inline fun <reified T> Project.property(name: String, defaultValue: () -> T): T {
+inline fun <reified T> Project.property(
+  name: String,
+  defaultValue: () -> T
+): T {
   return propertyOrNull<T>(name) ?: defaultValue()
 }
 

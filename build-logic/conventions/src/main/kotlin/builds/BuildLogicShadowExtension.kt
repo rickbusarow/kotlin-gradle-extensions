@@ -22,7 +22,6 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
 
 interface BuildLogicShadowExtension {
-
   fun Project.shadow(shadowConfiguration: Configuration? = null) {
 
     plugins.applyOnce("com.github.johnrengelman.shadow")
@@ -33,33 +32,34 @@ interface BuildLogicShadowExtension {
       configurations.named("compileOnly") { it.extendsFrom(shadowConfiguration) }
     }
 
-    val shadowJar = tasks.named("shadowJar", ShadowJar::class.java) { task ->
+    val shadowJar =
+      tasks.named("shadowJar", ShadowJar::class.java) { task ->
 
-      if (shadowConfiguration != null) {
-        task.configurations = listOf(shadowConfiguration)
+        if (shadowConfiguration != null) {
+          task.configurations = listOf(shadowConfiguration)
 
-        listOf(
-          "kotlinx.coroutines",
-          "kotlinx.serialization",
-          "com.charleskorn.kaml",
-          "org.intellij.markdown"
-        ).forEach {
-          task.relocate(it, "com.rickbusarow.kgx.$it")
+          listOf(
+            "kotlinx.coroutines",
+            "kotlinx.serialization",
+            "com.charleskorn.kaml",
+            "org.intellij.markdown"
+          ).forEach {
+            task.relocate(it, "com.rickbusarow.kgx.$it")
+          }
+
+          task.archiveClassifier.convention(classifier)
+          task.archiveClassifier.set(classifier)
+
+          task.transformers.add(ServiceFileTransformer())
+
+          task.minimize()
+
+          // Excluding these helps shrink our binary dramatically
+          task.exclude("**/*.kotlin_metadata")
+          task.exclude("**/*.kotlin_module")
+          task.exclude("META-INF/maven/**")
         }
-
-        task.archiveClassifier.convention(classifier)
-        task.archiveClassifier.set(classifier)
-
-        task.transformers.add(ServiceFileTransformer())
-
-        task.minimize()
-
-        // Excluding these helps shrink our binary dramatically
-        task.exclude("**/*.kotlin_metadata")
-        task.exclude("**/*.kotlin_module")
-        task.exclude("META-INF/maven/**")
       }
-    }
 
     // By adding the task's output to archives, it's automatically picked up by Gradle's maven-publish
     // plugin and added as an artifact to the publication.

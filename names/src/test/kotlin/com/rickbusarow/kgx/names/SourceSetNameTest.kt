@@ -35,7 +35,6 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 class SourceSetNameTest {
-
   val fooAndroidTest = SourceSetName("fooAndroidTest")
   val fooCommonMain = SourceSetName("fooCommonMain")
   val fooCommonTest = SourceSetName("fooCommonTest")
@@ -65,7 +64,6 @@ class SourceSetNameTest {
 
   @Nested
   inner class `removePrefix functions` {
-
     @Test
     fun `removePrefix with a String parameter`() {
 
@@ -129,7 +127,6 @@ class SourceSetNameTest {
 
   @Nested
   inner class `removeSuffix functions` {
-
     @Test
     fun `removeSuffix with a String parameter`() {
 
@@ -193,7 +190,6 @@ class SourceSetNameTest {
 
   @Nested
   inner class `SourceSetName factory functions` {
-
     @Test fun `commonJvmTest`() {
       SourceSetName.commonJvmTest shouldBe SourceSetName("commonJvmTest")
     }
@@ -237,7 +233,6 @@ class SourceSetNameTest {
 
   @Nested
   inner class `SourceSetName constants` {
-
     @Test fun `commonJvmTest`() {
       SourceSetName.commonJvmTest.value shouldBe "commonJvmTest"
     }
@@ -281,7 +276,6 @@ class SourceSetNameTest {
 
   @Nested
   inner class `add prefix` {
-
     @Test
     fun `addPrefix with a String param returns a String`() {
 
@@ -305,37 +299,46 @@ class SourceSetNameTest {
     @Test
     fun `addPrefix with a ConfigurationName returns a ConfigurationName`() {
 
-      SourceSetName.main
+      SourceSetName
+        .main
         .addPrefix(ConfigurationName("foo")) shouldBe ConfigurationName("fooMain")
-      SourceSetName.test
+      SourceSetName
+        .test
         .addPrefix(ConfigurationName("foo")) shouldBe ConfigurationName("fooTest")
-      SourceSetName.androidTest
+      SourceSetName
+        .androidTest
         .addPrefix(ConfigurationName("foo")) shouldBe ConfigurationName("fooAndroidTest")
-      SourceSetName.commonMain
+      SourceSetName
+        .commonMain
         .addPrefix(ConfigurationName("foo")) shouldBe ConfigurationName("fooCommonMain")
-      SourceSetName.commonTest
+      SourceSetName
+        .commonTest
         .addPrefix(ConfigurationName("foo")) shouldBe ConfigurationName("fooCommonTest")
     }
 
     @Test
     fun `addPrefix with a SourceSetName returns a SourceSetName`() {
 
-      SourceSetName.main
+      SourceSetName
+        .main
         .addPrefix(SourceSetName("foo")) shouldBe fooMain
-      SourceSetName.test
+      SourceSetName
+        .test
         .addPrefix(SourceSetName("foo")) shouldBe fooTest
-      SourceSetName.androidTest
+      SourceSetName
+        .androidTest
         .addPrefix(SourceSetName("foo")) shouldBe fooAndroidTest
-      SourceSetName.commonMain
+      SourceSetName
+        .commonMain
         .addPrefix(SourceSetName("foo")) shouldBe fooCommonMain
-      SourceSetName.commonTest
+      SourceSetName
+        .commonTest
         .addPrefix(SourceSetName("foo")) shouldBe fooCommonTest
     }
   }
 
   @Nested
   inner class `add suffix` {
-
     @Test
     fun `addSuffix with a String returns a String`() {
 
@@ -359,37 +362,46 @@ class SourceSetNameTest {
     @Test
     fun `addSuffix with a ConfigurationName returns a ConfigurationName`() {
 
-      SourceSetName.main
+      SourceSetName
+        .main
         .addSuffix(ConfigurationName("foo")) shouldBe ConfigurationName("mainFoo")
-      SourceSetName.test
+      SourceSetName
+        .test
         .addSuffix(ConfigurationName("foo")) shouldBe ConfigurationName("testFoo")
-      SourceSetName.androidTest
+      SourceSetName
+        .androidTest
         .addSuffix(ConfigurationName("foo")) shouldBe ConfigurationName("androidTestFoo")
-      SourceSetName.commonMain
+      SourceSetName
+        .commonMain
         .addSuffix(ConfigurationName("foo")) shouldBe ConfigurationName("commonMainFoo")
-      SourceSetName.commonTest
+      SourceSetName
+        .commonTest
         .addSuffix(ConfigurationName("foo")) shouldBe ConfigurationName("commonTestFoo")
     }
 
     @Test
     fun `addSuffix with a SourceSetName returns a SourceSetName`() {
 
-      SourceSetName.main
+      SourceSetName
+        .main
         .addSuffix(SourceSetName("foo")) shouldBe SourceSetName("mainFoo")
-      SourceSetName.test
+      SourceSetName
+        .test
         .addSuffix(SourceSetName("foo")) shouldBe SourceSetName("testFoo")
-      SourceSetName.androidTest
+      SourceSetName
+        .androidTest
         .addSuffix(SourceSetName("foo")) shouldBe SourceSetName("androidTestFoo")
-      SourceSetName.commonMain
+      SourceSetName
+        .commonMain
         .addSuffix(SourceSetName("foo")) shouldBe SourceSetName("commonMainFoo")
-      SourceSetName.commonTest
+      SourceSetName
+        .commonTest
         .addSuffix(SourceSetName("foo")) shouldBe SourceSetName("commonTestFoo")
     }
   }
 
   @Nested
   inner class `base config factory extensions` {
-
     @Test
     fun `main configs`() {
 

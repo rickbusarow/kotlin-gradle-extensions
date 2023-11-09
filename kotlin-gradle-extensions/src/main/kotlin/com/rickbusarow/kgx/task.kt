@@ -28,7 +28,10 @@ import org.gradle.api.tasks.TaskProvider
  * @param configurationAction The configuration block for the task.
  * @since 0.1.0
  */
-fun TaskContainer.maybeNamed(taskName: String, configurationAction: Action<Task>) {
+fun TaskContainer.maybeNamed(
+  taskName: String,
+  configurationAction: Action<Task>
+) {
 
   if (names.contains(taskName)) {
     named(taskName, configurationAction)
@@ -158,8 +161,9 @@ inline fun <reified T : Task> TaskContainer.register(
   name: String,
   vararg constructorArguments: Any,
   noinline configuration: (T) -> Unit
-): TaskProvider<T> = register(name, T::class.java, *constructorArguments)
-  .apply { configure { configuration(it) } }
+): TaskProvider<T> =
+  register(name, T::class.java, *constructorArguments)
+    .apply { configure { configuration(it) } }
 
 /**
  * Registers or retrieves a task by name and type, and then configures it.
@@ -174,20 +178,19 @@ fun <T : Task> TaskContainer.registerOnce(
   name: String,
   type: Class<T>,
   configurationAction: Action<in T>
-): TaskProvider<T> = if (names.contains(name)) {
-  named(name, type, configurationAction)
-} else {
-  register(name, type, configurationAction)
-}
+): TaskProvider<T> =
+  if (names.contains(name)) {
+    named(name, type, configurationAction)
+  } else {
+    register(name, type, configurationAction)
+  }
 
 /**
  * @return the fully qualified name of this task's
  *   type, without any '_Decorated' suffix if one exists
  * @since 0.1.0
  */
-fun Task.undecoratedTypeName(): String {
-  return javaClass.canonicalName.removeSuffix("_Decorated")
-}
+fun Task.undecoratedTypeName(): String = javaClass.canonicalName.removeSuffix("_Decorated")
 
 /**
  * Registers or retrieves a task by name and type, and then configures it.
@@ -224,11 +227,10 @@ inline fun <reified T : Task> TaskContainer.registerOnce(name: String): TaskProv
  * @return The original task provider for chaining.
  * @since 0.1.0
  */
-fun <T : Task> TaskProvider<T>.addAsDependencyTo(dependentTask: TaskProvider<*>): TaskProvider<T> {
-  return also { receiver ->
+fun <T : Task> TaskProvider<T>.addAsDependencyTo(dependentTask: TaskProvider<*>): TaskProvider<T> =
+  also { receiver ->
     dependentTask.dependsOn(receiver)
   }
-}
 
 /**
  * makes the receiver task a dependency of the tasks in the [dependentTasks] collection.
@@ -239,11 +241,10 @@ fun <T : Task> TaskProvider<T>.addAsDependencyTo(dependentTask: TaskProvider<*>)
  */
 fun <T : Task> TaskProvider<T>.addAsDependencyTo(
   dependentTasks: TaskCollection<*>
-): TaskProvider<T> {
-  return also { receiver ->
+): TaskProvider<T> =
+  also { receiver ->
     dependentTasks.dependOn(receiver)
   }
-}
 
 /**
  * Just a typed version of `task.outputs.upToDateWhen { ... }`
