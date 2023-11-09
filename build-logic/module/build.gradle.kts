@@ -59,11 +59,6 @@ dependencies {
   ) {
     exclude(group = "org.jetbrains.kotlin")
   }
-  implementation(libs.detekt.gradle)
-  implementation(libs.dokka.gradle)
-  implementation(libs.johnrengelman.shadowJar)
-  implementation(libs.kotlinx.binaryCompatibility)
-  implementation(libs.rickBusarow.kgx)
   implementation(
     libs
       .rickBusarow
@@ -73,6 +68,11 @@ dependencies {
   ) {
     exclude(group = "org.jetbrains.kotlin")
   }
+  implementation(libs.detekt.gradle)
+  implementation(libs.dokka.gradle)
+  implementation(libs.johnrengelman.shadowJar)
+  implementation(libs.kotlinx.binaryCompatibility)
+  implementation(libs.rickBusarow.kgx)
 
   implementation(project(":artifacts"))
   implementation(project(":core"))
