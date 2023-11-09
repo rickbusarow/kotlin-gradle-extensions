@@ -35,10 +35,9 @@ import java.io.File
  * @see resolveInParent for a version which throws if nothing is resolved
  * @since 0.1.0
  */
-fun File.resolveInParentOrNull(relativePath: String): File? {
-  return resolve(relativePath).existsOrNull()
+fun File.resolveInParentOrNull(relativePath: String): File? =
+  resolve(relativePath).existsOrNull()
     ?: parentFile?.resolveInParentOrNull(relativePath)
-}
 
 /**
  * Non-nullable version of [resolveInParentOrNull]
@@ -47,13 +46,12 @@ fun File.resolveInParentOrNull(relativePath: String): File? {
  * @since 0.1.0
  * @throws IllegalArgumentException if a file cannot be resolved
  */
-fun File.resolveInParent(relativePath: String): File {
-  return requireNotNull(resolveInParentOrNull(relativePath)) {
+fun File.resolveInParent(relativePath: String): File =
+  requireNotNull(resolveInParentOrNull(relativePath)) {
     "Could not resolve a file with relative path in any parent paths.\n" +
       "\t       relative path: $relativePath\n" +
       "\tstarting parent path: $absolutePath"
   }.normalize()
-}
 
 /**
  * @return the receiver [File] if it exists in the file system, otherwise null

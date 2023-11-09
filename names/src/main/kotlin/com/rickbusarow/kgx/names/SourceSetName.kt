@@ -284,39 +284,36 @@ value class SourceSetName(
      *   `compileOnly`,`compileOnlyDebug`, or `compileOnlyTest`
      * @since 0.1.6
      */
-    fun SourceSetName.compileOnlyConfig(): ConfigurationName {
-      return if (isMain()) {
+    fun SourceSetName.compileOnlyConfig(): ConfigurationName =
+      if (isMain()) {
         ConfigurationName.compileOnly
       } else {
         addSuffix(ConfigurationName.compileOnly)
       }
-    }
 
     /**
      * @return the 'implementation' name for this source set, such as
      *   `implementation`, `debugImplementation`, or `commonMainImplementation`
      * @since 0.1.6
      */
-    fun SourceSetName.implementationConfig(): ConfigurationName {
-      return if (isMain()) {
+    fun SourceSetName.implementationConfig(): ConfigurationName =
+      if (isMain()) {
         ConfigurationName.implementation
       } else {
         addSuffix(ConfigurationName.implementation)
       }
-    }
 
     /**
      * @return the 'runtimeOnly' name for this source set, such as
      *   `runtimeOnly`, `runtimeOnlyTest`, or `runtimeOnlyAndroidTest`
      * @since 0.1.6
      */
-    fun SourceSetName.runtimeOnlyConfig(): ConfigurationName {
-      return if (isMain()) {
+    fun SourceSetName.runtimeOnlyConfig(): ConfigurationName =
+      if (isMain()) {
         ConfigurationName.runtimeOnly
       } else {
         addSuffix(ConfigurationName.runtimeOnly)
       }
-    }
 
     /**
      * @return the 'kapt' name for this source set, such as `kapt`, `kaptTest`, or `kaptAndroidTest`
