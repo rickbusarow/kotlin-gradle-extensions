@@ -51,9 +51,8 @@ fun ObjectFactory.fileTree(
  * @param parameters any constructor parameters that cannot be injected by Gradle
  * @throws org.gradle.api.reflect.ObjectInstantiationException if the object cannot be instantiated.
  */
-inline fun <reified T : Any> ObjectFactory.newInstance(vararg parameters: Any?): T {
-  return newInstance(T::class.java, *parameters)
-}
+inline fun <reified T : Any> ObjectFactory.newInstance(vararg parameters: Any?): T =
+  newInstance(T::class.java, *parameters)
 
 /**
  * alias for `ReadOnlyProperty<Any?, T>`
@@ -128,14 +127,14 @@ inline fun <reified K, reified V> ObjectFactory.mapProperty(
 inline fun <reified T : Any> ObjectFactory.property(): Property<T> = property(T::class.java)
 
 /** Lazy initializer delegate for a [Property<T>][Property]. */
-inline fun <reified T : Any> ObjectFactory.propertyDelegate(): LazyGradleProperty<Property<T>> {
-  return propertyDelegateInternal { property(T::class.java) }
-}
+inline fun <reified T : Any> ObjectFactory.propertyDelegate(): LazyGradleProperty<Property<T>> =
+  propertyDelegateInternal {
+    property(T::class.java)
+  }
 
 /** Just a reified version of [ObjectFactory.property]. */
-inline fun <reified T : Any> ObjectFactory.propertyOf(value: T): Property<T> {
-  return property(T::class.java).convention(value)
-}
+inline fun <reified T : Any> ObjectFactory.propertyOf(value: T): Property<T> =
+  property(T::class.java).convention(value)
 
 /** Lazy initializer delegate for a [Property<T>][Property]. */
 inline fun <reified T : Any> ObjectFactory.propertyDelegate(

@@ -99,13 +99,12 @@ fun <T : Task> TaskCollection<T>.dependOn(vararg objects: Any): TaskCollection<T
  * @return The original task provider for chaining.
  * @since 0.1.0
  */
-fun <T : Task> TaskProvider<T>.dependsOn(vararg objects: Any): TaskProvider<T> {
-  return also { provider ->
+fun <T : Task> TaskProvider<T>.dependsOn(vararg objects: Any): TaskProvider<T> =
+  also { provider ->
     provider.configure { task ->
       task.dependsOn(*objects)
     }
   }
-}
 
 /**
  * Specifies that all tasks in this collection must run after the given objects.
@@ -114,11 +113,10 @@ fun <T : Task> TaskProvider<T>.dependsOn(vararg objects: Any): TaskProvider<T> {
  * @return The original collection for chaining.
  * @since 0.1.0
  */
-fun <T : Task> TaskCollection<T>.mustRunAfter(vararg objects: Any): TaskCollection<T> {
-  return also { taskCollection ->
+fun <T : Task> TaskCollection<T>.mustRunAfter(vararg objects: Any): TaskCollection<T> =
+  also { taskCollection ->
     taskCollection.configureEach { task -> task.mustRunAfter(*objects) }
   }
-}
 
 /**
  * Specifies that the task wrapped by this provider must run after the given objects.
@@ -127,13 +125,12 @@ fun <T : Task> TaskCollection<T>.mustRunAfter(vararg objects: Any): TaskCollecti
  * @return The original task provider for chaining.
  * @since 0.1.0
  */
-fun <T : Task> TaskProvider<T>.mustRunAfter(vararg objects: Any): TaskProvider<T> {
-  return also { provider ->
+fun <T : Task> TaskProvider<T>.mustRunAfter(vararg objects: Any): TaskProvider<T> =
+  also { provider ->
     provider.configure { task ->
       task.mustRunAfter(*objects)
     }
   }
-}
 
 /**
  * Returns a collection containing the objects in this collection of the given
