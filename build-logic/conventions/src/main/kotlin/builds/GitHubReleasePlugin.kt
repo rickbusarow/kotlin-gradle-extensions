@@ -57,10 +57,14 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
 
         val versionHeaderRegex = """## \[?$SEMVER_REGEX]?(?: .*)?""".toRegex()
 
-        val split = target.file("CHANGELOG.md").readLines()
-          .splitInclusive { versionHeaderRegex.matches(it) }
+        val split =
+          target
+            .file("CHANGELOG.md")
+            .readLines()
+            .splitInclusive { versionHeaderRegex.matches(it) }
 
-        split.singleOrNull { it[0].startsWith("## [${target.VERSION_NAME}]") }
+        split
+          .singleOrNull { it[0].startsWith("## [${target.VERSION_NAME}]") }
           ?.joinToString("\n") { it.trim() }
           ?.trim()
           ?.also { body ->

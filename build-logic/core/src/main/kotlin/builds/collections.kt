@@ -20,16 +20,16 @@ inline fun <E> List<E>.splitInclusive(predicate: (E) -> Boolean): List<List<E>> 
 
   val toSplit = this@splitInclusive
 
-  val indices = buildList {
-    add(0)
+  val indices =
+    buildList {
+      add(0)
 
-    for (index in (1 until toSplit.lastIndex - 1)) {
-      if (predicate(toSplit[index])) {
-        add(index)
+      for (index in (1 until toSplit.lastIndex - 1)) {
+        if (predicate(toSplit[index])) {
+          add(index)
+        }
       }
-    }
-  }
-    .distinct()
+    }.distinct()
 
   return buildList {
     for ((i, fromIndex) in indices.withIndex()) {

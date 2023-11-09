@@ -79,15 +79,14 @@ fun File.isDirectoryWithFiles(childPredicate: (File) -> Boolean = { it.exists() 
  *
  * @since 0.1.0
  */
-fun File.isOrphanedBuildOrGradleDir(): Boolean {
-  return when {
+fun File.isOrphanedBuildOrGradleDir(): Boolean =
+  when {
     !isDirectory -> false
     name != "build" && name != ".gradle" -> false
     !exists() -> false
     parentFile!!.hasGradleProjectFiles() -> false
     else -> true
   }
-}
 
 /**
  * Returns true if the receiver [File] is `/gradle.properties`, but
@@ -99,14 +98,13 @@ fun File.isOrphanedBuildOrGradleDir(): Boolean {
  *
  * @since 0.1.0
  */
-fun File.isOrphanedGradleProperties(): Boolean {
-  return when {
+fun File.isOrphanedGradleProperties(): Boolean =
+  when {
     !isFile -> false
     name != "gradle.properties" -> false
     parentFile!!.hasGradleProjectFiles() -> false
     else -> true
   }
-}
 
 /**
  * Returns true if the receiver [File] is a directory which contains at least one of
@@ -114,8 +112,8 @@ fun File.isOrphanedGradleProperties(): Boolean {
  *
  * @since 0.1.0
  */
-fun File.hasGradleProjectFiles(): Boolean {
-  return when {
+fun File.hasGradleProjectFiles(): Boolean =
+  when {
     !isDirectory -> false
     resolve("settings.gradle.kts").exists() -> true
     resolve("settings.gradle").exists() -> true
@@ -123,4 +121,3 @@ fun File.hasGradleProjectFiles(): Boolean {
     resolve("build.gradle").exists() -> true
     else -> false
   }
-}

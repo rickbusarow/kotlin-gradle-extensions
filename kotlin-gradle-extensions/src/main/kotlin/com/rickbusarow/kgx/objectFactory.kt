@@ -140,9 +140,7 @@ inline fun <reified T : Any> ObjectFactory.propertyOf(value: T): Property<T> {
 /** Lazy initializer delegate for a [Property<T>][Property]. */
 inline fun <reified T : Any> ObjectFactory.propertyDelegate(
   crossinline convention: () -> T
-): LazyGradleProperty<Property<T>> {
-  return propertyDelegateInternal { property(convention) }
-}
+): LazyGradleProperty<Property<T>> = propertyDelegateInternal { property(convention) }
 
 /** Just a reified version of [ObjectFactory.property]. */
 inline fun <reified T : Any> ObjectFactory.property(crossinline convention: () -> T): Property<T> =
@@ -151,9 +149,10 @@ inline fun <reified T : Any> ObjectFactory.property(crossinline convention: () -
 /** Lazy initializer delegate for a [Property<T>][Property]. */
 inline fun <reified T : Any> ObjectFactory.propertyDelegate(
   convention: Provider<out T>
-): LazyGradleProperty<Property<T>> {
-  return propertyDelegateInternal { property(T::class.java).convention(convention) }
-}
+): LazyGradleProperty<Property<T>> =
+  propertyDelegateInternal {
+    property(T::class.java).convention(convention)
+  }
 
 /** Just a reified version of [ObjectFactory.property]. */
 inline fun <reified T : Any> ObjectFactory.property(convention: Provider<out T>): Property<T> =
@@ -168,10 +167,13 @@ internal fun <T> propertyDelegateInternal(
 internal class PropertyDelegateInternal<T>(
   private val defaultValueProvider: () -> T
 ) : ReadOnlyProperty<Any?, T> {
-
   private var backing: T? = null
 
-  override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
-    return backing ?: defaultValueProvider().also { backing = it }
-  }
+  override operator fun getValue(
+    thisRef: Any?,
+    property: KProperty<*>
+  ): T =
+    backing ?: defaultValueProvider().also {
+      backing = it
+    }
 }

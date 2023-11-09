@@ -14,9 +14,11 @@
  */
 
 pluginManagement {
-  val allowMavenLocal = providers
-    .gradleProperty("kgx.allow-maven-local")
-    .orNull.toBoolean()
+  val allowMavenLocal =
+    providers
+      .gradleProperty("kgx.allow-maven-local")
+      .orNull
+      .toBoolean()
 
   repositories {
     if (allowMavenLocal) {
@@ -29,9 +31,11 @@ pluginManagement {
   }
 }
 
-val allowMavenLocal = providers
-  .gradleProperty("kgx.allow-maven-local")
-  .orNull.toBoolean()
+val allowMavenLocal =
+  providers
+    .gradleProperty("kgx.allow-maven-local")
+    .orNull
+    .toBoolean()
 
 dependencyResolutionManagement {
   @Suppress("UnstableApiUsage")

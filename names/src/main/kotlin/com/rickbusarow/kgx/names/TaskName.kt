@@ -33,11 +33,9 @@ value class TaskName(
   override val value: String
 ) : DomainObjectName<Task>,
   Comparable<TaskName> {
-
   override fun compareTo(other: TaskName): Int = value.compareTo(other.value)
 
   companion object {
-
     /**
      * @see LifecycleBasePlugin.ASSEMBLE_TASK_NAME
      * @since 0.1.6
@@ -68,9 +66,10 @@ value class TaskName(
      *
      * @since 0.1.7
      */
-    val compileJavaWithJavac: TaskName = TaskName(
-      "compileJavaWithJavac"
-    )
+    val compileJavaWithJavac: TaskName =
+      TaskName(
+        "compileJavaWithJavac"
+      )
 
     /**
      * `compileJava`
@@ -125,44 +124,48 @@ value class TaskName(
      *
      * @since 0.1.7
      */
-    fun SourceSetName.testUnitTest(): TaskName = if (isMain()) {
-      testUnitTest
-    } else {
-      "${addPrefix("test")}UnitTest".asTaskName()
-    }
+    fun SourceSetName.testUnitTest(): TaskName =
+      if (isMain()) {
+        testUnitTest
+      } else {
+        "${addPrefix("test")}UnitTest".asTaskName()
+      }
 
     /**
      * ex: `compileKotlin` or `compileDebugKotlin`
      *
      * @since 0.1.7
      */
-    fun SourceSetName.compileKotlin(): TaskName = if (isMain()) {
-      compileKotlin
-    } else {
-      "${addPrefix("compile")}Kotlin".asTaskName()
-    }
+    fun SourceSetName.compileKotlin(): TaskName =
+      if (isMain()) {
+        compileKotlin
+      } else {
+        "${addPrefix("compile")}Kotlin".asTaskName()
+      }
 
     /**
      * ex: `compileJava` or `compileDebugJava`
      *
      * @since 0.1.7
      */
-    fun SourceSetName.compileJava(): TaskName = if (isMain()) {
-      compileJava
-    } else {
-      "${addPrefix("compile")}Java".asTaskName()
-    }
+    fun SourceSetName.compileJava(): TaskName =
+      if (isMain()) {
+        compileJava
+      } else {
+        "${addPrefix("compile")}Java".asTaskName()
+      }
 
     /**
      * ex: `compileDebugJavaWithJavac`
      *
      * @since 0.1.7
      */
-    fun SourceSetName.compileJavaWithJavac(): TaskName = if (isMain()) {
-      compileJavaWithJavac
-    } else {
-      "${addPrefix("compile")}JavaWithJavac".asTaskName()
-    }
+    fun SourceSetName.compileJavaWithJavac(): TaskName =
+      if (isMain()) {
+        compileJavaWithJavac
+      } else {
+        "${addPrefix("compile")}JavaWithJavac".asTaskName()
+      }
 
     /**
      * Creates a [TaskName] from the receiver string.
@@ -184,8 +187,9 @@ value class TaskName(
      * @since 0.1.6
      */
     @Suppress("MemberNameEqualsClassName")
-    fun taskName(): ReadOnlyProperty<Any?, TaskName> {
-      return DomainObjectName.lazyName { name -> TaskName(name) }
-    }
+    fun taskName(): ReadOnlyProperty<Any?, TaskName> =
+      DomainObjectName.lazyName { name ->
+        TaskName(name)
+      }
   }
 }

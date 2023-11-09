@@ -132,11 +132,12 @@ inline fun <reified S : Any> DomainObjectCollection<in S>.withType(): DomainObje
 fun <T> NamedDomainObjectContainer<T>.registerOnce(
   name: String,
   configurationAction: Action<in T> = Actions.doNothing()
-): NamedDomainObjectProvider<T> = if (names.contains(name)) {
-  named(name, configurationAction)
-} else {
-  register(name, configurationAction)
-}
+): NamedDomainObjectProvider<T> =
+  if (names.contains(name)) {
+    named(name, configurationAction)
+  } else {
+    register(name, configurationAction)
+  }
 
 /**
  * Registers or retrieves a [S] by name and type, then configures it.
@@ -149,11 +150,12 @@ fun <T> NamedDomainObjectContainer<T>.registerOnce(
 inline fun <reified S : Any> NamedDomainObjectContainer<S>.registerOnce(
   name: DomainObjectName<S>,
   configurationAction: Action<in S> = Actions.doNothing()
-): NamedDomainObjectProvider<S> = if (names.contains(name.value)) {
-  named(name, configurationAction)
-} else {
-  register(name, configurationAction)
-}
+): NamedDomainObjectProvider<S> =
+  if (names.contains(name.value)) {
+    named(name, configurationAction)
+  } else {
+    register(name, configurationAction)
+  }
 
 /**
  * Registers a new object [S] and configures it.

@@ -27,35 +27,39 @@ import javax.inject.Inject
  *
  * @since 0.1.0
  */
-open class ArtifactsDumpTask @Inject constructor(
-  projectLayout: ProjectLayout
-) : ArtifactsTask(projectLayout) {
-
-  init {
-    description = "Parses the Maven artifact parameters for all modules " +
-      "and writes them to artifacts.json"
-    group = "other"
-  }
-
-  @TaskAction
-  fun run() {
-
-    val ignored = baselineArtifacts.filter { it.isIgnored() }
-
-    if (ignored.isNotEmpty()) {
-
-      logger.error(ignoredArtifactsMessage(ignored).colorized(RED))
-      throw GradleException("The artifacts baseline should only be updated from a macOS machine.")
+open class ArtifactsDumpTask
+  @Inject
+  constructor(
+    projectLayout: ProjectLayout
+  ) : ArtifactsTask(projectLayout) {
+    init {
+      description = "Parses the Maven artifact parameters for all modules " +
+        "and writes them to artifacts.json"
+      group = "other"
     }
 
-    val artifactsChanged = baselineArtifacts.sorted() != currentList.sorted()
+    @TaskAction
+    fun run() {
 
-    if (artifactsChanged && currentList.isNotEmpty()) {
-      val json = moshiAdapter.indent("  ").toJson(currentList)
-        // Moshi doesn't add a newline to the end, which GitHub's PR UI doesn't like
-        .plus("\n")
+      val ignored = baselineArtifacts.filter { it.isIgnored() }
 
-      reportFile.asFile.writeText(json)
+      if (ignored.isNotEmpty()) {
+
+        logger.error(ignoredArtifactsMessage(ignored).colorized(RED))
+        throw GradleException("The artifacts baseline should only be updated from a macOS machine.")
+      }
+
+      val artifactsChanged = baselineArtifacts.sorted() != currentList.sorted()
+
+      if (artifactsChanged && currentList.isNotEmpty()) {
+        val json =
+          moshiAdapter
+            .indent("  ")
+            .toJson(currentList)
+            // Moshi doesn't add a newline to the end, which GitHub's PR UI doesn't like
+            .plus("\n")
+
+        reportFile.asFile.writeText(json)
+      }
     }
   }
-}

@@ -19,7 +19,6 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
 class ConfigurationNameTest {
-
   @Test
   fun `toSourceSetName should return correct SourceSetName`() {
     val configName1 = ConfigurationName("api")

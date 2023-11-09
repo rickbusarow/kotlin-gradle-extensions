@@ -79,8 +79,7 @@ fun VersionCatalog.version(alias: String): String {
   return findVersion(alias)
     .orElseThrow {
       GradleException("No version was found in the catalog for the alias '$alias'.")
-    }
-    .requiredVersion
+    }.requiredVersion
 }
 
 /**

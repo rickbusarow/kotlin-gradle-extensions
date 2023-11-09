@@ -97,7 +97,13 @@ dependencies {
   implementation(libs.dropbox.dependencyGuard)
   implementation(libs.johnrengelman.shadowJar)
   implementation(libs.kotlin.gradle.plugin)
-  implementation(libs.kotlin.gradle.plugin.api)
+  implementation(
+    libs
+      .kotlin
+      .gradle
+      .plugin
+      .api
+  )
   implementation(libs.kotlin.reflect)
   implementation(libs.kotlinx.binaryCompatibility)
   implementation(libs.poko.gradle.plugin)

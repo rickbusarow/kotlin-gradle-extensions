@@ -72,14 +72,19 @@ fun Project.editorConfigKotlinProperties(): Map<String, String> {
  *
  * @since 0.1.0
  */
-fun editorConfigKotlinProperties(editorConfigFile: File, rootDir: File): Map<String, String> {
+fun editorConfigKotlinProperties(
+  editorConfigFile: File,
+  rootDir: File
+): Map<String, String> {
 
   val myCache = Caches.none()
-  val propService = ResourcePropertiesService.builder()
-    .cache(myCache)
-    .defaultEditorConfig(editorConfig(editorConfigFile))
-    .rootDirectory(rootDir.toResourcePaths())
-    .build()
+  val propService =
+    ResourcePropertiesService
+      .builder()
+      .cache(myCache)
+      .defaultEditorConfig(editorConfig(editorConfigFile))
+      .rootDirectory(rootDir.toResourcePaths())
+      .build()
 
   return propService
     .queryProperties(rootDir.resolve("foo.kt").toResource())
@@ -89,4 +94,5 @@ fun editorConfigKotlinProperties(editorConfigFile: File, rootDir: File): Map<Str
 }
 
 private fun File.toResource() = Resources.ofPath(toPath(), StandardCharsets.UTF_8)
+
 private fun File.toResourcePaths() = ResourcePaths.ofPath(toPath(), StandardCharsets.UTF_8)

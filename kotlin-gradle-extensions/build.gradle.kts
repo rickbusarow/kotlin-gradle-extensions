@@ -19,7 +19,14 @@ import com.rickbusarow.kgx.dependsOn
 
 plugins {
   id("module")
-  id(libs.plugins.integration.test.get().pluginId)
+  id(
+    libs
+      .plugins
+      .integration
+      .test
+      .get()
+      .pluginId
+  )
   alias(libs.plugins.buildconfig)
   idea
 }
@@ -79,7 +86,13 @@ dependencies {
   compileOnly(gradleApi())
 
   compileOnly(libs.kotlin.gradle.plugin)
-  compileOnly(libs.kotlin.gradle.plugin.api)
+  compileOnly(
+    libs
+      .kotlin
+      .gradle
+      .plugin
+      .api
+  )
 
   integrationImplementation(gradleTestKit())
 

@@ -35,7 +35,6 @@ interface DomainObjectName<in S : Any> {
   val value: String
 
   companion object {
-
     /**
      * Returns an instance of [DomainObjectName] with the given [name], bound to the type of [S].
      *
@@ -54,10 +53,12 @@ interface DomainObjectName<in S : Any> {
       ) -> S
     ): ReadOnlyProperty<Any?, S> {
       return object : ReadOnlyProperty<Any?, S> {
-
         var name: S? = null
 
-        override fun getValue(thisRef: Any?, property: KProperty<*>): S {
+        override fun getValue(
+          thisRef: Any?,
+          property: KProperty<*>
+        ): S {
           if (name == null) {
             name = init(property.name)
           }

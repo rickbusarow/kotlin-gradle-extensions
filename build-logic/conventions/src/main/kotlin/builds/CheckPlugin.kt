@@ -23,25 +23,25 @@ import org.gradle.api.Project
 import org.gradle.language.base.plugins.LifecycleBasePlugin
 
 abstract class CheckPlugin : Plugin<Project> {
-
   override fun apply(target: Project) {
 
     target.plugins.applyOnce("base")
 
     @OptIn(EagerGradleApi::class)
-    val fix = target.tasks.register("fix", BuildLogicTask::class.java) { task ->
+    val fix =
+      target.tasks.register("fix", BuildLogicTask::class.java) { task ->
 
-      task.group = "Verification"
-      task.description = "Runs all auto-fix linting tasks"
+        task.group = "Verification"
+        task.description = "Runs all auto-fix linting tasks"
 
-      task.dependsOn(target.rootProject.tasks.matchingName("artifactsDump"))
-      task.dependsOn(target.rootProject.tasks.matchingName("spotlessApply"))
-      task.dependsOn(target.tasks.matchingName("apiDump"))
-      task.dependsOn(target.tasks.matchingName("dependencyGuardBaseline"))
-      task.dependsOn(target.tasks.matchingName("ktlintFormat"))
-      task.dependsOn(target.tasks.matchingName("deleteEmptyDirs"))
-      task.dependsOn(target.tasks.matchingName("moduleCheckAuto"))
-    }
+        task.dependsOn(target.rootProject.tasks.matchingName("artifactsDump"))
+        task.dependsOn(target.rootProject.tasks.matchingName("spotlessApply"))
+        task.dependsOn(target.tasks.matchingName("apiDump"))
+        task.dependsOn(target.tasks.matchingName("dependencyGuardBaseline"))
+        task.dependsOn(target.tasks.matchingName("ktlintFormat"))
+        task.dependsOn(target.tasks.matchingName("deleteEmptyDirs"))
+        task.dependsOn(target.tasks.matchingName("moduleCheckAuto"))
+      }
 
     // This is a convenience task which applies all available fixes before running `check`. Each
     // of the fixable linters use `mustRunAfter` to ensure that their auto-fix task runs before their

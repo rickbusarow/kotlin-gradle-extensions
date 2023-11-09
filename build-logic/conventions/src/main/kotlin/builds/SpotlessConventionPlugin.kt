@@ -110,26 +110,24 @@ abstract class SpotlessConventionPlugin : Plugin<Project> {
     }
   }
 
-  private fun ConfigurableFileTree.commonExcludes(target: Project): PatternFilterable {
-    return exclude(
+  private fun ConfigurableFileTree.commonExcludes(target: Project): PatternFilterable =
+    exclude(
       target.subprojects.flatMap { subproject ->
         listOf(
           "${subproject.file("api")}/**",
           "${subproject.file("dependencies")}/**"
         )
       }
+    ).exclude(
+      "**/.docusaurus/**",
+      "**/build/**",
+      "**/dokka-archive/**",
+      "**/node_modules/**",
+      "website/static/api/**",
+      "artifacts.json",
+      ".gradle/**",
+      ".git/**"
     )
-      .exclude(
-        "**/.docusaurus/**",
-        "**/build/**",
-        "**/dokka-archive/**",
-        "**/node_modules/**",
-        "website/static/api/**",
-        "artifacts.json",
-        ".gradle/**",
-        ".git/**"
-      )
-  }
 
   private inline fun FormatExtension.target(
     target: Project,

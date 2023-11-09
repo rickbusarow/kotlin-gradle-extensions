@@ -117,9 +117,8 @@ inline fun <reified T : Task> Project.allProjectsTasksMatchingNameWithType(
  * @since 0.1.0
  */
 @EagerGradleApi
-fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskCollection<Task>> {
-  return subprojects.map { proj -> proj.tasks.matchingName(taskName) }
-}
+fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskCollection<Task>> =
+  subprojects.map { proj -> proj.tasks.matchingName(taskName) }
 
 /**
  * Finds all tasks named [taskName] in this project's subprojects.
@@ -130,9 +129,7 @@ fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskCollection<
 @EagerGradleApi
 inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(
   taskName: String
-): List<TaskCollection<T>> {
-  return subprojects.map { proj -> proj.tasks.matchingNameWithType(taskName) }
-}
+): List<TaskCollection<T>> = subprojects.map { proj -> proj.tasks.matchingNameWithType(taskName) }
 
 /**
  * shorthand for `extensions.getByType(JavaPluginExtension::class.java)`
@@ -156,5 +153,7 @@ val Project.javaExtension: JavaPluginExtension
  *
  * @since 0.1.5
  */
-fun Project.projectDependency(path: String, configuration: String? = null): ProjectDependency =
-  dependencies.project(path, configuration)
+fun Project.projectDependency(
+  path: String,
+  configuration: String? = null
+): ProjectDependency = dependencies.project(path, configuration)

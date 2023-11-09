@@ -46,6 +46,8 @@ doks {
 }
 
 subprojects.map {
-  it.tasks.withType(KotlinCompile::class.java)
+  it
+    .tasks
+    .withType(KotlinCompile::class.java)
     .mustRunAfter(tasks.withType(DoksTask::class.java))
 }

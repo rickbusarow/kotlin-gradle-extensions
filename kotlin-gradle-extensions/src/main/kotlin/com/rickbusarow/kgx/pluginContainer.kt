@@ -19,7 +19,10 @@ import org.gradle.api.Plugin
 import org.gradle.api.plugins.PluginContainer
 
 /** @since 0.1.0 */
-inline fun PluginContainer.withAny(vararg ids: String, crossinline action: (Plugin<*>) -> Unit) {
+inline fun PluginContainer.withAny(
+  vararg ids: String,
+  crossinline action: (Plugin<*>) -> Unit
+) {
   for (id in ids) {
     withId(id) { action(it) }
   }

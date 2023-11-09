@@ -33,7 +33,6 @@ import org.gradle.api.tasks.OutputFile
 abstract class ArtifactsTask(
   private val projectLayout: ProjectLayout
 ) : DefaultTask() {
-
   /**
    * This file contains all definitions for published artifacts.
    *
@@ -61,12 +60,14 @@ abstract class ArtifactsTask(
   @get:Internal
   protected val moshiAdapter: JsonAdapter<List<ArtifactConfig>> by lazy {
 
-    val type = Types.newParameterizedType(
-      List::class.java,
-      ArtifactConfig::class.java
-    )
+    val type =
+      Types.newParameterizedType(
+        List::class.java,
+        ArtifactConfig::class.java
+      )
 
-    Moshi.Builder()
+    Moshi
+      .Builder()
       .build()
       .adapter(type)
   }
@@ -78,62 +79,64 @@ abstract class ArtifactsTask(
         // If the file doesn't exist, there may not be any published artifacts.
         // Just pass in an empty array so that we're not forced to create an empty file.
         reportFile.asFile.existsOrNull()?.readText() ?: "[]"
-      )
-      .orEmpty()
+      ).orEmpty()
   }
 
   private fun Project.createArtifactList(): List<ArtifactConfig> {
 
-    val map = subprojects
-      .flatMap { sub ->
-        sub.extensions.findByType(PublishingExtension::class.java)
-          ?.publications
-          ?.filterIsInstance<MavenPublication>()
-          .orEmpty()
-          .map { publication -> sub to publication }
-      }
-      .mapNotNull { (sub, publication) ->
+    val map =
+      subprojects
+        .flatMap { sub ->
+          sub
+            .extensions
+            .findByType(PublishingExtension::class.java)
+            ?.publications
+            ?.filterIsInstance<MavenPublication>()
+            .orEmpty()
+            .map { publication -> sub to publication }
+        }.mapNotNull { (sub, publication) ->
 
-        val group: String? = publication.groupId
-        val artifactId: String? = publication.artifactId
-        val pomDescription: String? = publication.pom.description.orNull
-        val packaging: String? = publication.pom.packaging
+          val group: String? = publication.groupId
+          val artifactId: String? = publication.artifactId
+          val pomDescription: String? = publication.pom.description.orNull
+          val packaging: String? = publication.pom.packaging
 
-        listOfNotNull(group, artifactId, pomDescription, packaging)
-          .also { allProperties ->
+          listOfNotNull(group, artifactId, pomDescription, packaging)
+            .also { allProperties ->
 
-            require(allProperties.isEmpty() || allProperties.size == 4) {
-              "expected all properties to be null or none to be null for project `${sub.path}, " +
-                "but got:\n" +
-                "group : $group\n" +
-                "artifactId : $artifactId\n" +
-                "pom description : $pomDescription\n" +
-                "packaging : $packaging"
+              require(allProperties.isEmpty() || allProperties.size == 4) {
+                "expected all properties to be null or none to be null for project `${sub.path}, " +
+                  "but got:\n" +
+                  "group : $group\n" +
+                  "artifactId : $artifactId\n" +
+                  "pom description : $pomDescription\n" +
+                  "packaging : $packaging"
+              }
+            }.takeIf { it.size == 4 }
+            ?.let { (group, artifactId, pomDescription, packaging) ->
+
+              // TODO Try to find something closer to the bare metal.  Ultimately, what matters
+              //  is what's written in the .module file. The JavaPluginExtension doesn't necessarily
+              //  represent what's in the .module file. If setting `JavaCompile.options.release`, that
+              //  will change what's in .module but that won't be reflected upstream in the extension.
+              val javaVersion =
+                sub
+                  .extensions
+                  .getByType(JavaPluginExtension::class.java)
+                  .sourceCompatibility
+                  .toString()
+
+              ArtifactConfig(
+                gradlePath = sub.path,
+                group = group,
+                artifactId = artifactId,
+                description = pomDescription,
+                packaging = packaging,
+                javaVersion = javaVersion,
+                publicationName = publication.name
+              )
             }
-          }
-          .takeIf { it.size == 4 }
-          ?.let { (group, artifactId, pomDescription, packaging) ->
-
-            // TODO Try to find something closer to the bare metal.  Ultimately, what matters
-            //  is what's written in the .module file. The JavaPluginExtension doesn't necessarily
-            //  represent what's in the .module file. If setting `JavaCompile.options.release`, that
-            //  will change what's in .module but that won't be reflected upstream in the extension.
-            val javaVersion = sub.extensions
-              .getByType(JavaPluginExtension::class.java)
-              .sourceCompatibility
-              .toString()
-
-            ArtifactConfig(
-              gradlePath = sub.path,
-              group = group,
-              artifactId = artifactId,
-              description = pomDescription,
-              packaging = packaging,
-              javaVersion = javaVersion,
-              publicationName = publication.name
-            )
-          }
-      }
+        }
 
     return map
   }
@@ -147,21 +150,22 @@ abstract class ArtifactsTask(
     return !inMacOS && publicationName.matches(macOnly)
   }
 
-  protected fun ignoredArtifactsMessage(ignored: List<ArtifactConfig>): String = buildString {
-    append("The existing artifacts file references artifacts which can only be created ")
-    append("from a computer running macOS, so they cannot be validated now ")
-    appendLine("(running ${System.getProperty("os.name")}).")
-    appendLine()
-    appendLine("\tThese artifacts cannot be checked:")
-    appendLine()
-    ignored.forEach {
-      appendLine(it.message())
+  protected fun ignoredArtifactsMessage(ignored: List<ArtifactConfig>): String =
+    buildString {
+      append("The existing artifacts file references artifacts which can only be created ")
+      append("from a computer running macOS, so they cannot be validated now ")
+      appendLine("(running ${System.getProperty("os.name")}).")
       appendLine()
+      appendLine("\tThese artifacts cannot be checked:")
+      appendLine()
+      ignored.forEach {
+        appendLine(it.message())
+        appendLine()
+      }
     }
-  }
 
-  protected fun ArtifactConfig.message(): String {
-    return """
+  protected fun ArtifactConfig.message(): String =
+    """
             |                     gradlePath  - $gradlePath
             |                          group  - $group
             |                     artifactId  - $artifactId
@@ -169,5 +173,4 @@ abstract class ArtifactsTask(
             |                      packaging  - $packaging
             |                publicationName  - $publicationName
     """.trimMargin()
-  }
 }

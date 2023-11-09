@@ -28,23 +28,29 @@ abstract class CleanPlugin : Plugin<Project> {
 
     target.plugins.applyOnce("base")
 
-    val deleteEmptyDirs = target.tasks
-      .register("deleteEmptyDirs", Delete::class.java) { task ->
-        task.description = "Delete all empty directories within a project."
-        task.doLast {
+    val deleteEmptyDirs =
+      target
+        .tasks
+        .register("deleteEmptyDirs", Delete::class.java) { task ->
+          task.description = "Delete all empty directories within a project."
+          task.doLast {
 
-          val subprojectDirs = target.subprojects
-            .map { it.projectDir.path }
+            val subprojectDirs =
+              target
+                .subprojects
+                .map { it.projectDir.path }
 
-          target.projectDir.walkBottomUp()
-            .filter { it.isDirectory }
-            .filterNot { dir -> subprojectDirs.any { dir.path.startsWith(it) } }
-            .filterNot { it.path.contains(".gradle") }
-            .filterNot { it.path.contains(".git") }
-            .filter { it.listFiles().isNullOrEmpty() }
-            .forEach { it.deleteRecursively() }
+            target
+              .projectDir
+              .walkBottomUp()
+              .filter { it.isDirectory }
+              .filterNot { dir -> subprojectDirs.any { dir.path.startsWith(it) } }
+              .filterNot { it.path.contains(".gradle") }
+              .filterNot { it.path.contains(".git") }
+              .filter { it.listFiles().isNullOrEmpty() }
+              .forEach { it.deleteRecursively() }
+          }
         }
-      }
 
     target.tasks.named(LifecycleBasePlugin.CLEAN_TASK_NAME) { task ->
       task.dependsOn(deleteEmptyDirs)
@@ -53,7 +59,9 @@ abstract class CleanPlugin : Plugin<Project> {
     target.tasks.register("cleanGradle", SourceTask::class.java) { task ->
       task.source(".gradle")
       task.doLast {
-        target.projectDir.walkBottomUp()
+        target
+          .projectDir
+          .walkBottomUp()
           .filter { it.isDirectory }
           .filter { it.path.contains(".gradle") }
           .all { it.deleteRecursively() }
@@ -65,25 +73,30 @@ abstract class CleanPlugin : Plugin<Project> {
     }
 
     if (target == target.rootProject) {
-      val deleteOrphanedProjectDirs = target.tasks
-        .register("deleteOrphanedProjectDirs", Delete::class.java) { task ->
+      val deleteOrphanedProjectDirs =
+        target
+          .tasks
+          .register("deleteOrphanedProjectDirs", Delete::class.java) { task ->
 
-          task.description = buildString {
-            append("Delete any 'build' or `.gradle` directory or `gradle.properties` file ")
-            append("without an associated Gradle project.")
+            task.description =
+              buildString {
+                append("Delete any 'build' or `.gradle` directory or `gradle.properties` file ")
+                append("without an associated Gradle project.")
+              }
+
+            task.doLast {
+
+              val websiteBuildDir = "${target.rootDir}/website/node_modules"
+
+              target
+                .projectDir
+                .walkBottomUp()
+                .filterNot { it.path.contains(".git") }
+                .filterNot { it.path.startsWith(websiteBuildDir) }
+                .filter { it.isOrphanedBuildOrGradleDir() || it.isOrphanedGradleProperties() }
+                .forEach(File::deleteRecursively)
+            }
           }
-
-          task.doLast {
-
-            val websiteBuildDir = "${target.rootDir}/website/node_modules"
-
-            target.projectDir.walkBottomUp()
-              .filterNot { it.path.contains(".git") }
-              .filterNot { it.path.startsWith(websiteBuildDir) }
-              .filter { it.isOrphanedBuildOrGradleDir() || it.isOrphanedGradleProperties() }
-              .forEach(File::deleteRecursively)
-          }
-        }
 
       deleteEmptyDirs.configure {
         it.dependsOn(deleteOrphanedProjectDirs)
