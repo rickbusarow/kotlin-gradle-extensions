@@ -45,40 +45,38 @@ abstract class GitHubReleasePlugin : Plugin<Project> {
       release.dryRun.set(false)
       release.draft.set(false)
 
-      release.tagName { target.VERSION_NAME }
-      release.releaseName { target.VERSION_NAME }
+      release.tagName.set(target.VERSION_NAME)
+      release.releaseName.set(target.VERSION_NAME)
 
-      release.body {
-        if (target.versionIsSnapshot) {
-          throw GradleException(
-            "do not create a GitHub release for a snapshot. (version is $${target.VERSION_NAME})."
-          )
-        }
+      release.body.set(
+        target.provider {
+          if (target.versionIsSnapshot) {
+            throw GradleException(
+              "Do not create a GitHub release for a snapshot. (version is $${target.VERSION_NAME})."
+            )
+          }
 
-        val versionHeaderRegex = """## \[?$SEMVER_REGEX]?(?: .*)?""".toRegex()
+          val versionHeaderRegex = """## \[?$SEMVER_REGEX]?(?: .*)?""".toRegex()
 
-        val split =
-          target
-            .file("CHANGELOG.md")
-            .readLines()
+          val split = target.file("CHANGELOG.md").readLines()
             .splitInclusive { versionHeaderRegex.matches(it) }
 
-        split
-          .singleOrNull { it[0].startsWith("## [${target.VERSION_NAME}]") }
-          ?.joinToString("\n") { it.trim() }
-          ?.trim()
-          ?.also { body ->
+          split.firstOrNull { it[0].startsWith("## [${target.VERSION_NAME}]") }
+            ?.joinToString("\n") { it.trim() }
+            ?.trim()
+            ?.also { body ->
 
-            if (body.isBlank()) {
-              throw GradleException("The changelog for this version cannot be blank.")
+              if (body.isBlank()) {
+                throw GradleException("The changelog for this version cannot be blank.")
+              }
             }
-          }
-          ?: throw GradleException(
-            "There should be exactly one Changelog header matching ${target.VERSION_NAME}, " +
-              "but there are ${split.size}:\n" +
-              split.map { it.first() }.joinToString("\n") { "\t$it" }
-          )
-      }
+            ?: throw GradleException(
+              "There should be exactly one Changelog header matching ${target.VERSION_NAME}, " +
+                "but there are ${split.size}:\n" +
+                split.map { it.first() }.joinToString("\n") { "\t$it" }
+            )
+        }
+      )
     }
   }
 }
