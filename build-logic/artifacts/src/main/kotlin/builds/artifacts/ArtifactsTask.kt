@@ -16,6 +16,7 @@
 package builds.artifacts
 
 import builds.existsOrNull
+import com.rickbusarow.kgx.existsOrNull
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
