@@ -2,6 +2,7 @@ name: CI
 
 on:
   pull_request:
+  merge_group:
   workflow_dispatch:
 
 env:
@@ -9,21 +10,25 @@ env:
   ubuntuGradleArgs: "-Dorg.gradle.jvmargs=-Xmx5g -Dfile.encoding=UTF-8 -XX:+UseParallelGC"
   windowsGradleArgs: "-Dorg.gradle.jvmargs=-Xmx4g -Dfile.encoding=UTF-8 -XX:+UseParallelGC"
 
-concurrency:
-  group: ci-${{ github.ref }}-${{ github.head_ref }}
-  cancel-in-progress: true
-
 jobs:
+  cancel-previous-runs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.12.0
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
   static-analysis:
     runs-on: ubuntu-latest
     steps:
       - name: check out with token (used by forks)
         uses: actions/checkout@v4
-        if: github.event.pull_request.head.repo.full_name != github.repository
+        if: github.event.repository.fork == true
 
       - name: check out with PAT (used by main repo)
         uses: actions/checkout@v4
-        if: github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event.repository.fork == false
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -33,37 +38,29 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: "zulu"
-          java-version: "11"
+          java-version: "17"
 
-      # If the versions matrix was just updated, commit and push those changes.
-      - name: commit dependency-guard baseline changes (used by main repo)
-        if: github.actor == 'renovate[bot]'
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: update versions matrix in yaml
-          commit_options: "--no-verify --signoff"
-
-      - name: dependency-guard check (used by everyone but Renovate)
-        if: github.actor != 'renovate[bot]'
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: dependencyGuard
-          cache-read-only: false --refresh-dependencies
-
-      - name: dependency-guard baseline (used by Renovate)
-        if: github.actor == 'renovate[bot]'
+      - name: dependency-guard baseline (used by main repo)
+        if: github.event.repository.fork == false
         uses: gradle/gradle-build-action@v2
         with:
           arguments: dependencyGuardBaseline
           cache-read-only: false --refresh-dependencies
 
-      # If dependency-guard generated changes, commit and push those changes.
+      # If the baseline was just updated, commit and push those changes.
       - name: commit dependency-guard baseline changes (used by main repo)
-        if: github.actor == 'renovate[bot]'
+        if: github.event.repository.fork == false
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: update dependency-guard baseline
+          commit_message: update versions matrix in yaml
           commit_options: "--no-verify --signoff"
+
+      - name: dependency-guard check (used by forks)
+        if: github.event.repository.fork == true
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: dependencyGuard
+          cache-read-only: false --refresh-dependencies
 
       - name: artifacts check
         uses: gradle/gradle-build-action@v2
@@ -83,14 +80,14 @@ jobs:
           arguments: detektReportMerge
           cache-read-only: false
 
-      - name: Upload SARIF to Github using the upload-sarif action
+      - name: Upload Detekt's SARIF report
         uses: github/codeql-action/upload-sarif@v2
-        if: success() || failure()
+        if: failure()
         with:
           sarif_file: build/reports/detekt/merged.sarif
 
       - name: KtLint format (used by main repo)
-        if: github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event.repository.fork == false
         uses: gradle/gradle-build-action@v2
         with:
           arguments: ktlintFormat
@@ -98,21 +95,21 @@ jobs:
 
       # If KtLint generated changes, commit and push those changes.
       - name: commit changes (used by main repo)
-        if: github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event.repository.fork == false
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Apply KtLint format
           commit_options: "--no-verify --signoff"
 
       - name: KtLint check (used by forks)
-        if: github.event.pull_request.head.repo.full_name != github.repository
+        if: github.event.repository.fork == true
         uses: gradle/gradle-build-action@v2
         with:
           arguments: ktlintCheck
           cache-read-only: false
 
       - name: Doks update (used by main repo)
-        if: github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event.repository.fork == false
         uses: gradle/gradle-build-action@v2
         with:
           arguments: doks
@@ -120,36 +117,36 @@ jobs:
 
       # If Doks generated changes, commit and push those changes.
       - name: commit changes (used by main repo)
-        if: github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event.repository.fork == false
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Apply Doks updates
           commit_options: "--no-verify --signoff"
 
       - name: Doks check (used by forks)
-        if: github.event.pull_request.head.repo.full_name != github.repository
+        if: github.event.repository.fork == true
         uses: gradle/gradle-build-action@v2
         with:
           arguments: doksCheck
           cache-read-only: false
 
       - name: ModuleCheck with auto-correct (used by main repo)
-        if: github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event.repository.fork == false
         uses: gradle/gradle-build-action@v2
         with:
           arguments: moduleCheckAuto
           cache-read-only: false
 
-      # If KtLint generated changes, commit and push those changes.
+      # If ModuleCheck generated changes, commit and push those changes.
       - name: commit changes (used by main repo)
-        if: github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event.repository.fork == false
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Apply ModuleCheck fixes
           commit_options: "--no-verify --signoff"
 
       - name: ModuleCheck check (used by forks)
-        if: github.event.pull_request.head.repo.full_name != github.repository
+        if: github.event.repository.fork == true
         uses: gradle/gradle-build-action@v2
         with:
           arguments: moduleCheck
@@ -166,7 +163,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: "zulu"
-          java-version: "11"
+          java-version: "17"
 
       - name: all tests
         uses: gradle/gradle-build-action@v2
@@ -200,7 +197,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: "zulu"
-          java-version: "11"
+          java-version: "17"
 
       - name: all integration tests
         uses: gradle/gradle-build-action@v2
@@ -234,7 +231,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: "zulu"
-          java-version: "11"
+          java-version: "17"
 
       - name: all tests
         uses: gradle/gradle-build-action@v2
