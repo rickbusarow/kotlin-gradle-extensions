@@ -29,6 +29,7 @@ ktlint-lib = "0.50.0"
 prettier = "2.8.4"
 prettier-plugin-sh = "0.12.8"
 rickBusarow-doks = "0.1.4"
+rickBusarow-github-release = "2.5.2"
 rickBusarow-kgx = "0.1.7"
 rickBusarow-ktlint = "0.2.1"
 rickBusarow-ktrules = "1.2.1"
@@ -41,7 +42,7 @@ vanniktech-publish = "0.25.3"
 buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig" }
 dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }
 doks = { id = "com.rickbusarow.doks", version.ref = "rickBusarow-doks" }
-github-release = { id = "com.github.breadmoirai.github-release", version.ref = "github-release" }
+github-release = { id = "com.rickbusarow.github-release-fork", version.ref = "rickBusarow-github-release" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "google-ksp" }
 integration-test = { id = "com.coditory.integration-test", version.ref = "integration-test" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -53,7 +54,7 @@ poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
 
 benManes-versions = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "benManes-versions" }
 
-breadmoirai-github-release = { module = "com.github.breadmoirai:github-release", version.ref = "github-release" }
+breadmoirai-github-release = { module = "com.rickbusarow.githubreleasepluginfork:github-release", version.ref = "rickBusarow-github-release" }
 
 buildconfig = { module = "com.github.gmazzo:gradle-buildconfig-plugin", version.ref = "buildconfig" }
 
