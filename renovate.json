@@ -11,14 +11,6 @@
         "^com\\.google\\.devtools\\.ksp:(?:[\\w-]+)$",
         "^com\\.square\\.anvil:(?:[\\w-]+)$"
       ]
-    },
-    {
-      "groupName": "KtLint things",
-      "matchPackagePatterns": [
-        "^com\\.pinterest\\.ktlint:(?:[\\w-]+)$",
-        "^com\\.rickbusarow\\.ktlint:(?:[\\w-]+)$",
-        "^com\\.rickbusarow\\.ktrules:(?:[\\w-]+)$"
-      ]
     }
   ],
   "labels": [
