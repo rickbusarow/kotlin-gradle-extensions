@@ -34,7 +34,7 @@ rickBusarow-kgx = "0.1.7"
 rickBusarow-ktlint = "0.2.1"
 rickBusarow-ktrules = "1.2.1"
 rickBusarow-moduleCheck = "0.12.5"
-square-kotlinPoet = "1.15.1"
+square-kotlinPoet = "1.15.2"
 square-moshi = "1.15.0"
 vanniktech-publish = "0.25.3"
 
