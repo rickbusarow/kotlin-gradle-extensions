@@ -22,6 +22,7 @@ import com.github.jengelman.gradle.plugins.shadow.internal.JavaJarExec
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.rickbusarow.kgx.checkProjectIsRoot
 import com.rickbusarow.kgx.dependsOn
+import com.rickbusarow.kgx.internal.InternalGradleApiAccess
 import com.rickbusarow.kgx.internal.allProjects
 import com.rickbusarow.kgx.undecoratedTypeName
 import com.rickbusarow.ktlint.KtLintTask
@@ -106,6 +107,7 @@ abstract class CompositePlugin : Plugin<Project> {
       // Loop through all included projects, looking for task types which are commonly invoked from the
       // root path.  For each of these, look for same-name tasks in the internal modules of included
       // builds, and make the root task depend upon those as well.
+      @OptIn(InternalGradleApiAccess::class)
       target
         .gradle
         .includedBuilds
