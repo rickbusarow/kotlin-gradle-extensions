@@ -17,15 +17,17 @@ package builds
 
 import com.rickbusarow.kgx.EagerGradleApi
 import com.rickbusarow.kgx.dependency
-import com.rickbusarow.kgx.isRealRootProject
 import com.rickbusarow.kgx.libsCatalog
 import com.rickbusarow.kgx.matchingName
+import com.rickbusarow.kgx.version
+import com.rickbusarow.ktlint.KtLintExtension
 import com.rickbusarow.ktlint.KtLintPlugin
 import com.rickbusarow.ktlint.KtLintTask
 import kotlinx.validation.KotlinApiBuildTask
 import kotlinx.validation.KotlinApiCompareTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import java.nio.file.Files
 import kotlin.text.RegexOption.MULTILINE
 
 abstract class KtLintConventionPlugin : Plugin<Project> {
@@ -36,6 +38,10 @@ abstract class KtLintConventionPlugin : Plugin<Project> {
     target
       .dependencies
       .add("ktlint", target.libsCatalog.dependency("rickBusarow-ktrules"))
+
+    target.extensions.configure(KtLintExtension::class.java) { ext ->
+      ext.ktlintVersion.set(target.libsCatalog.version("ktlint-lib"))
+    }
 
     @OptIn(EagerGradleApi::class)
     target.tasks.withType(KtLintTask::class.java).configureEach { task ->
@@ -49,21 +55,21 @@ abstract class KtLintConventionPlugin : Plugin<Project> {
       )
     }
 
-    if (target.isRealRootProject()) {
+    val editorconfig = target.file(".editorconfig")
+
+    if (!Files.isSymbolicLink(editorconfig.toPath())) {
 
       target.tasks.register("updateEditorConfigVersion") { task ->
 
-        val file = target.file(".editorconfig")
-
         task.doLast {
-          val oldText = file.readText()
+          val oldText = editorconfig.readText()
 
           val reg = """^(kt-rules_project_version *?= *?)\S*$""".toRegex(MULTILINE)
 
           val newText = oldText.replace(reg, "$1${target.VERSION_NAME}")
 
           if (newText != oldText) {
-            file.writeText(newText)
+            editorconfig.writeText(newText)
           }
         }
       }
