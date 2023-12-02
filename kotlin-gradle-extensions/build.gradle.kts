@@ -73,7 +73,6 @@ rootProject.tasks.named("prepareKotlinBuildScriptModel") {
 idea {
   module {
     java.sourceSets.integration {
-      @Suppress("UnstableApiUsage")
       this@module.testSources.from(allSource.srcDirs)
     }
   }
@@ -85,14 +84,8 @@ dependencies {
 
   compileOnly(gradleApi())
 
-  compileOnly(
-    libs
-      .kotlin
-      .gradle
-      .plugin
-      .api
-  )
   compileOnly(libs.kotlin.gradle.plugin)
+  compileOnly(libs.kotlin.gradle.plugin.api)
 
   integrationImplementation(gradleTestKit())
 
@@ -100,6 +93,8 @@ dependencies {
   testImplementation(libs.junit.jupiter)
   testImplementation(libs.junit.jupiter.api)
   testImplementation(libs.kotest.assertions.shared)
+  testImplementation(libs.kotlin.gradle.plugin)
+  testImplementation(libs.kotlin.gradle.plugin.api)
 }
 
 tasks.named("integrationTest").dependsOn("publishToMavenLocalNoDokka")

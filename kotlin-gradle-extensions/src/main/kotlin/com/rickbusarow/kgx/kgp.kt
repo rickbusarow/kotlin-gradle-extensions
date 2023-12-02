@@ -19,10 +19,30 @@ import com.rickbusarow.kgx.internal.ElementInfoAction
 import com.rickbusarow.kgx.internal.ElementInfoAction.ElementValue
 import com.rickbusarow.kgx.internal.InternalGradleApiAccess
 import com.rickbusarow.kgx.internal.whenElementKnown
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinSingleTargetExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
+
+/**
+ * Converts the integer value of a Java version to the Gradle DSL version of [JvmTarget].
+ *
+ * Note this is different from the Kotlin compiler's
+ * type at `org.jetbrains.kotlin.config.JvmTarget`.
+ *
+ * @throws NullPointerException if KGP doesn't have an enum defined for the provided [targetInt].
+ */
+fun JvmTarget.Companion.fromInt(targetInt: Int): JvmTarget = when (targetInt) {
+  @Suppress("MagicNumber")
+  8
+  -> JvmTarget.fromTarget("1.8")
+
+  else -> JvmTarget.fromTarget("$targetInt")
+}
+
+/** Converts the [JvmTarget] to its integer version number */
+fun JvmTarget.toInt(): Int = target.substringAfterLast('.').toInt()
 
 /**
  * Applies the provided [ElementInfoAction] to a Kotlin target when
