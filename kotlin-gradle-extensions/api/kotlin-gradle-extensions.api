@@ -79,8 +79,10 @@ public final class com/rickbusarow/kgx/IncludedKt {
 }
 
 public final class com/rickbusarow/kgx/KgpKt {
+	public static final fun fromInt (Lorg/jetbrains/kotlin/gradle/dsl/JvmTarget$Companion;I)Lorg/jetbrains/kotlin/gradle/dsl/JvmTarget;
 	public static final fun onTargetRegistered (Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;Lcom/rickbusarow/kgx/internal/ElementInfoAction;)V
 	public static final fun onTargetRegistered (Lorg/jetbrains/kotlin/gradle/dsl/KotlinProjectExtension;Lcom/rickbusarow/kgx/internal/ElementInfoAction;)V
+	public static final fun toInt (Lorg/jetbrains/kotlin/gradle/dsl/JvmTarget;)I
 }
 
 public final class com/rickbusarow/kgx/ObjectFactoryKt {
