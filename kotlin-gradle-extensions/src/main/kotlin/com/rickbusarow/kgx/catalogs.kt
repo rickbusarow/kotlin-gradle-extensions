@@ -23,6 +23,7 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.provider.Provider
 import org.gradle.plugin.use.PluginDependency
 import kotlin.LazyThreadSafetyMode.NONE
+import kotlin.properties.ReadOnlyProperty
 
 /**
  * shorthand for `extensions.getByType(VersionCatalogsExtension::class.java)`
@@ -36,7 +37,6 @@ val Project.catalogs: VersionCatalogsExtension
  * non-dsl version of `libs`
  *
  * ex:
- *
  * ```
  * val myCatalog = project.libsCatalog
  * ```
@@ -57,12 +57,40 @@ val Project.libsCatalog: VersionCatalog
  *
  * @since 0.1.0
  */
+@Deprecated("renamed to `library`", ReplaceWith("library(alias)"))
 fun VersionCatalog.dependency(alias: String): Provider<MinimalExternalModuleDependency> {
+  return library(alias)
+}
+
+/**
+ * non-dsl version of `libs._____`
+ *
+ * ex:
+ *
+ * ```
+ * "api"(project.libsCatalog.dependency("square-anvil-annotations"))
+ * ```
+ *
+ * @since 0.1.0
+ */
+fun VersionCatalog.library(alias: String): Provider<MinimalExternalModuleDependency> {
   return findLibrary(alias)
     .orElseThrow {
       GradleException("No dependency was found in the catalog for the alias '$alias'.")
     }
 }
+
+/**
+ * A property delegate for accessing a library from the
+ * receiver catalog, using the property name as the alias.
+ *
+ * ex:
+ * ```
+ * val `anvil-compiler` by project.libsCatalog.library
+ * ```
+ */
+val VersionCatalog.library: ReadOnlyProperty<Any?, Provider<MinimalExternalModuleDependency>>
+  get() = ReadOnlyProperty { _, prop -> library(prop.name) }
 
 /**
  * non-dsl version of `libs.versions._____.get()`
@@ -81,6 +109,18 @@ fun VersionCatalog.version(alias: String): String {
       GradleException("No version was found in the catalog for the alias '$alias'.")
     }.requiredVersion
 }
+
+/**
+ * A property delegate for accessing a version from the
+ * receiver catalog, using the property name as the alias.
+ *
+ * ex:
+ * ```
+ * val anvil by project.libsCatalog.version
+ * ```
+ */
+val VersionCatalog.version: ReadOnlyProperty<Any?, String>
+  get() = ReadOnlyProperty { _, prop -> version(prop.name) }
 
 /**
  * non-dsl version of `libs.versions._____.get().pluginId`
@@ -103,6 +143,18 @@ fun VersionCatalog.pluginId(alias: String): String {
     ?.pluginId
     ?: throw GradleException(errorMessage)
 }
+
+/**
+ * A property delegate for accessing a plugin ID from the
+ * receiver catalog, using the property name as the alias.
+ *
+ * ex:
+ * ```
+ * val anvil by project.libsCatalog.pluginId
+ * ```
+ */
+val VersionCatalog.pluginId: ReadOnlyProperty<Any?, String>
+  get() = ReadOnlyProperty { _, prop -> pluginId(prop.name) }
 
 /**
  * shorthand for `get().pluginId`

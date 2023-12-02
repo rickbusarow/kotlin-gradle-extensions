@@ -1,8 +1,12 @@
 public final class com/rickbusarow/kgx/CatalogsKt {
 	public static final fun dependency (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public static final fun getCatalogs (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/VersionCatalogsExtension;
+	public static final fun getLibrary (Lorg/gradle/api/artifacts/VersionCatalog;)Lkotlin/properties/ReadOnlyProperty;
 	public static final fun getLibsCatalog (Lorg/gradle/api/Project;)Lorg/gradle/api/artifacts/VersionCatalog;
+	public static final fun getPluginId (Lorg/gradle/api/artifacts/VersionCatalog;)Lkotlin/properties/ReadOnlyProperty;
 	public static final fun getPluginId (Lorg/gradle/api/provider/Provider;)Ljava/lang/String;
+	public static final fun getVersion (Lorg/gradle/api/artifacts/VersionCatalog;)Lkotlin/properties/ReadOnlyProperty;
+	public static final fun library (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
 	public static final fun pluginId (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Ljava/lang/String;
 	public static final fun version (Lorg/gradle/api/artifacts/VersionCatalog;Ljava/lang/String;)Ljava/lang/String;
 }
