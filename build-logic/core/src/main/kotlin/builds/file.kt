@@ -15,6 +15,7 @@
 
 package builds
 
+import com.rickbusarow.kgx.existsOrNull
 import java.io.File
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
@@ -56,12 +57,6 @@ fun File.resolveInParent(relativePath: String): File {
       "\tstarting parent path: $absolutePath"
   }.normalize()
 }
-
-/**
- * @return the receiver [File] if it exists in the file system, otherwise null
- * @since 0.1.0
- */
-fun File.existsOrNull(): File? = takeIf { it.exists() }
 
 /**
  * @return true if the receiver [File] is a directory with
