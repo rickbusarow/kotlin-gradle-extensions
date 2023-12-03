@@ -15,10 +15,10 @@
 
 package com.rickbusarow.kgx.names
 
-import com.rickbusarow.kgx.names.SourceSetName.Companion.apiConfig
+import com.rickbusarow.kgx.names.SourceSetName.Companion.addPrefix
+import com.rickbusarow.kgx.names.SourceSetName.Companion.addSuffix
 import com.rickbusarow.kgx.names.SourceSetName.Companion.asSourceSetName
-import com.rickbusarow.kgx.names.SourceSetName.Companion.implementationConfig
-import com.rickbusarow.kgx.names.SourceSetName.Companion.kaptConfig
+import com.rickbusarow.kgx.names.SourceSetName.Companion.isMain
 import com.rickbusarow.kgx.names.stdlib.capitalize
 import com.rickbusarow.kgx.names.stdlib.decapitalize
 import org.gradle.api.artifacts.Configuration
@@ -80,7 +80,7 @@ value class ConfigurationName(
    */
   fun nameWithoutSourceSet(): String {
     return when {
-      isKapt() -> ConfigurationName.kapt.value
+      isKapt() -> kapt.value
       else -> value.removePrefix(toSourceSetName().value)
     }
   }
@@ -429,5 +429,75 @@ value class ConfigurationName(
      * @since 0.1.6
      */
     fun String.asConfigurationName(): ConfigurationName = ConfigurationName(this)
+
+    /** @return the 'api' name for this source set, such as `api`, `debugApi`, or `commonMainApi` */
+    fun SourceSetName.apiConfig(): ConfigurationName =
+      if (isMain()) {
+        api
+      } else {
+        addSuffix(api)
+      }
+
+    /**
+     * @return the 'api' name for this source set, such as
+     *   `compileOnly`,`compileOnlyDebug`, or `compileOnlyTest`
+     */
+    fun SourceSetName.compileOnlyConfig(): ConfigurationName =
+      if (isMain()) {
+        compileOnly
+      } else {
+        addSuffix(compileOnly)
+      }
+
+    /**
+     * @return the 'implementation' name for this source set, such as
+     *   `implementation`, `debugImplementation`, or `commonMainImplementation`
+     */
+    fun SourceSetName.implementationConfig(): ConfigurationName =
+      if (isMain()) {
+        implementation
+      } else {
+        addSuffix(implementation)
+      }
+
+    /**
+     * @return the 'runtimeOnly' name for this source set, such as
+     *   `runtimeOnly`, `runtimeOnlyTest`, or `runtimeOnlyAndroidTest`
+     */
+    fun SourceSetName.runtimeOnlyConfig(): ConfigurationName =
+      if (isMain()) {
+        runtimeOnly
+      } else {
+        addSuffix(runtimeOnly)
+      }
+
+    /**
+     * @return the 'kapt' name for this source set, such as `kapt`, `kaptTest`, or `kaptAndroidTest`
+     */
+    fun SourceSetName.kaptConfig(): ConfigurationName =
+      if (isMain()) {
+        kapt
+      } else {
+        addPrefix(kapt)
+      }
+
+    /**
+     * @return the 'anvil' name for this source set, such
+     *   as `anvil`, `anvilTest`, or `anvilAndroidTest`
+     */
+    fun SourceSetName.anvilConfig(): ConfigurationName =
+      if (isMain()) {
+        anvil
+      } else {
+        addPrefix(anvil)
+      }
+
+    /** @return the 'ksp' name for this source set, such as `ksp`, `kspTest`, or `kspAndroidTest` */
+    fun SourceSetName.kspConfig(): ConfigurationName =
+      if (isMain()) {
+        ksp
+      } else {
+        addPrefix(ksp)
+      }
   }
 }

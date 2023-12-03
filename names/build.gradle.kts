@@ -29,14 +29,8 @@ dependencies {
 
   compileOnly(gradleApi())
 
-  compileOnly(
-    libs
-      .kotlin
-      .gradle
-      .plugin
-      .api
-  )
   compileOnly(libs.kotlin.gradle.plugin)
+  compileOnly(libs.kotlin.gradle.plugin.api)
 
   testImplementation(libs.junit.engine)
   testImplementation(libs.junit.jupiter)

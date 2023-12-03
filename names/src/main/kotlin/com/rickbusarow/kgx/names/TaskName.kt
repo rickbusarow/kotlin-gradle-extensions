@@ -66,10 +66,7 @@ value class TaskName(
      *
      * @since 0.1.7
      */
-    val compileJavaWithJavac: TaskName =
-      TaskName(
-        "compileJavaWithJavac"
-      )
+    val compileJavaWithJavac: TaskName = TaskName("compileJavaWithJavac")
 
     /**
      * `compileJava`
