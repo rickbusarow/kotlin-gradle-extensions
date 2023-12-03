@@ -3,8 +3,8 @@ jdk = "11" # the jdk used to build the project
 jvmTarget = "1.8" # the jdk used in packaging
 jvmTargetBuildLogic = "11" # the jdk used in packaging
 
-kotlin = "1.8.10"
-google-ksp = "1.8.10-1.0.9"
+kotlin = "1.9.21"
+google-ksp = "1.9.21-1.0.15"
 poko = "0.12.0"
 
 kgx-dev = "0.2.0-SNAPSHOT"
