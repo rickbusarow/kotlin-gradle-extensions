@@ -92,7 +92,7 @@ private fun Project.configurePublish(
         }
       }
       mavenPom.scm { scm ->
-        scm.url.set("https://www.github.com/rickbusarow/kotlin-gradle-extensions/")
+        scm.url.set("https://github.com/rickbusarow/kotlin-gradle-extensions/")
         scm.connection.set("scm:git:git://github.com/rickbusarow/kotlin-gradle-extensions.git")
         scm.developerConnection.set(
           "scm:git:ssh://git@github.com/rickbusarow/kotlin-gradle-extensions.git"

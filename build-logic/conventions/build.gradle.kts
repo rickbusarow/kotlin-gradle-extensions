@@ -22,7 +22,7 @@ plugins {
 gradlePlugin {
   plugins {
     create("ben-manes") {
-      id = "mcbuild.ben-manes"
+      id = "build.ben-manes"
       implementationClass = "builds.BenManesVersionsPlugin"
     }
     create("builds.check") {
@@ -85,13 +85,6 @@ dependencies {
 
   compileOnly(gradleApi())
 
-  implementation(
-    libs
-      .kotlin
-      .gradle
-      .plugin
-      .api
-  )
   implementation(libs.benManes.versions)
   implementation(libs.breadmoirai.github.release) {
     exclude(group = "org.gradle")
@@ -104,6 +97,7 @@ dependencies {
   implementation(libs.dropbox.dependencyGuard)
   implementation(libs.johnrengelman.shadowJar)
   implementation(libs.kotlin.gradle.plugin)
+  implementation(libs.kotlin.gradle.plugin.api)
   implementation(libs.kotlin.reflect)
   implementation(libs.kotlinx.binaryCompatibility)
   implementation(libs.poko.gradle.plugin)
