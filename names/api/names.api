@@ -26,7 +26,10 @@ public final class com/rickbusarow/kgx/names/ConfigurationName : com/rickbusarow
 }
 
 public final class com/rickbusarow/kgx/names/ConfigurationName$Companion {
+	public final fun anvilConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
+	public final fun apiConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
 	public final fun asConfigurationName-xv0ZLTM (Ljava/lang/String;)Ljava/lang/String;
+	public final fun compileOnlyConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
 	public final fun configurationName ()Lkotlin/properties/ReadOnlyProperty;
 	public final fun getAndroidTestImplementation-SPIlPl4 ()Ljava/lang/String;
 	public final fun getAnnotationProcessor-SPIlPl4 ()Ljava/lang/String;
@@ -45,9 +48,13 @@ public final class com/rickbusarow/kgx/names/ConfigurationName$Companion {
 	public final fun getShadow-SPIlPl4 ()Ljava/lang/String;
 	public final fun getTestApi-SPIlPl4 ()Ljava/lang/String;
 	public final fun getTestImplementation-SPIlPl4 ()Ljava/lang/String;
+	public final fun implementationConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
+	public final fun kaptConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
+	public final fun kspConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
 	public final fun main ()Ljava/util/List;
 	public final fun private ()Ljava/util/List;
 	public final fun public ()Ljava/util/List;
+	public final fun runtimeOnlyConfig-6UAVyKo (Ljava/lang/String;)Ljava/lang/String;
 }
 
 public abstract interface class com/rickbusarow/kgx/names/DomainObjectName {

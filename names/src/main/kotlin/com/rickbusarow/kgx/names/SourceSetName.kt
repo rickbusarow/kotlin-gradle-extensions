@@ -20,6 +20,13 @@ import com.rickbusarow.kgx.names.TaskName.Companion.asTaskName
 import com.rickbusarow.kgx.names.stdlib.capitalize
 import com.rickbusarow.kgx.names.stdlib.decapitalize
 import kotlin.properties.ReadOnlyProperty
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.anvilConfig as configAnvilConfig
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.apiConfig as configApiConfig
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.compileOnlyConfig as configCompileOnlyConfig
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.implementationConfig as configImplementationConfig
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.kaptConfig as configKaptConfig
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.kspConfig as configKspConfig
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.runtimeOnlyConfig as configRuntimeOnlyConfig
 
 /**
  * Wraps the unqualified, simple name of a `SourceSet` object, like `main` or `debug`.
@@ -272,81 +279,89 @@ value class SourceSetName(
      * @return the 'api' name for this source set, such as `api`, `debugApi`, or `commonMainApi`
      * @since 0.1.6
      */
-    fun SourceSetName.apiConfig(): ConfigurationName =
-      if (isMain()) {
-        ConfigurationName.api
-      } else {
-        "${value}Api".asConfigurationName()
-      }
+    @Deprecated(
+      "moved to ConfigurationName",
+      ReplaceWith("apiConfig()", "com.rickbusarow.kgx.names.ConfigurationName.Companion.apiConfig")
+    )
+    fun SourceSetName.apiConfig(): ConfigurationName = configApiConfig()
 
     /**
      * @return the 'api' name for this source set, such as
      *   `compileOnly`,`compileOnlyDebug`, or `compileOnlyTest`
      * @since 0.1.6
      */
-    fun SourceSetName.compileOnlyConfig(): ConfigurationName =
-      if (isMain()) {
-        ConfigurationName.compileOnly
-      } else {
-        addSuffix(ConfigurationName.compileOnly)
-      }
+    @Deprecated(
+      "moved to ConfigurationName",
+      ReplaceWith(
+        "compileOnlyConfig()",
+        "com.rickbusarow.kgx.names.ConfigurationName.Companion.compileOnlyConfig"
+      )
+    )
+    fun SourceSetName.compileOnlyConfig(): ConfigurationName = configCompileOnlyConfig()
 
     /**
      * @return the 'implementation' name for this source set, such as
      *   `implementation`, `debugImplementation`, or `commonMainImplementation`
      * @since 0.1.6
      */
-    fun SourceSetName.implementationConfig(): ConfigurationName =
-      if (isMain()) {
-        ConfigurationName.implementation
-      } else {
-        addSuffix(ConfigurationName.implementation)
-      }
+    @Deprecated(
+      "moved to ConfigurationName",
+      ReplaceWith(
+        "implementationConfig()",
+        "com.rickbusarow.kgx.names.ConfigurationName.Companion.implementationConfig"
+      )
+    )
+    fun SourceSetName.implementationConfig(): ConfigurationName = configImplementationConfig()
 
     /**
      * @return the 'runtimeOnly' name for this source set, such as
      *   `runtimeOnly`, `runtimeOnlyTest`, or `runtimeOnlyAndroidTest`
      * @since 0.1.6
      */
-    fun SourceSetName.runtimeOnlyConfig(): ConfigurationName =
-      if (isMain()) {
-        ConfigurationName.runtimeOnly
-      } else {
-        addSuffix(ConfigurationName.runtimeOnly)
-      }
+    @Deprecated(
+      "moved to ConfigurationName",
+      ReplaceWith(
+        "runtimeOnlyConfig()",
+        "com.rickbusarow.kgx.names.ConfigurationName.Companion.runtimeOnlyConfig"
+      )
+    )
+    fun SourceSetName.runtimeOnlyConfig(): ConfigurationName = configRuntimeOnlyConfig()
 
     /**
      * @return the 'kapt' name for this source set, such as `kapt`, `kaptTest`, or `kaptAndroidTest`
      * @since 0.1.6
      */
-    fun SourceSetName.kaptConfig(): ConfigurationName =
-      if (isMain()) {
-        ConfigurationName.kapt
-      } else {
-        addPrefix(ConfigurationName.kapt)
-      }
+    @Deprecated(
+      "moved to ConfigurationName",
+      ReplaceWith(
+        "kaptConfig()",
+        "com.rickbusarow.kgx.names.ConfigurationName.Companion.kaptConfig"
+      )
+    )
+    fun SourceSetName.kaptConfig(): ConfigurationName = configKaptConfig()
 
     /**
      * @return the 'anvil' name for this source set, such
      *   as `anvil`, `anvilTest`, or `anvilAndroidTest`
      * @since 0.1.6
      */
-    fun SourceSetName.anvilConfig(): ConfigurationName =
-      if (isMain()) {
-        ConfigurationName.anvil
-      } else {
-        addPrefix(ConfigurationName.anvil)
-      }
+    @Deprecated(
+      "moved to ConfigurationName",
+      ReplaceWith(
+        "anvilConfig()",
+        "com.rickbusarow.kgx.names.ConfigurationName.Companion.anvilConfig"
+      )
+    )
+    fun SourceSetName.anvilConfig(): ConfigurationName = configAnvilConfig()
 
     /**
      * @return the 'ksp' name for this source set, such as `ksp`, `kspTest`, or `kspAndroidTest`
      * @since 0.1.6
      */
-    fun SourceSetName.kspConfig(): ConfigurationName =
-      if (isMain()) {
-        ConfigurationName.ksp
-      } else {
-        addPrefix(ConfigurationName.ksp)
-      }
+    @Deprecated(
+      "moved to ConfigurationName",
+      ReplaceWith("kspConfig()", "com.rickbusarow.kgx.names.ConfigurationName.Companion.kspConfig")
+    )
+    fun SourceSetName.kspConfig(): ConfigurationName = configKspConfig()
   }
 }
