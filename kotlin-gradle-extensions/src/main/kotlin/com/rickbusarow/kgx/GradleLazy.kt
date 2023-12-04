@@ -22,6 +22,7 @@ package com.rickbusarow.kgx
  * @param mode the thread-safety mode for initializing the value of the lazy property.
  * @param initializer the initialization function for the lazy property.
  *   This lambda must be compatible with Gradle's configuration cache.
+ * @since 0.1.9
  */
 fun <T : Any?> gradleLazy(
   mode: LazyThreadSafetyMode = LazyThreadSafetyMode.SYNCHRONIZED,
@@ -31,6 +32,8 @@ fun <T : Any?> gradleLazy(
 /**
  * A [Lazy] implementation that is safe to use in Gradle build scripts. It serializes the
  * initializer lambda instead of the value, in case Gradle cannot serialize that value.
+ *
+ * @since 0.1.9
  */
 class GradleLazy<T : Any?>(
   private val mode: LazyThreadSafetyMode,

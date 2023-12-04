@@ -430,7 +430,10 @@ value class ConfigurationName(
      */
     fun String.asConfigurationName(): ConfigurationName = ConfigurationName(this)
 
-    /** @return the 'api' name for this source set, such as `api`, `debugApi`, or `commonMainApi` */
+    /**
+     * @return the 'api' name for this source set, such as `api`, `debugApi`, or `commonMainApi`
+     * @since 0.1.9
+     */
     fun SourceSetName.apiConfig(): ConfigurationName =
       if (isMain()) {
         api
@@ -441,6 +444,7 @@ value class ConfigurationName(
     /**
      * @return the 'api' name for this source set, such as
      *   `compileOnly`,`compileOnlyDebug`, or `compileOnlyTest`
+     * @since 0.1.9
      */
     fun SourceSetName.compileOnlyConfig(): ConfigurationName =
       if (isMain()) {
@@ -452,6 +456,7 @@ value class ConfigurationName(
     /**
      * @return the 'implementation' name for this source set, such as
      *   `implementation`, `debugImplementation`, or `commonMainImplementation`
+     * @since 0.1.9
      */
     fun SourceSetName.implementationConfig(): ConfigurationName =
       if (isMain()) {
@@ -463,6 +468,7 @@ value class ConfigurationName(
     /**
      * @return the 'runtimeOnly' name for this source set, such as
      *   `runtimeOnly`, `runtimeOnlyTest`, or `runtimeOnlyAndroidTest`
+     * @since 0.1.9
      */
     fun SourceSetName.runtimeOnlyConfig(): ConfigurationName =
       if (isMain()) {
@@ -473,6 +479,7 @@ value class ConfigurationName(
 
     /**
      * @return the 'kapt' name for this source set, such as `kapt`, `kaptTest`, or `kaptAndroidTest`
+     * @since 0.1.9
      */
     fun SourceSetName.kaptConfig(): ConfigurationName =
       if (isMain()) {
@@ -484,6 +491,7 @@ value class ConfigurationName(
     /**
      * @return the 'anvil' name for this source set, such
      *   as `anvil`, `anvilTest`, or `anvilAndroidTest`
+     * @since 0.1.9
      */
     fun SourceSetName.anvilConfig(): ConfigurationName =
       if (isMain()) {
@@ -492,7 +500,10 @@ value class ConfigurationName(
         addPrefix(anvil)
       }
 
-    /** @return the 'ksp' name for this source set, such as `ksp`, `kspTest`, or `kspAndroidTest` */
+    /**
+     * @return the 'ksp' name for this source set, such as `ksp`, `kspTest`, or `kspAndroidTest`
+     * @since 0.1.9
+     */
     fun SourceSetName.kspConfig(): ConfigurationName =
       if (isMain()) {
         ksp

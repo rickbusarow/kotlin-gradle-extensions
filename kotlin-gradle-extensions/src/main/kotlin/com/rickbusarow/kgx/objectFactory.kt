@@ -61,6 +61,7 @@ inline fun <reified T : Any> ObjectFactory.newInstance(vararg parameters: Any?):
  * @param parameters any constructor parameters that cannot be injected by Gradle
  * @param threadSafetyMode the thread-safety threadSafetyMode
  *   for initializing the value of the lazy property.
+ * @since 0.1.9
  * @throws org.gradle.api.reflect.ObjectInstantiationException if the object cannot be instantiated.
  */
 inline fun <reified T : Any> ObjectFactory.newInstanceLazy(
@@ -75,6 +76,7 @@ inline fun <reified T : Any> ObjectFactory.newInstanceLazy(
  * @param parameters any constructor parameters that cannot be injected by Gradle
  * @param threadSafetyMode the thread-safety threadSafetyMode
  *   for initializing the value of the lazy property.
+ * @since 0.1.9
  * @throws org.gradle.api.reflect.ObjectInstantiationException if the object cannot be instantiated.
  */
 fun <T> ObjectFactory.newInstanceLazy(
