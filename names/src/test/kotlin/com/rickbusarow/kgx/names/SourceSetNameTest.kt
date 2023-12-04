@@ -400,8 +400,10 @@ class SourceSetNameTest {
     }
   }
 
+  @Suppress("DEPRECATION")
   @Nested
   inner class `base config factory extensions` {
+
     @Test
     fun `main configs`() {
 

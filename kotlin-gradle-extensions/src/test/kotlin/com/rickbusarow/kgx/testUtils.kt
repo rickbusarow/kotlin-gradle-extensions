@@ -35,7 +35,15 @@ fun test(
 ): DynamicTest = DynamicTest.dynamicTest(name, action)
 
 fun <T> Iterable<T>.test(
-  name: (T) -> String,
+  name: (T) -> String = { it.toString() },
+  action: (T) -> Unit
+): List<DynamicTest> =
+  map { t ->
+    DynamicTest.dynamicTest(name(t)) { action(t) }
+  }
+
+fun <T> Array<T>.test(
+  name: (T) -> String = { it.toString() },
   action: (T) -> Unit
 ): List<DynamicTest> =
   map { t ->

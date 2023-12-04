@@ -9,7 +9,7 @@ poko = "0.12.0"
 
 kgx-dev = "0.1.9-SNAPSHOT"
 
-benManes-versions = "0.48.0"
+benManes-versions = "0.50.0"
 buildconfig = "4.2.0"
 dependencyAnalysis = "1.27.0"
 detekt = "1.23.4"
