@@ -1,6 +1,35 @@
 # Changelog
 
-## 0.1.9-SNAPSHOT (unreleased)
+## 0.2.0-SNAPSHOT (unreleased)
+
+## [0.1.9] — 2023-12-03
+
+### Added
+
+- `org.jetbrains.kotlin.gradle.dsl.JvmTarget` extensions to/from `Int` in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/98
+- `VersionCatalog` extension delegates in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/99
+- move `SourceSetName` -> `ConfigurationName` extensions from `SourceSetName.kt` to `ConfigurationName.kt` in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/101
+- add `GradleLazy<T>` in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/106
+
+### 🧰 Maintenance
+
+- Update github.release to v2.5.1 in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/68
+- Update kotest to v5.8.0 in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/79
+- Update junit5 monorepo to v5.10.1 in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/80
+- Update KtLint things in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/81
+- Update rickBusarow.ktlint to v0.2.1 in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/82
+- Update dependency com.github.gmazzo.buildconfig to v4.2.0 in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/86
+- Update detekt to v1.23.4 in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/88
+- Update dependency gradle to v8.5 in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/92
+- Update dependency com.squareup:kotlinpoet to v1.15.2 in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/93
+- Update actions/setup-java action to v4 in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/94
+- explicitly set the internal KtLint version in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/96
+- Update dependency com.diffplug.spotless:spotless-plugin-gradle to v6.23.2 in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/97
+- misc build-logic cleanup in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/100
+- Update dependency com.github.ben-manes:gradle-versions-plugin to v0.50.0 in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/103
+- Update dependencyAnalysis to v1.27.0 in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/105
+
+**Full Changelog**: https://github.com/rickbusarow/kotlin-gradle-extensions/compare/0.1.8...0.1.9
 
 ## [0.1.8] - 2023-10-31
 
@@ -110,3 +139,4 @@ Hello World
 [0.1.6]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.6
 [0.1.7]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.7
 [0.1.8]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.8
+[0.1.9]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.9
