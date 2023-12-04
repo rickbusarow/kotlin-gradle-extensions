@@ -78,6 +78,17 @@ public final class com/rickbusarow/kgx/GradleKt {
 	public static final fun parentsWithSelf (Lorg/gradle/api/invocation/Gradle;)Lkotlin/sequences/Sequence;
 }
 
+public final class com/rickbusarow/kgx/GradleLazy : java/io/Serializable, kotlin/Lazy {
+	public fun <init> (Lkotlin/LazyThreadSafetyMode;Lkotlin/jvm/functions/Function0;)V
+	public fun getValue ()Ljava/lang/Object;
+	public fun isInitialized ()Z
+}
+
+public final class com/rickbusarow/kgx/GradleLazyKt {
+	public static final fun gradleLazy (Lkotlin/LazyThreadSafetyMode;Lkotlin/jvm/functions/Function0;)Lcom/rickbusarow/kgx/GradleLazy;
+	public static synthetic fun gradleLazy$default (Lkotlin/LazyThreadSafetyMode;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)Lcom/rickbusarow/kgx/GradleLazy;
+}
+
 public final class com/rickbusarow/kgx/IncludedKt {
 	public static final fun includedRootProjectsTasks (Lorg/gradle/api/invocation/Gradle;Ljava/lang/String;)Ljava/util/List;
 }
@@ -93,12 +104,16 @@ public final class com/rickbusarow/kgx/ObjectFactoryKt {
 	public static final fun fileTree (Lorg/gradle/api/model/ObjectFactory;Ljava/lang/Object;)Lorg/gradle/api/file/ConfigurableFileTree;
 	public static final fun fileTree (Lorg/gradle/api/model/ObjectFactory;Ljava/lang/Object;Lorg/gradle/api/Action;)Lorg/gradle/api/file/ConfigurableFileTree;
 	public static final synthetic fun listProperty (Lorg/gradle/api/model/ObjectFactory;)Lorg/gradle/api/provider/ListProperty;
-	public static final synthetic fun listPropertyDelegate (Lorg/gradle/api/model/ObjectFactory;)Lkotlin/properties/ReadOnlyProperty;
+	public static final synthetic fun listPropertyLazy (Lorg/gradle/api/model/ObjectFactory;)Lcom/rickbusarow/kgx/GradleLazy;
+	public static final synthetic fun listPropertyLazy (Lorg/gradle/api/model/ObjectFactory;Lkotlin/LazyThreadSafetyMode;)Lcom/rickbusarow/kgx/GradleLazy;
 	public static final synthetic fun mapProperty (Lorg/gradle/api/model/ObjectFactory;)Lorg/gradle/api/provider/MapProperty;
-	public static final synthetic fun mapPropertyDelegate (Lorg/gradle/api/model/ObjectFactory;)Lkotlin/properties/ReadOnlyProperty;
-	public static final fun propertyDelegateInternal (Lkotlin/jvm/functions/Function0;)Lkotlin/properties/ReadOnlyProperty;
+	public static final synthetic fun mapPropertyLazy (Lorg/gradle/api/model/ObjectFactory;)Lkotlin/Lazy;
+	public static final synthetic fun mapPropertyLazy (Lorg/gradle/api/model/ObjectFactory;Lkotlin/LazyThreadSafetyMode;)Lkotlin/Lazy;
+	public static final fun newInstanceLazy (Lorg/gradle/api/model/ObjectFactory;Ljava/lang/Class;[Ljava/lang/Object;Lkotlin/LazyThreadSafetyMode;)Lkotlin/Lazy;
+	public static synthetic fun newInstanceLazy$default (Lorg/gradle/api/model/ObjectFactory;Ljava/lang/Class;[Ljava/lang/Object;Lkotlin/LazyThreadSafetyMode;ILjava/lang/Object;)Lkotlin/Lazy;
 	public static final synthetic fun setProperty (Lorg/gradle/api/model/ObjectFactory;)Lorg/gradle/api/provider/SetProperty;
-	public static final synthetic fun setPropertyDelegate (Lorg/gradle/api/model/ObjectFactory;)Lkotlin/properties/ReadOnlyProperty;
+	public static final synthetic fun setPropertyLazy (Lorg/gradle/api/model/ObjectFactory;)Lkotlin/Lazy;
+	public static final synthetic fun setPropertyLazy (Lorg/gradle/api/model/ObjectFactory;Lkotlin/LazyThreadSafetyMode;)Lkotlin/Lazy;
 }
 
 public final class com/rickbusarow/kgx/PluginContainerKt {
@@ -117,6 +132,7 @@ public final class com/rickbusarow/kgx/ProjectKt {
 	public static synthetic fun checkProjectIsRoot$default (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
 	public static final fun getJava (Lorg/gradle/api/Project;)Lorg/gradle/api/plugins/JavaPluginExtension;
 	public static final fun getJavaExtension (Lorg/gradle/api/Project;)Lorg/gradle/api/plugins/JavaPluginExtension;
+	public static final fun isInIdeaSync (Lorg/gradle/api/Project;)Z
 	public static final fun isPartOfRootBuild (Lorg/gradle/api/Project;)Z
 	public static final fun isRealRootProject (Lorg/gradle/api/Project;)Z
 	public static final fun isRootProject (Lorg/gradle/api/Project;)Z
@@ -125,9 +141,10 @@ public final class com/rickbusarow/kgx/ProjectKt {
 	public static final fun subProjectsTasksMatchingName (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/util/List;
 }
 
-public final class com/rickbusarow/kgx/PropertyDelegateInternal : kotlin/properties/ReadOnlyProperty {
-	public fun <init> (Lkotlin/jvm/functions/Function0;)V
-	public fun getValue (Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;
+public final class com/rickbusarow/kgx/SystemPropertiesKt {
+	public static final fun getSystemProperty (Lorg/gradle/api/provider/ProviderFactory;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static final fun getSystemPropertyOrNull (Lorg/gradle/api/provider/ProviderFactory;Ljava/lang/String;)Ljava/lang/String;
+	public static final fun systemProperty (Lorg/gradle/api/provider/ProviderFactory;Ljava/lang/String;Lkotlin/jvm/functions/Function0;)Ljava/lang/String;
 }
 
 public final class com/rickbusarow/kgx/TaskKt {

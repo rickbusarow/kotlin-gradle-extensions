@@ -15,7 +15,15 @@
 
 package com.rickbusarow.kgx.names
 
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.anvilConfig
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.apiConfig
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.compileOnlyConfig
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.implementationConfig
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.kaptConfig
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.kspConfig
+import com.rickbusarow.kgx.names.ConfigurationName.Companion.runtimeOnlyConfig
 import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 class ConfigurationNameTest {
@@ -210,5 +218,51 @@ class ConfigurationNameTest {
     configName1.compareTo(configName2) shouldBe -3
     configName1.compareTo(configName3) shouldBe 0
     configName2.compareTo(configName1) shouldBe 3
+  }
+
+  @Nested
+  inner class `base config factory extensions` {
+    @Test
+    fun `main configs`() {
+
+      SourceSetName.main.apiConfig() shouldBe ConfigurationName.api
+      SourceSetName.main.apiConfig().value shouldBe "api"
+
+      SourceSetName.main.compileOnlyConfig() shouldBe ConfigurationName.compileOnly
+      SourceSetName.main.compileOnlyConfig().value shouldBe "compileOnly"
+
+      SourceSetName.main.implementationConfig() shouldBe ConfigurationName.implementation
+      SourceSetName.main.implementationConfig().value shouldBe "implementation"
+
+      SourceSetName.main.runtimeOnlyConfig() shouldBe ConfigurationName.runtimeOnly
+      SourceSetName.main.runtimeOnlyConfig().value shouldBe "runtimeOnly"
+
+      SourceSetName.main.kaptConfig() shouldBe ConfigurationName.kapt
+      SourceSetName.main.kaptConfig().value shouldBe "kapt"
+
+      SourceSetName.main.anvilConfig() shouldBe ConfigurationName.anvil
+      SourceSetName.main.anvilConfig().value shouldBe "anvil"
+
+      SourceSetName.main.kspConfig() shouldBe ConfigurationName.ksp
+      SourceSetName.main.kspConfig().value shouldBe "ksp"
+    }
+
+    @Test
+    fun `test configs`() {
+
+      SourceSetName.test.apiConfig().value shouldBe "testApi"
+
+      SourceSetName.test.compileOnlyConfig().value shouldBe "testCompileOnly"
+
+      SourceSetName.test.implementationConfig().value shouldBe "testImplementation"
+
+      SourceSetName.test.runtimeOnlyConfig().value shouldBe "testRuntimeOnly"
+
+      SourceSetName.test.kaptConfig().value shouldBe "kaptTest"
+
+      SourceSetName.test.anvilConfig().value shouldBe "anvilTest"
+
+      SourceSetName.test.kspConfig().value shouldBe "kspTest"
+    }
   }
 }
