@@ -19,14 +19,7 @@ import com.rickbusarow.kgx.dependsOn
 
 plugins {
   id("module")
-  id(
-    libs
-      .plugins
-      .integration
-      .test
-      .get()
-      .pluginId
-  )
+  id(libs.plugins.integration.test.get().pluginId)
   alias(libs.plugins.buildconfig)
   idea
 }
@@ -92,6 +85,7 @@ dependencies {
   testImplementation(libs.junit.engine)
   testImplementation(libs.junit.jupiter)
   testImplementation(libs.junit.jupiter.api)
+  testImplementation(libs.kotest.assertions.core.jvm)
   testImplementation(libs.kotest.assertions.shared)
   testImplementation(libs.kotlin.gradle.plugin)
   testImplementation(libs.kotlin.gradle.plugin.api)
