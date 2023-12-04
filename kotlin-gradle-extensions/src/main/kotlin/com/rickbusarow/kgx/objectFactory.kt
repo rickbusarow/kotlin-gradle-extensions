@@ -24,7 +24,6 @@ import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
 import kotlin.properties.ReadOnlyProperty
-import kotlin.reflect.KProperty
 
 /**
  * shorthand for `fileTree().from(baseDir)`
@@ -57,6 +56,34 @@ inline fun <reified T : Any> ObjectFactory.newInstance(vararg parameters: Any?):
 }
 
 /**
+ * A reified version of [ObjectFactory.newInstance].
+ *
+ * @param parameters any constructor parameters that cannot be injected by Gradle
+ * @param threadSafetyMode the thread-safety threadSafetyMode
+ *   for initializing the value of the lazy property.
+ * @throws org.gradle.api.reflect.ObjectInstantiationException if the object cannot be instantiated.
+ */
+inline fun <reified T : Any> ObjectFactory.newInstanceLazy(
+  vararg parameters: Any?,
+  threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
+): Lazy<T> = newInstanceLazy(T::class.java, *parameters, threadSafetyMode = threadSafetyMode)
+
+/**
+ * A reified version of [ObjectFactory.newInstance].
+ *
+ * @param clazz the type to instantiate
+ * @param parameters any constructor parameters that cannot be injected by Gradle
+ * @param threadSafetyMode the thread-safety threadSafetyMode
+ *   for initializing the value of the lazy property.
+ * @throws org.gradle.api.reflect.ObjectInstantiationException if the object cannot be instantiated.
+ */
+fun <T> ObjectFactory.newInstanceLazy(
+  clazz: Class<out T>,
+  vararg parameters: Any?,
+  threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
+): Lazy<T> = gradleLazy(threadSafetyMode) { newInstance(clazz, *parameters) }
+
+/**
  * alias for `ReadOnlyProperty<Any?, T>`
  *
  * @see [ReadOnlyProperty]
@@ -70,16 +97,17 @@ typealias LazyGradleProperty<T> = ReadOnlyProperty<Any?, T>
  * ```
  * open class MyGradleType(objects: ObjectFactory) {
  *
- *   val myProperty: ListProperty<String> by objects.listPropertyDelegate()
+ *   val myProperty: ListProperty<String> by objects.listPropertyLazy()
  * }
  * ```
  *
  * @since 0.1.8
  */
 @JvmOverloads
-inline fun <reified T> ObjectFactory.listPropertyDelegate(
+inline fun <reified T> ObjectFactory.listPropertyLazy(
+  threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE,
   crossinline init: ListProperty<T>.() -> ListProperty<T> = { this }
-): ReadOnlyProperty<Any?, ListProperty<T>> = propertyDelegateInternal { listProperty(init) }
+): GradleLazy<ListProperty<T>> = gradleLazy(threadSafetyMode) { listProperty(init) }
 
 /**
  * Just a reified version of [ObjectFactory.listProperty].
@@ -97,16 +125,17 @@ inline fun <reified T> ObjectFactory.listProperty(
  * ```
  * open class MyGradleType(objects: ObjectFactory) {
  *
- *   val myProperty: SetProperty<String> by objects.setPropertyDelegate()
+ *   val myProperty: SetProperty<String> by objects.setPropertyLazy()
  * }
  * ```
  *
  * @since 0.1.8
  */
 @JvmOverloads
-inline fun <reified T> ObjectFactory.setPropertyDelegate(
+inline fun <reified T> ObjectFactory.setPropertyLazy(
+  threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE,
   crossinline init: SetProperty<T>.() -> SetProperty<T> = { this }
-): LazyGradleProperty<SetProperty<T>> = propertyDelegateInternal { setProperty(init) }
+): Lazy<SetProperty<T>> = gradleLazy(threadSafetyMode) { setProperty(init) }
 
 /**
  * Just a reified version of [ObjectFactory.setProperty].
@@ -123,16 +152,17 @@ inline fun <reified T> ObjectFactory.setProperty(
  *
  * ```
  * open class MyGradleType(objects: ObjectFactory) {
- *   val myProperty: MapProperty<String, String> by objects.mapPropertyDelegate()
+ *   val myProperty: MapProperty<String, String> by objects.mapPropertyLazy()
  * }
  * ```
  *
  * @since 0.1.8
  */
 @JvmOverloads
-inline fun <reified K, reified V> ObjectFactory.mapPropertyDelegate(
+inline fun <reified K, reified V> ObjectFactory.mapPropertyLazy(
+  threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE,
   crossinline init: MapProperty<K, V>.() -> MapProperty<K, V> = { this }
-): LazyGradleProperty<MapProperty<K, V>> = propertyDelegateInternal { mapProperty(init) }
+): Lazy<MapProperty<K, V>> = gradleLazy(threadSafetyMode) { mapProperty(init) }
 
 /**
  * Just a reified version of [ObjectFactory.mapProperty].
@@ -156,8 +186,10 @@ inline fun <reified T : Any> ObjectFactory.property(): Property<T> = property(T:
  *
  * @since 0.1.8
  */
-inline fun <reified T : Any> ObjectFactory.propertyDelegate(): LazyGradleProperty<Property<T>> {
-  return propertyDelegateInternal { property(T::class.java) }
+inline fun <reified T : Any> ObjectFactory.propertyLazy(
+  threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
+): Lazy<Property<T>> = gradleLazy(threadSafetyMode) {
+  property(T::class.java)
 }
 
 /**
@@ -174,11 +206,9 @@ inline fun <reified T : Any> ObjectFactory.propertyOf(value: T): Property<T> {
  *
  * @since 0.1.8
  */
-inline fun <reified T : Any> ObjectFactory.propertyDelegate(
+inline fun <reified T : Any> ObjectFactory.propertyLazy(
   crossinline convention: () -> T
-): LazyGradleProperty<Property<T>> {
-  return propertyDelegateInternal { property(convention) }
-}
+): Lazy<Property<T>> = gradleLazy { property(convention) }
 
 /**
  * Just a reified version of [ObjectFactory.property].
@@ -189,37 +219,29 @@ inline fun <reified T : Any> ObjectFactory.property(crossinline convention: () -
   property(T::class.java).convention(convention())
 
 /**
+ * Just a reified version of [ObjectFactory.property].
+ *
+ * @since 0.1.8
+ */
+inline fun <reified T : Any> ObjectFactory.property(convention: T): Property<T> =
+  property(T::class.java).convention(convention)
+
+/**
  * Lazy initializer delegate for a [Property<T>][Property].
  *
  * @since 0.1.8
  */
-inline fun <reified T : Any> ObjectFactory.propertyDelegate(
+inline fun <reified T : Any> ObjectFactory.propertyLazy(
+  threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE,
   convention: Provider<out T>
-): LazyGradleProperty<Property<T>> {
-  return propertyDelegateInternal { property(T::class.java).convention(convention) }
+): Lazy<Property<T>> = gradleLazy(threadSafetyMode) {
+  property(T::class.java).convention(convention)
 }
 
 /**
- * Just a reified version of [ObjectFactory.property].
+ * A reified version of `property(T::class.java).convention(convention)`
  *
  * @since 0.1.8
  */
 inline fun <reified T : Any> ObjectFactory.property(convention: Provider<out T>): Property<T> =
   property(T::class.java).convention(convention)
-
-@PublishedApi
-internal fun <T> propertyDelegateInternal(
-  defaultValueProvider: () -> T
-): ReadOnlyProperty<Any?, T> = PropertyDelegateInternal(defaultValueProvider)
-
-@PublishedApi
-internal class PropertyDelegateInternal<T>(
-  private val defaultValueProvider: () -> T
-) : ReadOnlyProperty<Any?, T> {
-
-  private var backing: T? = null
-
-  override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
-    return backing ?: defaultValueProvider().also { backing = it }
-  }
-}

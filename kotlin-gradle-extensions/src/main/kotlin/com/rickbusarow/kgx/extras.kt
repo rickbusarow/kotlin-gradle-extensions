@@ -51,13 +51,28 @@ inline fun <reified T> ExtraPropertiesExtension.getOrNullAs(name: String): T? {
 }
 
 /**
+ * A typed version of [get][ExtraPropertiesExtension.get], since `get` just returns `Any`/`Object`.
+ *
+ * @param name the name of the property to retrieve
+ * @throws ExtraPropertiesExtension.UnknownPropertyException
+ *   if the property wasn't previously defined.
+ * @throws ClassCastException if a property named [name] exists, but is not of type T
+ */
+inline fun <reified T> ExtraPropertiesExtension.getAs(name: String): T = get(name) as T
+
+/**
  * Returns a value for [name] if one is already in the extra properties. If the name is not present,
  * a new value will be created using [default], and that value will be added to the properties.
  *
  * @since 0.1.0
  * @throws ClassCastException if a property named [name] exists, but is not of type T
  */
-inline fun <reified T> ExtraPropertiesExtension.getOrPut(
+inline fun <reified T : Any> ExtraPropertiesExtension.getOrPut(
   name: String,
   default: () -> T
-): T = getOrNullAs<T>(name) ?: default().also { set(name, it) }
+): T = synchronized(this) {
+  if (!has(name)) {
+    set(name, default())
+  }
+  getAs<T>(name)
+}
