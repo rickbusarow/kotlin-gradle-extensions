@@ -31,6 +31,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
  * Note this is different from the Kotlin compiler's
  * type at `org.jetbrains.kotlin.config.JvmTarget`.
  *
+ * @since 0.1.9
  * @throws NullPointerException if KGP doesn't have an enum defined for the provided [targetInt].
  */
 fun JvmTarget.Companion.fromInt(targetInt: Int): JvmTarget = when (targetInt) {
@@ -41,7 +42,11 @@ fun JvmTarget.Companion.fromInt(targetInt: Int): JvmTarget = when (targetInt) {
   else -> JvmTarget.fromTarget("$targetInt")
 }
 
-/** Converts the [JvmTarget] to its integer version number */
+/**
+ * Converts the [JvmTarget] to its integer version number
+ *
+ * @since 0.1.9
+ */
 fun JvmTarget.toInt(): Int = target.substringAfterLast('.').toInt()
 
 /**

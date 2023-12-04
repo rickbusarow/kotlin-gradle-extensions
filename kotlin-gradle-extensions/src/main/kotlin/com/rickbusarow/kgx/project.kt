@@ -158,7 +158,11 @@ fun Project.projectDependency(
   configuration: String? = null
 ): ProjectDependency = dependencies.project(path, configuration)
 
-/** `true` if the current build is part of the IntelliJ IDEA sync process */
+/**
+ * `true` if the current build is part of the IntelliJ IDEA sync process
+ *
+ * @since 0.1.9
+ */
 val Project.isInIdeaSync: Boolean
   get() = providers.getSystemPropertyOrNull("idea.sync.active")
     ?.toBooleanStrictOrNull() ?: false

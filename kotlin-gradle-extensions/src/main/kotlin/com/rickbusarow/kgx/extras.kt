@@ -54,6 +54,7 @@ inline fun <reified T> ExtraPropertiesExtension.getOrNullAs(name: String): T? {
  * A typed version of [get][ExtraPropertiesExtension.get], since `get` just returns `Any`/`Object`.
  *
  * @param name the name of the property to retrieve
+ * @since 0.1.9
  * @throws ExtraPropertiesExtension.UnknownPropertyException
  *   if the property wasn't previously defined.
  * @throws ClassCastException if a property named [name] exists, but is not of type T

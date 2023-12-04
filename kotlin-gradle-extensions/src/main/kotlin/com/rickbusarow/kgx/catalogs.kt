@@ -88,6 +88,8 @@ fun VersionCatalog.library(alias: String): Provider<MinimalExternalModuleDepende
  * ```
  * val `anvil-compiler` by project.libsCatalog.library
  * ```
+ *
+ * @since 0.1.9
  */
 val VersionCatalog.library: ReadOnlyProperty<Any?, Provider<MinimalExternalModuleDependency>>
   get() = ReadOnlyProperty { _, prop -> library(prop.name) }
@@ -118,6 +120,8 @@ fun VersionCatalog.version(alias: String): String {
  * ```
  * val anvil by project.libsCatalog.version
  * ```
+ *
+ * @since 0.1.9
  */
 val VersionCatalog.version: ReadOnlyProperty<Any?, String>
   get() = ReadOnlyProperty { _, prop -> version(prop.name) }
@@ -152,6 +156,8 @@ fun VersionCatalog.pluginId(alias: String): String {
  * ```
  * val anvil by project.libsCatalog.pluginId
  * ```
+ *
+ * @since 0.1.9
  */
 val VersionCatalog.pluginId: ReadOnlyProperty<Any?, String>
   get() = ReadOnlyProperty { _, prop -> pluginId(prop.name) }
