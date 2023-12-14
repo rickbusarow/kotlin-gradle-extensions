@@ -172,7 +172,7 @@ jobs:
           cache-read-only: false
 
       - name: Archive test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: test-results-ubuntu
@@ -206,7 +206,7 @@ jobs:
           cache-read-only: false
 
       - name: Archive test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: test-results-ubuntu
@@ -240,7 +240,7 @@ jobs:
           cache-read-only: false
 
       - name: Archive test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: test-results-windows
