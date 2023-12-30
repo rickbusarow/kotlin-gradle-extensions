@@ -186,7 +186,7 @@ jobs:
           report_paths: "**/build/**/TEST-*.xml"
           check_name: Unit Test Results - ubuntu
 
-  integration-tests-macos:
+  gradle-tests-macos:
     runs-on: ubuntu-latest
 
     steps:
@@ -199,10 +199,10 @@ jobs:
           distribution: "zulu"
           java-version: "17"
 
-      - name: all integration tests
+      - name: all gradle tests
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: test "${{ env.ubuntuGradleArgs }}"
+          arguments: gradleTest "${{ env.macosGradleArgs }}"
           cache-read-only: false
 
       - name: Archive test results
@@ -210,7 +210,7 @@ jobs:
         if: failure()
         with:
           name: test-results-ubuntu
-          path: ./**/build/reports/tests/integrationTest
+          path: ./**/build/reports/tests/gradleTest
 
       - name: Unit test results
         uses: mikepenz/action-junit-report@v4
@@ -258,7 +258,7 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     needs:
-      - integration-tests-macos
+      - gradle-tests-macos
       - static-analysis
       - tests-macos
       - tests-windows

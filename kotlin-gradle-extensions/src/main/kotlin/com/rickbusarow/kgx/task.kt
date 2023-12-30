@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,10 @@
 package com.rickbusarow.kgx
 
 import org.gradle.api.Action
+import org.gradle.api.NamedDomainObjectCollectionSchema.NamedDomainObjectSchema
 import org.gradle.api.Task
+import org.gradle.api.plugins.ExtensionAware
+import org.gradle.api.plugins.ExtraPropertiesExtension
 import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.TaskContainer
 import org.gradle.api.tasks.TaskProvider
@@ -249,4 +252,44 @@ fun <T : Task> TaskProvider<T>.addAsDependencyTo(
  */
 inline fun <reified T : Task> T.outputsUpToDateWhen(crossinline predicate: (T) -> Boolean) {
   outputs.upToDateWhen { predicate(it as T) }
+}
+
+/**
+ * Shorthand for `(this as ExtensionAware).extraProperties`, since every
+ * [TaskCollection] implementation will implement [ExtensionAware].
+ */
+val TaskCollection<*>.extras: ExtraPropertiesExtension
+  get() = (this as ExtensionAware).extensions.extraProperties
+
+/**
+ * @throws IllegalArgumentException if there are multiple tasks of that name when ignoring its case
+ */
+fun TaskCollection<*>.namedOrNull(taskName: String): NamedDomainObjectSchema? {
+
+  // This will typically be a 1:1 grouping,
+  // but Gradle does allow you to re-use task names with different capitalization,
+  // like 'foo' and 'Foo'.
+  val namesLowercase =
+    extras.getOrPut("taskNamesLowercaseToSchema") {
+      collectionSchema.elements.groupBy { it.name.lowercase() }
+    }
+
+  val taskNameLowercase = taskName.lowercase()
+
+  // All tasks that match the lowercase name
+  val lowercaseMatches = namesLowercase[taskNameLowercase] ?: return null
+
+  // The task with the same case as the requested name, or null
+  val exactMatch = lowercaseMatches.singleOrNull { it.name == taskName }
+
+  if (exactMatch != null) {
+    return exactMatch
+  }
+
+  require(lowercaseMatches.size == 1) {
+    "Task name '$taskName' is ambiguous.  " +
+      "It matches multiple tasks: ${lowercaseMatches.map { it.name }}"
+  }
+
+  return lowercaseMatches.single()
 }

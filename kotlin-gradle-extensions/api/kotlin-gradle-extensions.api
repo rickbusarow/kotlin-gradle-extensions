@@ -119,10 +119,98 @@ public final class com/rickbusarow/kgx/ObjectFactoryKt {
 public final class com/rickbusarow/kgx/PluginContainerKt {
 	public static final fun applyOnce (Lorg/gradle/api/plugins/PluginContainer;Ljava/lang/String;)V
 	public static final fun withAny (Lorg/gradle/api/plugins/PluginContainer;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withApplicationPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withApplicationPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withBasePlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withBasePlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withBuildInitPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withBuildInitPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withDistributionPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withDistributionPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withGroovyBasePlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withGroovyBasePlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withGroovyPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withGroovyPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withIdeaPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withIdeaPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withJavaBasePlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaBasePlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withJavaGradlePluginPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaGradlePluginPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withJavaLibraryDistributionPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaLibraryDistributionPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withJavaLibraryPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaLibraryPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withJavaPlatformPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaPlatformPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withJavaPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withJavaTestFixturesPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaTestFixturesPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withKapt3Plugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withKapt3Plugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withKotlinAndroidPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withKotlinAndroidPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withKotlinJsPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withKotlinJsPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withKotlinJvmPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withKotlinJvmPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withKotlinMultiplatformPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withKotlinMultiplatformPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withKotlinParcelizePlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withKotlinParcelizePlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withPrecompiledGroovyPluginsPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withPrecompiledGroovyPluginsPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
+	public static final fun withSigningPlugin (Lorg/gradle/api/plugins/PluginContainer;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withSigningPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
 }
 
 public final class com/rickbusarow/kgx/PluginManagerKt {
 	public static final fun withAnyPlugin (Lorg/gradle/api/plugins/PluginManager;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withApplicationPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withApplicationPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withBasePlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withBasePlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withBuildInitPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withBuildInitPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withDistributionPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withDistributionPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withGroovyBasePlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withGroovyBasePlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withGroovyPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withGroovyPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withIdeaPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withIdeaPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withJavaBasePlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaBasePlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withJavaGradlePluginPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaGradlePluginPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withJavaLibraryDistributionPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaLibraryDistributionPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withJavaLibraryPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaLibraryPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withJavaPlatformPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaPlatformPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withJavaPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withJavaTestFixturesPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withJavaTestFixturesPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withKapt3Plugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withKapt3Plugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withKotlinAndroidPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withKotlinAndroidPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withKotlinJsPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withKotlinJsPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withKotlinJvmPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withKotlinJvmPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withKotlinMultiplatformPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withKotlinMultiplatformPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withKotlinParcelizePlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withKotlinParcelizePlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withPrecompiledGroovyPluginsPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withPrecompiledGroovyPluginsPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+	public static final fun withSigningPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
+	public static final fun withSigningPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
 }
 
 public final class com/rickbusarow/kgx/ProjectKt {
@@ -152,11 +240,13 @@ public final class com/rickbusarow/kgx/TaskKt {
 	public static final fun addAsDependencyTo (Lorg/gradle/api/tasks/TaskProvider;Lorg/gradle/api/tasks/TaskProvider;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun dependOn (Lorg/gradle/api/tasks/TaskCollection;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskCollection;
 	public static final fun dependsOn (Lorg/gradle/api/tasks/TaskProvider;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskProvider;
+	public static final fun getExtras (Lorg/gradle/api/tasks/TaskCollection;)Lorg/gradle/api/plugins/ExtraPropertiesExtension;
 	public static final fun matchingName (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;)Lorg/gradle/api/tasks/TaskCollection;
 	public static final fun matchingNames (Lorg/gradle/api/tasks/TaskContainer;[Ljava/lang/String;)Lorg/gradle/api/tasks/TaskCollection;
 	public static final fun maybeNamed (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskCollection;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskCollection;
 	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskProvider;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskProvider;
+	public static final fun namedOrNull (Lorg/gradle/api/tasks/TaskCollection;Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectCollectionSchema$NamedDomainObjectSchema;
 	public static final fun registerOnce (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;Ljava/lang/Class;Lorg/gradle/api/Action;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun undecoratedTypeName (Lorg/gradle/api/Task;)Ljava/lang/String;
 }
