@@ -15,6 +15,10 @@
 
 package builds
 
+import builds.GradleTestConventionPlugin.Companion.PUBLISH_TO_BUILD_M2
+import com.rickbusarow.kgx.dependsOn
+import com.rickbusarow.kgx.extras
+import com.rickbusarow.kgx.getOrNullAs
 import com.rickbusarow.kgx.registerOnce
 import com.vanniktech.maven.publish.GradlePlugin
 import com.vanniktech.maven.publish.JavadocJar.Dokka
@@ -139,19 +143,21 @@ private fun Project.configurePublish(
     extensions.configure(PublishingExtension::class.java) { publishingExtension ->
       publishingExtension
         .publications
-        .withType(
-          MavenPublication::class.java
-        ).configureEach { publication ->
+        .withType(MavenPublication::class.java)
+        .configureEach { publication ->
           publication.artifactId = artifactId
           publication.pom.description.set(pomDescription)
           publication.groupId = groupId
         }
+      publishingExtension.repositories.mavenLocal {
+        it.name = GradleTestConventionPlugin.BUILD_M2
+        it.setUrl(rootProject.layout.buildDirectory.dir("m2"))
+      }
     }
   }
 
   registerCoordinatesStringsCheckTask(groupId = groupId, artifactId = artifactId)
   registerSnapshotVersionCheckTask()
-  configureSkipDokka()
 
   tasks.withType(PublishToMavenRepository::class.java).configureEach {
     it.notCompatibleWithConfigurationCache("See https://github.com/gradle/gradle/issues/13468")
@@ -164,46 +170,73 @@ private fun Project.configurePublish(
     // skip signing for -SNAPSHOT publishing
     it.onlyIf { !(version as String).endsWith("SNAPSHOT") }
   }
+
+  setUpPublishToBuildM2(this)
 }
+
+/**
+ * Registers this [target]'s version of the `publishToBuildM2`
+ * task and adds it as a dependency to the root project's version.
+ */
+private fun setUpPublishToBuildM2(target: Project) {
+
+  val publishToBuildM2 = target.tasks.register(PUBLISH_TO_BUILD_M2) {
+    it.group = "Publishing"
+    it.description = "Delegates to the publishAllPublicationsToBuildM2Repository task " +
+      "on projects where publishing is enabled."
+
+    it.dependsOn("publishAllPublicationsToBuildM2Repository")
+
+    // Don't generate javadoc for integration tests.
+    target.extras["skipDokka"] = true
+  }
+
+  target.rootProject.tasks.named(PUBLISH_TO_BUILD_M2).dependsOn(publishToBuildM2)
+
+  target.tasks.withType(AbstractDokkaLeafTask::class.java).configureEach {
+    it.enabled = !target.skipDokka
+  }
+}
+
+private val Project.skipDokka: Boolean
+  get() = extras.getOrNullAs<Boolean>("skipDokka") ?: false
 
 private fun Project.registerCoordinatesStringsCheckTask(
   groupId: String,
   artifactId: String
 ) {
 
-  val checkTask =
-    tasks.registerOnce(
-      "checkMavenCoordinatesStrings",
-      BuildLogicTask::class.java
-    ) { task ->
-      task.group = "publishing"
-      task.description = "checks that the project's maven group and artifact ID are valid for Maven"
+  val checkTask = tasks.registerOnce(
+    "checkMavenCoordinatesStrings",
+    BuildLogicTask::class.java
+  ) { task ->
+    task.group = "publishing"
+    task.description = "checks that the project's maven group and artifact ID are valid for Maven"
 
-      task.doLast {
+    task.doLast {
 
-        val allowedRegex = "^[A-Za-z0-9_\\-.]+$".toRegex()
+      val allowedRegex = "^[A-Za-z0-9_\\-.]+$".toRegex()
 
-        check(groupId.matches(allowedRegex)) {
+      check(groupId.matches(allowedRegex)) {
 
-          val actualString =
-            when {
-              groupId.isEmpty() -> "<<empty string>>"
-              else -> groupId
-            }
-          "groupId ($actualString) is not a valid Maven identifier ($allowedRegex)."
+        val actualString = when {
+          groupId.isEmpty() -> "<<empty string>>"
+          else -> groupId
         }
+        "groupId ($actualString) is not a valid Maven identifier ($allowedRegex)."
+      }
 
-        check(artifactId.matches(allowedRegex)) {
+      check(artifactId.matches(allowedRegex)) {
 
-          val actualString =
-            when {
-              artifactId.isEmpty() -> "<<empty string>>"
-              else -> artifactId
-            }
-          "artifactId ($actualString) is not a valid Maven identifier ($allowedRegex)."
-        }
+        val actualString =
+          when {
+            artifactId.isEmpty() -> "<<empty string>>"
+            else -> artifactId
+          }
+        "artifactId ($actualString) is not a valid Maven identifier ($allowedRegex)."
       }
     }
+  }
 
   tasks.named(LifecycleBasePlugin.CHECK_TASK_NAME) { task ->
     task.dependsOn(checkTask)
@@ -235,56 +268,5 @@ private fun Project.registerSnapshotVersionCheckTask() {
         "The project's version name cannot have a -SNAPSHOT suffix, but it was $versionString."
       }
     }
-  }
-}
-
-/**
- * Integration tests require `publishToMavenLocal`, but they definitely don't need
- * Dokka output, and generating kdoc for everything takes forever -- especially
- * on a GitHub Actions server. So for integration tests, skip Dokka tasks.
- *
- * @since 0.1.0
- */
-private fun Project.configureSkipDokka() {
-
-  if (tasks.names.contains("setSkipDokka")) {
-    return
-  }
-
-  var skipDokka = false
-  val setSkipDokka =
-    tasks.register(
-      "setSkipDokka",
-      BuildLogicTask::class.java
-    ) { task ->
-
-      task.group = "publishing"
-      task.description = "sets `skipDokka` to true before `publishToMavenLocal` is evaluated."
-
-      task.doFirst { skipDokka = true }
-      task.onlyIf { true }
-    }
-
-  tasks.register("publishToMavenLocalNoDokka", BuildLogicTask::class.java) {
-
-    it.group = "publishing"
-    it.description = "Delegates to `publishToMavenLocal`, " +
-      "but skips Dokka generation and does not include a javadoc .jar."
-
-    it.doFirst { skipDokka = true }
-    it.dependsOn(setSkipDokka)
-    it.onlyIf { true }
-    it.dependsOn("publishToMavenLocal")
-  }
-
-  tasks.matching { it.name == "javaDocReleaseGeneration" }.configureEach {
-    it.onlyIf { !skipDokka }
-  }
-  tasks.withType(AbstractDokkaLeafTask::class.java).configureEach {
-    it.onlyIf { !skipDokka }
-  }
-
-  tasks.named("publishToMavenLocal") {
-    it.mustRunAfter(setSkipDokka)
   }
 }

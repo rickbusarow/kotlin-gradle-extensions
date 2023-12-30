@@ -15,13 +15,11 @@
 
 import builds.VERSION_NAME
 import com.github.gmazzo.buildconfig.BuildConfigTask
-import com.rickbusarow.kgx.dependsOn
 
 plugins {
   id("module")
-  id(libs.plugins.integration.test.get().pluginId)
+  id("builds.gradle-tests")
   alias(libs.plugins.buildconfig)
-  idea
 }
 
 val artifactId = "kotlin-gradle-extensions"
@@ -35,44 +33,28 @@ module {
 
 buildConfig {
 
-  this@buildConfig.sourceSets.named(java.sourceSets.integration.name) {
+  this@buildConfig.sourceSets.named(java.sourceSets.gradleTest.name) {
 
-    this@named.packageName(builds.GROUP)
-    this@named.className("BuildConfig")
+    packageName(builds.GROUP)
+    className("BuildConfig")
 
-    this@named.buildConfigField(
-      type = "String",
-      name = "version",
-      value = "\"${VERSION_NAME}\""
+    buildConfigField(
+      type = "java.io.File",
+      name = "localBuildM2Dir",
+      value = rootProject.layout.buildDirectory.dir("m2").map { "File(\"${it}\")" }
     )
-    this@named.buildConfigField(
-      type = "String",
+    buildConfigField(type = "String", name = "version", value = VERSION_NAME)
+    buildConfigField(
       name = "mavenArtifact",
-      value = provider { "\"${builds.GROUP}:$artifactId:${VERSION_NAME}\"" }
+      value = provider { "${builds.GROUP}:$artifactId:${VERSION_NAME}" }
     )
-    this@named.buildConfigField(
-      type = "String",
-      name = "kotlinGradle",
-      value = "\"${libs.versions.kotlin.gradle.get()}\""
-    )
-    this@named.buildConfigField(
-      type = "String",
-      name = "kotlinLibraries",
-      value = "\"${libs.versions.kotlin.libraries.get()}\""
-    )
+    buildConfigField(name = "kotlinGradle", value = libs.versions.kotlin.gradle.get())
+    buildConfigField(name = "kotlinLibraries", value = libs.versions.kotlin.libraries.get())
   }
 }
 
 rootProject.tasks.named("prepareKotlinBuildScriptModel") {
   dependsOn(tasks.withType(BuildConfigTask::class.java))
-}
-
-idea {
-  module {
-    java.sourceSets.integration {
-      this@module.testSources.from(allSource.srcDirs)
-    }
-  }
 }
 
 dependencies {
@@ -84,7 +66,22 @@ dependencies {
   compileOnly(libs.kotlin.gradle.plugin)
   compileOnly(libs.kotlin.gradle.plugin.api)
 
-  integrationImplementation(gradleTestKit())
+  gradleTestImplementation(gradleTestKit())
+
+  gradleTestImplementation(libs.junit.engine)
+  gradleTestImplementation(libs.junit.jupiter)
+  gradleTestImplementation(libs.junit.jupiter.api)
+  gradleTestImplementation(libs.kotest.assertions.core.jvm)
+  gradleTestImplementation(libs.kotest.assertions.shared)
+  gradleTestImplementation(libs.kotlin.gradle.plugin)
+  gradleTestImplementation(libs.kotlin.gradle.plugin.api)
+  gradleTestImplementation(libs.rickBusarow.kase)
+  gradleTestImplementation(libs.rickBusarow.kase.gradle) {
+    exclude(group = "com.rickbusarow.kgx")
+  }
+  gradleTestImplementation(libs.rickBusarow.kase.gradle.dsl) {
+    exclude(group = "com.rickbusarow.kgx")
+  }
 
   testImplementation(libs.junit.engine)
   testImplementation(libs.junit.jupiter)
@@ -94,5 +91,3 @@ dependencies {
   testImplementation(libs.kotlin.gradle.plugin)
   testImplementation(libs.kotlin.gradle.plugin.api)
 }
-
-tasks.named("integrationTest").dependsOn("publishToMavenLocalNoDokka")

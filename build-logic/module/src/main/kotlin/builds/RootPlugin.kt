@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -44,16 +44,10 @@ abstract class RootPlugin : Plugin<Project> {
 
     // Hack for ensuring that when 'publishToMavenLocal' is invoked from the root project,
     // all subprojects are published.  This is used in plugin tests.
-    target.tasks.register("publishToMavenLocal", BuildLogicTask::class.java) {
-      target.subprojects.forEach { sub ->
-        it.dependsOn(sub.tasks.matching { it.name == "publishToMavenLocal" })
-      }
-    }
-    target.tasks.register("publishToMavenLocalNoDokka", BuildLogicTask::class.java) {
-      target.subprojects.forEach { sub ->
-        it.dependsOn(sub.tasks.matching { it.name == "publishToMavenLocalNoDokka" })
-      }
-    }
+    target.tasks.register(
+      GradleTestConventionPlugin.PUBLISH_TO_BUILD_M2,
+      BuildLogicTask::class.java
+    )
 
     if (target.gradle.includedBuilds.isNotEmpty()) {
       target.plugins.apply("composite")

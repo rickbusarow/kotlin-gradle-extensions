@@ -77,7 +77,7 @@ comments:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
   OutdatedDocumentation:
@@ -96,7 +96,7 @@ comments:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
     searchInNestedClass: true
@@ -118,7 +118,7 @@ comments:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
     searchProtectedFunction: false
@@ -136,7 +136,7 @@ comments:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
     searchProtectedProperty: false
@@ -187,7 +187,7 @@ complexity:
         "**/commonTest/**",
         "**/jvmTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
   LongMethod:
@@ -232,7 +232,7 @@ complexity:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
     threshold: 3
@@ -250,7 +250,7 @@ complexity:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
     thresholdInFiles: 13
@@ -338,7 +338,7 @@ exceptions:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
   NotImplementedDeclaration:
@@ -375,7 +375,7 @@ exceptions:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
     exceptions:
@@ -401,7 +401,7 @@ exceptions:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
     exceptionNames:
@@ -437,7 +437,7 @@ naming:
         "**/commonTest/**",
         "**/jvmTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
   ConstructorParameterNaming:
@@ -468,7 +468,7 @@ naming:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
     functionPattern: "[a-zA-Z][a-zA-Z0-9]*|`.*`"
@@ -524,7 +524,7 @@ naming:
         "**/commonTest/**",
         "**/jvmTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
     excludeClassPattern: "$^"
@@ -547,7 +547,7 @@ performance:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
   SpreadOperator:
@@ -561,7 +561,7 @@ performance:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
   UnnecessaryPartOfBinaryExpression:
@@ -645,7 +645,7 @@ potential-bugs:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
     ignoreOnClassesPattern: ""
@@ -683,7 +683,7 @@ potential-bugs:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
   UnsafeCast:
@@ -815,7 +815,7 @@ style:
         "**/androidUnitTest/**",
         "**/androidInstrumentedTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
         "**/*.kts",
       ]
@@ -849,7 +849,7 @@ style:
         "**/commonTest/**",
         "**/jvmTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
     excludePackageStatements: true
@@ -1012,7 +1012,7 @@ style:
         "**/commonTest/**",
         "**/jvmTest/**",
         "**/jsTest/**",
-        "**/integrationTest/**",
+        "**/gradleTest/**",
         "**/iosTest/**",
       ]
     excludeImports:
@@ -1028,7 +1028,7 @@ libraries:
       "**/commonTest/**",
       "**/jvmTest/**",
       "**/jsTest/**",
-      "**/integrationTest/**",
+      "**/gradleTest/**",
       "**/iosTest/**",
     ]
   ForbiddenPublicDataClass:

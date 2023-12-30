@@ -1,8 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base"],
   "rebaseWhen": "conflicted",
   "rebaseLabel": "rebase",
   "packageRules": [
@@ -17,12 +15,8 @@
     },
     {
       "groupName": "Kotlin libraries",
-      "matchPackagePatterns": [
-        "^org\\.jetbrains\\.kotlin:(?:[\\w-]+)$"
-      ],
-      "excludePackagePatterns": [
-        "^org\\.jetbrains\\.kotlin:kotlin-gradle-(?:[\\w-]+)$"
-      ]
+      "excludePackagePatterns": ["^org\\.jetbrains\\.kotlin:kotlin-gradle-(?:[\\w-]+)$"],
+      "matchPackagePatterns": ["^org\\.jetbrains\\.kotlin:(?:[\\w-]+)$"]
     }
   ],
   "labels": [

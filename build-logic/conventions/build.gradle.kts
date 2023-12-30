@@ -20,8 +20,8 @@ plugins {
 
 gradlePlugin {
   plugins {
-    create("ben-manes") {
-      id = "build.ben-manes"
+    create("builds.ben-manes") {
+      id = "builds.ben-manes"
       implementationClass = "builds.BenManesVersionsPlugin"
     }
     create("builds.check") {
@@ -52,9 +52,9 @@ gradlePlugin {
       id = "builds.github-release"
       implementationClass = "builds.GitHubReleasePlugin"
     }
-    create("builds.integration-tests") {
-      id = "builds.integration-tests"
-      implementationClass = "builds.IntegrationTestsConventionPlugin"
+    create("builds.gradle-tests") {
+      id = "builds.gradle-tests"
+      implementationClass = "builds.GradleTestConventionPlugin"
     }
     create("builds.kotlin") {
       id = "builds.kotlin"
