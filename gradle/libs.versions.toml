@@ -5,8 +5,6 @@ jvmTargetBuildLogic = "11" # the jdk used in packaging
 
 kotlin-gradle = "1.9.22"
 kotlin-libraries = "1.8.22"
-google-ksp = "1.9.21-1.0.15"
-poko = "0.15.1"
 
 kgx-dev = "0.2.0-SNAPSHOT"
 
@@ -26,6 +24,7 @@ johnrengelman-shadow = "8.1.1"
 kotest = "5.8.0"
 kotlinApi = "1.7"
 kotlinx-binaryCompatibility = "0.13.2"
+kotlinx-serialization = "1.6.2"
 kotlinx-coroutines = "1.7.2"
 ktlint-lib = "1.0.1"
 prettier = "2.8.4"
@@ -36,7 +35,6 @@ rickBusarow-ktlint = "0.2.1"
 rickBusarow-ktrules = "1.2.1"
 rickBusarow-moduleCheck = "0.12.5"
 square-kotlinPoet = "1.15.3"
-square-moshi = "1.15.0"
 vanniktech-publish = "0.26.0"
 
 [plugins]
@@ -44,12 +42,11 @@ buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig
 dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }
 doks = { id = "com.rickbusarow.doks", version.ref = "rickBusarow-doks" }
 github-release = { id = "com.github.breadmoirai.github-release", version.ref = "breadmoirai-github-release" }
-google-ksp = { id = "com.google.devtools.ksp", version.ref = "google-ksp" }
 integration-test = { id = "com.coditory.integration-test", version.ref = "integration-test" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-gradle" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-gradle" }
 ktlint = { id = "com.rickbusarow.ktlint", version.ref = "rickBusarow-ktlint" }
 moduleCheck = { id = "com.rickbusarow.module-check", version.ref = "rickBusarow-moduleCheck" }
-poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
 
 [libraries]
 
@@ -78,8 +75,6 @@ dokka-versioning = { module = "org.jetbrains.dokka:versioning-plugin", version.r
 dropbox-dependencyGuard = { module = "com.dropbox.dependency-guard:dependency-guard", version.ref = "dropbox-dependencyGuard" }
 
 ec4j-core = { module = "org.ec4j.core:ec4j-core", version.ref = "ec4j" }
-
-google-ksp = { module = "com.google.devtools.ksp:symbol-processing-gradle-plugin", version.ref = "google-ksp" }
 
 integration-test = { module = "com.coditory.gradle:integration-test-plugin", version.ref = "integration-test" }
 
@@ -112,12 +107,10 @@ kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", versi
 
 kotlinx-binaryCompatibility = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version.ref = "kotlinx-binaryCompatibility" }
 
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
 # This exists just to give Renovate something to resolve
 ktlint-core = { module = "com.pinterest.ktlint:ktlint-core", version.ref = "ktlint-lib" }
-
-poko-annotations = { module = "dev.drewhamilton.poko:poko-annotations", version.ref = "poko" }
-poko-compiler = { module = "dev.drewhamilton.poko:poko-compiler-plugin", version.ref = "poko" }
-poko-gradle-plugin = { module = "dev.drewhamilton.poko:poko-gradle-plugin", version.ref = "poko" }
 
 rickBusarow-doks = { module = "com.rickbusarow.doks:doks-gradle-plugin", version.ref = "rickBusarow-doks" }
 rickBusarow-kgx = { module = "com.rickbusarow.kgx:kotlin-gradle-extensions", version.ref = "rickBusarow-kgx" }
@@ -126,8 +119,6 @@ rickBusarow-ktrules = { module = "com.rickbusarow.ktrules:ktrules", version.ref 
 rickBusarow-moduleCheck-gradle-plugin = { module = "com.rickbusarow.modulecheck:plugin", version.ref = "rickBusarow-moduleCheck" }
 
 square-kotlinPoet = { module = "com.squareup:kotlinpoet", version.ref = "square-kotlinPoet" }
-square-moshi = { module = "com.squareup.moshi:moshi", version.ref = "square-moshi" }
-square-moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "square-moshi" }
 
 vanniktech-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "vanniktech-publish" }
 

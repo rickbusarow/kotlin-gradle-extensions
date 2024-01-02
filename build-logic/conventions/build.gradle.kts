@@ -15,7 +15,6 @@
 
 plugins {
   kotlin("jvm")
-  alias(libs.plugins.google.ksp)
   id("java-gradle-plugin")
 }
 
@@ -97,10 +96,7 @@ dependencies {
   implementation(libs.kotlin.gradle.plugin)
   implementation(libs.kotlin.gradle.plugin.api)
   implementation(libs.kotlinx.binaryCompatibility)
-  implementation(libs.poko.gradle.plugin)
   implementation(libs.rickBusarow.kgx)
   implementation(libs.square.kotlinPoet)
   implementation(libs.vanniktech.publish)
-
-  ksp(libs.square.moshi.codegen)
 }

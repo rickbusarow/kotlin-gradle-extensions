@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,9 +16,8 @@
 package builds.artifacts
 
 import com.rickbusarow.kgx.existsOrNull
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.Json
 import org.apache.tools.ant.taskdefs.condition.Os
 import org.gradle.api.DefaultTask
 import org.gradle.api.Project
@@ -58,28 +57,19 @@ abstract class ArtifactsTask(
   protected val currentList by lazy { project.createArtifactList() }
 
   @get:Internal
-  protected val moshiAdapter: JsonAdapter<List<ArtifactConfig>> by lazy {
-
-    val type =
-      Types.newParameterizedType(
-        List::class.java,
-        ArtifactConfig::class.java
-      )
-
-    Moshi
-      .Builder()
-      .build()
-      .adapter(type)
+  protected val jsonAdapter: Json by lazy {
+    Json(builderAction = {
+      prettyPrint = true
+      @OptIn(ExperimentalSerializationApi::class)
+      prettyPrintIndent = "  "
+    })
   }
 
   @get:Internal
-  protected val baselineArtifacts by lazy {
-    moshiAdapter
-      .fromJson(
-        // If the file doesn't exist, there may not be any published artifacts.
-        // Just pass in an empty array so that we're not forced to create an empty file.
-        reportFile.asFile.existsOrNull()?.readText() ?: "[]"
-      ).orEmpty()
+  protected val baselineArtifacts: List<ArtifactConfig> by lazy {
+
+    val jsonString = reportFile.asFile.existsOrNull()?.readText() ?: "[]"
+    jsonAdapter.decodeFromString<List<ArtifactConfig>>(jsonString)
   }
 
   private fun Project.createArtifactList(): List<ArtifactConfig> {
