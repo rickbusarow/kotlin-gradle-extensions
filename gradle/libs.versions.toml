@@ -4,8 +4,8 @@ jvmTarget = "1.8" # the jdk used in packaging
 jvmTargetBuildLogic = "11" # the jdk used in packaging
 
 kotlin-gradle = "1.9.22"
-kotlin-libraries = "1.8.22"
-google-ksp = "1.9.21-1.0.15"
+kotlin-libraries = "1.9.22"
+google-ksp = "1.9.22-1.0.16"
 poko = "0.15.1"
 
 kgx-dev = "0.2.0-SNAPSHOT"
