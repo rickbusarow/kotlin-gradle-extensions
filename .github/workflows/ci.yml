@@ -44,8 +44,8 @@ jobs:
         if: github.event.repository.fork == false
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: dependencyGuardBaseline
-          cache-read-only: false --refresh-dependencies
+          arguments: dependencyGuardBaseline --refresh-dependencies
+          cache-read-only: false
 
       # If the baseline was just updated, commit and push those changes.
       - name: commit dependency-guard baseline changes (used by main repo)
@@ -59,8 +59,8 @@ jobs:
         if: github.event.repository.fork == true
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: dependencyGuard
-          cache-read-only: false --refresh-dependencies
+          arguments: dependencyGuard --refresh-dependencies
+          cache-read-only: false
 
       - name: artifacts check
         uses: gradle/gradle-build-action@v2
