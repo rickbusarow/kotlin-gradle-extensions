@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,8 +15,10 @@
 
 package com.rickbusarow.kgx
 
+import io.kotest.assertions.asClue
 import io.kotest.data.blocking.forAll
 import io.kotest.data.row
+import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.junit.jupiter.api.Test
@@ -40,7 +42,9 @@ class JvmTargetTest {
       row(16, JvmTarget.JVM_16),
       row(17, JvmTarget.JVM_17),
       row(18, JvmTarget.JVM_18),
-      row(19, JvmTarget.JVM_19)
+      row(19, JvmTarget.JVM_19),
+      row(20, JvmTarget.JVM_20),
+      row(21, JvmTarget.JVM_21)
     ) { int, target ->
 
       allTargets.add(target)
@@ -49,6 +53,8 @@ class JvmTargetTest {
       target.toInt() shouldBe int
     }
 
-    allTargets shouldBe JvmTarget.values().toSet()
+    "all defined enum values should be covered in this test".asClue {
+      allTargets shouldContainExactly JvmTarget.values().toSet()
+    }
   }
 }

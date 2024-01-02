@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,11 +18,13 @@ package builds
 import com.rickbusarow.kgx.applyOnce
 import com.rickbusarow.kgx.dependsOn
 import com.rickbusarow.kgx.javaExtension
+import com.rickbusarow.kgx.libsCatalog
+import com.rickbusarow.kgx.version
 import com.vanniktech.maven.publish.MavenPublishBasePlugin
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.file.DuplicatesStrategy
+import org.gradle.api.file.DuplicatesStrategy.INCLUDE
 import org.gradle.api.tasks.bundling.Jar
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.jvm.toolchain.JavaLanguageVersion
@@ -37,6 +39,7 @@ abstract class KotlinJvmConventionPlugin : Plugin<Project> {
       extension.jvmToolchain { toolChain ->
         toolChain.languageVersion.set(JavaLanguageVersion.of(target.JDK))
       }
+      extension.coreLibrariesVersion = target.libsCatalog.version("kotlin-libraries")
     }
 
     target.tasks.withType(KotlinCompile::class.java).configureEach { task ->
@@ -72,12 +75,20 @@ abstract class KotlinJvmConventionPlugin : Plugin<Project> {
       target.provider { target.javaExtension.sourceSets.map { it.classesTaskName } }
     )
 
-    // fixes the error
-    // 'Entry classpath.index is a duplicate but no duplicate handling strategy has been set.'
-    // when executing a Jar task
-    // https://github.com/gradle/gradle/issues/17236
+    configureJarDuplicates(target)
+  }
+
+  /**
+   * Fixes this error when executing a Jar task:
+   *
+   * > Entry classpath.index is a duplicate but no duplicate handling strategy has been set.
+   *
+   * https://github.com/gradle/gradle/issues/17236
+   */
+  @Suppress("GrazieInspection")
+  private fun configureJarDuplicates(target: Project) {
     target.tasks.withType(Jar::class.java).configureEach { task ->
-      task.duplicatesStrategy = DuplicatesStrategy.INCLUDE
+      task.duplicatesStrategy = INCLUDE
     }
   }
 }
