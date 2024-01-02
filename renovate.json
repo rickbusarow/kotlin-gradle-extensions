@@ -7,15 +7,18 @@
   "rebaseLabel": "rebase",
   "packageRules": [
     {
-      "groupName": "Kotlin and compiler plugins",
+      "groupName": "Kotlin Gradle and compiler plugins",
       "matchPackagePatterns": [
-        "^org\\.jetbrains\\.kotlin:(?:[\\w-]+)$",
+        "^org\\.jetbrains\\.kotlin:kotlin-gradle-(?:[\\w-]+)$",
         "^com\\.google\\.devtools\\.ksp:(?:[\\w-]+)$",
         "^com\\.square\\.anvil:(?:[\\w-]+)$",
         "^dev\\.drewhamilton\\.poko:(?:[\\w-]+)$"
-      ],
-      "excludeDepNames": [
-        "kotlin-libraries"
+      ]
+    },
+    {
+      "groupName": "Kotlin libraries",
+      "matchPackagePatterns": [
+        "^org\\.jetbrains\\.kotlin:kotlin-(?<!gradle)(?:[\\w-]+)$"
       ]
     }
   ],
