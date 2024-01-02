@@ -53,8 +53,13 @@ buildConfig {
     )
     this@named.buildConfigField(
       type = "String",
-      name = "kotlinVersion",
-      value = "\"${libs.versions.kotlin.get()}\""
+      name = "kotlinGradle",
+      value = "\"${libs.versions.kotlin.gradle.get()}\""
+    )
+    this@named.buildConfigField(
+      type = "String",
+      name = "kotlinLibraries",
+      value = "\"${libs.versions.kotlin.libraries.get()}\""
     )
   }
 }

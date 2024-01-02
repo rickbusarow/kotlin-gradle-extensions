@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -34,12 +34,12 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
  * @since 0.1.9
  * @throws NullPointerException if KGP doesn't have an enum defined for the provided [targetInt].
  */
-fun JvmTarget.Companion.fromInt(targetInt: Int): JvmTarget = when (targetInt) {
+fun JvmTarget.Companion.fromInt(targetInt: Int): JvmTarget {
   @Suppress("MagicNumber")
-  8
-  -> JvmTarget.fromTarget("1.8")
-
-  else -> JvmTarget.fromTarget("$targetInt")
+  return when (targetInt) {
+    8 -> JvmTarget.fromTarget("1.8")
+    else -> JvmTarget.fromTarget("$targetInt")
+  }
 }
 
 /**
