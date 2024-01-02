@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 package builds
 
 import com.rickbusarow.kgx.EagerGradleApi
-import com.rickbusarow.kgx.dependency
+import com.rickbusarow.kgx.library
 import com.rickbusarow.kgx.libsCatalog
 import com.rickbusarow.kgx.matchingName
 import com.rickbusarow.kgx.version
@@ -37,7 +37,7 @@ abstract class KtLintConventionPlugin : Plugin<Project> {
 
     target
       .dependencies
-      .add("ktlint", target.libsCatalog.dependency("rickBusarow-ktrules"))
+      .add("ktlint", target.libsCatalog.library("rickBusarow-ktrules"))
 
     target.extensions.configure(KtLintExtension::class.java) { ext ->
       ext.ktlintVersion.set(target.libsCatalog.version("ktlint-lib"))
