@@ -18,7 +18,10 @@
     {
       "groupName": "Kotlin libraries",
       "matchPackagePatterns": [
-        "^org\\.jetbrains\\.kotlin:kotlin-(?!gradle-[\\w-]+$)[\\w-]+$"
+        "^org\\.jetbrains\\.kotlin:(?:[\\w-]+)$"
+      ],
+      "excludePackagePatterns": [
+        "^org\\.jetbrains\\.kotlin:kotlin-gradle-(?:[\\w-]+)$"
       ]
     }
   ],
