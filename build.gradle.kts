@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,9 +15,6 @@
 
 import builds.GROUP
 import builds.VERSION_NAME
-import com.rickbusarow.doks.DoksTask
-import com.rickbusarow.kgx.mustRunAfter
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   id("root")
@@ -43,11 +40,4 @@ doks {
       replacement = GROUP
     }
   }
-}
-
-subprojects.map {
-  it
-    .tasks
-    .withType(KotlinCompile::class.java)
-    .mustRunAfter(tasks.withType(DoksTask::class.java))
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 package builds
 
 import com.rickbusarow.kgx.applyOnce
-import com.rickbusarow.kgx.dependency
+import com.rickbusarow.kgx.library
 import com.rickbusarow.kgx.libsCatalog
 import com.rickbusarow.ktlint.KtLintTask
 import org.gradle.api.Plugin
@@ -94,7 +94,7 @@ abstract class DokkaConventionPlugin : Plugin<Project> {
       }
     }
 
-    target.dependencies.add("dokkaPlugin", target.libsCatalog.dependency("dokka-versioning"))
+    target.dependencies.add("dokkaPlugin", target.libsCatalog.library("dokka-versioning"))
 
     val versionName = target.VERSION_NAME
 
