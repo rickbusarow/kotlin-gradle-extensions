@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import builds.GROUP
-import builds.VERSION_NAME
 import com.rickbusarow.doks.DoksTask
 import com.rickbusarow.kgx.mustRunAfter
+import com.rickbusarow.lattice.config.latticeProperties
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  id("root")
+  id("com.rickbusarow.lattice.root")
+  // id("root")
   alias(libs.plugins.moduleCheck)
   alias(libs.plugins.doks)
 }
@@ -35,12 +35,12 @@ doks {
     docs("README.md", "CHANGELOG.md")
 
     rule("maven-with-version") {
-      regex = maven(GROUP)
-      replacement = "$1:$2:${VERSION_NAME.escapeReplacement()}"
+      regex = maven(group as String)
+      replacement = "$1:$2:${latticeProperties.versionName.get().escapeReplacement()}"
     }
     rule("kgx-group") {
       regex = "com\\.(?:rickbusarow|square|squareup)\\.kgx"
-      replacement = GROUP
+      replacement = latticeProperties.group.get()
     }
   }
 }

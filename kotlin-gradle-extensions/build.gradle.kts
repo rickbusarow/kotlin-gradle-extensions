@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,33 +13,37 @@
  * limitations under the License.
  */
 
-import builds.VERSION_NAME
 import com.github.gmazzo.gradle.plugins.BuildConfigTask
-import com.rickbusarow.kgx.dependsOn
+import com.rickbusarow.lattice.config.latticeProperties
 
 plugins {
-  id("module")
-  id(libs.plugins.integration.test.get().pluginId)
+  // id("module")
+  id("com.rickbusarow.lattice.kotlin-jvm")
   alias(libs.plugins.buildconfig)
   idea
 }
 
 val artifactId = "kotlin-gradle-extensions"
 
-module {
-  published(
-    artifactId = artifactId,
-    pomDescription = "Common utilities for Gradle"
-  )
+lattice {
+  publishing {
+    publishMaven(
+      artifactId = artifactId,
+      pomDescription = "Common utilities for Gradle"
+    )
+  }
   poko()
+  gradleTests()
 }
 
 buildConfig {
 
-  this@buildConfig.sourceSets.named(java.sourceSets.integration.name) {
+  this@buildConfig.sourceSets.named("gradleTest") {
 
-    this@named.packageName(builds.GROUP)
+    this@named.packageName(group as String)
     this@named.className("BuildConfig")
+
+    val VERSION_NAME = latticeProperties.versionName.get()
 
     this@named.buildConfigField(
       type = "String",
@@ -49,7 +53,7 @@ buildConfig {
     this@named.buildConfigField(
       type = "String",
       name = "mavenArtifact",
-      value = provider { "\"${builds.GROUP}:$artifactId:${VERSION_NAME}\"" }
+      value = provider { "\"${group as String}:$artifactId:${VERSION_NAME}\"" }
     )
     this@named.buildConfigField(
       type = "String",
@@ -63,14 +67,6 @@ rootProject.tasks.named("prepareKotlinBuildScriptModel") {
   dependsOn(tasks.withType(BuildConfigTask::class.java))
 }
 
-idea {
-  module {
-    java.sourceSets.integration {
-      this@module.testSources.from(allSource.srcDirs)
-    }
-  }
-}
-
 dependencies {
 
   api(project(":names"))
@@ -80,7 +76,7 @@ dependencies {
   compileOnly(libs.kotlin.gradle.plugin)
   compileOnly(libs.kotlin.gradle.plugin.api)
 
-  integrationImplementation(gradleTestKit())
+  "gradleTestImplementation"(gradleTestKit())
 
   testImplementation(libs.junit.engine)
   testImplementation(libs.junit.jupiter)
@@ -91,4 +87,4 @@ dependencies {
   testImplementation(libs.kotlin.gradle.plugin.api)
 }
 
-tasks.named("integrationTest").dependsOn("publishToMavenLocalNoDokka")
+// tasks.named("integrationTest").dependsOn("publishToMavenLocalNoDokka")
