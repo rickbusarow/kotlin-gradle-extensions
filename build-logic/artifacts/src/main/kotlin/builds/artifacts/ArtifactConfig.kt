@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,8 +15,8 @@
 
 package builds.artifacts
 
-import com.squareup.moshi.JsonClass
-import java.io.Serializable
+import kotlinx.serialization.Serializable
+import java.io.Serializable as JavaIoSerializable
 
 /**
  * Models the module-specific properties of published maven artifacts.
@@ -37,7 +37,7 @@ import java.io.Serializable
  * @property publicationName typically 'maven', but other things for KMP artifacts
  * @since 0.1.0
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class ArtifactConfig(
   val gradlePath: String,
   val group: String,
@@ -46,8 +46,7 @@ data class ArtifactConfig(
   val packaging: String,
   val javaVersion: String,
   val publicationName: String
-) : Serializable,
-  Comparable<ArtifactConfig> {
+) : JavaIoSerializable, Comparable<ArtifactConfig> {
   /**
    * globally unique identifier for this artifact
    *

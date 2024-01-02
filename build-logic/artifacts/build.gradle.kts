@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,8 +14,8 @@
  */
 
 plugins {
-  kotlin("jvm")
-  alias(libs.plugins.google.ksp)
+  alias(libs.plugins.kotlin.jvm)
+  alias(libs.plugins.kotlin.serialization)
   id("java-gradle-plugin")
 }
 
@@ -30,13 +30,10 @@ gradlePlugin {
 
 dependencies {
 
-  api(libs.square.moshi)
-
   compileOnly(gradleApi())
 
+  implementation(libs.kotlinx.serialization.json)
   implementation(libs.rickBusarow.kgx)
 
   implementation(project(":core"))
-
-  ksp(libs.square.moshi.codegen)
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,6 +17,7 @@ package builds.artifacts
 
 import builds.Color.Companion.colorized
 import builds.Color.RED
+import kotlinx.serialization.encodeToString
 import org.gradle.api.GradleException
 import org.gradle.api.file.ProjectLayout
 import org.gradle.api.tasks.TaskAction
@@ -50,12 +51,15 @@ open class ArtifactsDumpTask @Inject constructor(
     val artifactsChanged = baselineArtifacts.sorted() != currentList.sorted()
 
     if (artifactsChanged && currentList.isNotEmpty()) {
-      val json =
-        moshiAdapter
-          .indent("  ")
-          .toJson(currentList)
-          // Moshi doesn't add a newline to the end, which GitHub's PR UI doesn't like
-          .plus("\n")
+
+      val json = jsonAdapter.encodeToString(currentList.sorted())
+        .let {
+          if (it.endsWith("\n\n")) {
+            it
+          } else {
+            it.plus("\n")
+          }
+        }
 
       reportFile.asFile.writeText(json)
     }
