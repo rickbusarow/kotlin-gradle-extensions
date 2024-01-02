@@ -15,6 +15,4 @@
 
 package builds
 
-abstract class ModuleBuildExtension :
-  PokoExtension,
-  PublishingExtension
+abstract class ModuleBuildExtension : PublishingExtension

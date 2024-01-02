@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,7 +18,6 @@ package com.rickbusarow.kgx.internal
 import com.rickbusarow.kgx.internal.ElementInfoAction.ElementValue.Instance
 import com.rickbusarow.kgx.internal.ElementInfoAction.ElementValue.ProviderInstance
 import com.rickbusarow.kgx.internal.ElementInfoAction.RegisteredElement
-import dev.drewhamilton.poko.Poko
 import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.provider.Provider
@@ -187,10 +186,20 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
      *
      * @since 0.1.5
      */
-    @Poko
     class Instance<T>(
       override val value: T
-    ) : ElementValue<T>
+    ) : ElementValue<T> {
+
+      override fun equals(other: Any?): Boolean = when {
+        this === other -> true
+        other !is Instance<*> -> false
+        else -> value == other.value
+      }
+
+      override fun hashCode(): Int = value?.hashCode() ?: 0
+
+      override fun toString(): String = "Instance(value=$value)"
+    }
 
     /**
      * Represents a provider for a registered element. This

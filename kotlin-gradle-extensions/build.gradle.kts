@@ -31,7 +31,6 @@ module {
     artifactId = artifactId,
     pomDescription = "Common utilities for Gradle"
   )
-  poko()
 }
 
 buildConfig {
