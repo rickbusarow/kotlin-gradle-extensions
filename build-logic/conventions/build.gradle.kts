@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -86,9 +86,7 @@ dependencies {
   compileOnly(gradleApi())
 
   implementation(libs.benManes.versions)
-  implementation(libs.breadmoirai.github.release) {
-    exclude(group = "org.gradle")
-  }
+  implementation(libs.breadmoirai.github.release)
   implementation(libs.detekt.gradle)
   implementation(libs.diffplug.spotless)
   implementation(libs.dokka.core)
@@ -102,6 +100,7 @@ dependencies {
   implementation(libs.kotlinx.binaryCompatibility)
   implementation(libs.poko.gradle.plugin)
   implementation(libs.rickBusarow.kgx)
+  implementation(libs.square.kotlinPoet)
   implementation(libs.vanniktech.publish)
 
   ksp(libs.square.moshi.codegen)
