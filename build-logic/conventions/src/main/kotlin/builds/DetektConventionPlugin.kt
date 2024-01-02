@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -17,7 +17,7 @@ package builds
 
 import com.rickbusarow.kgx.applyOnce
 import com.rickbusarow.kgx.buildDir
-import com.rickbusarow.kgx.dependency
+import com.rickbusarow.kgx.library
 import com.rickbusarow.kgx.libsCatalog
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
@@ -55,7 +55,7 @@ abstract class DetektConventionPlugin : Plugin<Project> {
 
     target.dependencies.add(
       "detektPlugins",
-      target.libsCatalog.dependency("detekt-rules-libraries")
+      target.libsCatalog.library("detekt-rules-libraries")
     )
 
     target.extensions.configure(DetektExtension::class.java) { extension ->

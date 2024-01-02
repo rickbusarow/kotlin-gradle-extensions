@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,7 @@
 
 package builds
 
-import com.rickbusarow.kgx.dependency
+import com.rickbusarow.kgx.library
 import com.rickbusarow.kgx.libsCatalog
 import com.rickbusarow.kgx.pluginId
 import org.gradle.api.Project
@@ -27,7 +27,7 @@ interface PokoExtension {
     val implementation = configurations.getByName("implementation")
     val testCompileOnly = configurations.getByName("testCompileOnly")
 
-    val pokoAnnotationsProvider = project.libsCatalog.dependency("poko-annotations")
+    val pokoAnnotationsProvider = project.libsCatalog.library("poko-annotations")
     val pokoAnnotations = pokoAnnotationsProvider.get()
     val pokoAnnotationsModule = pokoAnnotations.module
 
