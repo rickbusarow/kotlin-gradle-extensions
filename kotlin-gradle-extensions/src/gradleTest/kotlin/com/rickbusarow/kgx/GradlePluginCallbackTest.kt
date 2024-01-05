@@ -18,10 +18,13 @@ package com.rickbusarow.kgx
 import com.rickbusarow.kase.Kase2
 import com.rickbusarow.kase.files.HasWorkingDir
 import com.rickbusarow.kase.files.TestFunctionCoordinates
+import com.rickbusarow.kase.gradle.DefaultGradleTestEnvironment
 import com.rickbusarow.kase.gradle.DslLanguage.KotlinDsl
 import com.rickbusarow.kase.gradle.GradleTestEnvironment
 import com.rickbusarow.kase.gradle.GradleTestVersions
 import com.rickbusarow.kase.gradle.TestVersions
+import com.rickbusarow.kase.gradle.rootProject
+import com.rickbusarow.kase.gradle.versions
 import com.rickbusarow.kase.kase
 import com.rickbusarow.kgx.BuildConfig.version
 import io.kotest.matchers.string.shouldContain
@@ -30,7 +33,7 @@ import org.junit.jupiter.api.TestFactory
 class GradlePluginCallbackTest : KgxGradleTest<TestVersions>() {
 
   override val kases: List<TestVersions>
-    get() = versionMatrix.versions(GradleTestVersions)
+    get() = kaseMatrix.versions(GradleTestVersions)
 
   val gradlePluginKases: List<Kase2<String, String>> = listOf(
     kase(a1 = "application", "withApplicationPlugin"),
@@ -54,8 +57,8 @@ class GradlePluginCallbackTest : KgxGradleTest<TestVersions>() {
     versions: TestVersions,
     testFunctionCoordinates: TestFunctionCoordinates
   ): (Kase2<String, String>) -> GradleTestEnvironment = { kase ->
-    GradleTestEnvironment(
-      testVersions = versions,
+    DefaultGradleTestEnvironment(
+      gradleVersion = versions.gradle,
       dslLanguage = KotlinDsl(),
       hasWorkingDir = HasWorkingDir(
         listOf(versions.displayName, kase.displayName),

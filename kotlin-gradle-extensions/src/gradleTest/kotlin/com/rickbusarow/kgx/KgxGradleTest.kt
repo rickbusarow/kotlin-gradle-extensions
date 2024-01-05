@@ -15,11 +15,11 @@
 
 package com.rickbusarow.kgx
 
+import com.rickbusarow.kase.KaseMatrix
 import com.rickbusarow.kase.gradle.GradleDependencyVersion
 import com.rickbusarow.kase.gradle.KaseGradleTest
 import com.rickbusarow.kase.gradle.KotlinDependencyVersion
 import com.rickbusarow.kase.gradle.TestVersions
-import com.rickbusarow.kase.gradle.VersionMatrix
 import org.gradle.util.GradleVersion
 import org.junit.jupiter.api.parallel.Execution
 import org.junit.jupiter.api.parallel.ExecutionMode
@@ -27,7 +27,7 @@ import java.io.File
 
 @Execution(ExecutionMode.SAME_THREAD)
 abstract class KgxGradleTest<T : TestVersions>(
-  override val versionMatrix: VersionMatrix = VersionMatrix(gradleVersions + kotlinVersions)
+  override val kaseMatrix: KaseMatrix = KaseMatrix(gradleVersions + kotlinVersions)
 ) : KaseGradleTest<T> {
 
   override val localM2Path: File
