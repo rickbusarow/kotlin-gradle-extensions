@@ -10,7 +10,7 @@ kgx-dev = "0.2.0-SNAPSHOT"
 
 benManes-versions = "0.50.0"
 breadmoirai-github-release = "2.5.2"
-buildconfig = "5.3.2"
+buildconfig = "5.3.3"
 dependencyAnalysis = "1.28.0"
 detekt = "1.23.4"
 diffplug-spotless = "6.23.3"
