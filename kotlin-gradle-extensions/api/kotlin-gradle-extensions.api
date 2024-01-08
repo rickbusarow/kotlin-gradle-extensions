@@ -229,6 +229,15 @@ public final class com/rickbusarow/kgx/ProjectKt {
 	public static final fun subProjectsTasksMatchingName (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/util/List;
 }
 
+public final class com/rickbusarow/kgx/PropertiesKt {
+	public static final fun convention (Lorg/gradle/api/provider/Property;Lorg/gradle/api/provider/Provider;Ljava/util/List;)Lorg/gradle/api/provider/Property;
+	public static final fun convention (Lorg/gradle/api/provider/Property;Lorg/gradle/api/provider/Provider;[Lorg/gradle/api/provider/Provider;)Lorg/gradle/api/provider/Property;
+	public static final fun gradleProperty (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/lang/String;
+	public static final fun gradlePropertyAsProvider (Lorg/gradle/api/Project;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+	public static final fun orElse (Lorg/gradle/api/provider/Provider;Ljava/util/List;)Lorg/gradle/api/provider/Provider;
+	public static final fun orElse (Lorg/gradle/api/provider/Provider;[Lorg/gradle/api/provider/Provider;)Lorg/gradle/api/provider/Provider;
+}
+
 public final class com/rickbusarow/kgx/SystemPropertiesKt {
 	public static final fun getSystemProperty (Lorg/gradle/api/provider/ProviderFactory;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 	public static final fun getSystemPropertyOrNull (Lorg/gradle/api/provider/ProviderFactory;Ljava/lang/String;)Ljava/lang/String;

@@ -8,6 +8,9 @@
     <inspection_tool class="FunctionName" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <scope name="Tests" level="WEAK WARNING" enabled="false" />
     </inspection_tool>
+    <inspection_tool class="IdentifierGrammar" enabled="true" level="TYPO" enabled_by_default="true">
+      <scope name="Tests" level="TYPO" enabled="false" />
+    </inspection_tool>
     <inspection_tool class="MemberVisibilityCanBePrivate" enabled="true" level="INFO" enabled_by_default="true">
       <scope name="Tests" level="INFO" enabled="false" />
     </inspection_tool>
