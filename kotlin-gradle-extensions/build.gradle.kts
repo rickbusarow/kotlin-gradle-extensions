@@ -83,6 +83,8 @@ dependencies {
     exclude(group = "com.rickbusarow.kgx")
   }
 
+  testImplementation(gradleApi())
+
   testImplementation(libs.junit.engine)
   testImplementation(libs.junit.jupiter)
   testImplementation(libs.junit.jupiter.api)
