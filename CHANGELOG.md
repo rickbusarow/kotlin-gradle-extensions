@@ -1,10 +1,19 @@
 # Changelog
 
-## 0.2.0-SNAPSHOT (unreleased)
+## 0.1.11-SNAPSHOT (unreleased)
+
+## [0.1.10] — 2024-01-08
+
+### 🆕 Added
+
+- add common `with____{...}` callback extensions to `PluginManager` and `PluginContainer` by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/131
+- add `orElse` and `convention` extensions for providers and properties by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/138
+
+**Full Changelog**: https://github.com/rickbusarow/kotlin-gradle-extensions/compare/0.1.9...0.1.10
 
 ## [0.1.9] — 2023-12-03
 
-### Added
+### 🆕 Added
 
 - `org.jetbrains.kotlin.gradle.dsl.JvmTarget` extensions to/from `Int` in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/98
 - `VersionCatalog` extension delegates in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/99
@@ -33,7 +42,7 @@
 
 ## [0.1.8] - 2023-10-31
 
-### Added
+### 🆕 Added
 
 - add `ObjectFactory` extension functions for property delegates
 
@@ -50,7 +59,7 @@
 
 ## [0.1.6] - 2023-10-12
 
-### Added
+### 🆕 Added
 
 - added the `DomainObjectName` type https://github.com/rickbusarow/kotlin-gradle-extensions/pull/69
 
@@ -60,7 +69,7 @@
 
 ## What's Changed
 
-### Added
+### 🆕 Added
 
 - more syntactic sugar around `whenElementRegistered {}`
 - `Project.projectDependency(...)` and `DependencyHandler.project(...)` https://github.com/RBusarow/kotlin-gradle-extensions/pull/58
@@ -140,3 +149,4 @@ Hello World
 [0.1.7]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.7
 [0.1.8]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.8
 [0.1.9]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.9
+[0.1.10]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.10
