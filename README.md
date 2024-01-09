@@ -16,7 +16,7 @@
 ```kotlin
 // build.gradle.kts
 dependencies {
-  implementation("com.rickbusarow.kgx:kotlin-gradle-extensions:0.1.9")
+  implementation("com.rickbusarow.kgx:kotlin-gradle-extensions:0.1.10")
 }
 ```
 
@@ -32,7 +32,7 @@ dependencies {
 ```groovy
 // build.gradle
 dependencies {
-  implementation 'com.rickbusarow.kgx:kotlin-gradle-extensions:0.1.9'
+  implementation 'com.rickbusarow.kgx:kotlin-gradle-extensions:0.1.10'
 }
 ```
 
