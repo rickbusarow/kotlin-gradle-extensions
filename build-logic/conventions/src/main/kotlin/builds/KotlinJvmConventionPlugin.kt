@@ -84,6 +84,8 @@ abstract class KotlinJvmConventionPlugin : Plugin<Project> {
    * > Entry classpath.index is a duplicate but no duplicate handling strategy has been set.
    *
    * https://github.com/gradle/gradle/issues/17236
+   *
+   * @since 0.1.10
    */
   @Suppress("GrazieInspection")
   private fun configureJarDuplicates(target: Project) {

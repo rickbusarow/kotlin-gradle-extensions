@@ -257,11 +257,14 @@ inline fun <reified T : Task> T.outputsUpToDateWhen(crossinline predicate: (T) -
 /**
  * Shorthand for `(this as ExtensionAware).extraProperties`, since every
  * [TaskCollection] implementation will implement [ExtensionAware].
+ *
+ * @since 0.1.10
  */
 val TaskCollection<*>.extras: ExtraPropertiesExtension
   get() = (this as ExtensionAware).extensions.extraProperties
 
 /**
+ * @since 0.1.10
  * @throws IllegalArgumentException if there are multiple tasks of that name when ignoring its case
  */
 fun TaskCollection<*>.namedOrNull(taskName: String): NamedDomainObjectSchema? {

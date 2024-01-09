@@ -31,15 +31,24 @@ import org.gradle.api.provider.Provider
  * If the property is defined and is not of type [T], an exception is thrown.
  *
  * @param name the name of the property to retrieve
+ * @since 0.1.10
  * @throws ClassCastException if the property is found but is not assignable to [T]
  * @throws groovy.lang.MissingPropertyException if the property is not found
  */
 inline fun <reified T> Project.propertyAs(name: String): T = property(name) as T
 
-/** Shorthand for `providers.gradleProperty(name).get()` */
+/**
+ * Shorthand for `providers.gradleProperty(name).get()`
+ *
+ * @since 0.1.10
+ */
 fun Project.gradleProperty(name: String): String = providers.gradleProperty(name).get()
 
-/** Shorthand for `providers.gradleProperty(name)` */
+/**
+ * Shorthand for `providers.gradleProperty(name)`
+ *
+ * @since 0.1.10
+ */
 fun Project.gradlePropertyAsProvider(name: String): Provider<String> =
   providers.gradleProperty(name)
 
@@ -107,6 +116,8 @@ inline fun <reified T> Project.propertyOrNull(name: String): T? {
  *
  * property.convention(default, otherA, otherB)
  * ```
+ *
+ * @since 0.1.10
  */
 fun <T> Property<T>.convention(
   default: Provider<T>,
@@ -123,6 +134,8 @@ fun <T> Property<T>.convention(
  *
  * property.convention(default, otherA, otherB)
  * ```
+ *
+ * @since 0.1.10
  */
 fun <T> Property<T>.convention(
   default: Provider<T>,
@@ -138,6 +151,8 @@ fun <T> Property<T>.convention(
  *
  * provider.orElse(otherA, otherB)
  * ```
+ *
+ * @since 0.1.10
  */
 fun <T> Provider<T>.orElse(
   vararg additionalDefaults: Provider<T>
@@ -154,6 +169,8 @@ fun <T> Provider<T>.orElse(
  *
  * provider.orElse(listOf(otherA, otherB))
  * ```
+ *
+ * @since 0.1.10
  */
 fun <T> Provider<T>.orElse(
   additionalDefaults: List<Provider<T>>
