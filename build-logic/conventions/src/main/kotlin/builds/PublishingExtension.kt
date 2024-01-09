@@ -177,6 +177,8 @@ private fun Project.configurePublish(
 /**
  * Registers this [target]'s version of the `publishToBuildM2`
  * task and adds it as a dependency to the root project's version.
+ *
+ * @since 0.1.10
  */
 private fun setUpPublishToBuildM2(target: Project) {
 
