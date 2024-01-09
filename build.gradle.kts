@@ -14,7 +14,6 @@
  */
 
 import builds.GROUP
-import builds.VERSION_NAME
 
 plugins {
   id("root")
@@ -33,7 +32,7 @@ doks {
 
     rule("maven-with-version") {
       regex = maven(GROUP)
-      replacement = "$1:$2:${VERSION_NAME.escapeReplacement()}"
+      replacement = "$1:$2:${libs.versions.rickBusarow.kgx.get().escapeReplacement()}"
     }
     rule("kgx-group") {
       regex = "com\\.(?:rickbusarow|square|squareup)\\.kgx"
