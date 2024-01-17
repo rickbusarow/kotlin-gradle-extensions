@@ -16,23 +16,19 @@
 package com.rickbusarow.kgx
 
 import com.rickbusarow.kase.Kase2
-import com.rickbusarow.kase.files.HasWorkingDir
-import com.rickbusarow.kase.files.TestFunctionCoordinates
-import com.rickbusarow.kase.gradle.DefaultGradleTestEnvironment
-import com.rickbusarow.kase.gradle.DslLanguage.KotlinDsl
-import com.rickbusarow.kase.gradle.GradleTestEnvironment
 import com.rickbusarow.kase.gradle.GradleTestVersions
 import com.rickbusarow.kase.gradle.TestVersions
-import com.rickbusarow.kase.gradle.rootProject
 import com.rickbusarow.kase.gradle.versions
 import com.rickbusarow.kase.kase
 import com.rickbusarow.kgx.BuildConfig.version
 import io.kotest.matchers.string.shouldContain
 import org.junit.jupiter.api.TestFactory
 
-class GradlePluginCallbackTest : KgxGradleTest<TestVersions>() {
+class GradlePluginCallbackTest : KgxGradleTest() {
 
-  override val kases: List<TestVersions>
+  override val testEnvironmentFactory = KgxGradleTestEnvironment.Factory()
+
+  override val params: List<TestVersions>
     get() = kaseMatrix.versions(GradleTestVersions)
 
   val gradlePluginKases: List<Kase2<String, String>> = listOf(
@@ -53,27 +49,9 @@ class GradlePluginCallbackTest : KgxGradleTest<TestVersions>() {
     kase(a1 = "`java-test-fixtures`", "withJavaTestFixturesPlugin")
   )
 
-  fun testEnvironmentFactory(
-    versions: TestVersions,
-    testFunctionCoordinates: TestFunctionCoordinates
-  ): (Kase2<String, String>) -> GradleTestEnvironment = { kase ->
-    DefaultGradleTestEnvironment(
-      gradleVersion = versions.gradle,
-      dslLanguage = KotlinDsl(),
-      hasWorkingDir = HasWorkingDir(
-        listOf(versions.displayName, kase.displayName),
-        testFunctionCoordinates
-      ),
-      defaultBuildFile = buildFileDefault(versions),
-      defaultSettingsFile = settingsFileDefault(versions)
-    )
-  }
-
   @TestFactory
-  fun `core gradle plugins`() = kases.asContainers { versions ->
-    gradlePluginKases.asTests(
-      testEnvironmentFactory = testEnvironmentFactory(versions, testFunctionCoordinates)
-    ) { (pluginId, name) ->
+  fun `core gradle plugins`() = gradlePluginKases.asContainers { (pluginId, name) ->
+    testFactory {
 
       rootProject {
         buildFile(
