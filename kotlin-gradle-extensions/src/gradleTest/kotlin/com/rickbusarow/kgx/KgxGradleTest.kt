@@ -67,7 +67,7 @@ class KgxGradleTestEnvironment(
     override val localM2Path: File
       get() = BuildConfig.localBuildM2Dir
 
-    override fun createEnvironment(
+    override fun create(
       params: TestVersions,
       names: List<String>,
       location: TestLocation
