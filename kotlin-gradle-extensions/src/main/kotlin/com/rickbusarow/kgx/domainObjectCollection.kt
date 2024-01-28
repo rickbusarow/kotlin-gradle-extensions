@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -33,7 +33,7 @@ import org.gradle.internal.Actions
  *
  * @param elementName The name of the element.
  * @param elementValue The value of the element, encapsulated in an [ElementValue].
- * @receiver [ElementInfoAction] The action to be executed.
+ * @receiver ElementInfoAction The action to be executed.
  * @since 0.1.5
  */
 inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
@@ -50,7 +50,7 @@ inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
  * @param elementName The name of the element.
  * @param elementType The type of the element.
  * @param elementValue The value of the element, encapsulated in an [ElementValue].
- * @receiver [ElementInfoAction] The action to be executed.
+ * @receiver ElementInfoAction The action to be executed.
  * @since 0.1.5
  */
 operator fun <T : Any> ElementInfoAction<T>.invoke(
@@ -66,7 +66,7 @@ operator fun <T : Any> ElementInfoAction<T>.invoke(
  *
  * @param name The name of the object to find.
  * @return The object.
- * @see [NamedDomainObjectCollection.getByName]
+ * @see NamedDomainObjectCollection.getByName
  * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
@@ -80,7 +80,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
  * @param name The name of the object to find.
  * @param configurationAction The configuration action.
  * @return The object.
- * @see [NamedDomainObjectCollection.getByName]
+ * @see NamedDomainObjectCollection.getByName
  * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
@@ -90,11 +90,23 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
 ): S = getByName(name.value, configurationAction)
 
 /**
+ * Locates an object by name, failing if there is no such object.
+ *
+ * @param name The object name
+ * @return The object with the given name.
+ * @see NamedDomainObjectCollection.getByName
+ * @throws UnknownDomainObjectException when there is no such object in this collection.
+ */
+operator fun <S : Any> NamedDomainObjectCollection<S>.get(
+  name: DomainObjectName<S>
+): S = getByName(name.value)
+
+/**
  * Shorthand for `findByName(myDomainObjectName.value)`.
  *
  * @param name The name of the object to find.
  * @return The object, or `null` if it is not found.
- * @see [NamedDomainObjectCollection.findByName]
+ * @see NamedDomainObjectCollection.findByName
  * @since 0.1.6
  */
 inline fun <reified S : Any> NamedDomainObjectCollection<S>.findByName(
@@ -106,7 +118,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.findByName(
  *
  * @param name The name of the object to retrieve and configure.
  * @param configurationAction The configuration action.
- * @see [NamedDomainObjectCollection.named]
+ * @see NamedDomainObjectCollection.named
  * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
@@ -121,7 +133,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
  * @param name The name of the object to retrieve and configure.
  * @param type The type of the object to retrieve and configure.
  * @param configurationAction The configuration action.
- * @see [NamedDomainObjectCollection.named]
+ * @see NamedDomainObjectCollection.named
  * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
@@ -138,7 +150,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
  * @param configuration The action to execute for each object in the resulting collection.
  * @return The matching objects. Returns an empty collection
  *   if there are no such objects in this collection.
- * @see [DomainObjectCollection.withType]
+ * @see DomainObjectCollection.withType
  * @since 0.1.0
  */
 inline fun <reified S : Any> DomainObjectCollection<in S>.withType(
@@ -152,7 +164,7 @@ inline fun <reified S : Any> DomainObjectCollection<in S>.withType(
  *
  * @return The matching objects. Returns an empty collection
  *   if there are no such objects in this collection.
- * @see [DomainObjectCollection.withType]
+ * @see DomainObjectCollection.withType
  * @since 0.1.0
  */
 inline fun <reified S : Any> DomainObjectCollection<in S>.withType(): DomainObjectCollection<S> =
