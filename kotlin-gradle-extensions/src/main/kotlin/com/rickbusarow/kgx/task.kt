@@ -179,6 +179,7 @@ inline fun <reified T : Task> TaskContainer.register(
  * @param constructorArguments Arguments to be passed to the task's constructor.
  * @param configurationAction Configuration block for the task.
  * @return A task provider for the newly created task.
+ * @since 0.1.11
  */
 inline fun <reified T : Task> TaskContainer.registering(
   name: String,
@@ -198,6 +199,7 @@ inline fun <reified T : Task> TaskContainer.registering(
  * @param constructorArguments Arguments to be passed to the task's constructor.
  * @param configurationAction Configuration block for the task.
  * @return A task provider for the newly created task.
+ * @since 0.1.11
  */
 inline fun <reified T : Task> TaskContainer.registering(
   name: DomainObjectName<T>,
@@ -214,6 +216,7 @@ inline fun <reified T : Task> TaskContainer.registering(
  * @param constructorArguments Arguments to be passed to the task's constructor.
  * @param configurationAction Configuration block for the task.
  * @return A task provider for the newly created task.
+ * @since 0.1.11
  */
 inline fun <reified T : Task> TaskContainer.register(
   name: String,
@@ -231,6 +234,7 @@ inline fun <reified T : Task> TaskContainer.register(
  * @param constructorArguments Arguments to be passed to the task's constructor.
  * @param configurationAction Configuration block for the task.
  * @return A task provider for the newly created task.
+ * @since 0.1.11
  */
 inline fun <reified T : Task> TaskContainer.register(
   name: DomainObjectName<T>,
@@ -270,6 +274,7 @@ fun <T : Task> TaskContainer.registerOnce(
  * @param type The class of the task.
  * @param configurationAction The configuration action.
  * @return A task provider.
+ * @since 0.1.11
  */
 fun <T : Task> TaskContainer.registerOnce(
   name: DomainObjectName<T>,

@@ -95,6 +95,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
  * @param name The object name
  * @return The object with the given name.
  * @see NamedDomainObjectCollection.getByName
+ * @since 0.1.11
  * @throws UnknownDomainObjectException when there is no such object in this collection.
  */
 operator fun <S : Any> NamedDomainObjectCollection<S>.get(
