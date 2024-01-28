@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Rick Busarow
+ * Copyright (C) 2023 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -122,10 +122,11 @@ val ConfigurationContainer.implementationProvider: NamedDomainObjectProvider<Con
  */
 fun ConfigurationContainer.implementation(
   configurationAction: Action<Configuration>
-): NamedDomainObjectProvider<Configuration> = named(
-  ConfigurationName.implementation,
-  configurationAction
-)
+): NamedDomainObjectProvider<Configuration>? =
+  named(
+    ConfigurationName.implementation,
+    configurationAction
+  )
 
 /**
  * Shorthand for `configurations.getByName("api")`.
@@ -158,10 +159,7 @@ val ConfigurationContainer.kaptProvider: NamedDomainObjectProvider<Configuration
  */
 fun ConfigurationContainer.kapt(
   configurationAction: Action<Configuration>
-): NamedDomainObjectProvider<Configuration> = named(
-  name = ConfigurationName.kapt,
-  configurationAction = configurationAction
-)
+): NamedDomainObjectProvider<Configuration>? = named(ConfigurationName.kapt, configurationAction)
 
 /**
  * Shorthand for `configurations.getByName("api")`.
@@ -194,7 +192,8 @@ val ConfigurationContainer.runtimeOnlyProvider: NamedDomainObjectProvider<Config
  */
 fun ConfigurationContainer.runtimeOnly(
   configurationAction: Action<Configuration>
-): NamedDomainObjectProvider<Configuration> = named(
-  name = ConfigurationName.runtimeOnly,
-  configurationAction = configurationAction
-)
+): NamedDomainObjectProvider<Configuration>? =
+  named(
+    ConfigurationName.runtimeOnly,
+    configurationAction
+  )

@@ -15,11 +15,11 @@
 
 package com.rickbusarow.kgx
 
-import com.rickbusarow.kase.AbstractKase2
 import com.rickbusarow.kase.Kase2
 import com.rickbusarow.kase.gradle.GradleTestVersions
 import com.rickbusarow.kase.gradle.TestVersions
 import com.rickbusarow.kase.gradle.versions
+import com.rickbusarow.kase.kase
 import com.rickbusarow.kgx.BuildConfig.version
 import io.kotest.matchers.string.shouldContain
 import org.junit.jupiter.api.TestFactory
@@ -32,21 +32,21 @@ class GradlePluginCallbackTest : KgxGradleTest() {
     get() = kaseMatrix.versions(GradleTestVersions)
 
   val gradlePluginKases: List<Kase2<String, String>> = listOf(
-    pair("application", "withApplicationPlugin"),
-    pair("base", "withBasePlugin"),
-    pair("`build-init`", "withBuildInitPlugin"),
-    pair("distribution", "withDistributionPlugin"),
-    pair("groovy", "withGroovyPlugin"),
-    pair("`groovy-base`", "withGroovyBasePlugin"),
-    pair("`groovy-gradle-plugin`", "withPrecompiledGroovyPluginsPlugin"),
-    pair("idea", "withIdeaPlugin"),
-    pair("java", "withJavaPlugin"),
-    pair("`java-base`", "withJavaBasePlugin"),
-    pair("`java-gradle-plugin`", "withJavaGradlePluginPlugin"),
-    pair("`java-library`", "withJavaLibraryPlugin"),
-    pair("`java-library-distribution`", "withJavaLibraryDistributionPlugin"),
-    pair("`java-platform`", "withJavaPlatformPlugin"),
-    pair("`java-test-fixtures`", "withJavaTestFixturesPlugin")
+    kase(a1 = "application", "withApplicationPlugin"),
+    kase(a1 = "base", "withBasePlugin"),
+    kase(a1 = "`build-init`", "withBuildInitPlugin"),
+    kase(a1 = "distribution", "withDistributionPlugin"),
+    kase(a1 = "groovy", "withGroovyPlugin"),
+    kase(a1 = "`groovy-base`", "withGroovyBasePlugin"),
+    kase(a1 = "`groovy-gradle-plugin`", "withPrecompiledGroovyPluginsPlugin"),
+    kase(a1 = "idea", "withIdeaPlugin"),
+    kase(a1 = "java", "withJavaPlugin"),
+    kase(a1 = "`java-base`", "withJavaBasePlugin"),
+    kase(a1 = "`java-gradle-plugin`", "withJavaGradlePluginPlugin"),
+    kase(a1 = "`java-library`", "withJavaLibraryPlugin"),
+    kase(a1 = "`java-library-distribution`", "withJavaLibraryDistributionPlugin"),
+    kase(a1 = "`java-platform`", "withJavaPlatformPlugin"),
+    kase(a1 = "`java-test-fixtures`", "withJavaTestFixturesPlugin")
   )
 
   @TestFactory
@@ -57,20 +57,20 @@ class GradlePluginCallbackTest : KgxGradleTest() {
         buildFile(
           //language=kotlin
           """
-          import com.rickbusarow.kgx.$name
+            import com.rickbusarow.kgx.$name
 
-          buildscript {
-            dependencies {
-              classpath("com.rickbusarow.kgx:kotlin-gradle-extensions:$version")
+            buildscript {
+              dependencies {
+                classpath("com.rickbusarow.kgx:kotlin-gradle-extensions:$version")
+              }
             }
-          }
 
-          plugins {
-            $pluginId
-          }
+            plugins {
+              $pluginId
+            }
 
-          plugins.$name { println("plugins callback invoked") }
-          pluginManager.$name { println("pluginManager callback invoked") }
+            plugins.$name { println("plugins callback invoked") }
+            pluginManager.$name { println("pluginManager callback invoked") }
           """.trimIndent()
         )
       }
@@ -81,17 +81,4 @@ class GradlePluginCallbackTest : KgxGradleTest() {
       }
     }
   }
-
-  fun pair(pluginId: String, functionName: String): PluginIdFunctionPair {
-    return PluginIdFunctionPair(pluginId = pluginId, functionName = functionName)
-  }
-
-  data class PluginIdFunctionPair(
-    val pluginId: String,
-    val functionName: String
-  ) : AbstractKase2<String, String>(
-    a1 = pluginId,
-    a2 = functionName,
-    displayNameFactory = { "id: $pluginId | functionName: $functionName" }
-  )
 }

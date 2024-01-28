@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Rick Busarow
+ * Copyright (C) 2023 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -88,18 +88,6 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
   name: DomainObjectName<S>,
   configurationAction: Action<in S>
 ): S = getByName(name.value, configurationAction)
-
-/**
- * Locates an object by name, failing if there is no such object.
- *
- * @param name The object name
- * @return The object with the given name.
- * @see [NamedDomainObjectCollection.getByName]* @throws
- *   [UnknownDomainObjectException] when there is no such object in this collection.
- */
-operator fun <S : Any> NamedDomainObjectCollection<S>.get(
-  name: DomainObjectName<S>
-): S = getByName(name.value)
 
 /**
  * Shorthand for `findByName(myDomainObjectName.value)`.
