@@ -1,22 +1,53 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": [
+    "config:base",
+    "default:disableRateLimiting"
+  ],
   "rebaseWhen": "conflicted",
   "rebaseLabel": "rebase",
   "packageRules": [
     {
-      "groupName": "Kotlin Gradle and compiler plugins",
-      "matchPackagePatterns": [
-        "^org\\.jetbrains\\.kotlin:kotlin-gradle-(?:[\\w-]+)$",
-        "^com\\.google\\.devtools\\.ksp:(?:[\\w-]+)$",
-        "^com\\.square\\.anvil:(?:[\\w-]+)$",
-        "^dev\\.drewhamilton\\.poko:(?:[\\w-]+)$"
+      "groupName": "Kotlin and compiler plugins",
+      "matchPackagePrefixes": [
+        "org.jetbrains.kotlin:",
+        "com.google.devtools.ksp:",
+        "com.square.anvil:",
+        "dev.drewhamilton.poko:"
       ]
     },
     {
-      "groupName": "Kotlin libraries",
-      "excludePackagePatterns": ["^org\\.jetbrains\\.kotlin:kotlin-gradle-(?:[\\w-]+)$"],
-      "matchPackagePatterns": ["^org\\.jetbrains\\.kotlin:(?:[\\w-]+)$"]
+      "groupName": "KtLint libs",
+      "matchPackagePrefixes": [
+        "com.pinterest.ktlint:",
+        "com.rickbusarow.ktlint:",
+        "com.rickbusarow.ktrules:"
+      ]
+    },
+    {
+      "matchPackagePrefixes": [
+        "com.rickbusarow.dispatch:",
+        "com.rickbusarow.doks:",
+        "com.rickbusarow.gradle-dependency-sync:",
+        "com.rickbusarow.hermit:",
+        "com.rickbusarow.kase:",
+        "com.rickbusarow.kgx:",
+        "com.rickbusarow.ktlint:",
+        "com.rickbusarow.ktrules:",
+        "com.rickbusarow.lattice:",
+        "com.rickbusarow.modulecheck:"
+      ],
+      "matchPackageNames": [
+        "com.rickbusarow.module-check"
+      ],
+      "matchRepositories": [
+        "repo.maven.apache.org/maven2",
+        "plugins.gradle.org/m2"
+      ],
+      "automerge": true,
+      "automergeStrategy": "rebase",
+      "automergeType": "pr",
+      "rebaseWhen": "smart"
     }
   ],
   "labels": [
