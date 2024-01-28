@@ -40,7 +40,6 @@ public final class com/rickbusarow/kgx/DependencyHandlerKt {
 }
 
 public final class com/rickbusarow/kgx/DomainObjectCollectionKt {
-	public static final fun get (Lorg/gradle/api/NamedDomainObjectCollection;Lcom/rickbusarow/kgx/names/DomainObjectName;)Ljava/lang/Object;
 	public static final fun invoke (Lcom/rickbusarow/kgx/internal/ElementInfoAction;Ljava/lang/String;Ljava/lang/Class;Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;)V
 	public static final fun registerOnce (Lorg/gradle/api/NamedDomainObjectContainer;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/NamedDomainObjectProvider;
 	public static synthetic fun registerOnce$default (Lorg/gradle/api/NamedDomainObjectContainer;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
@@ -257,7 +256,6 @@ public final class com/rickbusarow/kgx/TaskKt {
 	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskCollection;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskCollection;
 	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskProvider;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun namedOrNull (Lorg/gradle/api/tasks/TaskCollection;Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectCollectionSchema$NamedDomainObjectSchema;
-	public static final fun registerOnce (Lorg/gradle/api/tasks/TaskContainer;Lcom/rickbusarow/kgx/names/DomainObjectName;Ljava/lang/Class;Lorg/gradle/api/Action;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun registerOnce (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;Ljava/lang/Class;Lorg/gradle/api/Action;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun undecoratedTypeName (Lorg/gradle/api/Task;)Ljava/lang/String;
 }
