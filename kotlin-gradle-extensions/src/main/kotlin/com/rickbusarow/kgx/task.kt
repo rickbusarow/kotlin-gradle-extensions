@@ -15,6 +15,7 @@
 
 package com.rickbusarow.kgx
 
+import com.rickbusarow.kgx.names.DomainObjectName
 import org.gradle.api.Action
 import org.gradle.api.NamedDomainObjectCollectionSchema.NamedDomainObjectSchema
 import org.gradle.api.Task
@@ -23,6 +24,7 @@ import org.gradle.api.plugins.ExtraPropertiesExtension
 import org.gradle.api.tasks.TaskCollection
 import org.gradle.api.tasks.TaskContainer
 import org.gradle.api.tasks.TaskProvider
+import kotlin.reflect.KClass
 
 /**
  * Configures a task by name if it already exists, or configures all tasks that match the name.
@@ -156,13 +158,93 @@ inline fun <reified S : Task> TaskCollection<in S>.withType(): TaskCollection<S>
  * @return A task provider for the newly created task.
  * @since 0.1.0
  */
+@Deprecated(
+  "renamed to `registering` to avoid a collision " +
+    "with the `register(String, Class<T>, Action<T>)` member method",
+  ReplaceWith(
+    "registering(name, *constructorArguments) { configuration(it) }",
+    "com.rickbusarow.kgx.registering"
+  )
+)
 inline fun <reified T : Task> TaskContainer.register(
   name: String,
   vararg constructorArguments: Any,
   noinline configuration: (T) -> Unit
+): TaskProvider<T> = registering(name, *constructorArguments) { configuration(it) }
+
+/**
+ * Registers a new task of type [T] and configures it.
+ *
+ * @param name The name of the task.
+ * @param constructorArguments Arguments to be passed to the task's constructor.
+ * @param configurationAction Configuration block for the task.
+ * @return A task provider for the newly created task.
+ * @since 0.1.0
+ */
+inline fun <reified T : Task> TaskContainer.registering(
+  name: String,
+  vararg constructorArguments: Any,
+  configurationAction: Action<T>
+): TaskProvider<T> = register(
+  name = name,
+  type = T::class,
+  *constructorArguments,
+  configurationAction = configurationAction
+)
+
+/**
+ * Registers a new task of type [T] and configures it.
+ *
+ * @param name The name of the task.
+ * @param constructorArguments Arguments to be passed to the task's constructor.
+ * @param configurationAction Configuration block for the task.
+ * @return A task provider for the newly created task.
+ * @since 0.1.0
+ */
+inline fun <reified T : Task> TaskContainer.registering(
+  name: DomainObjectName<T>,
+  vararg constructorArguments: Any,
+  configurationAction: Action<T>
 ): TaskProvider<T> =
-  register(name, T::class.java, *constructorArguments)
-    .apply { configure { configuration(it) } }
+  registering(name.value, *constructorArguments, configurationAction = configurationAction)
+
+/**
+ * Registers a new task of type [T] and configures it.
+ *
+ * @param name The name of the task.
+ * @param constructorArguments Arguments to be passed to the task's constructor.
+ * @param configurationAction Configuration block for the task.
+ * @return A task provider for the newly created task.
+ * @since 0.1.0
+ */
+inline fun <reified T : Task> TaskContainer.register(
+  name: String,
+  type: KClass<T>,
+  vararg constructorArguments: Any,
+  configurationAction: Action<T>
+): TaskProvider<T> = register(name, type.java, *constructorArguments)
+  .apply { configure(configurationAction) }
+
+/**
+ * Registers a new task of type [T] and configures it.
+ *
+ * @param name The name of the task.
+ * @param constructorArguments Arguments to be passed to the task's constructor.
+ * @param configurationAction Configuration block for the task.
+ * @return A task provider for the newly created task.
+ * @since 0.1.0
+ */
+inline fun <reified T : Task> TaskContainer.register(
+  name: DomainObjectName<T>,
+  type: KClass<T>,
+  vararg constructorArguments: Any,
+  configurationAction: Action<T>
+): TaskProvider<T> = register(
+  name = name.value,
+  type = type,
+  *constructorArguments,
+  configurationAction = configurationAction
+)
 
 /**
  * Registers or retrieves a task by name and type, and then configures it.
@@ -177,12 +259,30 @@ fun <T : Task> TaskContainer.registerOnce(
   name: String,
   type: Class<T>,
   configurationAction: Action<in T>
-): TaskProvider<T> =
-  if (names.contains(name)) {
-    named(name, type, configurationAction)
-  } else {
-    register(name, type, configurationAction)
-  }
+): TaskProvider<T> = if (names.contains(name)) {
+  named(name, type, configurationAction)
+} else {
+  register(name, type, configurationAction)
+}
+
+/**
+ * Registers or retrieves a task by name and type, and then configures it.
+ *
+ * @param name The name of the task.
+ * @param type The class of the task.
+ * @param configurationAction The configuration action.
+ * @return A task provider.
+ * @since 0.1.0
+ */
+fun <T : Task> TaskContainer.registerOnce(
+  name: DomainObjectName<T>,
+  type: Class<T>,
+  configurationAction: Action<in T>
+): TaskProvider<T> = registerOnce(
+  name = name.value,
+  type = type,
+  configurationAction = configurationAction
+)
 
 /**
  * @return the fully qualified name of this task's
@@ -226,10 +326,11 @@ inline fun <reified T : Task> TaskContainer.registerOnce(name: String): TaskProv
  * @return The original task provider for chaining.
  * @since 0.1.0
  */
-fun <T : Task> TaskProvider<T>.addAsDependencyTo(dependentTask: TaskProvider<*>): TaskProvider<T> =
-  also { receiver ->
-    dependentTask.dependsOn(receiver)
-  }
+fun <T : Task> TaskProvider<T>.addAsDependencyTo(
+  dependentTask: TaskProvider<*>
+): TaskProvider<T> = also { receiver ->
+  dependentTask.dependsOn(receiver)
+}
 
 /**
  * makes the receiver task a dependency of the tasks in the [dependentTasks] collection.
@@ -240,10 +341,9 @@ fun <T : Task> TaskProvider<T>.addAsDependencyTo(dependentTask: TaskProvider<*>)
  */
 fun <T : Task> TaskProvider<T>.addAsDependencyTo(
   dependentTasks: TaskCollection<*>
-): TaskProvider<T> =
-  also { receiver ->
-    dependentTasks.dependOn(receiver)
-  }
+): TaskProvider<T> = also { receiver ->
+  dependentTasks.dependOn(receiver)
+}
 
 /**
  * Just a typed version of `task.outputs.upToDateWhen { ... }`
