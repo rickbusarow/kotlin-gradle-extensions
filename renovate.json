@@ -25,6 +25,13 @@
       ]
     },
     {
+      "matchPackageNames": ["com.rickbusarow.module-check"],
+      "automergeStrategy": "rebase",
+      "matchRepositories": [
+        "repo.maven.apache.org/maven2",
+        "plugins.gradle.org/m2"
+      ],
+      "rebaseWhen": "smart",
       "matchPackagePrefixes": [
         "com.rickbusarow.dispatch:",
         "com.rickbusarow.doks:",
@@ -37,17 +44,8 @@
         "com.rickbusarow.lattice:",
         "com.rickbusarow.modulecheck:"
       ],
-      "matchPackageNames": [
-        "com.rickbusarow.module-check"
-      ],
-      "matchRepositories": [
-        "repo.maven.apache.org/maven2",
-        "plugins.gradle.org/m2"
-      ],
       "automerge": true,
-      "automergeStrategy": "rebase",
-      "automergeType": "pr",
-      "rebaseWhen": "smart"
+      "automergeType": "pr"
     }
   ],
   "labels": [

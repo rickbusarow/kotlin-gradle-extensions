@@ -5,24 +5,28 @@
 ## [0.1.11] — 2024-01-28
 
 ### 🆕 Added
-* adding more `DomainObjectName` overloads by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/153
+
+- adding more `DomainObjectName` overloads by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/153
+
 ### 🧰 Maintenance
-* fix(deps): update kotlin and compiler plugins to v1.9.22 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/156
-* Update dependency com.rickbusarow.kgx:kotlin-gradle-extensions to v0.1.10 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/140
-* Update dependency com.github.gmazzo.buildconfig to v5.3.5 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/141
-* Update dependency com.diffplug.spotless:spotless-plugin-gradle to v6.24.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/143
-* Update rickBusarow.kase to v0.7.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/142
-* Update dependency com.squareup:kotlinpoet to v1.16.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/145
-* Update dependencyAnalysis to v1.29.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/144
-* Update rickBusarow.kase to v0.8.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/146
-* Update styfle/cancel-workflow-action action to v0.12.1 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/150
-* Update dependency com.github.ben-manes:gradle-versions-plugin to v0.51.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/148
-* Update dependency com.diffplug.spotless:spotless-plugin-gradle to v6.25.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/149
-* Update rickBusarow.kase to v0.9.1 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/147
-* chore(deps): update plugin com.gradle.enterprise to v3.16.2 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/152
-* Renovate config updates by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/154
+
+- fix(deps): update kotlin and compiler plugins to v1.9.22 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/156
+- Update dependency com.rickbusarow.kgx:kotlin-gradle-extensions to v0.1.10 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/140
+- Update dependency com.github.gmazzo.buildconfig to v5.3.5 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/141
+- Update dependency com.diffplug.spotless:spotless-plugin-gradle to v6.24.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/143
+- Update rickBusarow.kase to v0.7.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/142
+- Update dependency com.squareup:kotlinpoet to v1.16.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/145
+- Update dependencyAnalysis to v1.29.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/144
+- Update rickBusarow.kase to v0.8.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/146
+- Update styfle/cancel-workflow-action action to v0.12.1 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/150
+- Update dependency com.github.ben-manes:gradle-versions-plugin to v0.51.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/148
+- Update dependency com.diffplug.spotless:spotless-plugin-gradle to v6.25.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/149
+- Update rickBusarow.kase to v0.9.1 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/147
+- chore(deps): update plugin com.gradle.enterprise to v3.16.2 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/152
+- Renovate config updates by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/154
 
 **Full Changelog**: https://github.com/rickbusarow/kotlin-gradle-extensions/compare/0.1.10...0.1.11
+
 ## [0.1.10] — 2024-01-08
 
 ### 🆕 Added
