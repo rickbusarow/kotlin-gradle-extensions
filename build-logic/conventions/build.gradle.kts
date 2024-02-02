@@ -42,7 +42,7 @@ gradlePlugin {
     }
     create("builds.dokka") {
       id = "builds.dokka"
-      implementationClass = "builds.DokkaConventionPlugin"
+      implementationClass = "builds.DokkatooConventionPlugin"
     }
     create("builds.dokka-versioning") {
       id = "builds.dokka-versioning"
@@ -91,6 +91,7 @@ dependencies {
   implementation(libs.dokka.core)
   implementation(libs.dokka.gradle)
   implementation(libs.dokka.versioning)
+  implementation(libs.dokkatoo.plugin)
   implementation(libs.dropbox.dependencyGuard)
   implementation(libs.johnrengelman.shadowJar)
   implementation(libs.kotlin.gradle.plugin)
