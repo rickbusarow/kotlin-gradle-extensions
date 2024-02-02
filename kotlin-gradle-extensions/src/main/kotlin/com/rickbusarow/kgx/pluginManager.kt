@@ -20,7 +20,7 @@ import org.gradle.api.plugins.AppliedPlugin
 import org.gradle.api.plugins.PluginManager
 
 /** @since 0.1.3 */
-inline fun PluginManager.withAnyPlugin(
+public inline fun PluginManager.withAnyPlugin(
   vararg ids: String,
   crossinline action: (AppliedPlugin) -> Unit
 ) {
@@ -34,7 +34,7 @@ inline fun PluginManager.withAnyPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withApplicationPlugin(
+public fun PluginManager.withApplicationPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.application", action)
@@ -45,7 +45,7 @@ fun PluginManager.withApplicationPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withApplicationPlugin(
+public inline fun PluginManager.withApplicationPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.application") { action(it) }
@@ -56,7 +56,7 @@ inline fun PluginManager.withApplicationPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withBasePlugin(
+public fun PluginManager.withBasePlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.base", action)
@@ -67,7 +67,7 @@ fun PluginManager.withBasePlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withBasePlugin(
+public inline fun PluginManager.withBasePlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.base") { action(it) }
@@ -78,7 +78,7 @@ inline fun PluginManager.withBasePlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withBuildInitPlugin(
+public fun PluginManager.withBuildInitPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.build-init", action)
@@ -89,7 +89,7 @@ fun PluginManager.withBuildInitPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withBuildInitPlugin(
+public inline fun PluginManager.withBuildInitPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.build-init") { action(it) }
@@ -100,7 +100,7 @@ inline fun PluginManager.withBuildInitPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withDistributionPlugin(
+public fun PluginManager.withDistributionPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.distribution", action)
@@ -111,7 +111,7 @@ fun PluginManager.withDistributionPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withDistributionPlugin(
+public inline fun PluginManager.withDistributionPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.distribution") { action(it) }
@@ -122,7 +122,7 @@ inline fun PluginManager.withDistributionPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withGroovyPlugin(
+public fun PluginManager.withGroovyPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.groovy", action)
@@ -133,7 +133,7 @@ fun PluginManager.withGroovyPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withGroovyPlugin(
+public inline fun PluginManager.withGroovyPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.groovy") { action(it) }
@@ -144,7 +144,7 @@ inline fun PluginManager.withGroovyPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withGroovyBasePlugin(
+public fun PluginManager.withGroovyBasePlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.groovy-base", action)
@@ -155,7 +155,7 @@ fun PluginManager.withGroovyBasePlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withGroovyBasePlugin(
+public inline fun PluginManager.withGroovyBasePlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.groovy-base") { action(it) }
@@ -166,7 +166,7 @@ inline fun PluginManager.withGroovyBasePlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withPrecompiledGroovyPluginsPlugin(
+public fun PluginManager.withPrecompiledGroovyPluginsPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.groovy-gradle-plugin", action)
@@ -177,7 +177,7 @@ fun PluginManager.withPrecompiledGroovyPluginsPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withPrecompiledGroovyPluginsPlugin(
+public inline fun PluginManager.withPrecompiledGroovyPluginsPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.groovy-gradle-plugin") { action(it) }
@@ -188,7 +188,7 @@ inline fun PluginManager.withPrecompiledGroovyPluginsPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withIdeaPlugin(
+public fun PluginManager.withIdeaPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.idea", action)
@@ -199,7 +199,7 @@ fun PluginManager.withIdeaPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withIdeaPlugin(
+public inline fun PluginManager.withIdeaPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.idea") { action(it) }
@@ -210,7 +210,7 @@ inline fun PluginManager.withIdeaPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withJavaPlugin(
+public fun PluginManager.withJavaPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.java", action)
@@ -221,7 +221,7 @@ fun PluginManager.withJavaPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withJavaPlugin(
+public inline fun PluginManager.withJavaPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.java") { action(it) }
@@ -232,7 +232,7 @@ inline fun PluginManager.withJavaPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withJavaBasePlugin(
+public fun PluginManager.withJavaBasePlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.java-base", action)
@@ -243,7 +243,7 @@ fun PluginManager.withJavaBasePlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withJavaBasePlugin(
+public inline fun PluginManager.withJavaBasePlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.java-base") { action(it) }
@@ -254,7 +254,7 @@ inline fun PluginManager.withJavaBasePlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withJavaGradlePluginPlugin(
+public fun PluginManager.withJavaGradlePluginPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.java-gradle-plugin", action)
@@ -265,7 +265,7 @@ fun PluginManager.withJavaGradlePluginPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withJavaGradlePluginPlugin(
+public inline fun PluginManager.withJavaGradlePluginPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.java-gradle-plugin") { action(it) }
@@ -276,7 +276,7 @@ inline fun PluginManager.withJavaGradlePluginPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withJavaLibraryPlugin(
+public fun PluginManager.withJavaLibraryPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.java-library", action)
@@ -287,7 +287,7 @@ fun PluginManager.withJavaLibraryPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withJavaLibraryPlugin(
+public inline fun PluginManager.withJavaLibraryPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.java-library") { action(it) }
@@ -298,7 +298,7 @@ inline fun PluginManager.withJavaLibraryPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withJavaLibraryDistributionPlugin(
+public fun PluginManager.withJavaLibraryDistributionPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.java-library-distribution", action)
@@ -309,7 +309,7 @@ fun PluginManager.withJavaLibraryDistributionPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withJavaLibraryDistributionPlugin(
+public inline fun PluginManager.withJavaLibraryDistributionPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.java-library-distribution") { action(it) }
@@ -320,7 +320,7 @@ inline fun PluginManager.withJavaLibraryDistributionPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withJavaPlatformPlugin(
+public fun PluginManager.withJavaPlatformPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.java-platform", action)
@@ -331,7 +331,7 @@ fun PluginManager.withJavaPlatformPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withJavaPlatformPlugin(
+public inline fun PluginManager.withJavaPlatformPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.java-platform") { action(it) }
@@ -342,7 +342,7 @@ inline fun PluginManager.withJavaPlatformPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withJavaTestFixturesPlugin(
+public fun PluginManager.withJavaTestFixturesPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.java-test-fixtures", action)
@@ -353,7 +353,7 @@ fun PluginManager.withJavaTestFixturesPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withJavaTestFixturesPlugin(
+public inline fun PluginManager.withJavaTestFixturesPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.java-test-fixtures") { action(it) }
@@ -364,7 +364,7 @@ inline fun PluginManager.withJavaTestFixturesPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withSigningPlugin(
+public fun PluginManager.withSigningPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.gradle.signing", action)
@@ -375,7 +375,7 @@ fun PluginManager.withSigningPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withSigningPlugin(
+public inline fun PluginManager.withSigningPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.gradle.signing") { action(it) }
@@ -386,7 +386,7 @@ inline fun PluginManager.withSigningPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withKotlinAndroidPlugin(
+public fun PluginManager.withKotlinAndroidPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.jetbrains.kotlin.android", action)
@@ -397,7 +397,7 @@ fun PluginManager.withKotlinAndroidPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withKotlinAndroidPlugin(
+public inline fun PluginManager.withKotlinAndroidPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.jetbrains.kotlin.android") { action(it) }
@@ -408,7 +408,7 @@ inline fun PluginManager.withKotlinAndroidPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withKotlinJsPlugin(
+public fun PluginManager.withKotlinJsPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.jetbrains.kotlin.js", action)
@@ -419,7 +419,7 @@ fun PluginManager.withKotlinJsPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withKotlinJsPlugin(
+public inline fun PluginManager.withKotlinJsPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.jetbrains.kotlin.js") { action(it) }
@@ -430,7 +430,7 @@ inline fun PluginManager.withKotlinJsPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withKotlinJvmPlugin(
+public fun PluginManager.withKotlinJvmPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.jetbrains.kotlin.jvm", action)
@@ -441,7 +441,7 @@ fun PluginManager.withKotlinJvmPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withKotlinJvmPlugin(
+public inline fun PluginManager.withKotlinJvmPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.jetbrains.kotlin.jvm") { action(it) }
@@ -452,7 +452,7 @@ inline fun PluginManager.withKotlinJvmPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withKapt3Plugin(
+public fun PluginManager.withKapt3Plugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.jetbrains.kotlin.kapt", action)
@@ -463,7 +463,7 @@ fun PluginManager.withKapt3Plugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withKapt3Plugin(
+public inline fun PluginManager.withKapt3Plugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.jetbrains.kotlin.kapt") { action(it) }
@@ -474,7 +474,7 @@ inline fun PluginManager.withKapt3Plugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withKotlinMultiplatformPlugin(
+public fun PluginManager.withKotlinMultiplatformPlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.jetbrains.kotlin.multiplatform", action)
@@ -485,7 +485,7 @@ fun PluginManager.withKotlinMultiplatformPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withKotlinMultiplatformPlugin(
+public inline fun PluginManager.withKotlinMultiplatformPlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.jetbrains.kotlin.multiplatform") { action(it) }
@@ -496,7 +496,7 @@ inline fun PluginManager.withKotlinMultiplatformPlugin(
  *
  * @since 0.1.10
  */
-fun PluginManager.withKotlinParcelizePlugin(
+public fun PluginManager.withKotlinParcelizePlugin(
   action: Action<in AppliedPlugin>
 ) {
   withPlugin("org.jetbrains.kotlin.plugin.parcelize", action)
@@ -507,7 +507,7 @@ fun PluginManager.withKotlinParcelizePlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginManager.withKotlinParcelizePlugin(
+public inline fun PluginManager.withKotlinParcelizePlugin(
   crossinline action: (AppliedPlugin) -> Unit
 ) {
   withPlugin("org.jetbrains.kotlin.plugin.parcelize") { action(it) }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,21 +26,21 @@ import kotlin.reflect.KProperty
  *
  * @since 0.1.6
  */
-interface DomainObjectName<in S : Any> {
+public interface DomainObjectName<in S : Any> {
   /**
    * The unqualified, simple name of the domain object.
    *
    * @since 0.1.6
    */
-  val value: String
+  public val value: String
 
-  companion object {
+  public companion object {
     /**
      * Returns an instance of [DomainObjectName] with the given [name], bound to the type of [S].
      *
      * @since 0.1.6
      */
-    fun <S : Any> domainObjectName(name: String): DomainObjectName<S> {
+    public fun <S : Any> domainObjectName(name: String): DomainObjectName<S> {
       return object : DomainObjectName<S> {
         override val value: String = name
       }

@@ -40,6 +40,8 @@ abstract class KotlinJvmConventionPlugin : Plugin<Project> {
         toolChain.languageVersion.set(JavaLanguageVersion.of(target.JDK))
       }
       extension.coreLibrariesVersion = target.libsCatalog.version("kotlin-libraries")
+
+      extension.explicitApi()
     }
 
     target.tasks.withType(KotlinCompile::class.java).configureEach { task ->

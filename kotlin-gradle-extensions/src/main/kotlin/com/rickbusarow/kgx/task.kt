@@ -33,7 +33,7 @@ import kotlin.reflect.KClass
  * @param configurationAction The configuration block for the task.
  * @since 0.1.0
  */
-fun TaskContainer.maybeNamed(
+public fun TaskContainer.maybeNamed(
   taskName: String,
   configurationAction: Action<Task>
 ) {
@@ -58,7 +58,7 @@ fun TaskContainer.maybeNamed(
  * @since 0.1.0
  */
 @EagerGradleApi
-fun TaskContainer.matchingName(taskName: String): TaskCollection<Task> =
+public fun TaskContainer.matchingName(taskName: String): TaskCollection<Task> =
   matching { it.name == taskName }
 
 /**
@@ -67,7 +67,7 @@ fun TaskContainer.matchingName(taskName: String): TaskCollection<Task> =
  * @since 0.1.5
  */
 @EagerGradleApi
-fun TaskContainer.matchingNames(vararg taskNames: String): TaskCollection<Task> {
+public fun TaskContainer.matchingNames(vararg taskNames: String): TaskCollection<Task> {
   val names = taskNames.toSet()
   return matching { it.name in names }
 }
@@ -80,7 +80,7 @@ fun TaskContainer.matchingNames(vararg taskNames: String): TaskCollection<Task> 
  * @since 0.1.0
  */
 @EagerGradleApi
-inline fun <reified T : Task> TaskContainer.matchingNameWithType(
+public inline fun <reified T : Task> TaskContainer.matchingNameWithType(
   taskName: String
 ): TaskCollection<T> = withType<T>().matching { it.name == taskName }
 
@@ -91,7 +91,7 @@ inline fun <reified T : Task> TaskContainer.matchingNameWithType(
  * @return The original collection for chaining.
  * @since 0.1.0
  */
-fun <T : Task> TaskCollection<T>.dependOn(vararg objects: Any): TaskCollection<T> =
+public fun <T : Task> TaskCollection<T>.dependOn(vararg objects: Any): TaskCollection<T> =
   also { taskCollection ->
     taskCollection.configureEach { task -> task.dependsOn(*objects) }
   }
@@ -103,7 +103,7 @@ fun <T : Task> TaskCollection<T>.dependOn(vararg objects: Any): TaskCollection<T
  * @return The original task provider for chaining.
  * @since 0.1.0
  */
-fun <T : Task> TaskProvider<T>.dependsOn(vararg objects: Any): TaskProvider<T> =
+public fun <T : Task> TaskProvider<T>.dependsOn(vararg objects: Any): TaskProvider<T> =
   also { provider ->
     provider.configure { task ->
       task.dependsOn(*objects)
@@ -117,7 +117,7 @@ fun <T : Task> TaskProvider<T>.dependsOn(vararg objects: Any): TaskProvider<T> =
  * @return The original collection for chaining.
  * @since 0.1.0
  */
-fun <T : Task> TaskCollection<T>.mustRunAfter(vararg objects: Any): TaskCollection<T> =
+public fun <T : Task> TaskCollection<T>.mustRunAfter(vararg objects: Any): TaskCollection<T> =
   also { taskCollection ->
     taskCollection.configureEach { task -> task.mustRunAfter(*objects) }
   }
@@ -129,7 +129,7 @@ fun <T : Task> TaskCollection<T>.mustRunAfter(vararg objects: Any): TaskCollecti
  * @return The original task provider for chaining.
  * @since 0.1.0
  */
-fun <T : Task> TaskProvider<T>.mustRunAfter(vararg objects: Any): TaskProvider<T> =
+public fun <T : Task> TaskProvider<T>.mustRunAfter(vararg objects: Any): TaskProvider<T> =
   also { provider ->
     provider.configure { task ->
       task.mustRunAfter(*objects)
@@ -146,7 +146,7 @@ fun <T : Task> TaskProvider<T>.mustRunAfter(vararg objects: Any): TaskProvider<T
  * @see [TaskCollection.withType]
  * @since 0.1.0
  */
-inline fun <reified S : Task> TaskCollection<in S>.withType(): TaskCollection<S> =
+public inline fun <reified S : Task> TaskCollection<in S>.withType(): TaskCollection<S> =
   withType(S::class.java)
 
 /**
@@ -166,7 +166,7 @@ inline fun <reified S : Task> TaskCollection<in S>.withType(): TaskCollection<S>
     "com.rickbusarow.kgx.registering"
   )
 )
-inline fun <reified T : Task> TaskContainer.register(
+public inline fun <reified T : Task> TaskContainer.register(
   name: String,
   vararg constructorArguments: Any,
   noinline configuration: (T) -> Unit
@@ -181,7 +181,7 @@ inline fun <reified T : Task> TaskContainer.register(
  * @return A task provider for the newly created task.
  * @since 0.1.11
  */
-inline fun <reified T : Task> TaskContainer.registering(
+public inline fun <reified T : Task> TaskContainer.registering(
   name: String,
   vararg constructorArguments: Any,
   configurationAction: Action<T>
@@ -201,7 +201,7 @@ inline fun <reified T : Task> TaskContainer.registering(
  * @return A task provider for the newly created task.
  * @since 0.1.11
  */
-inline fun <reified T : Task> TaskContainer.registering(
+public inline fun <reified T : Task> TaskContainer.registering(
   name: DomainObjectName<T>,
   vararg constructorArguments: Any,
   configurationAction: Action<T>
@@ -218,7 +218,7 @@ inline fun <reified T : Task> TaskContainer.registering(
  * @return A task provider for the newly created task.
  * @since 0.1.11
  */
-inline fun <reified T : Task> TaskContainer.register(
+public inline fun <reified T : Task> TaskContainer.register(
   name: String,
   type: KClass<T>,
   vararg constructorArguments: Any,
@@ -236,7 +236,7 @@ inline fun <reified T : Task> TaskContainer.register(
  * @return A task provider for the newly created task.
  * @since 0.1.11
  */
-inline fun <reified T : Task> TaskContainer.register(
+public inline fun <reified T : Task> TaskContainer.register(
   name: DomainObjectName<T>,
   type: KClass<T>,
   vararg constructorArguments: Any,
@@ -257,7 +257,7 @@ inline fun <reified T : Task> TaskContainer.register(
  * @return A task provider.
  * @since 0.1.0
  */
-fun <T : Task> TaskContainer.registerOnce(
+public fun <T : Task> TaskContainer.registerOnce(
   name: String,
   type: Class<T>,
   configurationAction: Action<in T>
@@ -276,7 +276,7 @@ fun <T : Task> TaskContainer.registerOnce(
  * @return A task provider.
  * @since 0.1.11
  */
-fun <T : Task> TaskContainer.registerOnce(
+public fun <T : Task> TaskContainer.registerOnce(
   name: DomainObjectName<T>,
   type: Class<T>,
   configurationAction: Action<in T>
@@ -291,7 +291,7 @@ fun <T : Task> TaskContainer.registerOnce(
  *   type, without any '_Decorated' suffix if one exists
  * @since 0.1.0
  */
-fun Task.undecoratedTypeName(): String = javaClass.canonicalName.removeSuffix("_Decorated")
+public fun Task.undecoratedTypeName(): String = javaClass.canonicalName.removeSuffix("_Decorated")
 
 /**
  * Registers or retrieves a task by name and type, and then configures it.
@@ -302,7 +302,7 @@ fun Task.undecoratedTypeName(): String = javaClass.canonicalName.removeSuffix("_
  * @since 0.1.0
  */
 @JvmName("registerOnceInline")
-inline fun <reified T : Task> TaskContainer.registerOnce(
+public inline fun <reified T : Task> TaskContainer.registerOnce(
   name: String,
   configurationAction: Action<in T>
 ): TaskProvider<T> = registerOnce(name, T::class.java, configurationAction)
@@ -314,7 +314,7 @@ inline fun <reified T : Task> TaskContainer.registerOnce(
  * @return A task provider.
  * @since 0.1.0
  */
-inline fun <reified T : Task> TaskContainer.registerOnce(name: String): TaskProvider<T> =
+public inline fun <reified T : Task> TaskContainer.registerOnce(name: String): TaskProvider<T> =
   if (names.contains(name)) {
     named(name, T::class.java)
   } else {
@@ -328,7 +328,7 @@ inline fun <reified T : Task> TaskContainer.registerOnce(name: String): TaskProv
  * @return The original task provider for chaining.
  * @since 0.1.0
  */
-fun <T : Task> TaskProvider<T>.addAsDependencyTo(
+public fun <T : Task> TaskProvider<T>.addAsDependencyTo(
   dependentTask: TaskProvider<*>
 ): TaskProvider<T> = also { receiver ->
   dependentTask.dependsOn(receiver)
@@ -341,7 +341,7 @@ fun <T : Task> TaskProvider<T>.addAsDependencyTo(
  * @return The original task provider for chaining.
  * @since 0.1.0
  */
-fun <T : Task> TaskProvider<T>.addAsDependencyTo(
+public fun <T : Task> TaskProvider<T>.addAsDependencyTo(
   dependentTasks: TaskCollection<*>
 ): TaskProvider<T> = also { receiver ->
   dependentTasks.dependOn(receiver)
@@ -352,7 +352,7 @@ fun <T : Task> TaskProvider<T>.addAsDependencyTo(
  *
  * @since 0.1.0
  */
-inline fun <reified T : Task> T.outputsUpToDateWhen(crossinline predicate: (T) -> Boolean) {
+public inline fun <reified T : Task> T.outputsUpToDateWhen(crossinline predicate: (T) -> Boolean) {
   outputs.upToDateWhen { predicate(it as T) }
 }
 
@@ -362,14 +362,14 @@ inline fun <reified T : Task> T.outputsUpToDateWhen(crossinline predicate: (T) -
  *
  * @since 0.1.10
  */
-val TaskCollection<*>.extras: ExtraPropertiesExtension
+public val TaskCollection<*>.extras: ExtraPropertiesExtension
   get() = (this as ExtensionAware).extensions.extraProperties
 
 /**
  * @since 0.1.10
  * @throws IllegalArgumentException if there are multiple tasks of that name when ignoring its case
  */
-fun TaskCollection<*>.namedOrNull(taskName: String): NamedDomainObjectSchema? {
+public fun TaskCollection<*>.namedOrNull(taskName: String): NamedDomainObjectSchema? {
 
   // This will typically be a 1:1 grouping,
   // but Gradle does allow you to re-use task names with different capitalization,

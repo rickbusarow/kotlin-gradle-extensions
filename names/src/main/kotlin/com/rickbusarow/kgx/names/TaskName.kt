@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,99 +29,99 @@ import kotlin.properties.ReadOnlyProperty
  * @since 0.1.6
  */
 @JvmInline
-value class TaskName(
+public value class TaskName(
   override val value: String
 ) : DomainObjectName<Task>,
   Comparable<TaskName> {
   override fun compareTo(other: TaskName): Int = value.compareTo(other.value)
 
-  companion object {
+  public companion object {
     /**
      * @see LifecycleBasePlugin.ASSEMBLE_TASK_NAME
      * @since 0.1.6
      */
-    val assemble: TaskName = TaskName(LifecycleBasePlugin.ASSEMBLE_TASK_NAME)
+    public val assemble: TaskName = TaskName(LifecycleBasePlugin.ASSEMBLE_TASK_NAME)
 
     /**
      * @see LifecycleBasePlugin.BUILD_TASK_NAME
      * @since 0.1.6
      */
-    val build: TaskName = TaskName(LifecycleBasePlugin.BUILD_TASK_NAME)
+    public val build: TaskName = TaskName(LifecycleBasePlugin.BUILD_TASK_NAME)
 
     /**
      * `jar`
      *
      * @since 0.1.7
      */
-    val jar: TaskName = TaskName("jar")
+    public val jar: TaskName = TaskName("jar")
 
     /**
      * @see LifecycleBasePlugin.CHECK_TASK_NAME
      * @since 0.1.6
      */
-    val check: TaskName = TaskName(LifecycleBasePlugin.CHECK_TASK_NAME)
+    public val check: TaskName = TaskName(LifecycleBasePlugin.CHECK_TASK_NAME)
 
     /**
      * `compileJavaWithJavac`
      *
      * @since 0.1.7
      */
-    val compileJavaWithJavac: TaskName = TaskName("compileJavaWithJavac")
+    public val compileJavaWithJavac: TaskName = TaskName("compileJavaWithJavac")
 
     /**
      * `compileJava`
      *
      * @since 0.1.7
      */
-    val compileJava: TaskName = TaskName("compileJava")
+    public val compileJava: TaskName = TaskName("compileJava")
 
     /**
      * `compileKotlin`
      *
      * @since 0.1.7
      */
-    val compileKotlin: TaskName = TaskName("compileKotlin")
+    public val compileKotlin: TaskName = TaskName("compileKotlin")
 
     /**
      * `testUnitTest`
      *
      * @since 0.1.7
      */
-    val testUnitTest: TaskName = TaskName("testUnitTest")
+    public val testUnitTest: TaskName = TaskName("testUnitTest")
 
     /**
      * `test`
      *
      * @since 0.1.7
      */
-    val test: TaskName = TaskName("test")
+    public val test: TaskName = TaskName("test")
 
     /**
      * @see LifecycleBasePlugin.CLEAN_TASK_NAME
      * @since 0.1.6
      */
-    val clean: TaskName = TaskName(LifecycleBasePlugin.CLEAN_TASK_NAME)
+    public val clean: TaskName = TaskName(LifecycleBasePlugin.CLEAN_TASK_NAME)
 
     /**
      * ex: `assemble` or `assembleDebug`
      *
      * @since 0.1.7
      */
-    fun SourceSetName.assemble(): TaskName = if (isMain()) assemble else addPrefix(assemble)
+    public fun SourceSetName.assemble(): TaskName = if (isMain()) assemble else addPrefix(assemble)
 
     /**
      * ex: `test` or `debugTest`
      *
      * @since 0.1.7
      */
-    fun SourceSetName.test(): TaskName = if (isMain()) test else addSuffix(test)
+    public fun SourceSetName.test(): TaskName = if (isMain()) test else addSuffix(test)
 
     /**
      * ex: `testUnitTest` or `testDebugUnitTest`
      *
      * @since 0.1.7
      */
-    fun SourceSetName.testUnitTest(): TaskName =
+    public fun SourceSetName.testUnitTest(): TaskName =
       if (isMain()) {
         testUnitTest
       } else {
@@ -133,7 +133,7 @@ value class TaskName(
      *
      * @since 0.1.7
      */
-    fun SourceSetName.compileKotlin(): TaskName =
+    public fun SourceSetName.compileKotlin(): TaskName =
       if (isMain()) {
         compileKotlin
       } else {
@@ -145,7 +145,7 @@ value class TaskName(
      *
      * @since 0.1.7
      */
-    fun SourceSetName.compileJava(): TaskName =
+    public fun SourceSetName.compileJava(): TaskName =
       if (isMain()) {
         compileJava
       } else {
@@ -157,7 +157,7 @@ value class TaskName(
      *
      * @since 0.1.7
      */
-    fun SourceSetName.compileJavaWithJavac(): TaskName =
+    public fun SourceSetName.compileJavaWithJavac(): TaskName =
       if (isMain()) {
         compileJavaWithJavac
       } else {
@@ -169,7 +169,7 @@ value class TaskName(
      *
      * @since 0.1.6
      */
-    fun String.asTaskName(): TaskName = TaskName(this)
+    public fun String.asTaskName(): TaskName = TaskName(this)
 
     /**
      * Returns a [ReadOnlyProperty] which lazily creates a [TaskName] from the property name.
@@ -184,7 +184,7 @@ value class TaskName(
      * @since 0.1.6
      */
     @Suppress("MemberNameEqualsClassName")
-    fun taskName(): ReadOnlyProperty<Any?, TaskName> =
+    public fun taskName(): ReadOnlyProperty<Any?, TaskName> =
       DomainObjectName.lazyName { name ->
         TaskName(name)
       }

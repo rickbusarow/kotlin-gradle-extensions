@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -31,7 +31,7 @@ import org.gradle.composite.internal.DefaultIncludedBuild.IncludedBuildImpl
  * @since 0.1.0
  */
 @InternalGradleApiAccess
-fun IncludedBuild.rootProject(): ProjectInternal {
+public fun IncludedBuild.rootProject(): ProjectInternal {
   return checkNotNull(requireProjectRegistry().rootProject)
 }
 
@@ -40,7 +40,7 @@ fun IncludedBuild.rootProject(): ProjectInternal {
  * @since 0.1.0
  */
 @InternalGradleApiAccess
-fun IncludedBuild.allProjects(): Set<ProjectInternal> {
+public fun IncludedBuild.allProjects(): Set<ProjectInternal> {
   return requireProjectRegistry().allProjects
 }
 
@@ -50,7 +50,7 @@ fun IncludedBuild.allProjects(): Set<ProjectInternal> {
  * @since 0.1.0
  */
 @InternalGradleApiAccess
-fun IncludedBuild.requireProjectRegistry(): ProjectRegistry<ProjectInternal> {
+public fun IncludedBuild.requireProjectRegistry(): ProjectRegistry<ProjectInternal> {
   require(this is IncludedBuildImpl) {
     "The receiver ${IncludedBuild::class.qualifiedName} is expected to be an " +
       "${IncludedBuildImpl::class.qualifiedName}, but instead it was ${this::class.qualifiedName}"
@@ -71,7 +71,7 @@ fun IncludedBuild.requireProjectRegistry(): ProjectRegistry<ProjectInternal> {
  * @since 0.1.0
  */
 @InternalGradleApiAccess
-fun Gradle.allIncludedProjects(): List<ProjectInternal> {
+public fun Gradle.allIncludedProjects(): List<ProjectInternal> {
   return includedBuilds.flatMap { it.allProjects() }
 }
 
@@ -85,6 +85,6 @@ fun Gradle.allIncludedProjects(): List<ProjectInternal> {
  */
 @EagerGradleApi
 @InternalGradleApiAccess
-fun Gradle.includedAllProjectsTasks(taskName: String): List<TaskCollection<Task>> {
+public fun Gradle.includedAllProjectsTasks(taskName: String): List<TaskCollection<Task>> {
   return allIncludedProjects().map { it.tasks.matchingName(taskName) }
 }

@@ -30,7 +30,7 @@ import org.gradle.api.provider.Provider
  *
  * @since 0.1.5
  */
-fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
+public fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
   /**
    * A public and stable version of
    * [DefaultNamedDomainObjectCollection.ElementInfo][org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo],
@@ -39,43 +39,43 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
    *
    * @since 0.1.5
    */
-  sealed interface RegisteredElement<T> {
+  public sealed interface RegisteredElement<T> {
     /**
      * @see org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo.getName
      * @since 0.1.5
      */
-    val elementName: String
+    public val elementName: String
 
     /**
      * @see org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo.getType
      * @since 0.1.5
      */
-    val elementType: Class<out T>
+    public val elementType: Class<out T>
 
     /**
      * The value of the element, which can be either an instance or a [Provider].
      *
      * @since 0.1.5
      */
-    val elementValue: ElementValue<T>
+    public val elementValue: ElementValue<T>
 
     /**
      * @see elementName
      * @since 0.1.5
      */
-    operator fun component1(): String = elementName
+    public operator fun component1(): String = elementName
 
     /**
      * @see elementType
      * @since 0.1.5
      */
-    operator fun component2(): Class<out T> = elementType
+    public operator fun component2(): Class<out T> = elementType
 
     /**
      * @see elementValue
      * @since 0.1.5
      */
-    operator fun component3(): ElementValue<T> = elementValue
+    public operator fun component3(): ElementValue<T> = elementValue
 
     /**
      * Represents a registered element backed by a concrete instance. This
@@ -86,7 +86,7 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
      * @property elementValue The concrete instance of the element.
      * @since 0.1.5
      */
-    class ObjectBackedRegisteredElement<T : Any>(
+    public class ObjectBackedRegisteredElement<T : Any>(
       override val elementName: String,
       override val elementValue: Instance<T>
     ) : RegisteredElement<T> {
@@ -95,7 +95,7 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
        *
        * @since 0.1.5
        */
-      val obj: T get() = elementValue.value
+      public val obj: T get() = elementValue.value
       override val elementType: Class<out T> = obj::class.java
 
       override fun component3(): Instance<T> = elementValue
@@ -113,7 +113,7 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
      * @property elementValue The [Provider] of the element.
      * @since 0.1.5
      */
-    class ProviderBackedRegisteredElement<T : Any>(
+    public class ProviderBackedRegisteredElement<T : Any>(
       override val elementName: String,
       override val elementType: Class<out T>,
       override val elementValue: ProviderInstance<T>
@@ -123,12 +123,12 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
        *
        * @since 0.1.5
        */
-      val provider: Provider<T> get() = elementValue.value
+      public val provider: Provider<T> get() = elementValue.value
 
       override fun component3(): ProviderInstance<T> = elementValue
     }
 
-    companion object {
+    public companion object {
       /**
        * Facilitates the creation of [RegisteredElement] instances based on the provided
        * parameters. It checks the type of [elementValue] to decide whether to create
@@ -144,7 +144,7 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
        *   or [ProviderBackedRegisteredElement], depending on the type of [elementValue].
        * @since 0.1.5
        */
-      operator fun <T : Any> invoke(
+      public operator fun <T : Any> invoke(
         elementName: String,
         elementType: Class<out T>,
         elementValue: ElementValue<T>
@@ -173,20 +173,20 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
    *
    * @since 0.1.5
    */
-  sealed interface ElementValue<T> {
+  public sealed interface ElementValue<T> {
     /**
      * The value of the element, which can be either an instance or a [Provider].
      *
      * @since 0.1.5
      */
-    val value: Any?
+    public val value: Any?
 
     /**
      * Represents a concrete instance of a registered element. This is the most common case.
      *
      * @since 0.1.5
      */
-    class Instance<T>(
+    public class Instance<T>(
       override val value: T
     ) : ElementValue<T> {
 
@@ -208,11 +208,11 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
      * @since 0.1.5
      */
     @JvmInline
-    value class ProviderInstance<T>(
+    public value class ProviderInstance<T>(
       override val value: NamedDomainObjectProvider<T>
     ) : ElementValue<T>
 
-    companion object {
+    public companion object {
       /**
        * Facilitates the creation of an [Instance] from
        * a concrete value. This is the most common case.
@@ -221,7 +221,7 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
        * @return An [Instance] wrapping the provided value.
        * @since 0.1.5
        */
-      operator fun <T : Any> invoke(value: T): Instance<T> = Instance(value)
+      public operator fun <T : Any> invoke(value: T): Instance<T> = Instance(value)
 
       /**
        * Facilitates the creation of a [ProviderInstance] from a
@@ -236,7 +236,9 @@ fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
        *   the value from the provider and it's not yet realized.
        */
       @OptIn(InternalGradleApiAccess::class)
-      operator fun <T : Any> invoke(provider: NamedDomainObjectProvider<T>): ElementValue<T> =
+      public operator fun <T : Any> invoke(
+        provider: NamedDomainObjectProvider<T>
+      ): ElementValue<T> =
         when {
           provider.isRealized() -> Instance(provider.get())
           else -> ProviderInstance(provider)

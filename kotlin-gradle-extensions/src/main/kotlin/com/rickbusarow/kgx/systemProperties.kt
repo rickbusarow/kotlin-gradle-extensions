@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,7 +28,7 @@ import org.gradle.api.provider.ProviderFactory
  * @since 0.1.9
  * @throws GradleException if the property is found but is not assignable to [T]
  */
-fun ProviderFactory.getSystemProperty(name: String, defaultValue: String): String =
+public fun ProviderFactory.getSystemProperty(name: String, defaultValue: String): String =
   getSystemPropertyOrNull(name) ?: defaultValue
 
 /**
@@ -41,7 +41,7 @@ fun ProviderFactory.getSystemProperty(name: String, defaultValue: String): Strin
  * @since 0.1.9
  * @throws GradleException if the property is found but is not assignable to [T]
  */
-inline fun ProviderFactory.systemProperty(
+public inline fun ProviderFactory.systemProperty(
   name: String,
   defaultValue: () -> String
 ): String = getSystemPropertyOrNull(name) ?: defaultValue()
@@ -55,6 +55,6 @@ inline fun ProviderFactory.systemProperty(
  * @since 0.1.9
  * @throws GradleException if the property is found but is not assignable to [T]
  */
-fun ProviderFactory.getSystemPropertyOrNull(name: String): String? {
+public fun ProviderFactory.getSystemPropertyOrNull(name: String): String? {
   return systemProperty(name).orNull
 }

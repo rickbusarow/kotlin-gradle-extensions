@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -39,7 +39,7 @@ import com.rickbusarow.kgx.invoke as kgxInvoke
   "moved to `com.rickbusarow.kgx.invoke`",
   ReplaceWith("invoke(elementName, elementValue)", "com.rickbusarow.kgx.invoke")
 )
-inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
+public inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
   elementName: String,
   elementValue: ElementValue<T>
 ) {
@@ -60,7 +60,7 @@ inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
   "moved to `com.rickbusarow.kgx.invoke`",
   ReplaceWith("invoke(elementName, elementType, elementValue)", "com.rickbusarow.kgx.invoke")
 )
-operator fun <T : Any> ElementInfoAction<T>.invoke(
+public operator fun <T : Any> ElementInfoAction<T>.invoke(
   elementName: String,
   elementType: Class<out T>,
   elementValue: ElementValue<T>
@@ -76,7 +76,7 @@ operator fun <T : Any> ElementInfoAction<T>.invoke(
  * @since 0.1.5
  */
 @InternalGradleApiAccess
-fun <T : Any> NamedDomainObjectProvider<T>.isRealized(): Boolean {
+public fun <T : Any> NamedDomainObjectProvider<T>.isRealized(): Boolean {
   return this is DefaultNamedDomainObjectCollection<*>.AbstractDomainObjectCreatingProvider<*>
 }
 
@@ -90,7 +90,7 @@ fun <T : Any> NamedDomainObjectProvider<T>.isRealized(): Boolean {
  * @since 0.1.5
  */
 @InternalGradleApiAccess
-fun <T : Any> NamedDomainObjectCollection<T>.hasRealized(elementName: String): Boolean {
+public fun <T : Any> NamedDomainObjectCollection<T>.hasRealized(elementName: String): Boolean {
   return names.contains(elementName) && named(elementName).isRealized()
 }
 
@@ -138,7 +138,7 @@ internal inline fun <reified T : Any> ElementInfo<T>.toRegisteredInfo(
  * @throws IllegalArgumentException If the receiver is not a [DefaultNamedDomainObjectCollection].
  */
 @InternalGradleApiAccess
-inline fun <reified T> NamedDomainObjectCollection<T>.whenElementRegistered(
+public inline fun <reified T> NamedDomainObjectCollection<T>.whenElementRegistered(
   configurationAction: Action<T>
 ) {
   whenElementKnown {
@@ -157,7 +157,7 @@ inline fun <reified T> NamedDomainObjectCollection<T>.whenElementRegistered(
  * @throws IllegalArgumentException If the receiver is not a [DefaultNamedDomainObjectCollection].
  */
 @InternalGradleApiAccess
-inline fun <reified T> NamedDomainObjectCollection<T>.whenElementKnown(
+public inline fun <reified T> NamedDomainObjectCollection<T>.whenElementKnown(
   configurationAction: Action<ElementInfo<T>>
 ) {
   requireDefaultCollection().whenElementKnown(configurationAction)
@@ -174,7 +174,7 @@ inline fun <reified T> NamedDomainObjectCollection<T>.whenElementKnown(
  * @throws IllegalArgumentException If the receiver is not a [DefaultNamedDomainObjectCollection].
  */
 @InternalGradleApiAccess
-inline fun <reified T : Any> NamedDomainObjectCollection<T>.whenElementKnown(
+public inline fun <reified T : Any> NamedDomainObjectCollection<T>.whenElementKnown(
   configurationAction: ElementInfoAction<T>
 ) {
   requireDefaultCollection().whenElementKnown { elementInfo ->
@@ -200,7 +200,7 @@ inline fun <reified T : Any> NamedDomainObjectCollection<T>.whenElementKnown(
  * @throws IllegalArgumentException If the receiver is not a [DefaultNamedDomainObjectCollection].
  */
 @InternalGradleApiAccess
-inline fun <reified T> NamedDomainObjectCollection<T>.whenElementRegistered(
+public inline fun <reified T> NamedDomainObjectCollection<T>.whenElementRegistered(
   elementName: String,
   configurationAction: Action<T>
 ) {
@@ -224,7 +224,7 @@ inline fun <reified T> NamedDomainObjectCollection<T>.whenElementRegistered(
  */
 @JvmName("whenElementRegisteredTyped")
 @InternalGradleApiAccess
-inline fun <reified T, reified R : T> NamedDomainObjectCollection<T>.whenElementRegistered(
+public inline fun <reified T, reified R : T> NamedDomainObjectCollection<T>.whenElementRegistered(
   elementName: String,
   configurationAction: Action<R>
 ) {
@@ -238,7 +238,7 @@ inline fun <reified T, reified R : T> NamedDomainObjectCollection<T>.whenElement
 /** @since 0.1.1 */
 @InternalGradleApiAccess
 @Suppress("MaxLineLength")
-inline fun <reified T> NamedDomainObjectCollection<T>.requireDefaultCollection(): DefaultNamedDomainObjectCollection<T> {
+public inline fun <reified T> NamedDomainObjectCollection<T>.requireDefaultCollection(): DefaultNamedDomainObjectCollection<T> {
   require(this is DefaultNamedDomainObjectCollection<T>) {
     "The receiver collection must extend " +
       "${DefaultNamedDomainObjectCollection::class.qualifiedName}, " +

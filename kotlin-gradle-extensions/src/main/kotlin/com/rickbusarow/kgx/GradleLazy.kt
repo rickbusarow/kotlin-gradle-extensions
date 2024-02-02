@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -24,7 +24,7 @@ package com.rickbusarow.kgx
  *   This lambda must be compatible with Gradle's configuration cache.
  * @since 0.1.9
  */
-fun <T : Any?> gradleLazy(
+public fun <T : Any?> gradleLazy(
   mode: LazyThreadSafetyMode = LazyThreadSafetyMode.SYNCHRONIZED,
   initializer: () -> T
 ): GradleLazy<T> = GradleLazy(mode, initializer)
@@ -35,7 +35,7 @@ fun <T : Any?> gradleLazy(
  *
  * @since 0.1.9
  */
-class GradleLazy<T : Any?>(
+public class GradleLazy<T : Any?>(
   private val mode: LazyThreadSafetyMode,
   private val initializer: () -> T
 ) : Lazy<T>, java.io.Serializable {

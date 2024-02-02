@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -25,7 +25,7 @@ import org.gradle.api.plugins.ExtraPropertiesExtension
  * @see [ExtensionContainer.getExtraProperties]
  * @since 0.1.0
  */
-val ExtensionAware.extras: ExtraPropertiesExtension
+public val ExtensionAware.extras: ExtraPropertiesExtension
   get() = extensions.extraProperties
 
 /**
@@ -35,7 +35,9 @@ val ExtensionAware.extras: ExtraPropertiesExtension
  *
  * @since 0.1.0
  */
-fun ExtraPropertiesExtension.getOrNull(name: String): Any? = if (has(name)) get(name) else null
+public fun ExtraPropertiesExtension.getOrNull(
+  name: String
+): Any? = if (has(name)) get(name) else null
 
 /**
  * A safe version of [get][ExtraPropertiesExtension.get], since `get` will throw
@@ -45,7 +47,7 @@ fun ExtraPropertiesExtension.getOrNull(name: String): Any? = if (has(name)) get(
  * @since 0.1.0
  * @throws ClassCastException if a property named [name] exists, but is not of type T
  */
-inline fun <reified T> ExtraPropertiesExtension.getOrNullAs(name: String): T? {
+public inline fun <reified T> ExtraPropertiesExtension.getOrNullAs(name: String): T? {
   val existing = getOrNull(name) ?: return null
   return existing as T
 }
@@ -59,7 +61,7 @@ inline fun <reified T> ExtraPropertiesExtension.getOrNullAs(name: String): T? {
  *   if the property wasn't previously defined.
  * @throws ClassCastException if a property named [name] exists, but is not of type T
  */
-inline fun <reified T> ExtraPropertiesExtension.getAs(name: String): T = get(name) as T
+public inline fun <reified T> ExtraPropertiesExtension.getAs(name: String): T = get(name) as T
 
 /**
  * Returns a value for [name] if one is already in the extra properties. If the name is not present,
@@ -68,7 +70,7 @@ inline fun <reified T> ExtraPropertiesExtension.getAs(name: String): T = get(nam
  * @since 0.1.0
  * @throws ClassCastException if a property named [name] exists, but is not of type T
  */
-inline fun <reified T : Any> ExtraPropertiesExtension.getOrPut(
+public inline fun <reified T : Any> ExtraPropertiesExtension.getOrPut(
   name: String,
   default: () -> T
 ): T = synchronized(this) {

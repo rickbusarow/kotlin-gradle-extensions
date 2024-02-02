@@ -34,7 +34,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
  * @since 0.1.9
  * @throws NullPointerException if KGP doesn't have an enum defined for the provided [targetInt].
  */
-fun JvmTarget.Companion.fromInt(targetInt: Int): JvmTarget {
+public fun JvmTarget.Companion.fromInt(targetInt: Int): JvmTarget {
   @Suppress("MagicNumber")
   return when (targetInt) {
     8 -> JvmTarget.fromTarget("1.8")
@@ -47,7 +47,7 @@ fun JvmTarget.Companion.fromInt(targetInt: Int): JvmTarget {
  *
  * @since 0.1.9
  */
-fun JvmTarget.toInt(): Int = target.substringAfterLast('.').toInt()
+public fun JvmTarget.toInt(): Int = target.substringAfterLast('.').toInt()
 
 /**
  * Applies the provided [ElementInfoAction] to a Kotlin target when
@@ -63,7 +63,7 @@ fun JvmTarget.toInt(): Int = target.substringAfterLast('.').toInt()
  * @since 0.1.5
  */
 @InternalGradleApiAccess
-fun KotlinProjectExtension.onTargetRegistered(
+public fun KotlinProjectExtension.onTargetRegistered(
   configurationAction: ElementInfoAction<KotlinTarget>
 ) {
 
@@ -95,7 +95,7 @@ fun KotlinProjectExtension.onTargetRegistered(
  * @since 0.1.5
  */
 @InternalGradleApiAccess
-fun KotlinMultiplatformExtension.onTargetRegistered(
+public fun KotlinMultiplatformExtension.onTargetRegistered(
   configurationAction: ElementInfoAction<KotlinTarget>
 ) {
   targets.whenElementKnown { configurationAction.execute(it) }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,81 +40,81 @@ import com.rickbusarow.kgx.names.ConfigurationName.Companion.runtimeOnlyConfig a
  * @since 0.1.6
  */
 @JvmInline
-value class SourceSetName(
+public value class SourceSetName(
   override val value: String
 ) : DomainObjectName<Any> {
   override fun toString(): String = "(SourceSetName) `$value`"
 
-  companion object {
+  public companion object {
     /**
      * name of the `androidTest` source set
      *
      * @since 0.1.6
      */
-    val androidTest: SourceSetName = SourceSetName("androidTest")
+    public val androidTest: SourceSetName = SourceSetName("androidTest")
 
     /**
      * name of the `debug` source set
      *
      * @since 0.1.6
      */
-    val debug: SourceSetName = SourceSetName("debug")
+    public val debug: SourceSetName = SourceSetName("debug")
 
     /**
      * name of the `main` source set
      *
      * @since 0.1.6
      */
-    val main: SourceSetName = SourceSetName("main")
+    public val main: SourceSetName = SourceSetName("main")
 
     /**
      * name of the `release` source set
      *
      * @since 0.1.6
      */
-    val release: SourceSetName = SourceSetName("release")
+    public val release: SourceSetName = SourceSetName("release")
 
     /**
      * name of the `test` source set
      *
      * @since 0.1.6
      */
-    val test: SourceSetName = SourceSetName("test")
+    public val test: SourceSetName = SourceSetName("test")
 
     /**
      * name of the `testFixtures` source set
      *
      * @since 0.1.6
      */
-    val testFixtures: SourceSetName = SourceSetName("testFixtures")
+    public val testFixtures: SourceSetName = SourceSetName("testFixtures")
 
     /**
      * name of the `commonMain` source set
      *
      * @since 0.1.6
      */
-    val commonMain: SourceSetName = SourceSetName("commonMain")
+    public val commonMain: SourceSetName = SourceSetName("commonMain")
 
     /**
      * name of the `commonTest` source set
      *
      * @since 0.1.6
      */
-    val commonTest: SourceSetName = SourceSetName("commonTest")
+    public val commonTest: SourceSetName = SourceSetName("commonTest")
 
     /**
      * name of the `commonJvm` source set
      *
      * @since 0.1.6
      */
-    val commonJvm: SourceSetName = SourceSetName("commonJvm")
+    public val commonJvm: SourceSetName = SourceSetName("commonJvm")
 
     /**
      * name of the `commonJvmTest` source set
      *
      * @since 0.1.6
      */
-    val commonJvmTest: SourceSetName = SourceSetName("commonJvmTest")
+    public val commonJvmTest: SourceSetName = SourceSetName("commonJvmTest")
 
     /**
      * Delegate for creating a [SourceSetName] from a property name.
@@ -128,7 +128,7 @@ value class SourceSetName(
      * @since 0.1.6
      */
     @Suppress("MemberNameEqualsClassName")
-    fun sourceSetName(): ReadOnlyProperty<Any?, SourceSetName> =
+    public fun sourceSetName(): ReadOnlyProperty<Any?, SourceSetName> =
       DomainObjectName.lazyName { name ->
         SourceSetName(name)
       }
@@ -138,21 +138,21 @@ value class SourceSetName(
      *
      * @since 0.1.6
      */
-    fun String.asSourceSetName(): SourceSetName = SourceSetName(this)
+    public fun String.asSourceSetName(): SourceSetName = SourceSetName(this)
 
     /**
      * @return true if this [SourceSetName] is a testFixtures
      *   source set, such as `testFixtures` or `testFixturesDebug`
      * @since 0.1.6
      */
-    fun SourceSetName.isTestFixtures(): Boolean =
+    public fun SourceSetName.isTestFixtures(): Boolean =
       value.startsWith(testFixtures.value, ignoreCase = true)
 
     /**
      * @return true if this [SourceSetName] is "main"
      * @since 0.1.6
      */
-    fun SourceSetName.isMain(): Boolean = this == main
+    public fun SourceSetName.isMain(): Boolean = this == main
 
     /**
      * Removes [prefix] from the receiver [SourceSetName] and returns
@@ -160,7 +160,7 @@ value class SourceSetName(
      *
      * @since 0.1.6
      */
-    fun SourceSetName.removePrefix(prefix: String): SourceSetName =
+    public fun SourceSetName.removePrefix(prefix: String): SourceSetName =
       value
         .removePrefix(prefix)
         .decapitalize()
@@ -172,20 +172,21 @@ value class SourceSetName(
      *
      * @since 0.1.6
      */
-    fun SourceSetName.removePrefix(prefix: DomainObjectName<*>): SourceSetName =
+    public fun SourceSetName.removePrefix(prefix: DomainObjectName<*>): SourceSetName =
       removePrefix(prefix.value)
 
     /**
      * @return true if the receiver [SourceSetName] starts with [prefix]
      * @since 0.1.6
      */
-    fun SourceSetName.hasPrefix(prefix: String): Boolean = value.startsWith(prefix)
+    public fun SourceSetName.hasPrefix(prefix: String): Boolean = value.startsWith(prefix)
 
     /**
      * @return true if the receiver [SourceSetName] starts with [prefix]
      * @since 0.1.6
      */
-    fun SourceSetName.hasPrefix(prefix: DomainObjectName<*>): Boolean = hasPrefix(prefix.value)
+    public fun SourceSetName.hasPrefix(prefix: DomainObjectName<*>): Boolean =
+      hasPrefix(prefix.value)
 
     /**
      * Adds [prefix] to the receiver [SourceSetName] and returns the
@@ -193,14 +194,14 @@ value class SourceSetName(
      *
      * @since 0.1.6
      */
-    fun SourceSetName.addPrefix(prefix: String): String = prefix.plus(value.capitalize())
+    public fun SourceSetName.addPrefix(prefix: String): String = prefix.plus(value.capitalize())
 
     /**
      * Removes [suffix] from the receiver [SourceSetName] and returns the result.
      *
      * @since 0.1.6
      */
-    fun SourceSetName.removeSuffix(suffix: String): SourceSetName =
+    public fun SourceSetName.removeSuffix(suffix: String): SourceSetName =
       value
         .removeSuffix(suffix.capitalize())
         .asSourceSetName()
@@ -210,7 +211,7 @@ value class SourceSetName(
      *
      * @since 0.1.6
      */
-    fun SourceSetName.removeSuffix(suffix: DomainObjectName<*>): SourceSetName =
+    public fun SourceSetName.removeSuffix(suffix: DomainObjectName<*>): SourceSetName =
       removeSuffix(suffix.value.capitalize())
 
     /**
@@ -219,7 +220,7 @@ value class SourceSetName(
      *
      * @since 0.1.6
      */
-    fun SourceSetName.addSuffix(suffix: String): String = value.plus(suffix.capitalize())
+    public fun SourceSetName.addSuffix(suffix: String): String = value.plus(suffix.capitalize())
 
     /**
      * Adds [prefix] to the receiver [SourceSetName] and returns the result as a
@@ -227,7 +228,7 @@ value class SourceSetName(
      *
      * @since 0.1.6
      */
-    fun SourceSetName.addPrefix(prefix: ConfigurationName): ConfigurationName =
+    public fun SourceSetName.addPrefix(prefix: ConfigurationName): ConfigurationName =
       prefix.value.plus(value.capitalize()).asConfigurationName()
 
     /**
@@ -236,7 +237,7 @@ value class SourceSetName(
      *
      * @since 0.1.6
      */
-    fun SourceSetName.addSuffix(suffix: ConfigurationName): ConfigurationName =
+    public fun SourceSetName.addSuffix(suffix: ConfigurationName): ConfigurationName =
       value.plus(suffix.value.capitalize()).asConfigurationName()
 
     /**
@@ -245,7 +246,7 @@ value class SourceSetName(
      *
      * @since 0.1.6
      */
-    fun SourceSetName.addPrefix(prefix: TaskName): TaskName =
+    public fun SourceSetName.addPrefix(prefix: TaskName): TaskName =
       prefix.value.plus(value.capitalize()).asTaskName()
 
     /**
@@ -254,7 +255,7 @@ value class SourceSetName(
      *
      * @since 0.1.6
      */
-    fun SourceSetName.addSuffix(suffix: TaskName): TaskName =
+    public fun SourceSetName.addSuffix(suffix: TaskName): TaskName =
       value.plus(suffix.value.capitalize()).asTaskName()
 
     /**
@@ -263,7 +264,7 @@ value class SourceSetName(
      *
      * @since 0.1.6
      */
-    fun SourceSetName.addPrefix(prefix: SourceSetName): SourceSetName =
+    public fun SourceSetName.addPrefix(prefix: SourceSetName): SourceSetName =
       prefix.value.plus(value.capitalize()).asSourceSetName()
 
     /**
@@ -272,7 +273,7 @@ value class SourceSetName(
      *
      * @since 0.1.6
      */
-    fun SourceSetName.addSuffix(suffix: SourceSetName): SourceSetName =
+    public fun SourceSetName.addSuffix(suffix: SourceSetName): SourceSetName =
       value.plus(suffix.value.capitalize()).asSourceSetName()
 
     /**
@@ -283,7 +284,7 @@ value class SourceSetName(
       "moved to ConfigurationName",
       ReplaceWith("apiConfig()", "com.rickbusarow.kgx.names.ConfigurationName.Companion.apiConfig")
     )
-    fun SourceSetName.apiConfig(): ConfigurationName = configApiConfig()
+    public fun SourceSetName.apiConfig(): ConfigurationName = configApiConfig()
 
     /**
      * @return the 'api' name for this source set, such as
@@ -297,7 +298,7 @@ value class SourceSetName(
         "com.rickbusarow.kgx.names.ConfigurationName.Companion.compileOnlyConfig"
       )
     )
-    fun SourceSetName.compileOnlyConfig(): ConfigurationName = configCompileOnlyConfig()
+    public fun SourceSetName.compileOnlyConfig(): ConfigurationName = configCompileOnlyConfig()
 
     /**
      * @return the 'implementation' name for this source set, such as
@@ -311,7 +312,8 @@ value class SourceSetName(
         "com.rickbusarow.kgx.names.ConfigurationName.Companion.implementationConfig"
       )
     )
-    fun SourceSetName.implementationConfig(): ConfigurationName = configImplementationConfig()
+    public fun SourceSetName.implementationConfig(): ConfigurationName =
+      configImplementationConfig()
 
     /**
      * @return the 'runtimeOnly' name for this source set, such as
@@ -325,7 +327,7 @@ value class SourceSetName(
         "com.rickbusarow.kgx.names.ConfigurationName.Companion.runtimeOnlyConfig"
       )
     )
-    fun SourceSetName.runtimeOnlyConfig(): ConfigurationName = configRuntimeOnlyConfig()
+    public fun SourceSetName.runtimeOnlyConfig(): ConfigurationName = configRuntimeOnlyConfig()
 
     /**
      * @return the 'kapt' name for this source set, such as `kapt`, `kaptTest`, or `kaptAndroidTest`
@@ -338,7 +340,7 @@ value class SourceSetName(
         "com.rickbusarow.kgx.names.ConfigurationName.Companion.kaptConfig"
       )
     )
-    fun SourceSetName.kaptConfig(): ConfigurationName = configKaptConfig()
+    public fun SourceSetName.kaptConfig(): ConfigurationName = configKaptConfig()
 
     /**
      * @return the 'anvil' name for this source set, such
@@ -352,7 +354,7 @@ value class SourceSetName(
         "com.rickbusarow.kgx.names.ConfigurationName.Companion.anvilConfig"
       )
     )
-    fun SourceSetName.anvilConfig(): ConfigurationName = configAnvilConfig()
+    public fun SourceSetName.anvilConfig(): ConfigurationName = configAnvilConfig()
 
     /**
      * @return the 'ksp' name for this source set, such as `ksp`, `kspTest`, or `kspAndroidTest`
@@ -362,6 +364,6 @@ value class SourceSetName(
       "moved to ConfigurationName",
       ReplaceWith("kspConfig()", "com.rickbusarow.kgx.names.ConfigurationName.Companion.kspConfig")
     )
-    fun SourceSetName.kspConfig(): ConfigurationName = configKspConfig()
+    public fun SourceSetName.kspConfig(): ConfigurationName = configKspConfig()
   }
 }
