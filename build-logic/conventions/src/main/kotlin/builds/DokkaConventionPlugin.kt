@@ -15,12 +15,15 @@
 
 package builds
 
+import builds.DokkaVersionArchivePlugin.Companion.DOKKA_ARCHIVE_BUILD_DIR
 import com.rickbusarow.kgx.dependsOn
+import com.rickbusarow.kgx.existsOrNull
 import com.rickbusarow.kgx.isRootProject
 import com.rickbusarow.kgx.projectDependency
 import com.rickbusarow.ktlint.KtLintTask
 import com.vanniktech.maven.publish.tasks.JavadocJar
 import dev.adamko.dokkatoo.DokkatooExtension
+import dev.adamko.dokkatoo.dokka.plugins.DokkaVersioningPluginParameters
 import dev.adamko.dokkatoo.tasks.DokkatooGenerateTask
 import org.gradle.api.GradleException
 import org.gradle.api.Plugin
@@ -45,7 +48,9 @@ abstract class DokkatooConventionPlugin : Plugin<Project> {
 
       dokkatoo.dokkatooSourceSets.configureEach { sourceSet ->
 
-        sourceSet.sourceRoots.from(target.file("src/${sourceSet.name}/kotlin"))
+        target.file("src/${sourceSet.name}/kotlin").existsOrNull()?.let {
+          sourceSet.sourceRoots.from(it)
+        }
 
         sourceSet.documentedVisibilities(
           dev.adamko.dokkatoo.dokka.parameters.VisibilityModifier.PRIVATE,
@@ -115,6 +120,16 @@ abstract class DokkatooConventionPlugin : Plugin<Project> {
         val pluginConfig = "dokkatooPluginHtml"
 
         target.dependencies.add(pluginConfig, target.libs.dokka.all.modules)
+        target.dependencies.add(pluginConfig, target.libs.dokka.versioning)
+
+        dokkatoo.pluginsConfiguration
+          .withType(DokkaVersioningPluginParameters::class.java)
+          .configureEach { versioning ->
+
+            versioning.version.set(target.VERSION_NAME)
+            versioning.olderVersionsDir.set(target.DOKKA_ARCHIVE_BUILD_DIR)
+            versioning.renderVersionsNavigationOnAllPages.set(true)
+          }
 
         dokkatoo.dokkatooPublications.configureEach {
           it.suppressObviousFunctions.set(true)
