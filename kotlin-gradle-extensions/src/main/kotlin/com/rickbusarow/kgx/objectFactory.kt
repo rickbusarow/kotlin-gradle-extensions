@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,14 +30,14 @@ import kotlin.properties.ReadOnlyProperty
  *
  * @since 0.1.0
  */
-fun ObjectFactory.fileTree(baseDir: Any): ConfigurableFileTree = fileTree().from(baseDir)
+public fun ObjectFactory.fileTree(baseDir: Any): ConfigurableFileTree = fileTree().from(baseDir)
 
 /**
  * shorthand for `fileTree().from(baseDir).also(configureAction::execute)`
  *
  * @since 0.1.0
  */
-fun ObjectFactory.fileTree(
+public fun ObjectFactory.fileTree(
   baseDir: Any,
   configureAction: Action<in ConfigurableFileTree>
 ): ConfigurableFileTree {
@@ -51,7 +51,7 @@ fun ObjectFactory.fileTree(
  * @since 0.1.8
  * @throws org.gradle.api.reflect.ObjectInstantiationException if the object cannot be instantiated.
  */
-inline fun <reified T : Any> ObjectFactory.newInstance(vararg parameters: Any?): T {
+public inline fun <reified T : Any> ObjectFactory.newInstance(vararg parameters: Any?): T {
   return newInstance(T::class.java, *parameters)
 }
 
@@ -64,7 +64,7 @@ inline fun <reified T : Any> ObjectFactory.newInstance(vararg parameters: Any?):
  * @since 0.1.9
  * @throws org.gradle.api.reflect.ObjectInstantiationException if the object cannot be instantiated.
  */
-inline fun <reified T : Any> ObjectFactory.newInstanceLazy(
+public inline fun <reified T : Any> ObjectFactory.newInstanceLazy(
   vararg parameters: Any?,
   threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
 ): Lazy<T> = newInstanceLazy(T::class.java, *parameters, threadSafetyMode = threadSafetyMode)
@@ -79,7 +79,7 @@ inline fun <reified T : Any> ObjectFactory.newInstanceLazy(
  * @since 0.1.9
  * @throws org.gradle.api.reflect.ObjectInstantiationException if the object cannot be instantiated.
  */
-fun <T> ObjectFactory.newInstanceLazy(
+public fun <T> ObjectFactory.newInstanceLazy(
   clazz: Class<out T>,
   vararg parameters: Any?,
   threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
@@ -91,7 +91,7 @@ fun <T> ObjectFactory.newInstanceLazy(
  * @see [ReadOnlyProperty]
  * @since 0.1.8
  */
-typealias LazyGradleProperty<T> = ReadOnlyProperty<Any?, T>
+public typealias LazyGradleProperty<T> = ReadOnlyProperty<Any?, T>
 
 /**
  * Lazy initializer delegate for a [ListProperty<T>][ListProperty].
@@ -106,7 +106,7 @@ typealias LazyGradleProperty<T> = ReadOnlyProperty<Any?, T>
  * @since 0.1.8
  */
 @JvmOverloads
-inline fun <reified T> ObjectFactory.listPropertyLazy(
+public inline fun <reified T> ObjectFactory.listPropertyLazy(
   threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE,
   crossinline init: ListProperty<T>.() -> ListProperty<T> = { this }
 ): GradleLazy<ListProperty<T>> = gradleLazy(threadSafetyMode) { listProperty(init) }
@@ -117,7 +117,7 @@ inline fun <reified T> ObjectFactory.listPropertyLazy(
  * @since 0.1.8
  */
 @JvmOverloads
-inline fun <reified T> ObjectFactory.listProperty(
+public inline fun <reified T> ObjectFactory.listProperty(
   crossinline init: ListProperty<T>.() -> ListProperty<T> = { this }
 ): ListProperty<T> = listProperty(T::class.java).init()
 
@@ -134,7 +134,7 @@ inline fun <reified T> ObjectFactory.listProperty(
  * @since 0.1.8
  */
 @JvmOverloads
-inline fun <reified T> ObjectFactory.setPropertyLazy(
+public inline fun <reified T> ObjectFactory.setPropertyLazy(
   threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE,
   crossinline init: SetProperty<T>.() -> SetProperty<T> = { this }
 ): Lazy<SetProperty<T>> = gradleLazy(threadSafetyMode) { setProperty(init) }
@@ -145,7 +145,7 @@ inline fun <reified T> ObjectFactory.setPropertyLazy(
  * @since 0.1.8
  */
 @JvmOverloads
-inline fun <reified T> ObjectFactory.setProperty(
+public inline fun <reified T> ObjectFactory.setProperty(
   crossinline init: SetProperty<T>.() -> SetProperty<T> = { this }
 ): SetProperty<T> = setProperty(T::class.java).init()
 
@@ -161,7 +161,7 @@ inline fun <reified T> ObjectFactory.setProperty(
  * @since 0.1.8
  */
 @JvmOverloads
-inline fun <reified K, reified V> ObjectFactory.mapPropertyLazy(
+public inline fun <reified K, reified V> ObjectFactory.mapPropertyLazy(
   threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE,
   crossinline init: MapProperty<K, V>.() -> MapProperty<K, V> = { this }
 ): Lazy<MapProperty<K, V>> = gradleLazy(threadSafetyMode) { mapProperty(init) }
@@ -172,7 +172,7 @@ inline fun <reified K, reified V> ObjectFactory.mapPropertyLazy(
  * @since 0.1.8
  */
 @JvmOverloads
-inline fun <reified K, reified V> ObjectFactory.mapProperty(
+public inline fun <reified K, reified V> ObjectFactory.mapProperty(
   crossinline init: MapProperty<K, V>.() -> MapProperty<K, V> = { this }
 ): MapProperty<K, V> = mapProperty(K::class.java, V::class.java).init()
 
@@ -181,14 +181,14 @@ inline fun <reified K, reified V> ObjectFactory.mapProperty(
  *
  * @since 0.1.8
  */
-inline fun <reified T : Any> ObjectFactory.property(): Property<T> = property(T::class.java)
+public inline fun <reified T : Any> ObjectFactory.property(): Property<T> = property(T::class.java)
 
 /**
  * Lazy initializer delegate for a [Property<T>][Property].
  *
  * @since 0.1.8
  */
-inline fun <reified T : Any> ObjectFactory.propertyLazy(
+public inline fun <reified T : Any> ObjectFactory.propertyLazy(
   threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE
 ): Lazy<Property<T>> = gradleLazy(threadSafetyMode) {
   property(T::class.java)
@@ -199,7 +199,7 @@ inline fun <reified T : Any> ObjectFactory.propertyLazy(
  *
  * @since 0.1.8
  */
-inline fun <reified T : Any> ObjectFactory.propertyOf(value: T): Property<T> {
+public inline fun <reified T : Any> ObjectFactory.propertyOf(value: T): Property<T> {
   return property(T::class.java).convention(value)
 }
 
@@ -208,7 +208,7 @@ inline fun <reified T : Any> ObjectFactory.propertyOf(value: T): Property<T> {
  *
  * @since 0.1.8
  */
-inline fun <reified T : Any> ObjectFactory.propertyLazy(
+public inline fun <reified T : Any> ObjectFactory.propertyLazy(
   crossinline convention: () -> T
 ): Lazy<Property<T>> = gradleLazy { property(convention) }
 
@@ -217,7 +217,9 @@ inline fun <reified T : Any> ObjectFactory.propertyLazy(
  *
  * @since 0.1.8
  */
-inline fun <reified T : Any> ObjectFactory.property(crossinline convention: () -> T): Property<T> =
+public inline fun <reified T : Any> ObjectFactory.property(
+  crossinline convention: () -> T
+): Property<T> =
   property(T::class.java).convention(convention())
 
 /**
@@ -225,7 +227,7 @@ inline fun <reified T : Any> ObjectFactory.property(crossinline convention: () -
  *
  * @since 0.1.8
  */
-inline fun <reified T : Any> ObjectFactory.property(convention: T): Property<T> =
+public inline fun <reified T : Any> ObjectFactory.property(convention: T): Property<T> =
   property(T::class.java).convention(convention)
 
 /**
@@ -233,7 +235,7 @@ inline fun <reified T : Any> ObjectFactory.property(convention: T): Property<T> 
  *
  * @since 0.1.8
  */
-inline fun <reified T : Any> ObjectFactory.propertyLazy(
+public inline fun <reified T : Any> ObjectFactory.propertyLazy(
   threadSafetyMode: LazyThreadSafetyMode = LazyThreadSafetyMode.NONE,
   convention: Provider<out T>
 ): Lazy<Property<T>> = gradleLazy(threadSafetyMode) {
@@ -245,5 +247,7 @@ inline fun <reified T : Any> ObjectFactory.propertyLazy(
  *
  * @since 0.1.8
  */
-inline fun <reified T : Any> ObjectFactory.property(convention: Provider<out T>): Property<T> =
+public inline fun <reified T : Any> ObjectFactory.property(
+  convention: Provider<out T>
+): Property<T> =
   property(T::class.java).convention(convention)

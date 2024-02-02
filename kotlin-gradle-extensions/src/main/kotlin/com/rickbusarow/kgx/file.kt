@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -35,7 +35,7 @@ import java.io.File
  * @see resolveInParent for a version which throws if nothing is resolved
  * @since 0.1.0
  */
-fun File.resolveInParentOrNull(relativePath: String): File? =
+public fun File.resolveInParentOrNull(relativePath: String): File? =
   resolve(relativePath).existsOrNull()
     ?: parentFile?.resolveInParentOrNull(relativePath)
 
@@ -46,7 +46,7 @@ fun File.resolveInParentOrNull(relativePath: String): File? =
  * @since 0.1.0
  * @throws IllegalArgumentException if a file cannot be resolved
  */
-fun File.resolveInParent(relativePath: String): File =
+public fun File.resolveInParent(relativePath: String): File =
   requireNotNull(resolveInParentOrNull(relativePath)) {
     "Could not resolve a file with relative path in any parent paths.\n" +
       "\t       relative path: $relativePath\n" +
@@ -57,14 +57,16 @@ fun File.resolveInParent(relativePath: String): File =
  * @return the receiver [File] if it exists in the file system, otherwise null
  * @since 0.1.0
  */
-fun File.existsOrNull(): File? = takeIf { it.exists() }
+public fun File.existsOrNull(): File? = takeIf { it.exists() }
 
 /**
  * @return true if the receiver [File] is a directory with
  *   at least one child file which satisfies [childPredicate]
  * @since 0.1.0
  */
-fun File.isDirectoryWithFiles(childPredicate: (File) -> Boolean = { it.exists() }): Boolean =
+public fun File.isDirectoryWithFiles(
+  childPredicate: (File) -> Boolean = { it.exists() }
+): Boolean =
   !isFile && listFiles()?.any(childPredicate) == true
 
 /**
@@ -77,7 +79,7 @@ fun File.isDirectoryWithFiles(childPredicate: (File) -> Boolean = { it.exists() 
  *
  * @since 0.1.0
  */
-fun File.isOrphanedBuildOrGradleDir(): Boolean =
+public fun File.isOrphanedBuildOrGradleDir(): Boolean =
   when {
     !isDirectory -> false
     name != "build" && name != ".gradle" -> false
@@ -96,7 +98,7 @@ fun File.isOrphanedBuildOrGradleDir(): Boolean =
  *
  * @since 0.1.0
  */
-fun File.isOrphanedGradleProperties(): Boolean =
+public fun File.isOrphanedGradleProperties(): Boolean =
   when {
     !isFile -> false
     name != "gradle.properties" -> false
@@ -110,7 +112,7 @@ fun File.isOrphanedGradleProperties(): Boolean =
  *
  * @since 0.1.0
  */
-fun File.hasGradleProjectFiles(): Boolean =
+public fun File.hasGradleProjectFiles(): Boolean =
   when {
     !isDirectory -> false
     resolve("settings.gradle.kts").exists() -> true

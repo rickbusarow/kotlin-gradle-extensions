@@ -36,7 +36,7 @@ import org.gradle.internal.Actions
  * @receiver ElementInfoAction The action to be executed.
  * @since 0.1.5
  */
-inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
+public inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
   elementName: String,
   elementValue: ElementValue<T>
 ) {
@@ -53,7 +53,7 @@ inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
  * @receiver ElementInfoAction The action to be executed.
  * @since 0.1.5
  */
-operator fun <T : Any> ElementInfoAction<T>.invoke(
+public operator fun <T : Any> ElementInfoAction<T>.invoke(
   elementName: String,
   elementType: Class<out T>,
   elementValue: ElementValue<T>
@@ -70,7 +70,7 @@ operator fun <T : Any> ElementInfoAction<T>.invoke(
  * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
-inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
+public inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
   name: DomainObjectName<S>
 ): S = getByName(name.value)
 
@@ -84,7 +84,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
  * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
-inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
+public inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
   name: DomainObjectName<S>,
   configurationAction: Action<in S>
 ): S = getByName(name.value, configurationAction)
@@ -98,7 +98,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
  * @since 0.1.11
  * @throws UnknownDomainObjectException when there is no such object in this collection.
  */
-operator fun <S : Any> NamedDomainObjectCollection<S>.get(
+public operator fun <S : Any> NamedDomainObjectCollection<S>.get(
   name: DomainObjectName<S>
 ): S = getByName(name.value)
 
@@ -110,7 +110,7 @@ operator fun <S : Any> NamedDomainObjectCollection<S>.get(
  * @see NamedDomainObjectCollection.findByName
  * @since 0.1.6
  */
-inline fun <reified S : Any> NamedDomainObjectCollection<S>.findByName(
+public inline fun <reified S : Any> NamedDomainObjectCollection<S>.findByName(
   name: DomainObjectName<S>
 ): S? = findByName(name.value)
 
@@ -123,7 +123,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.findByName(
  * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
-inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
+public inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
   name: DomainObjectName<S>,
   configurationAction: Action<in S> = Actions.doNothing()
 ): NamedDomainObjectProvider<S> = named(name.value, configurationAction)
@@ -138,7 +138,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
  * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
-inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
+public inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
   name: DomainObjectName<S>,
   type: Class<S>,
   configurationAction: Action<in S> = Actions.doNothing()
@@ -154,7 +154,7 @@ inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
  * @see DomainObjectCollection.withType
  * @since 0.1.0
  */
-inline fun <reified S : Any> DomainObjectCollection<in S>.withType(
+public inline fun <reified S : Any> DomainObjectCollection<in S>.withType(
   noinline configuration: (S) -> Unit
 ): DomainObjectCollection<S>? = withType(S::class.java, configuration)
 
@@ -168,7 +168,7 @@ inline fun <reified S : Any> DomainObjectCollection<in S>.withType(
  * @see DomainObjectCollection.withType
  * @since 0.1.0
  */
-inline fun <reified S : Any> DomainObjectCollection<in S>.withType(): DomainObjectCollection<S> =
+public inline fun <reified S : Any> DomainObjectCollection<in S>.withType(): DomainObjectCollection<S> =
   withType(S::class.java)
 
 /**
@@ -179,7 +179,7 @@ inline fun <reified S : Any> DomainObjectCollection<in S>.withType(): DomainObje
  * @return A provider for the new object [T].
  * @since 0.1.0
  */
-fun <T> NamedDomainObjectContainer<T>.registerOnce(
+public fun <T> NamedDomainObjectContainer<T>.registerOnce(
   name: String,
   configurationAction: Action<in T> = Actions.doNothing()
 ): NamedDomainObjectProvider<T> =
@@ -197,7 +197,7 @@ fun <T> NamedDomainObjectContainer<T>.registerOnce(
  * @return A provider for the new object [S].
  * @since 0.1.6
  */
-inline fun <reified S : Any> NamedDomainObjectContainer<S>.registerOnce(
+public inline fun <reified S : Any> NamedDomainObjectContainer<S>.registerOnce(
   name: DomainObjectName<S>,
   configurationAction: Action<in S> = Actions.doNothing()
 ): NamedDomainObjectProvider<S> =
@@ -215,7 +215,7 @@ inline fun <reified S : Any> NamedDomainObjectContainer<S>.registerOnce(
  * @return A provider for the new object [S].
  * @since 0.1.6
  */
-inline fun <reified S : Any> NamedDomainObjectContainer<S>.register(
+public inline fun <reified S : Any> NamedDomainObjectContainer<S>.register(
   name: DomainObjectName<S>,
   configurationAction: Action<in S> = Actions.doNothing()
 ): NamedDomainObjectProvider<S> = register(name.value, configurationAction)

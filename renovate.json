@@ -44,9 +44,9 @@
         "com.rickbusarow.lattice:",
         "com.rickbusarow.modulecheck:"
       ],
-      "autoApprove": true,
       "automerge": true,
-      "automergeType": "pr"
+      "automergeType": "pr",
+      "autoApprove": true
     }
   ],
   "labels": [

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -30,7 +30,7 @@ import kotlin.properties.ReadOnlyProperty
  *
  * @since 0.1.1
  */
-val Project.catalogs: VersionCatalogsExtension
+public val Project.catalogs: VersionCatalogsExtension
   get() = extensions.getByType(VersionCatalogsExtension::class.java)
 
 /**
@@ -43,7 +43,7 @@ val Project.catalogs: VersionCatalogsExtension
  *
  * @since 0.1.0
  */
-val Project.libsCatalog: VersionCatalog
+public val Project.libsCatalog: VersionCatalog
   get() = catalogs.named("libs")
 
 /**
@@ -58,7 +58,7 @@ val Project.libsCatalog: VersionCatalog
  * @since 0.1.0
  */
 @Deprecated("renamed to `library`", ReplaceWith("library(alias)"))
-fun VersionCatalog.dependency(alias: String): Provider<MinimalExternalModuleDependency> {
+public fun VersionCatalog.dependency(alias: String): Provider<MinimalExternalModuleDependency> {
   return library(alias)
 }
 
@@ -73,7 +73,7 @@ fun VersionCatalog.dependency(alias: String): Provider<MinimalExternalModuleDepe
  *
  * @since 0.1.0
  */
-fun VersionCatalog.library(alias: String): Provider<MinimalExternalModuleDependency> {
+public fun VersionCatalog.library(alias: String): Provider<MinimalExternalModuleDependency> {
   return findLibrary(alias)
     .orElseThrow {
       GradleException("No dependency was found in the catalog for the alias '$alias'.")
@@ -91,7 +91,7 @@ fun VersionCatalog.library(alias: String): Provider<MinimalExternalModuleDepende
  *
  * @since 0.1.9
  */
-val VersionCatalog.library: ReadOnlyProperty<Any?, Provider<MinimalExternalModuleDependency>>
+public val VersionCatalog.library: ReadOnlyProperty<Any?, Provider<MinimalExternalModuleDependency>>
   get() = ReadOnlyProperty { _, prop -> library(prop.name) }
 
 /**
@@ -105,7 +105,7 @@ val VersionCatalog.library: ReadOnlyProperty<Any?, Provider<MinimalExternalModul
  *
  * @since 0.1.0
  */
-fun VersionCatalog.version(alias: String): String {
+public fun VersionCatalog.version(alias: String): String {
   return findVersion(alias)
     .orElseThrow {
       GradleException("No version was found in the catalog for the alias '$alias'.")
@@ -123,7 +123,7 @@ fun VersionCatalog.version(alias: String): String {
  *
  * @since 0.1.9
  */
-val VersionCatalog.version: ReadOnlyProperty<Any?, String>
+public val VersionCatalog.version: ReadOnlyProperty<Any?, String>
   get() = ReadOnlyProperty { _, prop -> version(prop.name) }
 
 /**
@@ -137,7 +137,7 @@ val VersionCatalog.version: ReadOnlyProperty<Any?, String>
  *
  * @since 0.1.0
  */
-fun VersionCatalog.pluginId(alias: String): String {
+public fun VersionCatalog.pluginId(alias: String): String {
   val errorMessage by lazy(NONE) {
     "No plugin ID was found in the catalog for the alias '$alias'."
   }
@@ -159,7 +159,7 @@ fun VersionCatalog.pluginId(alias: String): String {
  *
  * @since 0.1.9
  */
-val VersionCatalog.pluginId: ReadOnlyProperty<Any?, String>
+public val VersionCatalog.pluginId: ReadOnlyProperty<Any?, String>
   get() = ReadOnlyProperty { _, prop -> pluginId(prop.name) }
 
 /**
@@ -167,5 +167,5 @@ val VersionCatalog.pluginId: ReadOnlyProperty<Any?, String>
  *
  * @since 0.1.4
  */
-val Provider<PluginDependency>.pluginId: String
+public val Provider<PluginDependency>.pluginId: String
   get() = get().pluginId

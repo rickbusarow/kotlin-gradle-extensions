@@ -26,7 +26,7 @@ import org.gradle.api.artifacts.ConfigurationContainer
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.api: Configuration
+public val ConfigurationContainer.api: Configuration
   get() = getByName(ConfigurationName.api)
 
 /**
@@ -34,7 +34,7 @@ val ConfigurationContainer.api: Configuration
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.apiOrNull: Configuration?
+public val ConfigurationContainer.apiOrNull: Configuration?
   get() = findByName(ConfigurationName.api)
 
 /**
@@ -42,7 +42,7 @@ val ConfigurationContainer.apiOrNull: Configuration?
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.apiProvider: NamedDomainObjectProvider<Configuration>
+public val ConfigurationContainer.apiProvider: NamedDomainObjectProvider<Configuration>
   get() = named(ConfigurationName.api)
 
 /**
@@ -50,7 +50,7 @@ val ConfigurationContainer.apiProvider: NamedDomainObjectProvider<Configuration>
  *
  * @since 0.1.6
  */
-fun ConfigurationContainer.api(
+public fun ConfigurationContainer.api(
   configurationAction: Action<Configuration>
 ): NamedDomainObjectProvider<Configuration>? = named(ConfigurationName.api, configurationAction)
 
@@ -59,7 +59,7 @@ fun ConfigurationContainer.api(
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.compileOnly: Configuration
+public val ConfigurationContainer.compileOnly: Configuration
   get() = getByName(ConfigurationName.compileOnly)
 
 /**
@@ -67,7 +67,7 @@ val ConfigurationContainer.compileOnly: Configuration
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.compileOnlyOrNull: Configuration?
+public val ConfigurationContainer.compileOnlyOrNull: Configuration?
   get() = findByName(ConfigurationName.compileOnly)
 
 /**
@@ -75,7 +75,7 @@ val ConfigurationContainer.compileOnlyOrNull: Configuration?
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.compileOnlyProvider: NamedDomainObjectProvider<Configuration>
+public val ConfigurationContainer.compileOnlyProvider: NamedDomainObjectProvider<Configuration>
   get() = named(ConfigurationName.compileOnly)
 
 /**
@@ -83,7 +83,7 @@ val ConfigurationContainer.compileOnlyProvider: NamedDomainObjectProvider<Config
  *
  * @since 0.1.6
  */
-fun ConfigurationContainer.compileOnly(
+public fun ConfigurationContainer.compileOnly(
   configurationAction: Action<Configuration>
 ): NamedDomainObjectProvider<Configuration>? =
   named(
@@ -96,7 +96,7 @@ fun ConfigurationContainer.compileOnly(
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.implementation: Configuration
+public val ConfigurationContainer.implementation: Configuration
   get() = getByName(ConfigurationName.implementation)
 
 /**
@@ -104,7 +104,7 @@ val ConfigurationContainer.implementation: Configuration
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.implementationOrNull: Configuration?
+public val ConfigurationContainer.implementationOrNull: Configuration?
   get() = findByName(ConfigurationName.implementation)
 
 /**
@@ -112,7 +112,7 @@ val ConfigurationContainer.implementationOrNull: Configuration?
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.implementationProvider: NamedDomainObjectProvider<Configuration>
+public val ConfigurationContainer.implementationProvider: NamedDomainObjectProvider<Configuration>
   get() = named(ConfigurationName.implementation)
 
 /**
@@ -120,7 +120,7 @@ val ConfigurationContainer.implementationProvider: NamedDomainObjectProvider<Con
  *
  * @since 0.1.6
  */
-fun ConfigurationContainer.implementation(
+public fun ConfigurationContainer.implementation(
   configurationAction: Action<Configuration>
 ): NamedDomainObjectProvider<Configuration> = named(
   ConfigurationName.implementation,
@@ -132,7 +132,7 @@ fun ConfigurationContainer.implementation(
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.kapt: Configuration
+public val ConfigurationContainer.kapt: Configuration
   get() = getByName(ConfigurationName.kapt)
 
 /**
@@ -140,7 +140,7 @@ val ConfigurationContainer.kapt: Configuration
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.kaptOrNull: Configuration?
+public val ConfigurationContainer.kaptOrNull: Configuration?
   get() = findByName(ConfigurationName.kapt)
 
 /**
@@ -148,7 +148,7 @@ val ConfigurationContainer.kaptOrNull: Configuration?
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.kaptProvider: NamedDomainObjectProvider<Configuration>
+public val ConfigurationContainer.kaptProvider: NamedDomainObjectProvider<Configuration>
   get() = named(ConfigurationName.kapt)
 
 /**
@@ -156,7 +156,7 @@ val ConfigurationContainer.kaptProvider: NamedDomainObjectProvider<Configuration
  *
  * @since 0.1.6
  */
-fun ConfigurationContainer.kapt(
+public fun ConfigurationContainer.kapt(
   configurationAction: Action<Configuration>
 ): NamedDomainObjectProvider<Configuration> = named(
   name = ConfigurationName.kapt,
@@ -168,7 +168,7 @@ fun ConfigurationContainer.kapt(
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.runtimeOnly: Configuration
+public val ConfigurationContainer.runtimeOnly: Configuration
   get() = getByName(ConfigurationName.runtimeOnly)
 
 /**
@@ -176,7 +176,7 @@ val ConfigurationContainer.runtimeOnly: Configuration
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.runtimeOnlyOrNull: Configuration?
+public val ConfigurationContainer.runtimeOnlyOrNull: Configuration?
   get() = findByName(ConfigurationName.runtimeOnly)
 
 /**
@@ -184,7 +184,7 @@ val ConfigurationContainer.runtimeOnlyOrNull: Configuration?
  *
  * @since 0.1.6
  */
-val ConfigurationContainer.runtimeOnlyProvider: NamedDomainObjectProvider<Configuration>
+public val ConfigurationContainer.runtimeOnlyProvider: NamedDomainObjectProvider<Configuration>
   get() = named(ConfigurationName.runtimeOnly)
 
 /**
@@ -192,7 +192,7 @@ val ConfigurationContainer.runtimeOnlyProvider: NamedDomainObjectProvider<Config
  *
  * @since 0.1.6
  */
-fun ConfigurationContainer.runtimeOnly(
+public fun ConfigurationContainer.runtimeOnly(
   configurationAction: Action<Configuration>
 ): NamedDomainObjectProvider<Configuration> = named(
   name = ConfigurationName.runtimeOnly,

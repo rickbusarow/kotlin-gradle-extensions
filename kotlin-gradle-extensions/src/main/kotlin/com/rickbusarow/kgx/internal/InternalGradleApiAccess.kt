@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,4 +20,4 @@ package com.rickbusarow.kgx.internal
 @RequiresOptIn(
   "Accessing Gradle's internal APIs carries risk, as they may change between versions."
 )
-annotation class InternalGradleApiAccess
+public annotation class InternalGradleApiAccess

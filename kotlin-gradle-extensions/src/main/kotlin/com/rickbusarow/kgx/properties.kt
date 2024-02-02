@@ -35,21 +35,21 @@ import org.gradle.api.provider.Provider
  * @throws ClassCastException if the property is found but is not assignable to [T]
  * @throws groovy.lang.MissingPropertyException if the property is not found
  */
-inline fun <reified T> Project.propertyAs(name: String): T = property(name) as T
+public inline fun <reified T> Project.propertyAs(name: String): T = property(name) as T
 
 /**
  * Shorthand for `providers.gradleProperty(name).get()`
  *
  * @since 0.1.10
  */
-fun Project.gradleProperty(name: String): String = providers.gradleProperty(name).get()
+public fun Project.gradleProperty(name: String): String = providers.gradleProperty(name).get()
 
 /**
  * Shorthand for `providers.gradleProperty(name)`
  *
  * @since 0.1.10
  */
-fun Project.gradlePropertyAsProvider(name: String): Provider<String> =
+public fun Project.gradlePropertyAsProvider(name: String): Provider<String> =
   providers.gradleProperty(name)
 
 /**
@@ -62,7 +62,7 @@ fun Project.gradlePropertyAsProvider(name: String): Provider<String> =
  * @since 0.1.8
  * @throws ClassCastException if the property is found but is not assignable to [T]
  */
-inline fun <reified T> Project.property(
+public inline fun <reified T> Project.property(
   name: String,
   defaultValue: T
 ): T = propertyOrNull<T>(name) ?: defaultValue
@@ -77,7 +77,7 @@ inline fun <reified T> Project.property(
  * @since 0.1.8
  * @throws ClassCastException if the property is found but is not assignable to [T]
  */
-inline fun <reified T> Project.property(
+public inline fun <reified T> Project.property(
   name: String,
   defaultValue: () -> T
 ): T = propertyOrNull<T>(name) ?: defaultValue()
@@ -91,7 +91,7 @@ inline fun <reified T> Project.property(
  * @since 0.1.8
  * @throws ClassCastException if the property is found but is not assignable to [T]
  */
-inline fun <reified T> Project.propertyOrNull(name: String): T? {
+public inline fun <reified T> Project.propertyOrNull(name: String): T? {
 
   val found = findProperty(name)
 
@@ -119,7 +119,7 @@ inline fun <reified T> Project.propertyOrNull(name: String): T? {
  *
  * @since 0.1.10
  */
-fun <T> Property<T>.convention(
+public fun <T> Property<T>.convention(
   default: Provider<T>,
   vararg additionalDefaults: Provider<T>
 ): Property<T> = convention(default.orElse(*additionalDefaults))
@@ -137,7 +137,7 @@ fun <T> Property<T>.convention(
  *
  * @since 0.1.10
  */
-fun <T> Property<T>.convention(
+public fun <T> Property<T>.convention(
   default: Provider<T>,
   additionalDefaults: List<Provider<T>>
 ): Property<T> = convention(default.orElse(additionalDefaults))
@@ -154,7 +154,7 @@ fun <T> Property<T>.convention(
  *
  * @since 0.1.10
  */
-fun <T> Provider<T>.orElse(
+public fun <T> Provider<T>.orElse(
   vararg additionalDefaults: Provider<T>
 ): Provider<T> = additionalDefaults.fold(this) { acc, other ->
   acc.orElse(other)
@@ -172,7 +172,7 @@ fun <T> Provider<T>.orElse(
  *
  * @since 0.1.10
  */
-fun <T> Provider<T>.orElse(
+public fun <T> Provider<T>.orElse(
   additionalDefaults: List<Provider<T>>
 ): Provider<T> = additionalDefaults.fold(this) { acc, other ->
   acc.orElse(other)

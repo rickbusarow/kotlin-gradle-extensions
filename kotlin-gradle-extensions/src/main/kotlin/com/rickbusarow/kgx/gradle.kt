@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,7 +27,7 @@ import org.gradle.api.invocation.Gradle
  *   [Gradle User Manual: Composite Builds](https://docs.gradle.org/current/userguide/composite_builds.html)
  * @since 0.1.4
  */
-fun Gradle.parents(): Sequence<Gradle> = generateSequence(parent) { it.parent }
+public fun Gradle.parents(): Sequence<Gradle> = generateSequence(parent) { it.parent }
 
 /**
  * Generates a sequence of the receiver [Gradle] instance and its parents,
@@ -38,4 +38,4 @@ fun Gradle.parents(): Sequence<Gradle> = generateSequence(parent) { it.parent }
  *   [Gradle User Manual: Composite Builds](https://docs.gradle.org/current/userguide/composite_builds.html)
  * @since 0.1.4
  */
-fun Gradle.parentsWithSelf(): Sequence<Gradle> = generateSequence(this) { it.parent }
+public fun Gradle.parentsWithSelf(): Sequence<Gradle> = generateSequence(this) { it.parent }

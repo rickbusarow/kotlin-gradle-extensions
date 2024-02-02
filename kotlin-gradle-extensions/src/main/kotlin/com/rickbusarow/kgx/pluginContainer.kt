@@ -20,7 +20,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.plugins.PluginContainer
 
 /** @since 0.1.0 */
-inline fun PluginContainer.withAny(
+public inline fun PluginContainer.withAny(
   vararg ids: String,
   crossinline action: (Plugin<*>) -> Unit
 ) {
@@ -34,7 +34,7 @@ inline fun PluginContainer.withAny(
  *
  * @since 0.1.0
  */
-fun PluginContainer.applyOnce(id: String) {
+public fun PluginContainer.applyOnce(id: String) {
   if (!hasPlugin(id)) apply(id)
 }
 
@@ -43,7 +43,7 @@ fun PluginContainer.applyOnce(id: String) {
  *
  * @since 0.1.0
  */
-inline fun <reified T : Plugin<*>> PluginContainer.applyOnce() {
+public inline fun <reified T : Plugin<*>> PluginContainer.applyOnce() {
   if (!hasPlugin(T::class.java)) apply(T::class.java)
 }
 
@@ -52,7 +52,7 @@ inline fun <reified T : Plugin<*>> PluginContainer.applyOnce() {
  *
  * @since 0.1.10
  */
-fun PluginContainer.withApplicationPlugin(
+public fun PluginContainer.withApplicationPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.application", action)
@@ -63,7 +63,7 @@ fun PluginContainer.withApplicationPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withApplicationPlugin(
+public inline fun PluginContainer.withApplicationPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.application") { action(it) }
@@ -74,7 +74,7 @@ inline fun PluginContainer.withApplicationPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withBasePlugin(
+public fun PluginContainer.withBasePlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.base", action)
@@ -85,7 +85,7 @@ fun PluginContainer.withBasePlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withBasePlugin(
+public inline fun PluginContainer.withBasePlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.base") { action(it) }
@@ -96,7 +96,7 @@ inline fun PluginContainer.withBasePlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withBuildInitPlugin(
+public fun PluginContainer.withBuildInitPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.build-init", action)
@@ -107,7 +107,7 @@ fun PluginContainer.withBuildInitPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withBuildInitPlugin(
+public inline fun PluginContainer.withBuildInitPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.build-init") { action(it) }
@@ -118,7 +118,7 @@ inline fun PluginContainer.withBuildInitPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withDistributionPlugin(
+public fun PluginContainer.withDistributionPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.distribution", action)
@@ -129,7 +129,7 @@ fun PluginContainer.withDistributionPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withDistributionPlugin(
+public inline fun PluginContainer.withDistributionPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.distribution") { action(it) }
@@ -140,7 +140,7 @@ inline fun PluginContainer.withDistributionPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withGroovyPlugin(
+public fun PluginContainer.withGroovyPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.groovy", action)
@@ -151,7 +151,7 @@ fun PluginContainer.withGroovyPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withGroovyPlugin(
+public inline fun PluginContainer.withGroovyPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.groovy") { action(it) }
@@ -162,7 +162,7 @@ inline fun PluginContainer.withGroovyPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withGroovyBasePlugin(
+public fun PluginContainer.withGroovyBasePlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.groovy-base", action)
@@ -173,7 +173,7 @@ fun PluginContainer.withGroovyBasePlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withGroovyBasePlugin(
+public inline fun PluginContainer.withGroovyBasePlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.groovy-base") { action(it) }
@@ -184,7 +184,7 @@ inline fun PluginContainer.withGroovyBasePlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withPrecompiledGroovyPluginsPlugin(
+public fun PluginContainer.withPrecompiledGroovyPluginsPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.groovy-gradle-plugin", action)
@@ -195,7 +195,7 @@ fun PluginContainer.withPrecompiledGroovyPluginsPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withPrecompiledGroovyPluginsPlugin(
+public inline fun PluginContainer.withPrecompiledGroovyPluginsPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.groovy-gradle-plugin") { action(it) }
@@ -206,7 +206,7 @@ inline fun PluginContainer.withPrecompiledGroovyPluginsPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withIdeaPlugin(
+public fun PluginContainer.withIdeaPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.idea", action)
@@ -217,7 +217,7 @@ fun PluginContainer.withIdeaPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withIdeaPlugin(
+public inline fun PluginContainer.withIdeaPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.idea") { action(it) }
@@ -228,7 +228,7 @@ inline fun PluginContainer.withIdeaPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withJavaPlugin(
+public fun PluginContainer.withJavaPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.java", action)
@@ -239,7 +239,7 @@ fun PluginContainer.withJavaPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withJavaPlugin(
+public inline fun PluginContainer.withJavaPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.java") { action(it) }
@@ -250,7 +250,7 @@ inline fun PluginContainer.withJavaPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withJavaBasePlugin(
+public fun PluginContainer.withJavaBasePlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.java-base", action)
@@ -261,7 +261,7 @@ fun PluginContainer.withJavaBasePlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withJavaBasePlugin(
+public inline fun PluginContainer.withJavaBasePlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.java-base") { action(it) }
@@ -272,7 +272,7 @@ inline fun PluginContainer.withJavaBasePlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withJavaGradlePluginPlugin(
+public fun PluginContainer.withJavaGradlePluginPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.java-gradle-plugin", action)
@@ -283,7 +283,7 @@ fun PluginContainer.withJavaGradlePluginPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withJavaGradlePluginPlugin(
+public inline fun PluginContainer.withJavaGradlePluginPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.java-gradle-plugin") { action(it) }
@@ -294,7 +294,7 @@ inline fun PluginContainer.withJavaGradlePluginPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withJavaLibraryPlugin(
+public fun PluginContainer.withJavaLibraryPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.java-library", action)
@@ -305,7 +305,7 @@ fun PluginContainer.withJavaLibraryPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withJavaLibraryPlugin(
+public inline fun PluginContainer.withJavaLibraryPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.java-library") { action(it) }
@@ -316,7 +316,7 @@ inline fun PluginContainer.withJavaLibraryPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withJavaLibraryDistributionPlugin(
+public fun PluginContainer.withJavaLibraryDistributionPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.java-library-distribution", action)
@@ -327,7 +327,7 @@ fun PluginContainer.withJavaLibraryDistributionPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withJavaLibraryDistributionPlugin(
+public inline fun PluginContainer.withJavaLibraryDistributionPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.java-library-distribution") { action(it) }
@@ -338,7 +338,7 @@ inline fun PluginContainer.withJavaLibraryDistributionPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withJavaPlatformPlugin(
+public fun PluginContainer.withJavaPlatformPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.java-platform", action)
@@ -349,7 +349,7 @@ fun PluginContainer.withJavaPlatformPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withJavaPlatformPlugin(
+public inline fun PluginContainer.withJavaPlatformPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.java-platform") { action(it) }
@@ -360,7 +360,7 @@ inline fun PluginContainer.withJavaPlatformPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withJavaTestFixturesPlugin(
+public fun PluginContainer.withJavaTestFixturesPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.java-test-fixtures", action)
@@ -371,7 +371,7 @@ fun PluginContainer.withJavaTestFixturesPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withJavaTestFixturesPlugin(
+public inline fun PluginContainer.withJavaTestFixturesPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.java-test-fixtures") { action(it) }
@@ -382,7 +382,7 @@ inline fun PluginContainer.withJavaTestFixturesPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withSigningPlugin(
+public fun PluginContainer.withSigningPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.gradle.signing", action)
@@ -393,7 +393,7 @@ fun PluginContainer.withSigningPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withSigningPlugin(
+public inline fun PluginContainer.withSigningPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.gradle.signing") { action(it) }
@@ -404,7 +404,7 @@ inline fun PluginContainer.withSigningPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withKotlinAndroidPlugin(
+public fun PluginContainer.withKotlinAndroidPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.jetbrains.kotlin.android", action)
@@ -415,7 +415,7 @@ fun PluginContainer.withKotlinAndroidPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withKotlinAndroidPlugin(
+public inline fun PluginContainer.withKotlinAndroidPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.jetbrains.kotlin.android") { action(it) }
@@ -426,7 +426,7 @@ inline fun PluginContainer.withKotlinAndroidPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withKotlinJsPlugin(
+public fun PluginContainer.withKotlinJsPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.jetbrains.kotlin.js", action)
@@ -437,7 +437,7 @@ fun PluginContainer.withKotlinJsPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withKotlinJsPlugin(
+public inline fun PluginContainer.withKotlinJsPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.jetbrains.kotlin.js") { action(it) }
@@ -448,7 +448,7 @@ inline fun PluginContainer.withKotlinJsPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withKotlinJvmPlugin(
+public fun PluginContainer.withKotlinJvmPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.jetbrains.kotlin.jvm", action)
@@ -459,7 +459,7 @@ fun PluginContainer.withKotlinJvmPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withKotlinJvmPlugin(
+public inline fun PluginContainer.withKotlinJvmPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.jetbrains.kotlin.jvm") { action(it) }
@@ -470,7 +470,7 @@ inline fun PluginContainer.withKotlinJvmPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withKapt3Plugin(
+public fun PluginContainer.withKapt3Plugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.jetbrains.kotlin.kapt", action)
@@ -481,7 +481,7 @@ fun PluginContainer.withKapt3Plugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withKapt3Plugin(
+public inline fun PluginContainer.withKapt3Plugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.jetbrains.kotlin.kapt") { action(it) }
@@ -492,7 +492,7 @@ inline fun PluginContainer.withKapt3Plugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withKotlinMultiplatformPlugin(
+public fun PluginContainer.withKotlinMultiplatformPlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.jetbrains.kotlin.multiplatform", action)
@@ -503,7 +503,7 @@ fun PluginContainer.withKotlinMultiplatformPlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withKotlinMultiplatformPlugin(
+public inline fun PluginContainer.withKotlinMultiplatformPlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.jetbrains.kotlin.multiplatform") { action(it) }
@@ -514,7 +514,7 @@ inline fun PluginContainer.withKotlinMultiplatformPlugin(
  *
  * @since 0.1.10
  */
-fun PluginContainer.withKotlinParcelizePlugin(
+public fun PluginContainer.withKotlinParcelizePlugin(
   action: Action<in Plugin<*>>
 ) {
   withId("org.jetbrains.kotlin.plugin.parcelize", action)
@@ -525,7 +525,7 @@ fun PluginContainer.withKotlinParcelizePlugin(
  *
  * @since 0.1.10
  */
-inline fun PluginContainer.withKotlinParcelizePlugin(
+public inline fun PluginContainer.withKotlinParcelizePlugin(
   crossinline action: (Plugin<*>) -> Unit
 ) {
   withId("org.jetbrains.kotlin.plugin.parcelize") { action(it) }

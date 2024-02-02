@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,7 +29,7 @@ import java.io.File
  * @since 0.1.0
  * @throws IllegalStateException if the project is not the root project
  */
-fun Project.checkProjectIsRoot(
+public fun Project.checkProjectIsRoot(
   message: () -> Any = { "Only apply this plugin to the project root." }
 ) {
   if (this != rootProject) {
@@ -43,7 +43,7 @@ fun Project.checkProjectIsRoot(
  *
  * @since 0.1.0
  */
-fun Project.isRealRootProject(): Boolean {
+public fun Project.isRealRootProject(): Boolean {
   return isPartOfRootBuild && isRootProject()
 }
 
@@ -59,7 +59,7 @@ fun Project.isRealRootProject(): Boolean {
  *   [Gradle User Manual: Composite Builds](https://docs.gradle.org/current/userguide/composite_builds.html)
  * @since 0.1.4
  */
-val Project.isPartOfRootBuild: Boolean
+public val Project.isPartOfRootBuild: Boolean
   get() = gradle.parent == null
 
 /**
@@ -71,14 +71,14 @@ val Project.isPartOfRootBuild: Boolean
  *   the project is the ultimate root of a composite build
  * @since 0.1.0
  */
-fun Project.isRootProject(): Boolean = this == rootProject
+public fun Project.isRootProject(): Boolean = this == rootProject
 
 /**
  * shorthand for `layout.buildDirectory.get().asFile`
  *
  * @since 0.1.0
  */
-fun Project.buildDir(): File = layout.buildDirectory.get().asFile
+public fun Project.buildDir(): File = layout.buildDirectory.get().asFile
 
 /**
  * Finds all tasks named [taskName] in all projects.
@@ -88,7 +88,7 @@ fun Project.buildDir(): File = layout.buildDirectory.get().asFile
  * @throws IllegalStateException if the project is not the root project
  */
 @EagerGradleApi
-fun Project.allProjectsTasksMatchingName(taskName: String): List<TaskCollection<Task>> {
+public fun Project.allProjectsTasksMatchingName(taskName: String): List<TaskCollection<Task>> {
   checkProjectIsRoot { "only call `allProjectsTasksMatchingName(...)` from the root project." }
   return allprojects.map { proj -> proj.tasks.matchingName(taskName) }
 }
@@ -101,7 +101,7 @@ fun Project.allProjectsTasksMatchingName(taskName: String): List<TaskCollection<
  * @throws IllegalStateException if the project is not the root project
  */
 @EagerGradleApi
-inline fun <reified T : Task> Project.allProjectsTasksMatchingNameWithType(
+public inline fun <reified T : Task> Project.allProjectsTasksMatchingNameWithType(
   taskName: String
 ): List<TaskCollection<T>> {
   checkProjectIsRoot { "only call `allProjectsTasksMatchingName(...)` from the root project." }
@@ -117,7 +117,7 @@ inline fun <reified T : Task> Project.allProjectsTasksMatchingNameWithType(
  * @since 0.1.0
  */
 @EagerGradleApi
-fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskCollection<Task>> =
+public fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskCollection<Task>> =
   subprojects.map { proj -> proj.tasks.matchingName(taskName) }
 
 /**
@@ -127,7 +127,7 @@ fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskCollection<
  * @since 0.1.0
  */
 @EagerGradleApi
-inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(
+public inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(
   taskName: String
 ): List<TaskCollection<T>> = subprojects.map { proj -> proj.tasks.matchingNameWithType(taskName) }
 
@@ -137,14 +137,14 @@ inline fun <reified T : Task> Project.subProjectsTasksMatchingNameWithType(
  * @since 0.1.1
  */
 @Deprecated("renamed to `javaExtension`", ReplaceWith("javaExtension"))
-val Project.java: JavaPluginExtension get() = javaExtension
+public val Project.java: JavaPluginExtension get() = javaExtension
 
 /**
  * shorthand for `extensions.getByType(JavaPluginExtension::class.java)`
  *
  * @since 0.1.1
  */
-val Project.javaExtension: JavaPluginExtension
+public val Project.javaExtension: JavaPluginExtension
   get() = extensions.getByType(JavaPluginExtension::class.java)
 
 /**
@@ -153,7 +153,7 @@ val Project.javaExtension: JavaPluginExtension
  *
  * @since 0.1.5
  */
-fun Project.projectDependency(
+public fun Project.projectDependency(
   path: String,
   configuration: String? = null
 ): ProjectDependency = dependencies.project(path, configuration)
@@ -163,6 +163,6 @@ fun Project.projectDependency(
  *
  * @since 0.1.9
  */
-val Project.isInIdeaSync: Boolean
+public val Project.isInIdeaSync: Boolean
   get() = providers.getSystemPropertyOrNull("idea.sync.active")
     ?.toBooleanStrictOrNull() ?: false
