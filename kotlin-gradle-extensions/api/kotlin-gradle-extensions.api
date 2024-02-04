@@ -41,7 +41,9 @@ public final class com/rickbusarow/kgx/DependencyHandlerKt {
 
 public final class com/rickbusarow/kgx/DomainObjectCollectionKt {
 	public static final fun get (Lorg/gradle/api/NamedDomainObjectCollection;Lcom/rickbusarow/kgx/names/DomainObjectName;)Ljava/lang/Object;
+	public static final fun get (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/String;)Ljava/lang/Object;
 	public static final fun invoke (Lcom/rickbusarow/kgx/internal/ElementInfoAction;Ljava/lang/String;Ljava/lang/Class;Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;)V
+	public static final fun provideDelegate (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lorg/gradle/api/NamedDomainObjectProvider;
 	public static final fun registerOnce (Lorg/gradle/api/NamedDomainObjectContainer;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/NamedDomainObjectProvider;
 	public static synthetic fun registerOnce$default (Lorg/gradle/api/NamedDomainObjectContainer;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
 }
@@ -235,6 +237,9 @@ public final class com/rickbusarow/kgx/PropertiesKt {
 	public static final fun convention (Lorg/gradle/api/provider/Property;Lorg/gradle/api/provider/Provider;[Lorg/gradle/api/provider/Provider;)Lorg/gradle/api/provider/Property;
 	public static final fun gradleProperty (Lorg/gradle/api/Project;Ljava/lang/String;)Ljava/lang/String;
 	public static final fun gradlePropertyAsProvider (Lorg/gradle/api/Project;Ljava/lang/String;)Lorg/gradle/api/provider/Provider;
+}
+
+public final class com/rickbusarow/kgx/ProviderKt {
 	public static final fun orElse (Lorg/gradle/api/provider/Provider;Ljava/util/List;)Lorg/gradle/api/provider/Provider;
 	public static final fun orElse (Lorg/gradle/api/provider/Provider;[Lorg/gradle/api/provider/Provider;)Lorg/gradle/api/provider/Provider;
 }

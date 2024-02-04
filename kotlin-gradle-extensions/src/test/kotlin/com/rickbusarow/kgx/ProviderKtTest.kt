@@ -17,17 +17,13 @@
 
 package com.rickbusarow.kgx
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
-import org.gradle.api.internal.provider.DefaultProperty
-import org.gradle.api.internal.provider.DefaultProvider
-import org.gradle.api.internal.provider.PropertyHost
-import org.gradle.api.provider.Property
-import org.gradle.api.provider.Provider
+import org.gradle.api.internal.provider.MissingValueException
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import java.util.concurrent.Callable
 
-class ProvidersTest {
+class ProviderKtTest {
 
   @Nested
   inner class `convention` {
@@ -179,7 +175,60 @@ class ProvidersTest {
       rootOrElse.get() shouldBe "foo"
     }
   }
-}
 
-inline fun <reified T> provider(value: Callable<T?>): Provider<T> = DefaultProvider(value)
-inline fun <reified T> property(): Property<T> = DefaultProperty(PropertyHost.NO_OP, T::class.java)
+  @Nested
+  inner class `getValue` {
+
+    @Test
+    fun `getter is only called lazily`() {
+
+      var getterCalled = false
+
+      val provider = provider {
+        getterCalled = true
+        "foo"
+      }
+
+      val value: String by provider
+
+      getterCalled shouldBe false
+
+      value shouldBe "foo"
+
+      getterCalled shouldBe true
+    }
+
+    @Test
+    fun `getter is called for every property read instead of caching`() {
+
+      var getterCalled = 0
+
+      val provider = provider {
+        getterCalled++
+        "foo"
+      }
+
+      val value: String by provider
+
+      getterCalled shouldBe 0
+
+      value shouldBe "foo"
+      getterCalled shouldBe 1
+
+      value shouldBe "foo"
+      getterCalled shouldBe 2
+    }
+
+    @Test
+    fun `a null provider value throws when read`() {
+
+      val provider = provider<String> { null }
+
+      val value: String by provider
+
+      shouldThrow<MissingValueException> {
+        value shouldBe null
+      }
+    }
+  }
+}

@@ -75,6 +75,7 @@ dependencies {
   gradleTestImplementation(libs.kotest.assertions.shared)
   gradleTestImplementation(libs.kotlin.gradle.plugin)
   gradleTestImplementation(libs.kotlin.gradle.plugin.api)
+  testImplementation(libs.rickBusarow.kase)
   gradleTestImplementation(libs.rickBusarow.kase)
   gradleTestImplementation(libs.rickBusarow.kase.gradle) {
     exclude(group = "com.rickbusarow.kgx")
