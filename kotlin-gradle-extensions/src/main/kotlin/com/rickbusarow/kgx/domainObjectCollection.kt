@@ -19,6 +19,7 @@ import com.rickbusarow.kgx.internal.ElementInfoAction
 import com.rickbusarow.kgx.internal.ElementInfoAction.ElementValue
 import com.rickbusarow.kgx.internal.ElementInfoAction.RegisteredElement
 import com.rickbusarow.kgx.names.DomainObjectName
+import com.rickbusarow.kgx.stdlib.castNamed
 import org.gradle.api.Action
 import org.gradle.api.DomainObjectCollection
 import org.gradle.api.NamedDomainObjectCollection
@@ -26,6 +27,7 @@ import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.UnknownDomainObjectException
 import org.gradle.internal.Actions
+import kotlin.reflect.KProperty
 
 /**
  * Invokes this [ElementInfoAction] with the provided element name and
@@ -90,6 +92,8 @@ public inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
 ): S = getByName(name.value, configurationAction)
 
 /**
+ * An indexing operator alias for [NamedDomainObjectCollection.getByName].
+ *
  * Locates an object by name, failing if there is no such object.
  *
  * @param name The object name
@@ -101,6 +105,19 @@ public inline fun <reified S : Any> NamedDomainObjectCollection<S>.getByName(
 public operator fun <S : Any> NamedDomainObjectCollection<S>.get(
   name: DomainObjectName<S>
 ): S = getByName(name.value)
+
+/**
+ * An indexing operator alias for [NamedDomainObjectCollection.getByName].
+ *
+ * Locates an object by name, failing if there is no such object.
+ *
+ * @param name The object name
+ * @return The object with the given name.
+ * @see NamedDomainObjectCollection.getByName
+ * @throws UnknownDomainObjectException when there is no such object in this collection.
+ */
+public operator fun <S : Any> NamedDomainObjectCollection<S>.get(name: String): S =
+  getByName(name)
 
 /**
  * Shorthand for `findByName(myDomainObjectName.value)`.
@@ -119,7 +136,6 @@ public inline fun <reified S : Any> NamedDomainObjectCollection<S>.findByName(
  *
  * @param name The name of the object to retrieve and configure.
  * @param configurationAction The configuration action.
- * @see NamedDomainObjectCollection.named
  * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
@@ -134,7 +150,6 @@ public inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
  * @param name The name of the object to retrieve and configure.
  * @param type The type of the object to retrieve and configure.
  * @param configurationAction The configuration action.
- * @see NamedDomainObjectCollection.named
  * @since 0.1.6
  * @throws UnknownDomainObjectException if the object is not found.
  */
@@ -190,32 +205,26 @@ public fun <T> NamedDomainObjectContainer<T>.registerOnce(
   }
 
 /**
- * Registers or retrieves a [S] by name and type, then configures it.
- *
- * @param name The name of the new object.
- * @param configurationAction The configuration action.
- * @return A provider for the new object [S].
- * @since 0.1.6
+ * Allows a [NamedDomainObjectCollection] to be used
+ * as a property delegate, using the `KProperty` name.
  */
-public inline fun <reified S : Any> NamedDomainObjectContainer<S>.registerOnce(
-  name: DomainObjectName<S>,
-  configurationAction: Action<in S> = Actions.doNothing()
-): NamedDomainObjectProvider<S> =
-  if (names.contains(name.value)) {
-    named(name, configurationAction)
-  } else {
-    register(name, configurationAction)
-  }
+public operator fun <T : Any> NamedDomainObjectCollection<T>.provideDelegate(
+  thisRef: Any?,
+  property: KProperty<*>
+): NamedDomainObjectProvider<T> = named(property.name)
 
 /**
- * Registers a new object [S] and configures it.
+ * Delegate that calls `get()` on the provider the first time it's accessed.
  *
- * @param name The name of the object.
- * @param configurationAction The configuration action.
- * @return A provider for the new object [S].
- * @since 0.1.6
+ * ```
+ * // given:
+ * val someObjectProvider: Provider<SomeObject> = ...
+ *
+ * // this delegate:
+ * val someObject: SomeObject by someObjectProvider
+ * ```
  */
-public inline fun <reified S : Any> NamedDomainObjectContainer<S>.register(
-  name: DomainObjectName<S>,
-  configurationAction: Action<in S> = Actions.doNothing()
-): NamedDomainObjectProvider<S> = register(name.value, configurationAction)
+public inline operator fun <reified T : Any, reified R : T> NamedDomainObjectProvider<out T>.getValue(
+  thisRef: Any?,
+  property: KProperty<*>
+): R = get().castNamed(name, R::class)

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,42 +13,32 @@
  * limitations under the License.
  */
 
+@file:Suppress("ForbiddenImport")
+
 package com.rickbusarow.kgx
 
-import org.junit.jupiter.api.DynamicContainer
-import org.junit.jupiter.api.DynamicNode
-import org.junit.jupiter.api.DynamicTest
+import org.gradle.api.Action
+import org.gradle.api.NamedDomainObjectProvider
+import org.gradle.api.internal.provider.DefaultProperty
+import org.gradle.api.internal.provider.DefaultProvider
+import org.gradle.api.internal.provider.PropertyHost
+import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import java.io.File
-import java.util.stream.Stream
+import java.util.concurrent.Callable
 
-fun <T> Iterable<T>.container(
-  name: (T) -> String,
-  action: (T) -> Iterable<DynamicNode>
-): Stream<DynamicContainer> =
-  map { t ->
-    DynamicContainer.dynamicContainer(name(t), action(t))
-  }.stream()
-
-fun test(
+inline fun <reified T> namedDomainObjectProvider(
   name: String,
-  action: () -> Unit
-): DynamicTest = DynamicTest.dynamicTest(name, action)
+  value: Callable<T?>
+): NamedDomainObjectProvider<T> = object :
+  NamedDomainObjectProvider<T>,
+  Provider<T> by provider(value) {
+  override fun getName(): String = name
+  override fun configure(action: Action<in T>): Nothing = error("not supported")
+}
 
-fun <T> Iterable<T>.test(
-  name: (T) -> String = { it.toString() },
-  action: (T) -> Unit
-): List<DynamicTest> =
-  map { t ->
-    DynamicTest.dynamicTest(name(t)) { action(t) }
-  }
-
-fun <T> Array<T>.test(
-  name: (T) -> String = { it.toString() },
-  action: (T) -> Unit
-): List<DynamicTest> =
-  map { t ->
-    DynamicTest.dynamicTest(name(t)) { action(t) }
-  }
+inline fun <reified T> provider(value: Callable<T?>): Provider<T> = DefaultProvider(value)
+inline fun <reified T> property(): Property<T> = DefaultProperty(PropertyHost.NO_OP, T::class.java)
 
 /**
  * Creates a new file if it doesn't already exist, creating parent
