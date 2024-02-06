@@ -15,7 +15,7 @@
 
 package com.rickbusarow.kgx
 
-import org.gradle.api.GradleException
+import com.rickbusarow.kgx.stdlib.castNamed
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
@@ -62,7 +62,7 @@ public fun Project.gradlePropertyAsProvider(name: String): Provider<String> =
  * @since 0.1.8
  * @throws ClassCastException if the property is found but is not assignable to [T]
  */
-public inline fun <reified T> Project.property(
+public inline fun <reified T : Any> Project.property(
   name: String,
   defaultValue: T
 ): T = propertyOrNull<T>(name) ?: defaultValue
@@ -77,7 +77,7 @@ public inline fun <reified T> Project.property(
  * @since 0.1.8
  * @throws ClassCastException if the property is found but is not assignable to [T]
  */
-public inline fun <reified T> Project.property(
+public inline fun <reified T : Any> Project.property(
   name: String,
   defaultValue: () -> T
 ): T = propertyOrNull<T>(name) ?: defaultValue()
@@ -91,19 +91,8 @@ public inline fun <reified T> Project.property(
  * @since 0.1.8
  * @throws ClassCastException if the property is found but is not assignable to [T]
  */
-public inline fun <reified T> Project.propertyOrNull(name: String): T? {
-
-  val found = findProperty(name)
-
-  if (found != null) {
-    if (found is T) return found
-    throw GradleException(
-      "Property '$name' is of type ${found::class.qualifiedName}, " +
-        "which is not assignable to the requested type of ${T::class.java.simpleName}"
-    )
-  }
-
-  return null
+public inline fun <reified T : Any> Project.propertyOrNull(name: String): T? {
+  return findProperty(name)?.castNamed(name)
 }
 
 /**
@@ -141,39 +130,3 @@ public fun <T> Property<T>.convention(
   default: Provider<T>,
   additionalDefaults: List<Provider<T>>
 ): Property<T> = convention(default.orElse(additionalDefaults))
-
-/**
- * Chains all providers together via `orElse(...)`.
- *
- * These are equivalent:
- * ```
- * provider.orElse(otherA.orElse(otherB))
- *
- * provider.orElse(otherA, otherB)
- * ```
- *
- * @since 0.1.10
- */
-public fun <T> Provider<T>.orElse(
-  vararg additionalDefaults: Provider<T>
-): Provider<T> = additionalDefaults.fold(this) { acc, other ->
-  acc.orElse(other)
-}
-
-/**
- * Chains all providers together via `orElse(...)`.
- *
- * These are equivalent:
- * ```
- * provider.orElse(otherA.orElse(otherB))
- *
- * provider.orElse(listOf(otherA, otherB))
- * ```
- *
- * @since 0.1.10
- */
-public fun <T> Provider<T>.orElse(
-  additionalDefaults: List<Provider<T>>
-): Provider<T> = additionalDefaults.fold(this) { acc, other ->
-  acc.orElse(other)
-}

@@ -92,4 +92,5 @@ dependencies {
   testImplementation(libs.kotest.assertions.shared)
   testImplementation(libs.kotlin.gradle.plugin)
   testImplementation(libs.kotlin.gradle.plugin.api)
+  testImplementation(libs.rickBusarow.kase)
 }

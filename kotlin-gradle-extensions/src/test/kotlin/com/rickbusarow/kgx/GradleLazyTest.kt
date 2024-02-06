@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2024 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,6 +15,10 @@
 
 package com.rickbusarow.kgx
 
+import com.rickbusarow.kase.HasParams
+import com.rickbusarow.kase.Kase1
+import com.rickbusarow.kase.kases
+import com.rickbusarow.kase.testFactory
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.TestFactory
 import java.io.ByteArrayInputStream
@@ -23,48 +27,48 @@ import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 import java.io.Serializable
 
-class GradleLazyTest {
+class GradleLazyTest : HasParams<Kase1<LazyThreadSafetyMode>> {
 
-  private val modes = LazyThreadSafetyMode.values()
-
-  @TestFactory
-  fun `isInitialized is only true after the value is accessed`() = modes
-    .test { mode ->
-
-      val lazy = gradleLazy(mode) { "foo" }
-
-      lazy.isInitialized() shouldBe false
-
-      lazy.value shouldBe "foo"
-
-      lazy.isInitialized() shouldBe true
-    }
+  override val params = kases(
+    LazyThreadSafetyMode.values().asList(),
+    displayNameFactory = { "mode: $a1" }
+  )
 
   @TestFactory
-  fun `serializes and deserializes with the value is Serializable`() = modes
-    .test { mode ->
+  fun `isInitialized is only true after the value is accessed`() = testFactory { (mode) ->
 
-      val lazy = gradleLazy(mode) { "foo" }
+    val lazy = gradleLazy(mode) { "foo" }
 
-      lazy.value shouldBe "foo"
+    lazy.isInitialized() shouldBe false
 
-      val cycled = lazy.cycle()
+    lazy.value shouldBe "foo"
 
-      cycled.value shouldBe "foo"
-    }
+    lazy.isInitialized() shouldBe true
+  }
 
   @TestFactory
-  fun `lazy instance works as a delegate`() = modes
-    .test { mode ->
+  fun `serializes and deserializes with the value is Serializable`() = testFactory { (mode) ->
 
-      val holder = LazyHolder(mode) { "foo" }
+    val lazy = gradleLazy(mode) { "foo" }
 
-      holder.lazy shouldBe "foo"
+    lazy.value shouldBe "foo"
 
-      val cycled = holder.cycle()
+    val cycled = lazy.cycle()
 
-      cycled.lazy shouldBe "foo"
-    }
+    cycled.value shouldBe "foo"
+  }
+
+  @TestFactory
+  fun `lazy instance works as a delegate`() = testFactory { (mode) ->
+
+    val holder = LazyHolder(mode) { "foo" }
+
+    holder.lazy shouldBe "foo"
+
+    val cycled = holder.cycle()
+
+    cycled.lazy shouldBe "foo"
+  }
 
   @Suppress("UNCHECKED_CAST")
   fun <T : Serializable> T.cycle(): T {
