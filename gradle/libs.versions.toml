@@ -6,7 +6,7 @@ jvmTargetBuildLogic = "11" # the jdk used in packaging
 kotlin-gradle = "1.9.22"
 kotlin-libraries = "1.9.22"
 
-kgx-dev = "0.1.12"
+kgx-dev = "0.1.13-SNAPSHOT"
 
 benManes-versions = "0.51.0"
 breadmoirai-github-release = "2.5.2"
