@@ -781,7 +781,13 @@ style:
       - "groovy.xml.XmlParser"
       - "org.gradle.api.internal.*"
     forbiddenPatterns: ""
-    excludes: ["**/build-logic/**", "**/com/rickbusarow/kgx/internal/**", "**/test/**", "**/gradleTest/**"]
+    excludes:
+      [
+        "**/build-logic/**",
+        "**/com/rickbusarow/kgx/internal/**",
+        "**/test/**",
+        "**/gradleTest/**",
+      ]
   ForbiddenMethodCall:
     active: false
     methods:

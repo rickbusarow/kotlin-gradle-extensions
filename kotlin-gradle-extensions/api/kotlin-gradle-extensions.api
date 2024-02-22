@@ -43,6 +43,8 @@ public final class com/rickbusarow/kgx/DomainObjectCollectionKt {
 	public static final fun get (Lorg/gradle/api/NamedDomainObjectCollection;Lcom/rickbusarow/kgx/names/DomainObjectName;)Ljava/lang/Object;
 	public static final fun get (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/String;)Ljava/lang/Object;
 	public static final fun invoke (Lcom/rickbusarow/kgx/internal/ElementInfoAction;Ljava/lang/String;Ljava/lang/Class;Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;)V
+	public static final fun named (Lorg/gradle/api/NamedDomainObjectCollection;Lkotlin/text/Regex;Ljava/lang/Class;)Lorg/gradle/api/NamedDomainObjectCollection;
+	public static final fun named (Lorg/gradle/api/NamedDomainObjectCollection;Lkotlin/text/Regex;Lkotlin/reflect/KClass;)Lorg/gradle/api/NamedDomainObjectCollection;
 	public static final fun provideDelegate (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/Object;Lkotlin/reflect/KProperty;)Lorg/gradle/api/NamedDomainObjectProvider;
 	public static final fun registerOnce (Lorg/gradle/api/NamedDomainObjectContainer;Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/NamedDomainObjectProvider;
 	public static synthetic fun registerOnce$default (Lorg/gradle/api/NamedDomainObjectContainer;Ljava/lang/String;Lorg/gradle/api/Action;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
@@ -98,6 +100,10 @@ public final class com/rickbusarow/kgx/IncludedKt {
 
 public final class com/rickbusarow/kgx/KgpKt {
 	public static final fun fromInt (Lorg/jetbrains/kotlin/gradle/dsl/JvmTarget$Companion;I)Lorg/jetbrains/kotlin/gradle/dsl/JvmTarget;
+	public static final fun getKotlinExtensionOrNull (Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/dsl/KotlinProjectExtension;
+	public static final fun getKotlinJvmExtension (Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/dsl/KotlinJvmProjectExtension;
+	public static final fun getKotlinJvmExtensionOrNull (Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/dsl/KotlinJvmProjectExtension;
+	public static final fun kotlinJvmExtensionSafe (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
 	public static final fun onTargetRegistered (Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;Lcom/rickbusarow/kgx/internal/ElementInfoAction;)V
 	public static final fun onTargetRegistered (Lorg/jetbrains/kotlin/gradle/dsl/KotlinProjectExtension;Lcom/rickbusarow/kgx/internal/ElementInfoAction;)V
 	public static final fun toInt (Lorg/jetbrains/kotlin/gradle/dsl/JvmTarget;)I
@@ -261,6 +267,8 @@ public final class com/rickbusarow/kgx/TaskKt {
 	public static final fun maybeNamed (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;Lorg/gradle/api/Action;)V
 	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskCollection;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskCollection;
 	public static final fun mustRunAfter (Lorg/gradle/api/tasks/TaskProvider;[Ljava/lang/Object;)Lorg/gradle/api/tasks/TaskProvider;
+	public static final fun named (Lorg/gradle/api/tasks/TaskCollection;Lkotlin/text/Regex;Ljava/lang/Class;)Lorg/gradle/api/tasks/TaskCollection;
+	public static final fun named (Lorg/gradle/api/tasks/TaskCollection;Lkotlin/text/Regex;Lkotlin/reflect/KClass;)Lorg/gradle/api/tasks/TaskCollection;
 	public static final fun namedOrNull (Lorg/gradle/api/tasks/TaskCollection;Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectCollectionSchema$NamedDomainObjectSchema;
 	public static final fun registerOnce (Lorg/gradle/api/tasks/TaskContainer;Lcom/rickbusarow/kgx/names/DomainObjectName;Ljava/lang/Class;Lorg/gradle/api/Action;)Lorg/gradle/api/tasks/TaskProvider;
 	public static final fun registerOnce (Lorg/gradle/api/tasks/TaskContainer;Ljava/lang/String;Ljava/lang/Class;Lorg/gradle/api/Action;)Lorg/gradle/api/tasks/TaskProvider;

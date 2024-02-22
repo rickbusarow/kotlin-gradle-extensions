@@ -1,6 +1,30 @@
 # Changelog
 
-## 0.1.12-SNAPSHOT (unreleased)
+## 0.1.13-SNAPSHOT (unreleased)
+
+## [0.1.12] — 2024-02-22
+
+### 🆕 Added
+
+- Add the basic `getValue(...)` delegate extensions for providers by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/164
+- `named(regex: Regex)` extensions by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/169
+- add `Project.kotlinJvmExtension____` extensions by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/170
+
+### 🧰 Maintenance
+
+- fix(deps): update dependency com.rickbusarow.kgx:kotlin-gradle-extensions to v0.1.11 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/157
+- auto approve other com.rickbusarow dependency updates by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/158
+- fix(deps): update dependency org.jetbrains.kotlinx:binary-compatibility-validator to v0.14.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/159
+- fix(deps): update detekt to v1.23.5 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/160
+- use explicit api mode in published code by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/161
+- chore(deps): update dependency gradle to v8.6 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/162
+- fix(deps): update junit5 monorepo to v5.10.2 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/163
+- fix(deps): update dependency com.dropbox.dependency-guard:dependency-guard to v0.5.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/165
+- fix(deps): update rickbusarow.kase to v0.10.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/166
+- chore(deps): update dependencyanalysis to v1.30.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/167
+- fix(deps): update dependency org.jetbrains.kotlinx:kotlinx-serialization-json to v1.6.3 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/168
+
+**Full Changelog**: https://github.com/rickbusarow/kotlin-gradle-extensions/compare/0.1.11...0.1.12
 
 ## [0.1.11] — 2024-01-28
 
@@ -176,3 +200,4 @@ Hello World
 [0.1.9]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.9
 [0.1.10]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.10
 [0.1.11]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.11
+[0.1.12]: https://github.com/rbusarow/kotlin-gradle-extensions/releases/tag/0.1.12
