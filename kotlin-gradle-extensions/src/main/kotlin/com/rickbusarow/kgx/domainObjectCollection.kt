@@ -22,11 +22,13 @@ import com.rickbusarow.kgx.names.DomainObjectName
 import com.rickbusarow.kgx.stdlib.castNamed
 import org.gradle.api.Action
 import org.gradle.api.DomainObjectCollection
+import org.gradle.api.Incubating
 import org.gradle.api.NamedDomainObjectCollection
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.UnknownDomainObjectException
 import org.gradle.internal.Actions
+import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
 /**
@@ -158,6 +160,70 @@ public inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
   type: Class<S>,
   configurationAction: Action<in S> = Actions.doNothing()
 ): NamedDomainObjectProvider<S> = named(name.value, type, configurationAction)
+
+/**
+ * Alternate syntax for `named { it.matches(regex) }`
+ *
+ * Returns a collection containing the objects with names matching the provided
+ * filter. The returned collection is live, so that when matching objects are
+ * added to this collection, they are also visible in the filtered collection.
+ * This method will NOT cause any pending objects in this container to be realized.
+ *
+ * @param regex objects with names matching this pattern will be included in the result
+ * @return The collection of objects with names satisfying the filter. Returns
+ *   an empty collection if there are no such objects in this collection.
+ */
+@Incubating
+public inline fun <reified T : Any> NamedDomainObjectCollection<T>.named(
+  regex: Regex
+): NamedDomainObjectCollection<T> {
+  @Suppress("UnstableApiUsage")
+  return named { it.matches(regex) }
+}
+
+/**
+ * Shorthand for `withType(type).named { it.matches(regex) }`
+ *
+ * Returns a collection containing the objects with names matching the provided
+ * filter. The returned collection is live, so that when matching objects are
+ * added to this collection, they are also visible in the filtered collection.
+ * This method will NOT cause any pending objects in this container to be realized.
+ *
+ * @param regex objects with names matching this pattern will be included in the result
+ * @param type The type of objects to filter.
+ * @return The collection of objects with names satisfying the filter. Returns
+ *   an empty collection if there are no such objects in this collection.
+ */
+@Incubating
+public fun <T : Any, R : T> NamedDomainObjectCollection<T>.named(
+  regex: Regex,
+  type: KClass<R>
+): NamedDomainObjectCollection<R> {
+  @Suppress("UnstableApiUsage")
+  return withType(type.java).named { it.matches(regex) }
+}
+
+/**
+ * Shorthand for `withType(type).named { it.matches(regex) }`
+ *
+ * Returns a collection containing the objects with names matching the provided
+ * filter. The returned collection is live, so that when matching objects are
+ * added to this collection, they are also visible in the filtered collection.
+ * This method will NOT cause any pending objects in this container to be realized.
+ *
+ * @param regex objects with names matching this pattern will be included in the result
+ * @param type The type of objects to filter.
+ * @return The collection of objects with names satisfying the filter. Returns
+ *   an empty collection if there are no such objects in this collection.
+ */
+@Incubating
+public fun <T : Any, R : T> NamedDomainObjectCollection<T>.named(
+  regex: Regex,
+  type: Class<R>
+): NamedDomainObjectCollection<R> {
+  @Suppress("UnstableApiUsage")
+  return withType(type).named { it.matches(regex) }
+}
 
 /**
  * Returns a collection containing the objects in this collection of the
