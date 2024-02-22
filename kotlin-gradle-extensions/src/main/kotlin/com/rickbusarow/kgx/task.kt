@@ -27,6 +27,62 @@ import org.gradle.api.tasks.TaskProvider
 import kotlin.reflect.KClass
 
 /**
+ * Alternate syntax for `named { it.matches(regex) }`
+ *
+ * Returns a collection containing the tasks with names matching the provided
+ * filter. The returned collection is live, so that when matching tasks are added
+ * to this collection, they are also visible in the filtered collection. This
+ * method will NOT cause any pending objects in this container to be realized.
+ *
+ * @param regex tasks with names matching this pattern will be included in the result
+ * @return The collection of tasks with names satisfying the filter. Returns
+ *   an empty collection if there are no such tasks in this collection.
+ */
+public inline fun <reified T : Task> TaskCollection<T>.named(regex: Regex): TaskCollection<T> {
+  return named { it.matches(regex) }
+}
+
+/**
+ * Shorthand for `withType(type).named { it.matches(regex) }`
+ *
+ * Returns a collection containing the tasks with names matching the provided
+ * filter. The returned collection is live, so that when matching tasks are added
+ * to this collection, they are also visible in the filtered collection. This
+ * method will NOT cause any pending objects in this container to be realized.
+ *
+ * @param regex tasks with names matching this pattern will be included in the result
+ * @param type The type of tasks to filter.
+ * @return The collection of tasks with names satisfying the filter. Returns
+ *   an empty collection if there are no such tasks in this collection.
+ */
+public fun <T : Task, R : T> TaskCollection<T>.named(
+  regex: Regex,
+  type: KClass<R>
+): TaskCollection<R> {
+  return withType(type.java).named { it.matches(regex) }
+}
+
+/**
+ * Shorthand for `withType(type).named { it.matches(regex) }`
+ *
+ * Returns a collection containing the tasks with names matching the provided
+ * filter. The returned collection is live, so that when matching tasks are added
+ * to this collection, they are also visible in the filtered collection. This
+ * method will NOT cause any pending objects in this container to be realized.
+ *
+ * @param regex tasks with names matching this pattern will be included in the result
+ * @param type The type of tasks to filter.
+ * @return The collection of tasks with names satisfying the filter. Returns
+ *   an empty collection if there are no such tasks in this collection.
+ */
+public fun <T : Task, R : T> TaskCollection<T>.named(
+  regex: Regex,
+  type: Class<R>
+): TaskCollection<R> {
+  return withType(type).named { it.matches(regex) }
+}
+
+/**
  * Configures a task by name if it already exists, or configures all tasks that match the name.
  *
  * @param taskName The name of the task.
