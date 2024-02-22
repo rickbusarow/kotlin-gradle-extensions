@@ -19,10 +19,14 @@ import com.rickbusarow.kgx.internal.ElementInfoAction
 import com.rickbusarow.kgx.internal.ElementInfoAction.ElementValue
 import com.rickbusarow.kgx.internal.InternalGradleApiAccess
 import com.rickbusarow.kgx.internal.whenElementKnown
+import org.gradle.api.Action
+import org.gradle.api.Project
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinSingleTargetExtension
+import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
 
 /**
@@ -99,4 +103,32 @@ public fun KotlinMultiplatformExtension.onTargetRegistered(
   configurationAction: ElementInfoAction<KotlinTarget>
 ) {
   targets.whenElementKnown { configurationAction.execute(it) }
+}
+
+/** shorthand for `extensions.getByName("kotlin") as KotlinProjectExtension` */
+public val Project.kotlinExtensionOrNull: KotlinProjectExtension?
+  get() = extensions.findByName("kotlin") as? KotlinProjectExtension
+
+/** shorthand for `extensions.getByName("kotlin") as KotlinJvmProjectExtension` */
+public val Project.kotlinJvmExtension: KotlinJvmProjectExtension
+  get() = kotlinExtension as KotlinJvmProjectExtension
+
+/** shorthand for `extensions.findByName("kotlin") as? KotlinJvmProjectExtension` */
+public val Project.kotlinJvmExtensionOrNull: KotlinJvmProjectExtension?
+  get() = kotlinExtensionOrNull as? KotlinJvmProjectExtension
+
+/**
+ * Only executes [action] if the project has the kotlin plugin applied.
+ *
+ * Shorthand for:
+ * ```
+ * plugins.withId("org.jetbrains.kotlin.jvm") {
+ *   extensions.configure<KotlinJvmProjectExtension>("kotlin") {
+ *     // ...
+ *   }
+ * }
+ * ```
+ */
+public fun Project.kotlinJvmExtensionSafe(action: Action<KotlinJvmProjectExtension>) {
+  plugins.withKotlinJvmPlugin { action.execute(kotlinJvmExtension) }
 }
