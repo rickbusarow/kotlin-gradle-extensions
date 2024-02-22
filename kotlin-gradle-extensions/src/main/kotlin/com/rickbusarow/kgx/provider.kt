@@ -65,6 +65,7 @@ public fun <T> Provider<T>.orElse(
  * val someObject: SomeObject by someObjectProvider
  * ```
  *
+ * @since 0.1.12
  * @throws org.gradle.api.internal.provider.MissingValueException if the provider returns `null`
  */
 public inline operator fun <reified T : Any> Provider<out T>.getValue(

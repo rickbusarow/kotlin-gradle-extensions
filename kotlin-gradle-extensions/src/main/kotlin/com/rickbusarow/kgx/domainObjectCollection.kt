@@ -116,6 +116,7 @@ public operator fun <S : Any> NamedDomainObjectCollection<S>.get(
  * @param name The object name
  * @return The object with the given name.
  * @see NamedDomainObjectCollection.getByName
+ * @since 0.1.12
  * @throws UnknownDomainObjectException when there is no such object in this collection.
  */
 public operator fun <S : Any> NamedDomainObjectCollection<S>.get(name: String): S =
@@ -172,6 +173,7 @@ public inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
  * @param regex objects with names matching this pattern will be included in the result
  * @return The collection of objects with names satisfying the filter. Returns
  *   an empty collection if there are no such objects in this collection.
+ * @since 0.1.12
  */
 @Incubating
 public inline fun <reified T : Any> NamedDomainObjectCollection<T>.named(
@@ -193,6 +195,7 @@ public inline fun <reified T : Any> NamedDomainObjectCollection<T>.named(
  * @param type The type of objects to filter.
  * @return The collection of objects with names satisfying the filter. Returns
  *   an empty collection if there are no such objects in this collection.
+ * @since 0.1.12
  */
 @Incubating
 public fun <T : Any, R : T> NamedDomainObjectCollection<T>.named(
@@ -215,6 +218,7 @@ public fun <T : Any, R : T> NamedDomainObjectCollection<T>.named(
  * @param type The type of objects to filter.
  * @return The collection of objects with names satisfying the filter. Returns
  *   an empty collection if there are no such objects in this collection.
+ * @since 0.1.12
  */
 @Incubating
 public fun <T : Any, R : T> NamedDomainObjectCollection<T>.named(
@@ -273,6 +277,8 @@ public fun <T> NamedDomainObjectContainer<T>.registerOnce(
 /**
  * Allows a [NamedDomainObjectCollection] to be used
  * as a property delegate, using the `KProperty` name.
+ *
+ * @since 0.1.12
  */
 public operator fun <T : Any> NamedDomainObjectCollection<T>.provideDelegate(
   thisRef: Any?,
@@ -289,6 +295,8 @@ public operator fun <T : Any> NamedDomainObjectCollection<T>.provideDelegate(
  * // this delegate:
  * val someObject: SomeObject by someObjectProvider
  * ```
+ *
+ * @since 0.1.12
  */
 public inline operator fun <reified T : Any, reified R : T> NamedDomainObjectProvider<out T>.getValue(
   thisRef: Any?,

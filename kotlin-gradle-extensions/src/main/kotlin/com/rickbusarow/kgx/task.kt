@@ -37,6 +37,7 @@ import kotlin.reflect.KClass
  * @param regex tasks with names matching this pattern will be included in the result
  * @return The collection of tasks with names satisfying the filter. Returns
  *   an empty collection if there are no such tasks in this collection.
+ * @since 0.1.12
  */
 public inline fun <reified T : Task> TaskCollection<T>.named(regex: Regex): TaskCollection<T> {
   return named { it.matches(regex) }
@@ -54,6 +55,7 @@ public inline fun <reified T : Task> TaskCollection<T>.named(regex: Regex): Task
  * @param type The type of tasks to filter.
  * @return The collection of tasks with names satisfying the filter. Returns
  *   an empty collection if there are no such tasks in this collection.
+ * @since 0.1.12
  */
 public fun <T : Task, R : T> TaskCollection<T>.named(
   regex: Regex,
@@ -74,6 +76,7 @@ public fun <T : Task, R : T> TaskCollection<T>.named(
  * @param type The type of tasks to filter.
  * @return The collection of tasks with names satisfying the filter. Returns
  *   an empty collection if there are no such tasks in this collection.
+ * @since 0.1.12
  */
 public fun <T : Task, R : T> TaskCollection<T>.named(
   regex: Regex,

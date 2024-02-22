@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Copyright (C) 2023 Rick Busarow
+# Copyright (C) 2024 Rick Busarow
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -95,11 +95,8 @@ parseVersionAndSyncDocs
 
 # Generate all api docs and make sure they're in ./dokka-archive/
 # Then ensure that all the new versioned api docs are tracked by Git
-progress "generate and copy Dokka api docs"
-./gradlew dokkaHtmlMultiModule syncDokkaToArchive
-
-# add the new version of Dokka archive to git and commit those files as their own commit.
-maybeCommit "add Dokka docs for ${VERSION_NAME} to the dokka-archive"
+progress "generate Dokka api docs"
+./gradlew dokkaHtmlMultiModule
 
 # One last chance to catch any bugs
 progress "run the check task"

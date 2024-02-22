@@ -12,17 +12,7 @@
 
 ### 🧰 Maintenance
 
-- fix(deps): update dependency com.rickbusarow.kgx:kotlin-gradle-extensions to v0.1.11 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/157
-- auto approve other com.rickbusarow dependency updates by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/158
-- fix(deps): update dependency org.jetbrains.kotlinx:binary-compatibility-validator to v0.14.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/159
-- fix(deps): update detekt to v1.23.5 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/160
-- use explicit api mode in published code by @RBusarow in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/161
-- chore(deps): update dependency gradle to v8.6 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/162
-- fix(deps): update junit5 monorepo to v5.10.2 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/163
-- fix(deps): update dependency com.dropbox.dependency-guard:dependency-guard to v0.5.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/165
-- fix(deps): update rickbusarow.kase to v0.10.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/166
-- chore(deps): update dependencyanalysis to v1.30.0 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/167
-- fix(deps): update dependency org.jetbrains.kotlinx:kotlinx-serialization-json to v1.6.3 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/168
+- update dependency gradle to v8.6 by @renovate in https://github.com/rickbusarow/kotlin-gradle-extensions/pull/162
 
 **Full Changelog**: https://github.com/rickbusarow/kotlin-gradle-extensions/compare/0.1.11...0.1.12
 

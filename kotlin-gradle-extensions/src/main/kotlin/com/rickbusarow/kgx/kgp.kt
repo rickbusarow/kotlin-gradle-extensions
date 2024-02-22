@@ -105,15 +105,27 @@ public fun KotlinMultiplatformExtension.onTargetRegistered(
   targets.whenElementKnown { configurationAction.execute(it) }
 }
 
-/** shorthand for `extensions.getByName("kotlin") as KotlinProjectExtension` */
+/**
+ * shorthand for `extensions.getByName("kotlin") as KotlinProjectExtension`
+ *
+ * @since 0.1.12
+ */
 public val Project.kotlinExtensionOrNull: KotlinProjectExtension?
   get() = extensions.findByName("kotlin") as? KotlinProjectExtension
 
-/** shorthand for `extensions.getByName("kotlin") as KotlinJvmProjectExtension` */
+/**
+ * shorthand for `extensions.getByName("kotlin") as KotlinJvmProjectExtension`
+ *
+ * @since 0.1.12
+ */
 public val Project.kotlinJvmExtension: KotlinJvmProjectExtension
   get() = kotlinExtension as KotlinJvmProjectExtension
 
-/** shorthand for `extensions.findByName("kotlin") as? KotlinJvmProjectExtension` */
+/**
+ * shorthand for `extensions.findByName("kotlin") as? KotlinJvmProjectExtension`
+ *
+ * @since 0.1.12
+ */
 public val Project.kotlinJvmExtensionOrNull: KotlinJvmProjectExtension?
   get() = kotlinExtensionOrNull as? KotlinJvmProjectExtension
 
@@ -128,6 +140,8 @@ public val Project.kotlinJvmExtensionOrNull: KotlinJvmProjectExtension?
  *   }
  * }
  * ```
+ *
+ * @since 0.1.12
  */
 public fun Project.kotlinJvmExtensionSafe(action: Action<KotlinJvmProjectExtension>) {
   plugins.withKotlinJvmPlugin { action.execute(kotlinJvmExtension) }
