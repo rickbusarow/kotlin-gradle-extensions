@@ -151,30 +151,22 @@ public fun Project.kotlinJvmExtensionSafe(action: Action<KotlinJvmProjectExtensi
 /** [org.gradle.api.tasks.SourceSet] */
 public typealias JavaSourceSet = org.gradle.api.tasks.SourceSet
 
-/**
- * Shorthand for `target.kotlinExtension.sourceSets.getByName(name)`
- */
+/** Shorthand for `target.kotlinExtension.sourceSets.getByName(name)` */
 public fun JavaSourceSet.kotlinSourceSet(target: Project): KotlinSourceSet {
   return target.kotlinExtension.sourceSets.getByName(name)
 }
 
-/**
- * Shorthand for `target.kotlinExtensionOrNull?.sourceSets?.findByName(name)`
- */
+/** Shorthand for `target.kotlinExtensionOrNull?.sourceSets?.findByName(name)` */
 public fun JavaSourceSet.kotlinSourceSetOrNull(target: Project): KotlinSourceSet? {
   return target.kotlinExtensionOrNull?.sourceSets?.findByName(name)
 }
 
-/**
- * Shorthand for `target.javaExtension.sourceSets.getByName(name)`
- */
+/** Shorthand for `target.javaExtension.sourceSets.getByName(name)` */
 public fun KotlinSourceSet.javaSourceSet(target: Project): JavaSourceSet {
   return target.javaExtension.sourceSets.getByName(name)
 }
 
-/**
- * Shorthand for `target.javaExtension.sourceSets.findByName(name)`
- */
+/** Shorthand for `target.javaExtension.sourceSets.findByName(name)` */
 public fun KotlinSourceSet.javaSourceSetOrNull(target: Project): JavaSourceSet? {
   return target.javaExtensionOrNull?.sourceSets?.findByName(name)
 }
