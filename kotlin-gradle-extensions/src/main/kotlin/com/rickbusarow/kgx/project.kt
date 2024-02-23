@@ -147,6 +147,10 @@ public val Project.java: JavaPluginExtension get() = javaExtension
 public val Project.javaExtension: JavaPluginExtension
   get() = extensions.getByType(JavaPluginExtension::class.java)
 
+/** shorthand for `extensions.findByType(JavaPluginExtension::class.java)` */
+public val Project.javaExtensionOrNull: JavaPluginExtension?
+  get() = extensions.findByType(JavaPluginExtension::class.java)
+
 /**
  * shorthand for
  * `project.dependencies.project(mapOf("path" to path, "configuration" to configuration))`

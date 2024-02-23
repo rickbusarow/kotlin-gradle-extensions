@@ -27,6 +27,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinSingleTargetExtension
 import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
 
 /**
@@ -145,4 +146,27 @@ public val Project.kotlinJvmExtensionOrNull: KotlinJvmProjectExtension?
  */
 public fun Project.kotlinJvmExtensionSafe(action: Action<KotlinJvmProjectExtension>) {
   plugins.withKotlinJvmPlugin { action.execute(kotlinJvmExtension) }
+}
+
+/** [org.gradle.api.tasks.SourceSet] */
+public typealias JavaSourceSet = org.gradle.api.tasks.SourceSet
+
+/** Shorthand for `target.kotlinExtension.sourceSets.getByName(name)` */
+public fun JavaSourceSet.kotlinSourceSet(target: Project): KotlinSourceSet {
+  return target.kotlinExtension.sourceSets.getByName(name)
+}
+
+/** Shorthand for `target.kotlinExtensionOrNull?.sourceSets?.findByName(name)` */
+public fun JavaSourceSet.kotlinSourceSetOrNull(target: Project): KotlinSourceSet? {
+  return target.kotlinExtensionOrNull?.sourceSets?.findByName(name)
+}
+
+/** Shorthand for `target.javaExtension.sourceSets.getByName(name)` */
+public fun KotlinSourceSet.javaSourceSet(target: Project): JavaSourceSet {
+  return target.javaExtension.sourceSets.getByName(name)
+}
+
+/** Shorthand for `target.javaExtension.sourceSets.findByName(name)` */
+public fun KotlinSourceSet.javaSourceSetOrNull(target: Project): JavaSourceSet? {
+  return target.javaExtensionOrNull?.sourceSets?.findByName(name)
 }
