@@ -76,6 +76,7 @@ jobs:
 
       - name: merge detekt SARIF reports
         uses: gradle/gradle-build-action@v2
+        if: failure()
         with:
           arguments: detektReportMerge
           cache-read-only: false
