@@ -5,29 +5,43 @@ version = 1 # this is required but 1 is currently the only option
 
 [update]
 always = false # default: false
+
 require_automerge_label = true # default: true
+
 automerge_label = "automerge" # default: automerge
-# if using `update.always`, add dependabot to `update.ignore_usernames` to allow
+
+# https://kodiakhq.com/docs/config-reference#updateautoupdate_label
+autoupdate_label = "auto-update"
+
+# if using `update.always`, add renovate to `update.ignore_usernames` to allow
 # dependabot to update and close stale dependency upgrades.
-# ignored_usernames = ["renovate"]
-
-[merge]
-# if a PR is ready, merge it, don't place it in the merge queue.
-prioritize_ready_to_merge = true # default: false
-priority_merge_label = "priority"
-# will not do anything if a matching label is applied
-blocking_labels = ["DO NOT MERGE"]
-method = "rebase"
-
-[merge.automerge_dependencies]
-# auto merge all PRs opened by "renovate" that are "minor" or "patch" version upgrades. "major" version upgrades will be ignored.
-versions = ["minor", "patch"]
-#usernames = ["renovate"]
+# ignored_usernames = ["renovate", "rb-org-bot"]
 
 [approve]
 # note: remove the "[bot]" suffix from GitHub Bot usernames.
 # Instead of "dependabot[bot]" use "dependabot".
 auto_approve_usernames = ["RBusarow"]
+#auto_approve_labele = ["approved"]
+
+[merge]
+# If a PR is ready, merge it, don't place it in the merge queue.
+prioritize_ready_to_merge = true # default: false
+priority_merge_label = "priority"
+
+# will not do anything if a matching label is applied
+blocking_labels = ["DO NOT MERGE"]
+
+# Don't rewrite the commits when merging a PR via "rebase".
+# https://kodiakhq.com/docs/config-reference#mergemethod
+method = "rebase_fast_forward" # previously: "rebase"
+
+# https://kodiakhq.com/docs/config-reference#mergenotify_on_conflict
+notify_on_conflict = false
+
+[merge.automerge_dependencies]
+# auto merge all PRs opened by "renovate" that are "minor" or "patch" version upgrades. "major" version upgrades will be ignored.
+versions = ["minor", "patch"]
+#usernames = ["dependabot", "renovate", "rb-org-bot"]
 
 [merge.message]
 # use title of PR for merge commit.
