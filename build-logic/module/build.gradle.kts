@@ -37,7 +37,7 @@ gradlePlugin {
 
 dependencies {
 
-  api("io.github.classgraph:classgraph:4.8.171")
+  api("io.github.classgraph:classgraph:4.8.172")
 
   api(libs.breadmoirai.github.release) {
     exclude(group = "org.gradle")
