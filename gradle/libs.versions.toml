@@ -3,7 +3,7 @@ jdk = "11" # the jdk used to build the project
 jvmTarget = "1.8" # the jdk used in packaging
 jvmTargetBuildLogic = "11" # the jdk used in packaging
 
-kotlin-gradle = "1.9.23"
+kotlin-gradle = "1.9.24"
 kotlin-libraries = "1.9.23"
 
 kgx-dev = "0.1.13-SNAPSHOT"
