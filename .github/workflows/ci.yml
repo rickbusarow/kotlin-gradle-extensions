@@ -180,7 +180,7 @@ jobs:
           path: ./**/build/reports/tests/test
 
       - name: Unit test results
-        uses: mikepenz/action-junit-report@v4
+        uses: mikepenz/action-junit-report@v5
         if: failure()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -214,7 +214,7 @@ jobs:
           path: ./**/build/reports/tests/gradleTest
 
       - name: Unit test results
-        uses: mikepenz/action-junit-report@v4
+        uses: mikepenz/action-junit-report@v5
         if: failure()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -248,7 +248,7 @@ jobs:
           path: ./**/build/reports/tests/
 
       - name: Unit test results
-        uses: mikepenz/action-junit-report@v4
+        uses: mikepenz/action-junit-report@v5
         if: failure()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
