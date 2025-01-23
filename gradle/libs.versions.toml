@@ -8,7 +8,7 @@ kotlin-libraries = "1.9.23"
 
 kgx-dev = "0.1.13-SNAPSHOT"
 
-benManes-versions = "0.51.0"
+benManes-versions = "0.52.0"
 breadmoirai-github-release = "2.5.2"
 buildconfig = "5.3.5"
 dependencyAnalysis = "1.32.0"
