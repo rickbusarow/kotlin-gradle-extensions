@@ -1,0 +1,56 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices",
+    "default:disableRateLimiting"
+  ],
+  "rebaseWhen": "auto",
+  "rebaseLabel": "rebase",
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "org.jetbrains.kotlin:{/,}**",
+        "com.google.devtools.ksp:{/,}**",
+        "com.square.anvil:{/,}**",
+        "dev.drewhamilton.poko:{/,}**",
+      ],
+      "groupName": "Kotlin and compiler plugins"
+    },
+    {
+      "matchPackageNames": [
+        "com.pinterest.ktlint:{/,}**",
+        "com.rickbusarow.ktlint:{/,}**",
+        "com.rickbusarow.ktrules:{/,}**"
+      ],
+      "groupName": "KtLint libs"
+    },
+    {
+      "matchPackageNames": [
+        "com.rickbusarow.module-check",
+        "com.rickbusarow.dispatch:{/,}**",
+        "com.rickbusarow.doks:{/,}**",
+        "com.rickbusarow.gradle-dependency-sync:{/,}**",
+        "com.rickbusarow.hermit:{/,}**",
+        "com.rickbusarow.kase:{/,}**",
+        "com.rickbusarow.kgx:{/,}**",
+        "com.rickbusarow.ktlint:{/,}**",
+        "com.rickbusarow.ktrules:{/,}**",
+        "com.rickbusarow.lattice:{/,}**",
+        "com.rickbusarow.modulecheck:{/,}**"
+      ],
+      "automergeStrategy": "rebase",
+      "matchRepositories": [
+        "repo.maven.apache.org/maven2",
+        "plugins.gradle.org/m2"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "autoApprove": true,
+      "labels": ["dependencies"]
+    }
+  ],
+  "labels": [
+    "dependencies",
+    "automerge"
+  ]
+}
