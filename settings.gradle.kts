@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2025 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,11 +14,10 @@
  */
 
 pluginManagement {
-  val allowMavenLocal =
-    providers
-      .gradleProperty("kgx.allow-maven-local")
-      .orNull
-      .toBoolean()
+  val allowMavenLocal = providers
+    .gradleProperty("kgx.allow-maven-local")
+    .orNull
+    .toBoolean()
 
   repositories {
     if (allowMavenLocal) {
@@ -33,24 +32,34 @@ pluginManagement {
 }
 
 plugins {
-  id("com.gradle.enterprise") version "3.19.1"
+  id("com.gradle.develocity") version "3.19.1"
 }
 
-gradleEnterprise {
+val inGHA = !System.getenv("GITHUB_ACTIONS").isNullOrEmpty()
+
+develocity {
   buildScan {
 
-    termsOfServiceUrl = "https://gradle.com/terms-of-service"
-    termsOfServiceAgree = "yes"
+    uploadInBackground = true
 
-    publishAlways()
+    termsOfUseUrl = "https://gradle.com/help/legal-terms-of-use"
+    termsOfUseAgree = "yes"
 
-    // https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
+    capture {
+      testLogging = true
+      buildLogging = true
+      fileFingerprints = true
+    }
 
-    tag(if (System.getenv("CI").isNullOrBlank()) "Local" else "CI")
+    obfuscation {
+      hostname { "<hostName>" }
+      ipAddresses { listOf("<ip address>") }
+      username { "<username>" }
+    }
 
-    val gitHubActions = System.getenv("GITHUB_ACTIONS")?.toBoolean() ?: false
+    tag(if (inGHA) "GitHub-Actions" else "Local")
 
-    if (gitHubActions) {
+    if (inGHA) {
       // ex: `octocat/Hello-World` as in github.com/octocat/Hello-World
       val repository = System.getenv("GITHUB_REPOSITORY")!!
       val runId = System.getenv("GITHUB_RUN_ID")!!
@@ -63,11 +72,10 @@ gradleEnterprise {
   }
 }
 
-val allowMavenLocal =
-  providers
-    .gradleProperty("kgx.allow-maven-local")
-    .orNull
-    .toBoolean()
+val allowMavenLocal = providers
+  .gradleProperty("kgx.allow-maven-local")
+  .orNull
+  .toBoolean()
 
 dependencyResolutionManagement {
   @Suppress("UnstableApiUsage")
@@ -78,7 +86,6 @@ dependencyResolutionManagement {
     }
     google()
     mavenCentral()
-    maven("https://plugins.gradle.org/m2/")
   }
 }
 
