@@ -12,7 +12,7 @@
         "org.jetbrains.kotlin:{/,}**",
         "com.google.devtools.ksp:{/,}**",
         "com.square.anvil:{/,}**",
-        "dev.drewhamilton.poko:{/,}**",
+        "dev.drewhamilton.poko:{/,}**"
       ],
       "groupName": "Kotlin and compiler plugins"
     },
