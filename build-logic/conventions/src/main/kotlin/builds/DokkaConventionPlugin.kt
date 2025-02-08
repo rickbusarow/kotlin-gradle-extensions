@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Rick Busarow
+ * Copyright (C) 2025 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,94 +16,83 @@
 package builds
 
 import com.rickbusarow.kgx.applyOnce
+import com.rickbusarow.kgx.isRootProject
 import com.rickbusarow.kgx.library
 import com.rickbusarow.kgx.libsCatalog
-import com.rickbusarow.ktlint.KtLintTask
+import com.rickbusarow.kgx.project
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.jetbrains.dokka.DokkaConfiguration
-import org.jetbrains.dokka.gradle.AbstractDokkaLeafTask
 import org.jetbrains.dokka.gradle.AbstractDokkaTask
+import org.jetbrains.dokka.gradle.DokkaExtension
+import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.dokka.versioning.VersioningConfiguration
 import org.jetbrains.dokka.versioning.VersioningPlugin
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.net.URL
+import org.jetbrains.kotlin.gradle.plugin.extraProperties
 
 abstract class DokkaConventionPlugin : Plugin<Project> {
   override fun apply(target: Project) {
 
-    target.plugins.applyOnce("org.jetbrains.dokka")
-
-    target.tasks.withType(AbstractDokkaLeafTask::class.java).configureEach { task ->
-
-      // Dokka doesn't support configuration caching
-      task.notCompatibleWithConfigurationCache("Dokka doesn't support configuration caching")
-
-      // Dokka uses their outputs but doesn't explicitly depend upon them.
-      task.mustRunAfter(target.tasks.withType(KotlinCompile::class.java))
-      task.mustRunAfter(target.tasks.withType(KtLintTask::class.java))
-
-      val fullModuleName = target.path.removePrefix(":")
-      task.moduleName.set(fullModuleName)
-
-      if (target != target.rootProject) {
-        task.dokkaSourceSets.getByName("main") { builder ->
-
-          builder.documentedVisibilities.set(
-            setOf(
-              DokkaConfiguration.Visibility.PUBLIC,
-              DokkaConfiguration.Visibility.PRIVATE,
-              DokkaConfiguration.Visibility.PROTECTED,
-              DokkaConfiguration.Visibility.INTERNAL,
-              DokkaConfiguration.Visibility.PACKAGE
-            )
-          )
-
-          builder.languageVersion.set(target.KOTLIN_API)
-          builder.jdkVersion.set(target.JVM_TARGET_INT)
-
-          // include all project sources when resolving kdoc samples
-          builder.samples.setFrom(target.fileTree(target.file("src")))
-
-          val readmeFile = target.file("README.md")
-
-          if (readmeFile.exists()) {
-            builder.includes.from(readmeFile)
-          }
-
-          builder.sourceLink { sourceLinkBuilder ->
-            sourceLinkBuilder.localDirectory.set(target.file("src/main"))
-
-            val modulePath =
-              target
-                .path
-                .replace(":", "/")
-                .replaceFirst("/", "")
-
-            // URL showing where the source code can be accessed through the web browser
-            sourceLinkBuilder.remoteUrl.set(
-              URL(
-                "https://github.com/rickbusarow/kotlin-gradle-extensions" +
-                  "/blob/main/$modulePath/src/main"
-              )
-            )
-            // Suffix which is used to append the line number to the URL. Use #L for GitHub
-            sourceLinkBuilder.remoteLineSuffix.set("#L")
-          }
-        }
-      }
+    target.extraProperties.apply {
+      set("org.jetbrains.dokka.experimental.gradle.pluginMode", "V2Enabled")
+      set("org.jetbrains.dokka.experimental.gradle.pluginMode.noWarn", "true")
     }
 
-    target.dependencies.add("dokkaPlugin", target.libsCatalog.library("dokka-versioning"))
+    target.plugins.applyOnce("org.jetbrains.dokka")
 
-    val versionName = target.VERSION_NAME
+    target.extensions.configure(DokkaExtension::class.java) { dokka ->
 
-    target.tasks.withType(AbstractDokkaTask::class.java).configureEach { task ->
+      val fullModuleName = target.path.removePrefix(":")
+      dokka.moduleName.set(fullModuleName)
 
-      task.pluginConfiguration<VersioningPlugin, VersioningConfiguration> {
-        version = versionName
-        olderVersionsDir = target.rootDir.resolve("dokka-archive")
-        renderVersionsNavigationOnAllPages = true
+      if (target.isRootProject()) {
+        target.subprojects { sub ->
+          target.dependencies.add("dokka", target.dependencies.project(sub.path))
+        }
+        return@configure
+      }
+
+      dokka.dokkaSourceSets.named("main") { main ->
+        main.documentedVisibilities(
+          VisibilityModifier.Public,
+          VisibilityModifier.Private,
+          VisibilityModifier.Protected,
+          VisibilityModifier.Internal,
+          VisibilityModifier.Package
+        )
+
+        main.languageVersion.set(target.KOTLIN_API)
+        main.jdkVersion.set(target.JVM_TARGET_INT)
+
+        // include all project sources when resolving kdoc samples
+        main.samples.setFrom(target.fileTree(target.file("src")))
+
+        val readmeFile = target.file("README.md")
+
+        if (readmeFile.exists()) {
+          main.includes.from(readmeFile)
+        }
+
+        main.sourceLink { spec ->
+          spec.localDirectory.set(target.file("src/main"))
+          spec.remoteUrl(
+            "https://github.com/rickbusarow/kotlin-gradle-extensions" +
+              "/blob/main/${target.path}/src/main"
+          )
+          spec.remoteLineSuffix.set("#L")
+        }
+      }
+
+      target.dependencies.add("dokkaPlugin", target.libsCatalog.library("dokka-versioning"))
+
+      val versionName = target.VERSION_NAME
+
+      target.tasks.withType(AbstractDokkaTask::class.java).configureEach { task ->
+
+        task.pluginConfiguration<VersioningPlugin, VersioningConfiguration> {
+          version = versionName
+          olderVersionsDir = target.rootDir.resolve("dokka-archive")
+          renderVersionsNavigationOnAllPages = true
+        }
       }
     }
   }

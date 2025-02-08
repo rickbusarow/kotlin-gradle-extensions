@@ -31,11 +31,6 @@ jobs:
         with:
           arguments: compileKotlin "${{ env.gradleArgs }}"
 
-      - name: Dokka & DokkaJavadoc
-        uses: gradle/gradle-build-action@v3
-        with:
-          arguments: dokkaJavadoc "${{ env.gradleArgs }}"
-
       - name: Publish Snapshots
         uses: gradle/gradle-build-action@v3
         with:
