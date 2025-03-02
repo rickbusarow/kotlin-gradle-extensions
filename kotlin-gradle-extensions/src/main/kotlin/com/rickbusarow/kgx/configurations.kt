@@ -55,7 +55,7 @@ public fun ConfigurationContainer.api(
 ): NamedDomainObjectProvider<Configuration>? = named(ConfigurationName.api, configurationAction)
 
 /**
- * Shorthand for `configurations.getByName("api")`.
+ * Shorthand for `configurations.getByName("compileOnly")`.
  *
  * @since 0.1.6
  */
@@ -63,7 +63,7 @@ public val ConfigurationContainer.compileOnly: Configuration
   get() = getByName(ConfigurationName.compileOnly)
 
 /**
- * Shorthand for `configurations.findByName("api")`.
+ * Shorthand for `configurations.findByName("compileOnly")`.
  *
  * @since 0.1.6
  */
@@ -71,7 +71,7 @@ public val ConfigurationContainer.compileOnlyOrNull: Configuration?
   get() = findByName(ConfigurationName.compileOnly)
 
 /**
- * Shorthand for `configurations.named("api")`.
+ * Shorthand for `configurations.named("compileOnly")`.
  *
  * @since 0.1.6
  */
@@ -79,7 +79,7 @@ public val ConfigurationContainer.compileOnlyProvider: NamedDomainObjectProvider
   get() = named(ConfigurationName.compileOnly)
 
 /**
- * Shorthand for `configurations.named("api") { ... }`.
+ * Shorthand for `configurations.named("compileOnly") { ... }`.
  *
  * @since 0.1.6
  */
@@ -92,7 +92,7 @@ public fun ConfigurationContainer.compileOnly(
   )
 
 /**
- * Shorthand for `configurations.getByName("api")`.
+ * Shorthand for `configurations.getByName("implementation")`.
  *
  * @since 0.1.6
  */
@@ -100,7 +100,7 @@ public val ConfigurationContainer.implementation: Configuration
   get() = getByName(ConfigurationName.implementation)
 
 /**
- * Shorthand for `configurations.findByName("api")`.
+ * Shorthand for `configurations.findByName("implementation")`.
  *
  * @since 0.1.6
  */
@@ -108,7 +108,7 @@ public val ConfigurationContainer.implementationOrNull: Configuration?
   get() = findByName(ConfigurationName.implementation)
 
 /**
- * Shorthand for `configurations.named("api")`.
+ * Shorthand for `configurations.named("implementation")`.
  *
  * @since 0.1.6
  */
@@ -116,7 +116,7 @@ public val ConfigurationContainer.implementationProvider: NamedDomainObjectProvi
   get() = named(ConfigurationName.implementation)
 
 /**
- * Shorthand for `configurations.named("api") { ... }`.
+ * Shorthand for `configurations.named("implementation") { ... }`.
  *
  * @since 0.1.6
  */
@@ -128,7 +128,7 @@ public fun ConfigurationContainer.implementation(
 )
 
 /**
- * Shorthand for `configurations.getByName("api")`.
+ * Shorthand for `configurations.getByName("kapt")`.
  *
  * @since 0.1.6
  */
@@ -136,7 +136,7 @@ public val ConfigurationContainer.kapt: Configuration
   get() = getByName(ConfigurationName.kapt)
 
 /**
- * Shorthand for `configurations.findByName("api")`.
+ * Shorthand for `configurations.findByName("kapt")`.
  *
  * @since 0.1.6
  */
@@ -144,7 +144,7 @@ public val ConfigurationContainer.kaptOrNull: Configuration?
   get() = findByName(ConfigurationName.kapt)
 
 /**
- * Shorthand for `configurations.named("api")`.
+ * Shorthand for `configurations.named("kapt")`.
  *
  * @since 0.1.6
  */
@@ -152,7 +152,7 @@ public val ConfigurationContainer.kaptProvider: NamedDomainObjectProvider<Config
   get() = named(ConfigurationName.kapt)
 
 /**
- * Shorthand for `configurations.named("api") { ... }`.
+ * Shorthand for `configurations.named("kapt") { ... }`.
  *
  * @since 0.1.6
  */
@@ -164,7 +164,7 @@ public fun ConfigurationContainer.kapt(
 )
 
 /**
- * Shorthand for `configurations.getByName("api")`.
+ * Shorthand for `configurations.getByName("runtimeOnly")`.
  *
  * @since 0.1.6
  */
@@ -172,7 +172,7 @@ public val ConfigurationContainer.runtimeOnly: Configuration
   get() = getByName(ConfigurationName.runtimeOnly)
 
 /**
- * Shorthand for `configurations.findByName("api")`.
+ * Shorthand for `configurations.findByName("runtimeOnly")`.
  *
  * @since 0.1.6
  */
@@ -180,7 +180,7 @@ public val ConfigurationContainer.runtimeOnlyOrNull: Configuration?
   get() = findByName(ConfigurationName.runtimeOnly)
 
 /**
- * Shorthand for `configurations.named("api")`.
+ * Shorthand for `configurations.named("runtimeOnly")`.
  *
  * @since 0.1.6
  */
@@ -188,7 +188,7 @@ public val ConfigurationContainer.runtimeOnlyProvider: NamedDomainObjectProvider
   get() = named(ConfigurationName.runtimeOnly)
 
 /**
- * Shorthand for `configurations.named("api") { ... }`.
+ * Shorthand for `configurations.named("runtimeOnly") { ... }`.
  *
  * @since 0.1.6
  */
