@@ -16,8 +16,8 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba6c12 # v4
         with:
           distribution: "zulu"
           java-version: "11"
@@ -27,12 +27,12 @@ jobs:
       # takes too long and times out, no cache is retained.
 
       - name: Compile Kotlin
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/gradle-build-action@ac2d340dc04d9e1113182899e983b5400c17cda1 # v3
         with:
           arguments: compileKotlin "${{ env.gradleArgs }}"
 
       - name: Publish Snapshots
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/gradle-build-action@ac2d340dc04d9e1113182899e983b5400c17cda1 # v3
         with:
           arguments: publish "${{ env.gradleArgs }}"
         env:
