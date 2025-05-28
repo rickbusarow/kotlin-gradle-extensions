@@ -56,9 +56,6 @@ dependencies {
   implementation(libs.dokka.gradle)
   implementation(libs.kotlinx.binaryCompatibility)
   implementation(libs.rickBusarow.kgx)
-  implementation(libs.rickBusarow.moduleCheck.gradle.plugin) {
-    exclude(group = "org.jetbrains.kotlin")
-  }
 
   implementation(project(":artifacts"))
   implementation(project(":core"))

@@ -27,9 +27,6 @@ import com.rickbusarow.ktlint.KtLintTask
 import io.gitlab.arturbosch.detekt.Detekt
 import kotlinx.validation.KotlinApiBuildTask
 import kotlinx.validation.KotlinApiCompareTask
-import modulecheck.gradle.task.AbstractModuleCheckTask
-import modulecheck.gradle.task.MultiRuleModuleCheckTask
-import modulecheck.gradle.task.SingleRuleModuleCheckTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.tasks.AbstractPublishToMaven
@@ -66,8 +63,6 @@ abstract class CompositePlugin : Plugin<Project> {
           ArtifactsCheckTask::class, ArtifactsDumpTask::class,
           // DAGP
           BuildHealthTask::class,
-          // ModuleCheck
-          AbstractModuleCheckTask::class, MultiRuleModuleCheckTask::class, SingleRuleModuleCheckTask::class,
           // detekt
           Detekt::class,
           // dokka

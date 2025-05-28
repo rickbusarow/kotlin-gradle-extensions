@@ -102,6 +102,5 @@ rickBusarow-kase-gradle-dsl = { module = "com.rickbusarow.kase:kase-gradle-dsl",
 rickBusarow-kgx = { module = "com.rickbusarow.kgx:kotlin-gradle-extensions", version.ref = "rickBusarow-kgx" }
 rickBusarow-ktlint = { module = "com.rickbusarow.ktlint:ktlint-gradle-plugin", version.ref = "rickBusarow-ktlint" }
 rickBusarow-ktrules = { module = "com.rickbusarow.ktrules:ktrules", version.ref = "rickBusarow-ktrules" }
-rickBusarow-moduleCheck-gradle-plugin = { module = "com.rickbusarow.modulecheck:plugin", version.ref = "rickBusarow-moduleCheck" }
 
 vanniktech-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "vanniktech-publish" }
