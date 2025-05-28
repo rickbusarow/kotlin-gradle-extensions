@@ -103,7 +103,11 @@ public final class com/rickbusarow/kgx/KgpKt {
 	public static final fun getKotlinExtensionOrNull (Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/dsl/KotlinProjectExtension;
 	public static final fun getKotlinJvmExtension (Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/dsl/KotlinJvmProjectExtension;
 	public static final fun getKotlinJvmExtensionOrNull (Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/dsl/KotlinJvmProjectExtension;
+	public static final fun javaSourceSet (Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;Lorg/gradle/api/Project;)Lorg/gradle/api/tasks/SourceSet;
+	public static final fun javaSourceSetOrNull (Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;Lorg/gradle/api/Project;)Lorg/gradle/api/tasks/SourceSet;
 	public static final fun kotlinJvmExtensionSafe (Lorg/gradle/api/Project;Lorg/gradle/api/Action;)V
+	public static final fun kotlinSourceSet (Lorg/gradle/api/tasks/SourceSet;Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
+	public static final fun kotlinSourceSetOrNull (Lorg/gradle/api/tasks/SourceSet;Lorg/gradle/api/Project;)Lorg/jetbrains/kotlin/gradle/plugin/KotlinSourceSet;
 	public static final fun onTargetRegistered (Lorg/jetbrains/kotlin/gradle/dsl/KotlinMultiplatformExtension;Lcom/rickbusarow/kgx/internal/ElementInfoAction;)V
 	public static final fun onTargetRegistered (Lorg/jetbrains/kotlin/gradle/dsl/KotlinProjectExtension;Lcom/rickbusarow/kgx/internal/ElementInfoAction;)V
 	public static final fun toInt (Lorg/jetbrains/kotlin/gradle/dsl/JvmTarget;)I
@@ -229,6 +233,7 @@ public final class com/rickbusarow/kgx/ProjectKt {
 	public static synthetic fun checkProjectIsRoot$default (Lorg/gradle/api/Project;Lkotlin/jvm/functions/Function0;ILjava/lang/Object;)V
 	public static final fun getJava (Lorg/gradle/api/Project;)Lorg/gradle/api/plugins/JavaPluginExtension;
 	public static final fun getJavaExtension (Lorg/gradle/api/Project;)Lorg/gradle/api/plugins/JavaPluginExtension;
+	public static final fun getJavaExtensionOrNull (Lorg/gradle/api/Project;)Lorg/gradle/api/plugins/JavaPluginExtension;
 	public static final fun isInIdeaSync (Lorg/gradle/api/Project;)Z
 	public static final fun isPartOfRootBuild (Lorg/gradle/api/Project;)Z
 	public static final fun isRealRootProject (Lorg/gradle/api/Project;)Z

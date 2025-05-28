@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Rick Busarow
+ * Copyright (C) 2025 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -68,9 +68,9 @@ dependencies {
 
   gradleTestImplementation(gradleTestKit())
 
-  gradleTestImplementation(libs.junit.engine)
   gradleTestImplementation(libs.junit.jupiter)
   gradleTestImplementation(libs.junit.jupiter.api)
+  gradleTestImplementation(libs.junit.platform.launcher)
   gradleTestImplementation(libs.kotest.assertions.core.jvm)
   gradleTestImplementation(libs.kotest.assertions.shared)
   gradleTestImplementation(libs.kotlin.gradle.plugin)
@@ -85,7 +85,6 @@ dependencies {
 
   testImplementation(gradleApi())
 
-  testImplementation(libs.junit.engine)
   testImplementation(libs.junit.jupiter)
   testImplementation(libs.junit.jupiter.api)
   testImplementation(libs.kotest.assertions.core.jvm)
