@@ -16,17 +16,12 @@ detekt = "1.23.8"
 diffplug-spotless = "7.0.4"
 dokka = "2.0.0"
 dropbox-dependencyGuard = "0.5.0"
-ec4j = "1.1.1"
-github-release = "2.5.1"
-integration-test = "1.4.5"
 jUnit5 = "5.12.2"
 jUnit-platform = "1.12.2"
-johnrengelman-shadow = "8.1.1"
 kotest = "5.9.1"
 kotlinApi = "1.7"
 kotlinx-binaryCompatibility = "0.17.0"
 kotlinx-serialization = "1.6.3"
-kotlinx-coroutines = "1.7.2"
 ktlint-lib = "1.0.1"
 prettier = "2.8.4"
 prettier-plugin-sh = "0.12.8"
@@ -36,7 +31,6 @@ rickBusarow-kgx = "0.1.12"
 rickBusarow-ktlint = "0.2.2"
 rickBusarow-ktrules = "1.5.0"
 rickBusarow-moduleCheck = "0.12.5"
-square-kotlinPoet = "1.18.1"
 vanniktech-publish = "0.32.0"
 
 [plugins]
@@ -44,7 +38,6 @@ buildconfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildconfig
 dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version.ref = "dependencyAnalysis" }
 doks = { id = "com.rickbusarow.doks", version.ref = "rickBusarow-doks" }
 github-release = { id = "com.github.breadmoirai.github-release", version.ref = "breadmoirai-github-release" }
-integration-test = { id = "com.coditory.integration-test", version.ref = "integration-test" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-gradle" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-gradle" }
 ktlint = { id = "com.rickbusarow.ktlint", version.ref = "rickBusarow-ktlint" }
@@ -76,12 +69,6 @@ dokka-versioning = { module = "org.jetbrains.dokka:versioning-plugin", version.r
 
 dropbox-dependencyGuard = { module = "com.dropbox.dependency-guard:dependency-guard", version.ref = "dropbox-dependencyGuard" }
 
-ec4j-core = { module = "org.ec4j.core:ec4j-core", version.ref = "ec4j" }
-
-integration-test = { module = "com.coditory.gradle:integration-test-plugin", version.ref = "integration-test" }
-
-johnrengelman-shadowJar = { module = "com.github.johnrengelman:shadow", version.ref = "johnrengelman-shadow" }
-
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "jUnit5" }
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "jUnit5" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "jUnit5" }
@@ -95,22 +82,9 @@ junit-vintage-engine = { module = "org.junit.vintage:junit-vintage-engine", vers
 kotest-assertions-api = { module = "io.kotest:kotest-assertions-api", version.ref = "kotest" }
 kotest-assertions-core-jvm = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
 kotest-assertions-shared = { module = "io.kotest:kotest-assertions-shared", version.ref = "kotest" }
-kotest-common = { module = "io.kotest:kotest-common", version.ref = "kotest" }
-kotest-extensions = { module = "io.kotest:kotest-extensions", version.ref = "kotest" }
-kotest-property-jvm = { module = "io.kotest:kotest-property-jvm", version.ref = "kotest" }
-kotest-runner-junit5-jvm = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest" }
 
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle" }
 kotlin-gradle-plugin-api = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin-api", version.ref = "kotlin-gradle" }
-
-kotlin-annotation-processing = { module = "org.jetbrains.kotlin:kotlin-annotation-processing-embeddable", version.ref = "kotlin-libraries" }
-kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin-libraries" }
-kotlin-compiler = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable", version.ref = "kotlin-libraries" }
-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin-libraries" }
-kotlin-sam-with-receiver = { module = "org.jetbrains.kotlin:kotlin-sam-with-receiver", version.ref = "kotlin-libraries" }
-kotlin-stdlib-common = { module = "org.jetbrains.kotlin:kotlin-stdlib-common", version.ref = "kotlin-libraries" }
-kotlin-stdlib-jdk7 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlin-libraries" }
-kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin-libraries" }
 
 kotlinx-binaryCompatibility = { module = "org.jetbrains.kotlinx:binary-compatibility-validator", version.ref = "kotlinx-binaryCompatibility" }
 
@@ -130,8 +104,4 @@ rickBusarow-ktlint = { module = "com.rickbusarow.ktlint:ktlint-gradle-plugin", v
 rickBusarow-ktrules = { module = "com.rickbusarow.ktrules:ktrules", version.ref = "rickBusarow-ktrules" }
 rickBusarow-moduleCheck-gradle-plugin = { module = "com.rickbusarow.modulecheck:plugin", version.ref = "rickBusarow-moduleCheck" }
 
-square-kotlinPoet = { module = "com.squareup:kotlinpoet", version.ref = "square-kotlinPoet" }
-
 vanniktech-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "vanniktech-publish" }
-
-[bundles]

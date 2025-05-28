@@ -95,11 +95,9 @@ dependencies {
   implementation(libs.dokka.gradle)
   implementation(libs.dokka.versioning)
   implementation(libs.dropbox.dependencyGuard)
-  implementation(libs.johnrengelman.shadowJar)
   implementation(libs.kotlin.gradle.plugin)
   implementation(libs.kotlin.gradle.plugin.api)
   implementation(libs.kotlinx.binaryCompatibility)
   implementation(libs.rickBusarow.kgx)
-  implementation(libs.square.kotlinPoet)
   implementation(libs.vanniktech.publish)
 }

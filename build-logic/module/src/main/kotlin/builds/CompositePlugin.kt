@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Rick Busarow
+ * Copyright (C) 2025 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,8 +18,6 @@ package builds
 import builds.artifacts.ArtifactsCheckTask
 import builds.artifacts.ArtifactsDumpTask
 import com.autonomousapps.tasks.BuildHealthTask
-import com.github.jengelman.gradle.plugins.shadow.internal.JavaJarExec
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.rickbusarow.kgx.checkProjectIsRoot
 import com.rickbusarow.kgx.dependsOn
 import com.rickbusarow.kgx.internal.InternalGradleApiAccess
@@ -79,9 +77,7 @@ abstract class CompositePlugin : Plugin<Project> {
           // ktlint-gradle-plugin
           KtLintTask::class,
           // publishing
-          AbstractPublishToMaven::class, PublishToMavenLocal::class,
-          // shadow
-          JavaJarExec::class, ShadowJar::class
+          AbstractPublishToMaven::class, PublishToMavenLocal::class
         )
       val propagatedTaskTypeNames =
         propagatedTaskTypes
