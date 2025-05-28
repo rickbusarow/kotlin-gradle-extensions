@@ -4,7 +4,7 @@ jvmTarget = "1.8" # the jdk used in packaging
 jvmTargetBuildLogic = "11" # the jdk used in packaging
 
 kotlin-gradle = "2.1.21"
-kotlin-libraries = "1.9.25"
+kotlin-libraries = "2.1.21"
 
 kgx-dev = "0.1.13-SNAPSHOT"
 
