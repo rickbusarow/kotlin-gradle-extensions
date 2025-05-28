@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Rick Busarow
+ * Copyright (C) 2025 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -44,7 +44,9 @@ class JvmTargetTest {
       row(18, JvmTarget.JVM_18),
       row(19, JvmTarget.JVM_19),
       row(20, JvmTarget.JVM_20),
-      row(21, JvmTarget.JVM_21)
+      row(21, JvmTarget.JVM_21),
+      row(22, JvmTarget.JVM_22),
+      row(23, JvmTarget.JVM_23)
     ) { int, target ->
 
       allTargets.add(target)
