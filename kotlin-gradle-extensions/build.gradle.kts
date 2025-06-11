@@ -42,7 +42,8 @@ buildConfig {
 
     buildConfigField(
       name = "localBuildM2Dir",
-      value = rootProject.layout.buildDirectory.dir("m2").map { it.asFile }
+      value = rootProject.layout.buildDirectory.dir("gradle-test-m2")
+        .map { it.asFile.relativeToOrSelf(projectDir) }
     )
     buildConfigField(name = "version", value = mahoutProperties.versionName)
 
