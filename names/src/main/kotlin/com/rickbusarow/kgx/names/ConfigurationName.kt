@@ -25,8 +25,8 @@ import org.gradle.api.artifacts.Configuration
 import kotlin.properties.ReadOnlyProperty
 
 /**
- * Wraps the unqualified, simple name of a Gradle
- * Configuration, like `implementation` or `debugApi`.
+ * Wraps the unqualified, simple name of a Gradle Configuration, like `implementation` or
+ * `debugApi`.
  *
  * @property value the name
  * @since 0.1.6
@@ -37,8 +37,8 @@ public value class ConfigurationName(
 ) : DomainObjectName<Configuration>,
   Comparable<ConfigurationName> {
   /**
-   * Strips the "base Configuration name" (`api`, `implementation`, `compileOnly`,
-   * `runtimeOnly`) from an aggregate name like `debugImplementation`.
+   * Strips the "base Configuration name" (`api`, `implementation`, `compileOnly`, `runtimeOnly`)
+   * from an aggregate name like `debugImplementation`.
    *
    * examples:
    *
@@ -68,8 +68,8 @@ public value class ConfigurationName(
   /**
    * Returns the base name of the Configuration without any source set prefix.
    *
-   * For "main" source sets, this function just returns the same string,
-   * e.g.: ConfigurationName("api").nameWithoutSourceSet() == "api"
+   * For "main" source sets, this function just returns the same string, e.g.:
+   * ConfigurationName("api").nameWithoutSourceSet() == "api"
    * ConfigurationName("implementation").nameWithoutSourceSet() == "implementation"
    *
    * For other source sets, it returns the base configuration names:
@@ -88,8 +88,8 @@ public value class ConfigurationName(
   /**
    * Returns the base name of the Configuration without any source set prefix.
    *
-   * For "main" source sets, this function just returns the same string,
-   * e.g.: ConfigurationName("api").nameWithoutSourceSet() == "api"
+   * For "main" source sets, this function just returns the same string, e.g.:
+   * ConfigurationName("api").nameWithoutSourceSet() == "api"
    * ConfigurationName("implementation").nameWithoutSourceSet() == "implementation"
    *
    * For other source sets, it returns the base configuration names:
@@ -116,8 +116,8 @@ public value class ConfigurationName(
   /**
    * find the "base" configuration name and remove it
    *
-   * For instance, `debugCompileOnly` would find the "CompileOnly"
-   * and remove it, returning "debug" as the sourceSet name
+   * For instance, `debugCompileOnly` would find the "CompileOnly" and remove it, returning "debug"
+   * as the sourceSet name
    *
    * @since 0.1.6
    */
@@ -161,11 +161,11 @@ public value class ConfigurationName(
   /**
    * Returns the '-api' version of the current configuration.
    *
-   * In Returns | api | api | implementation | api | compileOnly | api | testImplementation
-   * | testApi | debug | debugApi | androidTestImplementation | androidTestApi
+   * In Returns | api | api | implementation | api | compileOnly | api | testImplementation |
+   * testApi | debug | debugApi | androidTestImplementation | androidTestApi
    *
-   * @return for any main/common configuration, just returns `api`. For any
-   *   other configuration, it returns the [SourceSetName] appended with `Api`.
+   * @return for any main/common configuration, just returns `api`. For any other configuration, it
+   *   returns the [SourceSetName] appended with `Api`.
    * @since 0.1.6
    */
   public fun apiVariant(): ConfigurationName = toSourceSetName().apiConfig()
@@ -173,12 +173,12 @@ public value class ConfigurationName(
   /**
    * Returns the '-implementation' version of the current configuration.
    *
-   * In Returns | implementation | implementation | implementation | implementation
-   * | compileOnly | implementation | testImplementation | testImplementation | debug
-   * | debugImplementation | androidTestImplementation | androidTestImplementation
+   * In Returns | implementation | implementation | implementation | implementation | compileOnly |
+   * implementation | testImplementation | testImplementation | debug | debugImplementation |
+   * androidTestImplementation | androidTestImplementation
    *
-   * @return for any main/common configuration, just returns `implementation`. For any
-   *   other configuration, it returns the [SourceSetName] appended with `Implementation`.
+   * @return for any main/common configuration, just returns `implementation`. For any other
+   *   configuration, it returns the [SourceSetName] appended with `Implementation`.
    * @since 0.1.6
    */
   public fun implementationVariant(): ConfigurationName = toSourceSetName().implementationConfig()
@@ -186,8 +186,8 @@ public value class ConfigurationName(
   /**
    * Returns the 'kapt-' version of the current configuration.
    *
-   * @return for any main/common configuration, just returns `kapt`. For any
-   *   other configuration, it returns `kapt` appended with the [SourceSetName].
+   * @return for any main/common configuration, just returns `kapt`. For any other configuration, it
+   *   returns `kapt` appended with the [SourceSetName].
    * @since 0.1.6
    */
   public fun kaptVariant(): ConfigurationName = toSourceSetName().kaptConfig()
@@ -441,8 +441,8 @@ public value class ConfigurationName(
       }
 
     /**
-     * @return the 'api' name for this source set, such as
-     *   `compileOnly`,`compileOnlyDebug`, or `compileOnlyTest`
+     * @return the 'api' name for this source set, such as `compileOnly`,`compileOnlyDebug`, or
+     *   `compileOnlyTest`
      * @since 0.1.9
      */
     public fun SourceSetName.compileOnlyConfig(): ConfigurationName =
@@ -453,8 +453,8 @@ public value class ConfigurationName(
       }
 
     /**
-     * @return the 'implementation' name for this source set, such as
-     *   `implementation`, `debugImplementation`, or `commonMainImplementation`
+     * @return the 'implementation' name for this source set, such as `implementation`,
+     *   `debugImplementation`, or `commonMainImplementation`
      * @since 0.1.9
      */
     public fun SourceSetName.implementationConfig(): ConfigurationName =
@@ -465,8 +465,8 @@ public value class ConfigurationName(
       }
 
     /**
-     * @return the 'runtimeOnly' name for this source set, such as
-     *   `runtimeOnly`, `runtimeOnlyTest`, or `runtimeOnlyAndroidTest`
+     * @return the 'runtimeOnly' name for this source set, such as `runtimeOnly`, `runtimeOnlyTest`,
+     *   or `runtimeOnlyAndroidTest`
      * @since 0.1.9
      */
     public fun SourceSetName.runtimeOnlyConfig(): ConfigurationName =
@@ -488,8 +488,8 @@ public value class ConfigurationName(
       }
 
     /**
-     * @return the 'anvil' name for this source set, such
-     *   as `anvil`, `anvilTest`, or `anvilAndroidTest`
+     * @return the 'anvil' name for this source set, such as `anvil`, `anvilTest`, or
+     *   `anvilAndroidTest`
      * @since 0.1.9
      */
     public fun SourceSetName.anvilConfig(): ConfigurationName =

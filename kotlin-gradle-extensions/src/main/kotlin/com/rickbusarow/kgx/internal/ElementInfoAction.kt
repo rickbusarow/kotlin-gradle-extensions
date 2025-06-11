@@ -78,8 +78,8 @@ public fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
     public operator fun component3(): ElementValue<T> = elementValue
 
     /**
-     * Represents a registered element backed by a concrete instance. This
-     * is the most common case -- when the element is already realized.
+     * Represents a registered element backed by a concrete instance. This is the most common case
+     * -- when the element is already realized.
      *
      * @property elementName see
      *   [org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo.getName]
@@ -102,9 +102,9 @@ public fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
     }
 
     /**
-     * Represents a registered element backed by a [Provider]. This is the
-     * case when the element is not yet realized. It's also the case when
-     * the element is realized, but the realization state is not known.
+     * Represents a registered element backed by a [Provider]. This is the case when the element is
+     * not yet realized. It's also the case when the element is realized, but the realization state
+     * is not known.
      *
      * @property elementName see
      *   [org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo.getName]
@@ -130,18 +130,18 @@ public fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
 
     public companion object {
       /**
-       * Facilitates the creation of [RegisteredElement] instances based on the provided
-       * parameters. It checks the type of [elementValue] to decide whether to create
-       * an [ObjectBackedRegisteredElement] or a [ProviderBackedRegisteredElement].
+       * Facilitates the creation of [RegisteredElement] instances based on the provided parameters.
+       * It checks the type of [elementValue] to decide whether to create an
+       * [ObjectBackedRegisteredElement] or a [ProviderBackedRegisteredElement].
        *
        * @param elementName see
        *   [org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo.getName]
        * @param elementType see
        *   [org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo.getType]
-       * @param elementValue The value of the element,
-       *   which can be either an instance or a provider.
-       * @return A [RegisteredElement] instance, either [ObjectBackedRegisteredElement]
-       *   or [ProviderBackedRegisteredElement], depending on the type of [elementValue].
+       * @param elementValue The value of the element, which can be either an instance or a
+       *   provider.
+       * @return A [RegisteredElement] instance, either [ObjectBackedRegisteredElement] or
+       *   [ProviderBackedRegisteredElement], depending on the type of [elementValue].
        * @since 0.1.5
        */
       public operator fun <T : Any> invoke(
@@ -167,9 +167,9 @@ public fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
   }
 
   /**
-   * Encapsulates the value of a registered element which can be either a concrete
-   * instance or a [Provider]. This is useful when the element is not yet realized. It's
-   * also useful when the element is realized, but the realization state is not known.
+   * Encapsulates the value of a registered element which can be either a concrete instance or a
+   * [Provider]. This is useful when the element is not yet realized. It's also useful when the
+   * element is realized, but the realization state is not known.
    *
    * @since 0.1.5
    */
@@ -202,8 +202,8 @@ public fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
     }
 
     /**
-     * Represents a provider for a registered element. This
-     * is the case when the element is not yet realized.
+     * Represents a provider for a registered element. This is the case when the element is not yet
+     * realized.
      *
      * @since 0.1.5
      */
@@ -214,8 +214,8 @@ public fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
 
     public companion object {
       /**
-       * Facilitates the creation of an [Instance] from
-       * a concrete value. This is the most common case.
+       * Facilitates the creation of an [Instance] from a concrete value. This is the most common
+       * case.
        *
        * @param value The value of the element.
        * @return An [Instance] wrapping the provided value.
@@ -224,16 +224,16 @@ public fun interface ElementInfoAction<T : Any> : Action<RegisteredElement<T>> {
       public operator fun <T : Any> invoke(value: T): Instance<T> = Instance(value)
 
       /**
-       * Facilitates the creation of a [ProviderInstance] from a
-       * [NamedDomainObjectProvider]. It checks the realization state of the
-       * provider to decide whether to create an [Instance] or a [ProviderInstance].
+       * Facilitates the creation of a [ProviderInstance] from a [NamedDomainObjectProvider]. It
+       * checks the realization state of the provider to decide whether to create an [Instance] or a
+       * [ProviderInstance].
        *
-       * @param provider The provider of the element.* @return Either an [Instance]
-       *   or a [ProviderInstance], based on the realization state of the provider.
+       * @param provider The provider of the element.* @return Either an [Instance] or a
+       *   [ProviderInstance], based on the realization state of the provider.
        * @see NamedDomainObjectProvider.isRealized
        * @since 0.1.5
-       * @throws IllegalStateException If an attempt is made to get
-       *   the value from the provider and it's not yet realized.
+       * @throws IllegalStateException If an attempt is made to get the value from the provider and
+       *   it's not yet realized.
        */
       @OptIn(InternalGradleApiAccess::class)
       public operator fun <T : Any> invoke(

@@ -16,12 +16,12 @@
 package com.rickbusarow.kgx
 
 /**
- * Creates a new instance of the [GradleLazy] that uses the specified
- * initialization function [initializer] and thread-safety [mode].
+ * Creates a new instance of the [GradleLazy] that uses the specified initialization function
+ * [initializer] and thread-safety [mode].
  *
  * @param mode the thread-safety mode for initializing the value of the lazy property.
- * @param initializer the initialization function for the lazy property.
- *   This lambda must be compatible with Gradle's configuration cache.
+ * @param initializer the initialization function for the lazy property. This lambda must be
+ *   compatible with Gradle's configuration cache.
  * @since 0.1.9
  */
 public fun <T : Any?> gradleLazy(

@@ -29,9 +29,9 @@ public val ExtensionAware.extras: ExtraPropertiesExtension
   get() = extensions.extraProperties
 
 /**
- * A safe version of [get][ExtraPropertiesExtension.get], since `get` will throw
- * an [UnknownPropertyException][ExtraPropertiesExtension.UnknownPropertyException]
- * if the property wasn't previously defined.
+ * A safe version of [get][ExtraPropertiesExtension.get], since `get` will throw an
+ * [UnknownPropertyException][ExtraPropertiesExtension.UnknownPropertyException] if the property
+ * wasn't previously defined.
  *
  * @since 0.1.0
  */
@@ -40,9 +40,9 @@ public fun ExtraPropertiesExtension.getOrNull(
 ): Any? = if (has(name)) get(name) else null
 
 /**
- * A safe version of [get][ExtraPropertiesExtension.get], since `get` will throw
- * an [UnknownPropertyException][ExtraPropertiesExtension.UnknownPropertyException]
- * if the property wasn't previously defined.
+ * A safe version of [get][ExtraPropertiesExtension.get], since `get` will throw an
+ * [UnknownPropertyException][ExtraPropertiesExtension.UnknownPropertyException] if the property
+ * wasn't previously defined.
  *
  * @since 0.1.0
  * @throws ClassCastException if a property named [name] exists, but is not of type T
@@ -57,8 +57,8 @@ public inline fun <reified T> ExtraPropertiesExtension.getOrNullAs(name: String)
  *
  * @param name the name of the property to retrieve
  * @since 0.1.9
- * @throws ExtraPropertiesExtension.UnknownPropertyException
- *   if the property wasn't previously defined.
+ * @throws ExtraPropertiesExtension.UnknownPropertyException if the property wasn't previously
+ *   defined.
  * @throws ClassCastException if a property named [name] exists, but is not of type T
  */
 public inline fun <reified T> ExtraPropertiesExtension.getAs(name: String): T = get(name) as T

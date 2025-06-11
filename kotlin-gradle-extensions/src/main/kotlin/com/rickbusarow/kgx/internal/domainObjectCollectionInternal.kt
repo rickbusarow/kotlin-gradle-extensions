@@ -29,8 +29,8 @@ import org.gradle.api.internal.DefaultNamedDomainObjectCollection.ElementInfo
 import com.rickbusarow.kgx.invoke as kgxInvoke
 
 /**
- * Invokes this [ElementInfoAction] with the provided element name and
- * value. The type of the element is inferred from the type of the value.
+ * Invokes this [ElementInfoAction] with the provided element name and value. The type of the
+ * element is inferred from the type of the value.
  *
  * @param elementName The name of the element.
  * @param elementValue The value of the element, encapsulated in an [ElementValue].
@@ -49,8 +49,8 @@ public inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
 }
 
 /**
- * Invokes this [ElementInfoAction] with the provided element name, type and value.
- * This is useful when the type of the element is not the same as the type of the value.
+ * Invokes this [ElementInfoAction] with the provided element name, type and value. This is useful
+ * when the type of the element is not the same as the type of the value.
  *
  * @param elementName The name of the element.
  * @param elementType The type of the element.
@@ -83,8 +83,8 @@ public fun <T : Any> NamedDomainObjectProvider<T>.isRealized(): Boolean {
 }
 
 /**
- * Checks if an element with the specified name has been realized in the collection. This
- * is useful when the element is not yet realized, but the realization state is not known.
+ * Checks if an element with the specified name has been realized in the collection. This is useful
+ * when the element is not yet realized, but the realization state is not known.
  *
  * @param elementName The name of the element to check.
  * @receiver [NamedDomainObjectCollection] The collection to be checked.
@@ -97,8 +97,8 @@ public fun <T : Any> NamedDomainObjectCollection<T>.hasRealized(elementName: Str
 }
 
 /**
- * Converts an [ElementInfo] to a [RegisteredElement], facilitating
- * a more structured interaction with the element information.
+ * Converts an [ElementInfo] to a [RegisteredElement], facilitating a more structured interaction
+ * with the element information.
  *
  * @param namedDomainObjectCollection The collection containing the element.
  * @receiver [ElementInfo] The information of the element to be converted.
@@ -130,9 +130,9 @@ internal inline fun <reified T : Any> ElementInfo<T>.toRegisteredInfo(
 }
 
 /**
- * Invokes a given [Action] when an element is registered in the collection,
- * without triggering its creation or configuration. The given [configurationAction]
- * is executed against the object before it is returned from the provider.
+ * Invokes a given [Action] when an element is registered in the collection, without triggering its
+ * creation or configuration. The given [configurationAction] is executed against the object before
+ * it is returned from the provider.
  *
  * @param configurationAction The [Action] to execute on the newly registered element.
  * @receiver [NamedDomainObjectCollection] where the element is being registered.
@@ -149,9 +149,9 @@ public inline fun <reified T> NamedDomainObjectCollection<T>.whenElementRegister
 }
 
 /**
- * Invokes a given [Action] when an element is registered in the collection,
- * without triggering its creation or configuration. The given [configurationAction]
- * is executed against the object before it is returned from the provider.
+ * Invokes a given [Action] when an element is registered in the collection, without triggering its
+ * creation or configuration. The given [configurationAction] is executed against the object before
+ * it is returned from the provider.
  *
  * @param configurationAction The [Action] to execute on the newly registered element.
  * @receiver [NamedDomainObjectCollection] where the element is being registered.
@@ -166,9 +166,9 @@ public inline fun <reified T> NamedDomainObjectCollection<T>.whenElementKnown(
 }
 
 /**
- * Invokes a given [Action] when an element is registered in the collection,
- * without triggering its creation or configuration. The given [configurationAction]
- * is executed against the object before it is returned from the provider.
+ * Invokes a given [Action] when an element is registered in the collection, without triggering its
+ * creation or configuration. The given [configurationAction] is executed against the object before
+ * it is returned from the provider.
  *
  * @param configurationAction The [Action] to execute on the newly registered element.
  * @receiver [NamedDomainObjectCollection] where the element is being registered.
@@ -191,9 +191,9 @@ public inline fun <reified T : Any> NamedDomainObjectCollection<T>.whenElementKn
 }
 
 /**
- * Invokes a given [Action] when an element with a specific name is registered
- * in the collection, without triggering its creation or configuration. The given
- * [configurationAction] is executed against the object before it is returned from the provider.
+ * Invokes a given [Action] when an element with a specific name is registered in the collection,
+ * without triggering its creation or configuration. The given [configurationAction] is executed
+ * against the object before it is returned from the provider.
  *
  * @param elementName The name of the element to observe.
  * @param configurationAction The [Action] to execute on the newly registered element.
@@ -214,9 +214,9 @@ public inline fun <reified T> NamedDomainObjectCollection<T>.whenElementRegister
 }
 
 /**
- * Invokes a given [Action] when an element with a specific name and type is registered
- * in the collection, without triggering its creation or configuration. The given
- * [configurationAction] is executed against the object before it is returned from the provider.
+ * Invokes a given [Action] when an element with a specific name and type is registered in the
+ * collection, without triggering its creation or configuration. The given [configurationAction] is
+ * executed against the object before it is returned from the provider.
  *
  * @param elementName The name of the element to observe.
  * @param configurationAction The [Action] to execute on the newly registered element.

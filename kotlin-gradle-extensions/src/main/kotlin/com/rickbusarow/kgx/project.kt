@@ -38,8 +38,8 @@ public fun Project.checkProjectIsRoot(
 }
 
 /**
- * Determines whether the receiver project is the "real" root of this
- * composite build, as opposed to the root projects of included builds.
+ * Determines whether the receiver project is the "real" root of this composite build, as opposed to
+ * the root projects of included builds.
  *
  * @since 0.1.0
  */
@@ -48,8 +48,8 @@ public fun Project.isRealRootProject(): Boolean {
 }
 
 /**
- * Determines whether the receiver project belongs to
- * the root build of a "composite" or "included" build.
+ * Determines whether the receiver project belongs to the root build of a "composite" or "included"
+ * build.
  *
  * A build is considered a "root build" if it has no parent build.
  *
@@ -67,8 +67,8 @@ public val Project.isPartOfRootBuild: Boolean
  *
  * For composite builds, this will return true for the root of each included build.
  *
- * @see com.rickbusarow.kgx.isRealRootProject to check if
- *   the project is the ultimate root of a composite build
+ * @see com.rickbusarow.kgx.isRealRootProject to check if the project is the ultimate root of a
+ *   composite build
  * @since 0.1.0
  */
 public fun Project.isRootProject(): Boolean = this == rootProject
@@ -81,8 +81,8 @@ public fun Project.isRootProject(): Boolean = this == rootProject
 public fun Project.buildDir(): File = layout.buildDirectory.get().asFile
 
 /**
- * Finds all tasks named [taskName] in all projects.
- * Does not throw if there are no tasks with that name.
+ * Finds all tasks named [taskName] in all projects. Does not throw if there are no tasks with that
+ * name.
  *
  * @since 0.1.0
  * @throws IllegalStateException if the project is not the root project
@@ -94,8 +94,8 @@ public fun Project.allProjectsTasksMatchingName(taskName: String): List<TaskColl
 }
 
 /**
- * Finds all tasks named [taskName] in all projects.
- * Does not throw if there are no tasks with that name.
+ * Finds all tasks named [taskName] in all projects. Does not throw if there are no tasks with that
+ * name.
  *
  * @since 0.1.0
  * @throws IllegalStateException if the project is not the root project
@@ -111,8 +111,8 @@ public inline fun <reified T : Task> Project.allProjectsTasksMatchingNameWithTyp
 }
 
 /**
- * Finds all tasks named [taskName] in this project's subprojects.
- * Does not throw if there are no tasks with that name.
+ * Finds all tasks named [taskName] in this project's subprojects. Does not throw if there are no
+ * tasks with that name.
  *
  * @since 0.1.0
  */
@@ -121,8 +121,8 @@ public fun Project.subProjectsTasksMatchingName(taskName: String): List<TaskColl
   subprojects.map { proj -> proj.tasks.matchingName(taskName) }
 
 /**
- * Finds all tasks named [taskName] in this project's subprojects.
- * Does not throw if there are no tasks with that name.
+ * Finds all tasks named [taskName] in this project's subprojects. Does not throw if there are no
+ * tasks with that name.
  *
  * @since 0.1.0
  */

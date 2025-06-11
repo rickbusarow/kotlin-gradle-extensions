@@ -22,10 +22,10 @@ import org.gradle.composite.internal.DefaultIncludedBuild
 import org.gradle.composite.internal.DefaultIncludedBuild.IncludedBuildImpl
 
 /**
- * Look at the root project of an included build, find any task with a
- * matching name, and return it or null. This is an alternative to the standard
- * [IncludedBuild.task][org.gradle.api.initialization.IncludedBuild.task] function in
- * that the standard `task` version will throw an exception if the task is not registered.
+ * Look at the root project of an included build, find any task with a matching name, and return it
+ * or null. This is an alternative to the standard
+ * [IncludedBuild.task][org.gradle.api.initialization.IncludedBuild.task] function in that the
+ * standard `task` version will throw an exception if the task is not registered.
  *
  * Note that this forces the included build to configure.
  *

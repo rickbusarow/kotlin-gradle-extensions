@@ -19,9 +19,9 @@ import org.gradle.api.GradleException
 import org.gradle.api.provider.ProviderFactory
 
 /**
- * Retrieves a system property named [name]. If the property is defined and its value
- * is of type [T], that value is returned. If the property is defined and is not of type
- * [T], an exception is thrown. Returns [defaultValue] if the property is not defined.
+ * Retrieves a system property named [name]. If the property is defined and its value is of type
+ * [T], that value is returned. If the property is defined and is not of type [T], an exception is
+ * thrown. Returns [defaultValue] if the property is not defined.
  *
  * @param name the name of the property to retrieve
  * @param defaultValue the value to return if the property is not defined
@@ -32,9 +32,9 @@ public fun ProviderFactory.getSystemProperty(name: String, defaultValue: String)
   getSystemPropertyOrNull(name) ?: defaultValue
 
 /**
- * Retrieves a system property named [name]. If the property is defined and its value
- * is of type [T], that value is returned. If the property is defined and is not of type
- * [T], an exception is thrown. Returns [defaultValue] if the property is not defined.
+ * Retrieves a system property named [name]. If the property is defined and its value is of type
+ * [T], that value is returned. If the property is defined and is not of type [T], an exception is
+ * thrown. Returns [defaultValue] if the property is not defined.
  *
  * @param name the name of the property to retrieve
  * @param defaultValue the value to return if the property is not defined
@@ -47,9 +47,9 @@ public inline fun ProviderFactory.systemProperty(
 ): String = getSystemPropertyOrNull(name) ?: defaultValue()
 
 /**
- * Retrieves a system property named [name]. If the property is defined and its value
- * is of type [T], that value is returned. If the property is defined and is not of
- * type [T], an exception is thrown. Returns null if the property is not defined.
+ * Retrieves a system property named [name]. If the property is defined and its value is of type
+ * [T], that value is returned. If the property is defined and is not of type [T], an exception is
+ * thrown. Returns null if the property is not defined.
  *
  * @param name the name of the property to retrieve
  * @since 0.1.9

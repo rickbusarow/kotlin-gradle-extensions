@@ -41,9 +41,9 @@ inline fun <reified T> provider(value: Callable<T?>): Provider<T> = DefaultProvi
 inline fun <reified T> property(): Property<T> = DefaultProperty(PropertyHost.NO_OP, T::class.java)
 
 /**
- * Creates a new file if it doesn't already exist, creating parent
- * directories if necessary. If the file already exists, its content will
- * be overwritten. If content is provided, it will be written to the file.
+ * Creates a new file if it doesn't already exist, creating parent directories if necessary. If the
+ * file already exists, its content will be overwritten. If content is provided, it will be written
+ * to the file.
  *
  * @param content The content to be written to the file. Defaults to null.
  * @param overwrite If true, any existing content will be overwritten. Otherwise, nothing is done.
@@ -86,14 +86,14 @@ fun File.makeParentDir(): File =
   }
 
 /**
- * Conditionally applies the provided transform function to the receiver
- * object if the predicate is true, then returns the result of that transform.
- * If the predicate is false, the receiver object itself is returned.
+ * Conditionally applies the provided transform function to the receiver object if the predicate is
+ * true, then returns the result of that transform. If the predicate is false, the receiver object
+ * itself is returned.
  *
  * @param predicate The predicate to determine whether to apply the transform function.
  * @param transform The transform function to apply to the receiver object.
- * @return The result of the transform function if the
- *   predicate is true, or the receiver object itself otherwise.
+ * @return The result of the transform function if the predicate is true, or the receiver object
+ *   itself otherwise.
  * @since 0.1.0
  */
 inline fun <T> T.letIf(

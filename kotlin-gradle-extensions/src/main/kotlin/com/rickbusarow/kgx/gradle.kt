@@ -18,9 +18,9 @@ package com.rickbusarow.kgx
 import org.gradle.api.invocation.Gradle
 
 /**
- * Generates a sequence of parent [Gradle] instances for the receiver [Gradle] instance,
- * starting at the receiver's immediate parent. The sequence will be empty if the
- * receiver is the root build. The sequence ends when it reaches the root build.
+ * Generates a sequence of parent [Gradle] instances for the receiver [Gradle] instance, starting at
+ * the receiver's immediate parent. The sequence will be empty if the receiver is the root build.
+ * The sequence ends when it reaches the root build.
  *
  * @return A [Sequence] of parent [Gradle] instances.
  * @see
@@ -30,8 +30,8 @@ import org.gradle.api.invocation.Gradle
 public fun Gradle.parents(): Sequence<Gradle> = generateSequence(parent) { it.parent }
 
 /**
- * Generates a sequence of the receiver [Gradle] instance and its parents,
- * starting with the receiver. The sequence ends when it reaches the root build.
+ * Generates a sequence of the receiver [Gradle] instance and its parents, starting with the
+ * receiver. The sequence ends when it reaches the root build.
  *
  * @return A [Sequence] of [Gradle] instances including the receiver and its parents.
  * @see

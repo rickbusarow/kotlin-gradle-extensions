@@ -21,8 +21,8 @@ import kotlin.reflect.KProperty
 /**
  * A type-safe wrapper for a domain object name.
  *
- * `S` is the type of the domain object, like [Task][org.gradle.api.Task]
- * or [SourceSet][org.gradle.api.tasks.SourceSet].
+ * `S` is the type of the domain object, like [Task][org.gradle.api.Task] or
+ * [SourceSet][org.gradle.api.tasks.SourceSet].
  *
  * @since 0.1.6
  */

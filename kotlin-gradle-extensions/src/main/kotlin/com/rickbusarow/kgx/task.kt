@@ -29,14 +29,14 @@ import kotlin.reflect.KClass
 /**
  * Alternate syntax for `named { it.matches(regex) }`
  *
- * Returns a collection containing the tasks with names matching the provided
- * filter. The returned collection is live, so that when matching tasks are added
- * to this collection, they are also visible in the filtered collection. This
- * method will NOT cause any pending objects in this container to be realized.
+ * Returns a collection containing the tasks with names matching the provided filter. The returned
+ * collection is live, so that when matching tasks are added to this collection, they are also
+ * visible in the filtered collection. This method will NOT cause any pending objects in this
+ * container to be realized.
  *
  * @param regex tasks with names matching this pattern will be included in the result
- * @return The collection of tasks with names satisfying the filter. Returns
- *   an empty collection if there are no such tasks in this collection.
+ * @return The collection of tasks with names satisfying the filter. Returns an empty collection if
+ *   there are no such tasks in this collection.
  * @since 0.1.12
  */
 public inline fun <reified T : Task> TaskCollection<T>.named(regex: Regex): TaskCollection<T> {
@@ -46,15 +46,15 @@ public inline fun <reified T : Task> TaskCollection<T>.named(regex: Regex): Task
 /**
  * Shorthand for `withType(type).named { it.matches(regex) }`
  *
- * Returns a collection containing the tasks with names matching the provided
- * filter. The returned collection is live, so that when matching tasks are added
- * to this collection, they are also visible in the filtered collection. This
- * method will NOT cause any pending objects in this container to be realized.
+ * Returns a collection containing the tasks with names matching the provided filter. The returned
+ * collection is live, so that when matching tasks are added to this collection, they are also
+ * visible in the filtered collection. This method will NOT cause any pending objects in this
+ * container to be realized.
  *
  * @param regex tasks with names matching this pattern will be included in the result
  * @param type The type of tasks to filter.
- * @return The collection of tasks with names satisfying the filter. Returns
- *   an empty collection if there are no such tasks in this collection.
+ * @return The collection of tasks with names satisfying the filter. Returns an empty collection if
+ *   there are no such tasks in this collection.
  * @since 0.1.12
  */
 public fun <T : Task, R : T> TaskCollection<T>.named(
@@ -67,15 +67,15 @@ public fun <T : Task, R : T> TaskCollection<T>.named(
 /**
  * Shorthand for `withType(type).named { it.matches(regex) }`
  *
- * Returns a collection containing the tasks with names matching the provided
- * filter. The returned collection is live, so that when matching tasks are added
- * to this collection, they are also visible in the filtered collection. This
- * method will NOT cause any pending objects in this container to be realized.
+ * Returns a collection containing the tasks with names matching the provided filter. The returned
+ * collection is live, so that when matching tasks are added to this collection, they are also
+ * visible in the filtered collection. This method will NOT cause any pending objects in this
+ * container to be realized.
  *
  * @param regex tasks with names matching this pattern will be included in the result
  * @param type The type of tasks to filter.
- * @return The collection of tasks with names satisfying the filter. Returns
- *   an empty collection if there are no such tasks in this collection.
+ * @return The collection of tasks with names satisfying the filter. Returns an empty collection if
+ *   there are no such tasks in this collection.
  * @since 0.1.12
  */
 public fun <T : Task, R : T> TaskCollection<T>.named(
@@ -196,12 +196,12 @@ public fun <T : Task> TaskProvider<T>.mustRunAfter(vararg objects: Any): TaskPro
   }
 
 /**
- * Returns a collection containing the objects in this collection of the given
- * type. The returned collection is live, so that when matching objects are later
- * added to this collection, they are also visible in the filtered collection.
+ * Returns a collection containing the objects in this collection of the given type. The returned
+ * collection is live, so that when matching objects are later added to this collection, they are
+ * also visible in the filtered collection.
  *
- * @return The matching objects. Returns an empty collection
- *   if there are no such objects in this collection.
+ * @return The matching objects. Returns an empty collection if there are no such objects in this
+ *   collection.
  * @see [TaskCollection.withType]
  * @since 0.1.0
  */
@@ -346,8 +346,8 @@ public fun <T : Task> TaskContainer.registerOnce(
 )
 
 /**
- * @return the fully qualified name of this task's
- *   type, without any '_Decorated' suffix if one exists
+ * @return the fully qualified name of this task's type, without any '_Decorated' suffix if one
+ *   exists
  * @since 0.1.0
  */
 public fun Task.undecoratedTypeName(): String = javaClass.canonicalName.removeSuffix("_Decorated")
@@ -416,8 +416,8 @@ public inline fun <reified T : Task> T.outputsUpToDateWhen(crossinline predicate
 }
 
 /**
- * Shorthand for `(this as ExtensionAware).extraProperties`, since every
- * [TaskCollection] implementation will implement [ExtensionAware].
+ * Shorthand for `(this as ExtensionAware).extraProperties`, since every [TaskCollection]
+ * implementation will implement [ExtensionAware].
  *
  * @since 0.1.10
  */

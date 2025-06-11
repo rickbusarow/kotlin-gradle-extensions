@@ -47,8 +47,8 @@ public fun IncludedBuild.allProjects(): Set<ProjectInternal> {
 }
 
 /**
- * @return the projects in this included build, or throws
- *   if the [IncludedBuild] is of an unexpected type
+ * @return the projects in this included build, or throws if the [IncludedBuild] is of an unexpected
+ *   type
  * @since 0.1.0
  */
 @InternalGradleApiAccess
@@ -78,8 +78,8 @@ public fun Gradle.allIncludedProjects(): List<ProjectInternal> {
 }
 
 /**
- * Look at the internal modules of an included build, find
- * any tasks with a matching name, and return them all.
+ * Look at the internal modules of an included build, find any tasks with a matching name, and
+ * return them all.
  *
  * Note that this forces the included build to configure.
  *

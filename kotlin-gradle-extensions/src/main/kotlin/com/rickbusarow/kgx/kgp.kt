@@ -33,8 +33,8 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinTarget
 /**
  * Converts the integer value of a Java version to the Gradle DSL version of [JvmTarget].
  *
- * Note this is different from the Kotlin compiler's
- * type at `org.jetbrains.kotlin.config.JvmTarget`.
+ * Note this is different from the Kotlin compiler's type at
+ * `org.jetbrains.kotlin.config.JvmTarget`.
  *
  * @since 0.1.9
  * @throws NullPointerException if KGP doesn't have an enum defined for the provided [targetInt].
@@ -55,16 +55,16 @@ public fun JvmTarget.Companion.fromInt(targetInt: Int): JvmTarget {
 public fun JvmTarget.toInt(): Int = target.substringAfterLast('.').toInt()
 
 /**
- * Applies the provided [ElementInfoAction] to a Kotlin target when
- * it gets registered. This function caters to both single target and
- * multiplatform Kotlin projects by delegating to the appropriate extension.
+ * Applies the provided [ElementInfoAction] to a Kotlin target when it gets registered. This
+ * function caters to both single target and multiplatform Kotlin projects by delegating to the
+ * appropriate extension.
  *
- * For single-target projects, the action is directly applied to the target. For
- * multiplatform projects, the action is handed off to the [KotlinMultiplatformExtension].
+ * For single-target projects, the action is directly applied to the target. For multiplatform
+ * projects, the action is handed off to the [KotlinMultiplatformExtension].
  *
  * @param configurationAction The action to apply to the Kotlin target upon registration.
- * @receiver [KotlinProjectExtension] The Kotlin project extension,
- *   which could be a single-target or multiplatform extension.
+ * @receiver [KotlinProjectExtension] The Kotlin project extension, which could be a single-target
+ *   or multiplatform extension.
  * @since 0.1.5
  */
 @InternalGradleApiAccess
@@ -91,9 +91,9 @@ public fun KotlinProjectExtension.onTargetRegistered(
 }
 
 /**
- * Applies the provided [ElementInfoAction] to a Kotlin target when it gets registered
- * within a multiplatform project. This function leverages the [whenElementKnown]
- * extension to avoid triggering the target's creation or configuration prematurely.
+ * Applies the provided [ElementInfoAction] to a Kotlin target when it gets registered within a
+ * multiplatform project. This function leverages the [whenElementKnown] extension to avoid
+ * triggering the target's creation or configuration prematurely.
  *
  * @param configurationAction The action to apply to the Kotlin target upon registration.
  * @receiver [KotlinMultiplatformExtension] The Kotlin multiplatform project extension.

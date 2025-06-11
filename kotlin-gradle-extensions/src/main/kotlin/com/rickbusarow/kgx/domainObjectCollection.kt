@@ -32,8 +32,8 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 
 /**
- * Invokes this [ElementInfoAction] with the provided element name and
- * value. The type of the element is inferred from the type of the value.
+ * Invokes this [ElementInfoAction] with the provided element name and value. The type of the
+ * element is inferred from the type of the value.
  *
  * @param elementName The name of the element.
  * @param elementValue The value of the element, encapsulated in an [ElementValue].
@@ -48,8 +48,8 @@ public inline operator fun <reified T : Any> ElementInfoAction<T>.invoke(
 }
 
 /**
- * Invokes this [ElementInfoAction] with the provided element name, type and value.
- * This is useful when the type of the element is not the same as the type of the value.
+ * Invokes this [ElementInfoAction] with the provided element name, type and value. This is useful
+ * when the type of the element is not the same as the type of the value.
  *
  * @param elementName The name of the element.
  * @param elementType The type of the element.
@@ -165,14 +165,14 @@ public inline fun <reified S : Any> NamedDomainObjectCollection<S>.named(
 /**
  * Alternate syntax for `named { it.matches(regex) }`
  *
- * Returns a collection containing the objects with names matching the provided
- * filter. The returned collection is live, so that when matching objects are
- * added to this collection, they are also visible in the filtered collection.
- * This method will NOT cause any pending objects in this container to be realized.
+ * Returns a collection containing the objects with names matching the provided filter. The returned
+ * collection is live, so that when matching objects are added to this collection, they are also
+ * visible in the filtered collection. This method will NOT cause any pending objects in this
+ * container to be realized.
  *
  * @param regex objects with names matching this pattern will be included in the result
- * @return The collection of objects with names satisfying the filter. Returns
- *   an empty collection if there are no such objects in this collection.
+ * @return The collection of objects with names satisfying the filter. Returns an empty collection
+ *   if there are no such objects in this collection.
  * @since 0.1.12
  */
 @Incubating
@@ -186,15 +186,15 @@ public inline fun <reified T : Any> NamedDomainObjectCollection<T>.named(
 /**
  * Shorthand for `withType(type).named { it.matches(regex) }`
  *
- * Returns a collection containing the objects with names matching the provided
- * filter. The returned collection is live, so that when matching objects are
- * added to this collection, they are also visible in the filtered collection.
- * This method will NOT cause any pending objects in this container to be realized.
+ * Returns a collection containing the objects with names matching the provided filter. The returned
+ * collection is live, so that when matching objects are added to this collection, they are also
+ * visible in the filtered collection. This method will NOT cause any pending objects in this
+ * container to be realized.
  *
  * @param regex objects with names matching this pattern will be included in the result
  * @param type The type of objects to filter.
- * @return The collection of objects with names satisfying the filter. Returns
- *   an empty collection if there are no such objects in this collection.
+ * @return The collection of objects with names satisfying the filter. Returns an empty collection
+ *   if there are no such objects in this collection.
  * @since 0.1.12
  */
 @Incubating
@@ -209,15 +209,15 @@ public fun <T : Any, R : T> NamedDomainObjectCollection<T>.named(
 /**
  * Shorthand for `withType(type).named { it.matches(regex) }`
  *
- * Returns a collection containing the objects with names matching the provided
- * filter. The returned collection is live, so that when matching objects are
- * added to this collection, they are also visible in the filtered collection.
- * This method will NOT cause any pending objects in this container to be realized.
+ * Returns a collection containing the objects with names matching the provided filter. The returned
+ * collection is live, so that when matching objects are added to this collection, they are also
+ * visible in the filtered collection. This method will NOT cause any pending objects in this
+ * container to be realized.
  *
  * @param regex objects with names matching this pattern will be included in the result
  * @param type The type of objects to filter.
- * @return The collection of objects with names satisfying the filter. Returns
- *   an empty collection if there are no such objects in this collection.
+ * @return The collection of objects with names satisfying the filter. Returns an empty collection
+ *   if there are no such objects in this collection.
  * @since 0.1.12
  */
 @Incubating
@@ -230,12 +230,12 @@ public fun <T : Any, R : T> NamedDomainObjectCollection<T>.named(
 }
 
 /**
- * Returns a collection containing the objects in this collection of the
- * given type. Equivalent to calling `withType(type).all(configureAction)`.
+ * Returns a collection containing the objects in this collection of the given type. Equivalent to
+ * calling `withType(type).all(configureAction)`.
  *
  * @param configuration The action to execute for each object in the resulting collection.
- * @return The matching objects. Returns an empty collection
- *   if there are no such objects in this collection.
+ * @return The matching objects. Returns an empty collection if there are no such objects in this
+ *   collection.
  * @see DomainObjectCollection.withType
  * @since 0.1.0
  */
@@ -244,12 +244,12 @@ public inline fun <reified S : Any> DomainObjectCollection<in S>.withType(
 ): DomainObjectCollection<S>? = withType(S::class.java, configuration)
 
 /**
- * Returns a collection containing the objects in this collection of the given
- * type. The returned collection is live, so that when matching objects are later
- * added to this collection, they are also visible in the filtered collection.
+ * Returns a collection containing the objects in this collection of the given type. The returned
+ * collection is live, so that when matching objects are later added to this collection, they are
+ * also visible in the filtered collection.
  *
- * @return The matching objects. Returns an empty collection
- *   if there are no such objects in this collection.
+ * @return The matching objects. Returns an empty collection if there are no such objects in this
+ *   collection.
  * @see DomainObjectCollection.withType
  * @since 0.1.0
  */
@@ -275,8 +275,8 @@ public fun <T> NamedDomainObjectContainer<T>.registerOnce(
   }
 
 /**
- * Allows a [NamedDomainObjectCollection] to be used
- * as a property delegate, using the `KProperty` name.
+ * Allows a [NamedDomainObjectCollection] to be used as a property delegate, using the `KProperty`
+ * name.
  *
  * @since 0.1.12
  */

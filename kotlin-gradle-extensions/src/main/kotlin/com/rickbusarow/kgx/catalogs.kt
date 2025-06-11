@@ -81,8 +81,8 @@ public fun VersionCatalog.library(alias: String): Provider<MinimalExternalModule
 }
 
 /**
- * A property delegate for accessing a library from the
- * receiver catalog, using the property name as the alias.
+ * A property delegate for accessing a library from the receiver catalog, using the property name as
+ * the alias.
  *
  * ex:
  * ```
@@ -113,8 +113,8 @@ public fun VersionCatalog.version(alias: String): String {
 }
 
 /**
- * A property delegate for accessing a version from the
- * receiver catalog, using the property name as the alias.
+ * A property delegate for accessing a version from the receiver catalog, using the property name as
+ * the alias.
  *
  * ex:
  * ```
@@ -149,8 +149,8 @@ public fun VersionCatalog.pluginId(alias: String): String {
 }
 
 /**
- * A property delegate for accessing a plugin ID from the
- * receiver catalog, using the property name as the alias.
+ * A property delegate for accessing a plugin ID from the receiver catalog, using the property name
+ * as the alias.
  *
  * ex:
  * ```

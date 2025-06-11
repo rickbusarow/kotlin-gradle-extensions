@@ -31,10 +31,10 @@ import com.rickbusarow.kgx.names.ConfigurationName.Companion.runtimeOnlyConfig a
 /**
  * Wraps the unqualified, simple name of a `SourceSet` object, like `main` or `debug`.
  *
- * Note that the bound on this name is `Any`, not `SourceSet`, because
- * the java [SourceSet][org.gradle.api.tasks.SourceSet] and kotlin
- * [KotlinSourceSet][org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet]
- * classes do not share a common interface.
+ * Note that the bound on this name is `Any`, not `SourceSet`, because the java
+ * [SourceSet][org.gradle.api.tasks.SourceSet] and kotlin
+ * [KotlinSourceSet][org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet] classes do not share a
+ * common interface.
  *
  * @property value the name
  * @since 0.1.6
@@ -141,8 +141,8 @@ public value class SourceSetName(
     public fun String.asSourceSetName(): SourceSetName = SourceSetName(this)
 
     /**
-     * @return true if this [SourceSetName] is a testFixtures
-     *   source set, such as `testFixtures` or `testFixturesDebug`
+     * @return true if this [SourceSetName] is a testFixtures source set, such as `testFixtures` or
+     *   `testFixturesDebug`
      * @since 0.1.6
      */
     public fun SourceSetName.isTestFixtures(): Boolean =
@@ -155,8 +155,8 @@ public value class SourceSetName(
     public fun SourceSetName.isMain(): Boolean = this == main
 
     /**
-     * Removes [prefix] from the receiver [SourceSetName] and returns
-     * the result. The first letter of the result is decapitalized.
+     * Removes [prefix] from the receiver [SourceSetName] and returns the result. The first letter
+     * of the result is decapitalized.
      *
      * @since 0.1.6
      */
@@ -167,8 +167,8 @@ public value class SourceSetName(
         .asSourceSetName()
 
     /**
-     * Removes [prefix] from the receiver [SourceSetName] and returns
-     * the result. The first letter of the result is decapitalized.
+     * Removes [prefix] from the receiver [SourceSetName] and returns the result. The first letter
+     * of the result is decapitalized.
      *
      * @since 0.1.6
      */
@@ -189,8 +189,8 @@ public value class SourceSetName(
       hasPrefix(prefix.value)
 
     /**
-     * Adds [prefix] to the receiver [SourceSetName] and returns the
-     * result. The first letter of the original name is capitalized.
+     * Adds [prefix] to the receiver [SourceSetName] and returns the result. The first letter of the
+     * original name is capitalized.
      *
      * @since 0.1.6
      */
@@ -215,8 +215,8 @@ public value class SourceSetName(
       removeSuffix(suffix.value.capitalize())
 
     /**
-     * Adds [suffix] to the receiver [SourceSetName] and returns the
-     * result. The first letter of the new suffix name is capitalized.
+     * Adds [suffix] to the receiver [SourceSetName] and returns the result. The first letter of the
+     * new suffix name is capitalized.
      *
      * @since 0.1.6
      */
@@ -241,8 +241,8 @@ public value class SourceSetName(
       value.plus(suffix.value.capitalize()).asConfigurationName()
 
     /**
-     * Adds [prefix] to the receiver [SourceSetName] and returns the result
-     * as a [TaskName]. The first letter of the original name is capitalized.
+     * Adds [prefix] to the receiver [SourceSetName] and returns the result as a [TaskName]. The
+     * first letter of the original name is capitalized.
      *
      * @since 0.1.6
      */
@@ -250,8 +250,8 @@ public value class SourceSetName(
       prefix.value.plus(value.capitalize()).asTaskName()
 
     /**
-     * Adds [suffix] to the receiver [SourceSetName] and returns the result as
-     * a [TaskName]. The first letter of the new suffix name is capitalized.
+     * Adds [suffix] to the receiver [SourceSetName] and returns the result as a [TaskName]. The
+     * first letter of the new suffix name is capitalized.
      *
      * @since 0.1.6
      */
@@ -259,8 +259,8 @@ public value class SourceSetName(
       value.plus(suffix.value.capitalize()).asTaskName()
 
     /**
-     * Adds [prefix] to the receiver [SourceSetName] and returns the result as
-     * a [SourceSetName]. The first letter of the original name is capitalized.
+     * Adds [prefix] to the receiver [SourceSetName] and returns the result as a [SourceSetName].
+     * The first letter of the original name is capitalized.
      *
      * @since 0.1.6
      */
@@ -268,8 +268,8 @@ public value class SourceSetName(
       prefix.value.plus(value.capitalize()).asSourceSetName()
 
     /**
-     * Adds [suffix] to the receiver [SourceSetName] and returns the result as a
-     * [SourceSetName]. The first letter of the new suffix name is capitalized.
+     * Adds [suffix] to the receiver [SourceSetName] and returns the result as a [SourceSetName].
+     * The first letter of the new suffix name is capitalized.
      *
      * @since 0.1.6
      */
@@ -287,8 +287,8 @@ public value class SourceSetName(
     public fun SourceSetName.apiConfig(): ConfigurationName = configApiConfig()
 
     /**
-     * @return the 'api' name for this source set, such as
-     *   `compileOnly`,`compileOnlyDebug`, or `compileOnlyTest`
+     * @return the 'api' name for this source set, such as `compileOnly`,`compileOnlyDebug`, or
+     *   `compileOnlyTest`
      * @since 0.1.6
      */
     @Deprecated(
@@ -301,8 +301,8 @@ public value class SourceSetName(
     public fun SourceSetName.compileOnlyConfig(): ConfigurationName = configCompileOnlyConfig()
 
     /**
-     * @return the 'implementation' name for this source set, such as
-     *   `implementation`, `debugImplementation`, or `commonMainImplementation`
+     * @return the 'implementation' name for this source set, such as `implementation`,
+     *   `debugImplementation`, or `commonMainImplementation`
      * @since 0.1.6
      */
     @Deprecated(
@@ -316,8 +316,8 @@ public value class SourceSetName(
       configImplementationConfig()
 
     /**
-     * @return the 'runtimeOnly' name for this source set, such as
-     *   `runtimeOnly`, `runtimeOnlyTest`, or `runtimeOnlyAndroidTest`
+     * @return the 'runtimeOnly' name for this source set, such as `runtimeOnly`, `runtimeOnlyTest`,
+     *   or `runtimeOnlyAndroidTest`
      * @since 0.1.6
      */
     @Deprecated(
@@ -343,8 +343,8 @@ public value class SourceSetName(
     public fun SourceSetName.kaptConfig(): ConfigurationName = configKaptConfig()
 
     /**
-     * @return the 'anvil' name for this source set, such
-     *   as `anvil`, `anvilTest`, or `anvilAndroidTest`
+     * @return the 'anvil' name for this source set, such as `anvil`, `anvilTest`, or
+     *   `anvilAndroidTest`
      * @since 0.1.6
      */
     @Deprecated(
