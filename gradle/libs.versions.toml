@@ -1,12 +1,7 @@
 [versions]
-jdk = "11" # the jdk used to build the project
-jvmTarget = "1.8" # the jdk used in packaging
-jvmTargetBuildLogic = "11" # the jdk used in packaging
 
 kotlin-gradle = "2.1.21"
 kotlin-libraries = "2.1.21"
-
-kgx-dev = "0.1.13-SNAPSHOT"
 
 benManes-versions = "0.52.0"
 breadmoirai-github-release = "2.5.2"
@@ -19,7 +14,6 @@ dropbox-dependencyGuard = "0.5.0"
 jUnit5 = "5.13.1"
 jUnit-platform = "1.13.1"
 kotest = "5.9.1"
-kotlinApi = "1.7"
 kotlinx-binaryCompatibility = "0.17.0"
 kotlinx-serialization = "1.8.1"
 ktlint-lib = "1.0.1"
@@ -30,6 +24,7 @@ rickBusarow-kase = "0.12.0"
 rickBusarow-kgx = "0.1.12"
 rickBusarow-ktlint = "0.2.2"
 rickBusarow-ktrules = "1.5.0"
+rickBusarow-mahout = "0.1.0-SNAPSHOT"
 rickBusarow-moduleCheck = "0.12.5"
 vanniktech-publish = "0.32.0"
 
@@ -102,5 +97,6 @@ rickBusarow-kase-gradle-dsl = { module = "com.rickbusarow.kase:kase-gradle-dsl",
 rickBusarow-kgx = { module = "com.rickbusarow.kgx:kotlin-gradle-extensions", version.ref = "rickBusarow-kgx" }
 rickBusarow-ktlint = { module = "com.rickbusarow.ktlint:ktlint-gradle-plugin", version.ref = "rickBusarow-ktlint" }
 rickBusarow-ktrules = { module = "com.rickbusarow.ktrules:ktrules", version.ref = "rickBusarow-ktrules" }
+rickBusarow-mahout-gradle-plugin = { module = "com.rickbusarow.mahout:mahout-gradle-plugin", version.ref = "rickBusarow-mahout" }
 
 vanniktech-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "vanniktech-publish" }

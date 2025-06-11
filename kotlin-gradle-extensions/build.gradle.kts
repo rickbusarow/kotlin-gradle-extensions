@@ -13,48 +13,48 @@
  * limitations under the License.
  */
 
-import builds.VERSION_NAME
-import com.github.gmazzo.buildconfig.BuildConfigTask
-
 plugins {
-  id("module")
-  id("builds.gradle-tests")
+  id("com.rickbusarow.mahout.kotlin-jvm-module")
+  id("com.rickbusarow.mahout.gradle-test")
   alias(libs.plugins.buildconfig)
 }
 
 val artifactId = "kotlin-gradle-extensions"
 
-module {
-  published(
-    artifactId = artifactId,
-    pomDescription = "Common utilities for Gradle"
-  )
+mahout {
+  publishing {
+    publishMaven(
+      artifactId = artifactId,
+      pomDescription = "Common utilities for Gradle"
+    )
+  }
+  kotlin {
+    explicitApi = true
+  }
 }
 
 buildConfig {
 
   this@buildConfig.sourceSets.named(java.sourceSets.gradleTest.name) {
 
-    packageName(builds.GROUP)
+    packageName(mahoutProperties.group.get())
     className("BuildConfig")
 
     buildConfigField(
-      type = "java.io.File",
       name = "localBuildM2Dir",
-      value = rootProject.layout.buildDirectory.dir("m2").map { "File(\"${it}\")" }
+      value = rootProject.layout.buildDirectory.dir("m2").map { it.asFile }
     )
-    buildConfigField(type = "String", name = "version", value = VERSION_NAME)
+    buildConfigField(name = "version", value = mahoutProperties.versionName)
+
     buildConfigField(
       name = "mavenArtifact",
-      value = provider { "${builds.GROUP}:$artifactId:${VERSION_NAME}" }
+      value = mahoutProperties.group.zip(mahoutProperties.versionName) { group, version ->
+        "$group:$artifactId:$version"
+      }
     )
-    buildConfigField(name = "kotlinGradle", value = libs.versions.kotlin.gradle.get())
-    buildConfigField(name = "kotlinLibraries", value = libs.versions.kotlin.libraries.get())
+    buildConfigField(name = "kotlinGradle", value = libs.versions.kotlin.gradle)
+    buildConfigField(name = "kotlinLibraries", value = libs.versions.kotlin.libraries)
   }
-}
-
-rootProject.tasks.named("prepareKotlinBuildScriptModel") {
-  dependsOn(tasks.withType(BuildConfigTask::class.java))
 }
 
 dependencies {
@@ -65,8 +65,6 @@ dependencies {
 
   compileOnly(libs.kotlin.gradle.plugin)
   compileOnly(libs.kotlin.gradle.plugin.api)
-
-  gradleTestImplementation(gradleTestKit())
 
   gradleTestImplementation(libs.junit.jupiter)
   gradleTestImplementation(libs.junit.jupiter.api)

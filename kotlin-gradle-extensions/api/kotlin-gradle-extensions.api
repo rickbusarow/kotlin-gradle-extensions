@@ -178,6 +178,11 @@ public final class com/rickbusarow/kgx/PluginContainerKt {
 	public static final fun withSigningPlugin (Lorg/gradle/api/plugins/PluginContainer;Lorg/gradle/api/Action;)V
 }
 
+public final class com/rickbusarow/kgx/PluginContainerKt$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
+}
+
 public final class com/rickbusarow/kgx/PluginManagerKt {
 	public static final fun withAnyPlugin (Lorg/gradle/api/plugins/PluginManager;[Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public static final fun withApplicationPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
@@ -224,6 +229,11 @@ public final class com/rickbusarow/kgx/PluginManagerKt {
 	public static final fun withPrecompiledGroovyPluginsPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
 	public static final fun withSigningPlugin (Lorg/gradle/api/plugins/PluginManager;Lkotlin/jvm/functions/Function1;)V
 	public static final fun withSigningPlugin (Lorg/gradle/api/plugins/PluginManager;Lorg/gradle/api/Action;)V
+}
+
+public final class com/rickbusarow/kgx/PluginManagerKt$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
 public final class com/rickbusarow/kgx/ProjectKt {
@@ -280,10 +290,20 @@ public final class com/rickbusarow/kgx/TaskKt {
 	public static final fun undecoratedTypeName (Lorg/gradle/api/Task;)Ljava/lang/String;
 }
 
+public final class com/rickbusarow/kgx/TaskKt$sam$i$org_gradle_api_specs_Spec$0 : org/gradle/api/specs/Spec {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun isSatisfiedBy (Ljava/lang/Object;)Z
+}
+
 public final class com/rickbusarow/kgx/internal/DomainObjectCollectionInternalKt {
 	public static final fun hasRealized (Lorg/gradle/api/NamedDomainObjectCollection;Ljava/lang/String;)Z
 	public static final fun invoke (Lcom/rickbusarow/kgx/internal/ElementInfoAction;Ljava/lang/String;Ljava/lang/Class;Lcom/rickbusarow/kgx/internal/ElementInfoAction$ElementValue;)V
 	public static final fun isRealized (Lorg/gradle/api/NamedDomainObjectProvider;)Z
+}
+
+public final class com/rickbusarow/kgx/internal/DomainObjectCollectionInternalKt$sam$i$org_gradle_api_Action$0 : org/gradle/api/Action {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final synthetic fun execute (Ljava/lang/Object;)V
 }
 
 public abstract interface class com/rickbusarow/kgx/internal/ElementInfoAction : org/gradle/api/Action {

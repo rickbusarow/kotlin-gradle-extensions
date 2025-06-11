@@ -14,14 +14,16 @@
  */
 
 plugins {
-  id("module")
+  id("com.rickbusarow.mahout.kotlin-jvm-module")
 }
 
-module {
-  published(
-    artifactId = "names",
-    pomDescription = "Type-safe names for Gradle domain objects"
-  )
+mahout {
+  publishing {
+    publishMaven(
+      artifactId = "names",
+      pomDescription = "Type-safe names for Gradle domain objects"
+    )
+  }
 }
 
 dependencies {

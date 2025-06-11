@@ -13,24 +13,30 @@
  * limitations under the License.
  */
 
-import builds.GROUP
+buildscript {
+  dependencies {
+    classpath(libs.rickBusarow.mahout.gradle.plugin)
+  }
+}
 
 plugins {
-  id("root")
   alias(libs.plugins.doks)
+  alias(libs.plugins.kotlin.jvm) apply false
 }
+
+apply(plugin = "com.rickbusarow.mahout.root")
 
 doks {
   dokSet {
     docs("README.md", "CHANGELOG.md")
 
     rule("maven-with-version") {
-      regex = maven(GROUP)
+      regex = maven(mahoutProperties.group.get())
       replacement = "$1:$2:${libs.versions.rickBusarow.kgx.get().escapeReplacement()}"
     }
     rule("kgx-group") {
       regex = "com\\.(?:rickbusarow|square|squareup)\\.kgx"
-      replacement = GROUP
+      replacement = mahoutProperties.group.get()
     }
   }
 }

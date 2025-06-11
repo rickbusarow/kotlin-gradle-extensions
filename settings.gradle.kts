@@ -13,22 +13,21 @@
  * limitations under the License.
  */
 
+rootProject.name = "kgx"
+
 pluginManagement {
-  val allowMavenLocal = providers
-    .gradleProperty("kgx.allow-maven-local")
-    .orNull
-    .toBoolean()
 
   repositories {
-    if (allowMavenLocal) {
-      logger.lifecycle("${rootProject.name} -- allowing mavenLocal for plugins")
-      mavenLocal()
+    maven {
+      url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+      content {
+        includeGroup("com.rickbusarow.mahout")
+      }
     }
     gradlePluginPortal()
     mavenCentral()
     google()
   }
-  includeBuild("build-logic")
 }
 
 plugins {
@@ -72,26 +71,16 @@ develocity {
   }
 }
 
-val allowMavenLocal = providers
-  .gradleProperty("kgx.allow-maven-local")
-  .orNull
-  .toBoolean()
-
 dependencyResolutionManagement {
   @Suppress("UnstableApiUsage")
   repositories {
-    if (allowMavenLocal) {
-      logger.lifecycle("${rootProject.name} -- allowing mavenLocal for dependencies")
-      mavenLocal()
-    }
-    google()
     mavenCentral()
+    gradlePluginPortal()
+    google()
   }
 }
 
-rootProject.name = "kgx"
-
 include(
-  ":names",
-  ":kotlin-gradle-extensions"
+  ":kotlin-gradle-extensions",
+  ":names"
 )

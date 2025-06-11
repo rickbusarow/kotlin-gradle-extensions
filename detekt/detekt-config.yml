@@ -7,12 +7,29 @@ build:
   # style: 1
   # comments: 1
 
+# These values aren't technically part of the Detekt config,
+# but the anchors (`&______`) define the common values used elsewhere.
+# The property name (`______:`) can be anything.
+# https://yaml.org/spec/1.2-old/spec.html#id2785586
+anchors:
+  gradleFiles: &gradleFiles
+    - "**/*.gradle.kts"
+  settingsGeneratorFolders: &settingsGeneratorFolders
+    - "**/mahout-settings-generator/**"
+  settingsGeneratorFoldersAndGradleFiles:
+    &settingsGeneratorFoldersAndGradleFiles
+    - "**/*.gradle.kts"
+    - "**/mahout-settings-generator/**"
+  testFolders: &testFolders
+    - "**/test/**"
+    - "**/gradleTest/**"
+
 config:
   validation: true
   warningsAsErrors: false
   checkExhaustiveness: true
   # when writing own rules with new properties, exclude the property path e.g.: 'my_rule_set,.*>.*>[my_property]'
-  excludes: ""
+  excludes: anchors
 
 processors:
   active: true
@@ -52,7 +69,7 @@ output-reports:
 
 comments:
   active: true
-  excludes: ["**/build-logic/**"]
+  excludes: *settingsGeneratorFoldersAndGradleFiles
   AbsentOrWrongFileLicense:
     active: true
     licenseTemplateFile: "license.template"
@@ -68,18 +85,7 @@ comments:
     endOfSentenceFormat: '([.?!][ \t\n\r\f<])|([.?!:]$)'
   KDocReferencesNonPublicProperty:
     active: false
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
   OutdatedDocumentation:
     active: true
     matchTypeParameters: false
@@ -87,18 +93,7 @@ comments:
     allowParamOnConstructorProperties: false
   UndocumentedPublicClass:
     active: true
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
     searchInNestedClass: true
     searchInInnerClass: true
     searchInInnerObject: false
@@ -109,36 +104,15 @@ comments:
       - "dagger.Module"
   UndocumentedPublicFunction:
     active: true
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
     searchProtectedFunction: false
     ignoreAnnotated:
       - "dagger.Binds"
       - "dagger.Module"
+      - "org.gradle.api.tasks.TaskAction"
   UndocumentedPublicProperty:
     active: true
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
     searchProtectedProperty: false
     ignoreAnnotated:
       - "dagger.Binds"
@@ -159,7 +133,7 @@ complexity:
     includePrivateDeclarations: false
     ignoreOverloaded: false
   CyclomaticComplexMethod:
-    active: true
+    active: false
     threshold: 15
     ignoreSingleWhenExpression: true
     ignoreSimpleWhenEntries: true
@@ -180,16 +154,7 @@ complexity:
   LargeClass:
     active: true
     threshold: 600
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
   LongMethod:
     active: false
     threshold: 60
@@ -223,36 +188,14 @@ complexity:
     active: false
   StringLiteralDuplication:
     active: false
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
     threshold: 3
     ignoreAnnotation: true
     excludeStringsWithLessThan5Characters: true
     ignoreStringsRegex: "$^"
   TooManyFunctions:
     active: false
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
     thresholdInFiles: 13
     thresholdInClasses: 13
     thresholdInInterfaces: 13
@@ -329,18 +272,7 @@ exceptions:
       - "toString"
   InstanceOfCheckForException:
     active: true
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
   NotImplementedDeclaration:
     active: false
   ObjectExtendsThrowable:
@@ -366,18 +298,7 @@ exceptions:
     active: false
   ThrowingExceptionsWithoutMessageOrCause:
     active: true
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
     exceptions:
       - "ArrayIndexOutOfBoundsException"
       - "Exception"
@@ -392,18 +313,7 @@ exceptions:
     active: true
   TooGenericExceptionCaught:
     active: true
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
     exceptionNames:
       - "ArrayIndexOutOfBoundsException"
       - "Error"
@@ -430,16 +340,7 @@ naming:
   ClassNaming:
     active: true
     classPattern: "[A-Z][a-zA-Z0-9]*"
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
   ConstructorParameterNaming:
     active: true
     parameterPattern: "[a-z][A-Za-z0-9]*"
@@ -459,18 +360,7 @@ naming:
     minimumFunctionNameLength: 3
   FunctionNaming:
     active: true
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
     functionPattern: "[a-zA-Z][a-zA-Z0-9]*|`.*`"
     excludeClassPattern: "$^"
   FunctionParameterNaming:
@@ -517,16 +407,7 @@ naming:
     active: true
     variablePattern: "[a-z][A-Za-z0-9]*"
     privateVariablePattern: "(_)?[a-z][A-Za-z0-9]*"
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
     excludeClassPattern: "$^"
 
 performance:
@@ -538,32 +419,10 @@ performance:
     threshold: 3
   ForEachOnRange:
     active: true
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
   SpreadOperator:
     active: false
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
   UnnecessaryPartOfBinaryExpression:
     active: false
   UnnecessaryTemporaryInstantiation:
@@ -636,18 +495,7 @@ potential-bugs:
     active: true
   LateinitUsage:
     active: false
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
     ignoreOnClassesPattern: ""
   MapGetWithNotNullAssertionOperator:
     active: true
@@ -674,18 +522,7 @@ potential-bugs:
     active: true
   UnsafeCallOnNullableType:
     active: true
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
   UnsafeCast:
     active: true
   UnusedUnaryOperator:
@@ -812,19 +649,7 @@ style:
     maxJumpCount: 1
   MagicNumber:
     active: true
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/androidUnitTest/**",
-        "**/androidInstrumentedTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-        "**/*.kts",
-      ]
+    excludes: *testFolders
     ignoreNumbers:
       - "-1"
       - "0"
@@ -848,16 +673,7 @@ style:
   MaxLineLength:
     active: true
     maxLineLength: 120
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
     excludePackageStatements: true
     excludeImportStatements: true
     excludeCommentStatements: true
@@ -1011,34 +827,15 @@ style:
     ignoreLateinitVar: false
   WildcardImport:
     active: true
-    excludes:
-      [
-        "**/test/**",
-        "**/androidTest/**",
-        "**/commonTest/**",
-        "**/jvmTest/**",
-        "**/jsTest/**",
-        "**/gradleTest/**",
-        "**/iosTest/**",
-      ]
+    excludes: *testFolders
     excludeImports:
       - "java.util.*"
 
 libraries:
   active: true
-  excludes:
-    [
-      "**/build-logic/**",
-      "**/test/**",
-      "**/androidTest/**",
-      "**/commonTest/**",
-      "**/jvmTest/**",
-      "**/jsTest/**",
-      "**/gradleTest/**",
-      "**/iosTest/**",
-    ]
+  excludes: *testFolders
   ForbiddenPublicDataClass:
-    active: false
+    active: true
     ignorePackages:
       - "*.internal"
       - "*.internal.*"
