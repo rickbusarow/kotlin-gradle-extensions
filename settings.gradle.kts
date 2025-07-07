@@ -19,9 +19,10 @@ pluginManagement {
 
   repositories {
     maven {
-      url = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+      url = uri("https://central.sonatype.com/repository/maven-snapshots/")
       content {
-        includeGroup("com.rickbusarow.mahout")
+        @Suppress("UnstableApiUsage")
+        includeGroupAndSubgroups("com.rickbusarow.mahout")
       }
     }
     gradlePluginPortal()
@@ -32,6 +33,7 @@ pluginManagement {
 
 plugins {
   id("com.gradle.develocity") version "4.0.2"
+  id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
 val inGHA = !System.getenv("GITHUB_ACTIONS").isNullOrEmpty()
