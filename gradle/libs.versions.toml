@@ -9,7 +9,7 @@ jUnit-platform = "1.13.3"
 kotest = "5.9.1"
 ktlint-lib = "1.7.1"
 rickBusarow-doks = "0.3.0"
-rickBusarow-kase = "0.12.1"
+rickBusarow-kase = "0.12.2"
 rickBusarow-kgx = "0.1.12"
 rickBusarow-mahout = "0.1.0-SNAPSHOT"
 
