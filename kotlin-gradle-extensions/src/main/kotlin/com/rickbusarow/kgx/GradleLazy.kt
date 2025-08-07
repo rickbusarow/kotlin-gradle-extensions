@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 Rick Busarow
+ * Copyright (C) 2025 Rick Busarow
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -26,8 +26,14 @@ package com.rickbusarow.kgx
  */
 public fun <T : Any?> gradleLazy(
   mode: LazyThreadSafetyMode = LazyThreadSafetyMode.SYNCHRONIZED,
-  initializer: () -> T
+  initializer: SerializableLambda<T>
 ): GradleLazy<T> = GradleLazy(mode, initializer)
+
+/**
+ * An explicitly Serializable lambda for use with [GradleLazy], since lamdbas aren't serializable by
+ * default in Kotlin 2.0+.
+ */
+public fun interface SerializableLambda<T> : () -> T, java.io.Serializable
 
 /**
  * A [Lazy] implementation that is safe to use in Gradle build scripts. It serializes the
@@ -37,7 +43,7 @@ public fun <T : Any?> gradleLazy(
  */
 public class GradleLazy<T : Any?>(
   private val mode: LazyThreadSafetyMode,
-  private val initializer: () -> T
+  private val initializer: SerializableLambda<T>
 ) : Lazy<T>, java.io.Serializable {
 
   @Transient
