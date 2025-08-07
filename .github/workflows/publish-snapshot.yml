@@ -6,9 +6,6 @@ on:
     branches:
       - main
 
-env:
-  gradleArgs: "-Dorg.gradle.jvmargs=-Xmx10g -Dfile.encoding=UTF-8 -XX:+UseParallelGC"
-
 jobs:
   publish-snapshot:
     runs-on: macos-latest
@@ -17,24 +14,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4
-        with:
-          distribution: "zulu"
-          java-version: "11"
 
-      # break the publishing builds down a little into smaller steps
-      # because gradle-build-action's caching is all-or-nothing.  If the full publish task
-      # takes too long and times out, no cache is retained.
-
-      - name: Compile Kotlin
-        uses: gradle/gradle-build-action@ac2d340dc04d9e1113182899e983b5400c17cda1 # v3
+      - name: Check
+        uses: rickbusarow/actions/gradle-task@c602f8da97f00279c6e77d3f25cbedcbf24ef936 # v1
         with:
-          arguments: compileKotlin "${{ env.gradleArgs }}"
+          task: check
+          write-cache-key: main-build-artifacts
+          restore-cache-key: main-build-artifacts
 
       - name: Publish Snapshots
-        uses: gradle/gradle-build-action@ac2d340dc04d9e1113182899e983b5400c17cda1 # v3
+        uses: rickbusarow/actions/gradle-task@c602f8da97f00279c6e77d3f25cbedcbf24ef936 # v1
         with:
-          arguments: publish "${{ env.gradleArgs }}"
+          task: publish
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
