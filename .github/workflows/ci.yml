@@ -238,6 +238,7 @@ jobs:
       - ktlint
       - unit-tests-ubuntu
       - unit-tests-windows
+      - gradle-tests-ubuntu
 
     steps:
       - name: require that all other jobs have passed

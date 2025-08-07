@@ -40,11 +40,10 @@ abstract class KgxGradleTest(
   companion object {
     val gradleVersions = setOf(
       "8.4",
-      "8.5",
       GradleVersion.current().version
     ).map { GradleDependencyVersion(it) }
+
     val kotlinVersions = setOf(
-      "1.8.22",
       "1.9.22",
       KotlinVersion.CURRENT.toString()
     ).map { KotlinDependencyVersion(it) }

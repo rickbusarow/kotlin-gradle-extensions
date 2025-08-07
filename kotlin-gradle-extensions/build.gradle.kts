@@ -31,6 +31,7 @@ mahout {
   kotlin {
     explicitApi = true
   }
+  gradleTests()
 }
 
 buildConfig {
@@ -40,11 +41,7 @@ buildConfig {
     packageName(mahoutProperties.group.get())
     className("BuildConfig")
 
-    buildConfigField(
-      name = "localBuildM2Dir",
-      value = rootProject.layout.buildDirectory.dir("gradle-test-m2")
-        .map { it.asFile.relativeToOrSelf(projectDir) }
-    )
+    buildConfigField("localBuildM2Dir", mahout.gradleTests.gradleTestM2Dir.map { it.asFile })
     buildConfigField(name = "version", value = mahoutProperties.versionName)
 
     buildConfigField(
