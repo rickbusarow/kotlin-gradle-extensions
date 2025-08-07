@@ -7,7 +7,6 @@ buildconfig = "5.6.7"
 jUnit5 = "5.13.4"
 jUnit-platform = "1.13.4"
 kotest = "5.9.1"
-ktlint-lib = "1.7.1"
 rickBusarow-doks = "0.3.0"
 rickBusarow-kase = "0.12.2"
 rickBusarow-kgx = "0.1.12"
@@ -23,14 +22,12 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-gradle" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "jUnit5" }
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "jUnit5" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "jUnit-platform" }
+
 kotest-assertions-core-jvm = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
 kotest-assertions-shared = { module = "io.kotest:kotest-assertions-shared", version.ref = "kotest" }
 
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle" }
 kotlin-gradle-plugin-api = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin-api", version.ref = "kotlin-gradle" }
-
-# This exists just to give Renovate something to resolve
-ktlint-core = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint-lib" }
 
 rickBusarow-kase = { module = "com.rickbusarow.kase:kase", version.ref = "rickBusarow-kase" }
 rickBusarow-kase-gradle = { module = "com.rickbusarow.kase:kase-gradle", version.ref = "rickBusarow-kase" }
