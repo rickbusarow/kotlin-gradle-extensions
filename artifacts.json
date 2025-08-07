@@ -5,7 +5,7 @@
     "artifactId": "kotlin-gradle-extensions",
     "description": "Common utilities for Gradle",
     "packaging": "jar",
-    "javaVersion": "11",
+    "javaVersion": "17",
     "publicationName": "maven"
   },
   {
@@ -14,7 +14,7 @@
     "artifactId": "names",
     "description": "Type-safe names for Gradle domain objects",
     "packaging": "jar",
-    "javaVersion": "11",
+    "javaVersion": "17",
     "publicationName": "maven"
   }
 ]
